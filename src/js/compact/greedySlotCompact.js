@@ -149,6 +149,9 @@ function runAlgorithms(param) {
   sessionInOrder[0].forEach(sessionId => {
     slots.push([sessionId])
   })
+
+  let locationTable = story.getTable('location')
+
   // Init slots
   // Insert session to slot
   for (let time = 1; time < width; time++) {
@@ -299,6 +302,11 @@ function runAlgorithms(param) {
             }
             return false
           })
+
+        let location = locationTable._mat._data[characterId][time]
+        // console.log(location)
+        baseHeight = location * 200
+
         let Height = baseHeight + characterI * DISTANCE_IN
         if (isExpand) Height += idNum * DISTANCE_IN * (scale - 1)
         else if (isCompress) Height -= idNum * DISTANCE_IN * (1 - scale)

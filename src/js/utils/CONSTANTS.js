@@ -5,7 +5,7 @@ export const ORDER_TIMES = 10
 export const ALPHA = 0.1
 
 // Compact
-export const DISTANCE_IN = 10
+export const DISTANCE_IN = 30
 export const DISTANCE_OUT = 20
 
 // Render

@@ -1,0 +1,549 @@
+[
+  {
+    "timestamp": 213968,
+    "killerID": 8,
+    "killerName": "Sylas",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 6173,
+      "y": 6533
+    },
+    "placeIndex": 4,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 216908,
+    "killerID": 9,
+    "killerName": "RekSai",
+    "victimID": 3,
+    "victimName": "Malzahar",
+    "position": {
+      "x": 6265,
+      "y": 6657
+    },
+    "placeIndex": 4,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 217040,
+    "killerID": 3,
+    "killerName": "Malzahar",
+    "victimID": 8,
+    "victimName": "Sylas",
+    "position": {
+      "x": 6556,
+      "y": 6726
+    },
+    "placeIndex": 4,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 292309,
+    "killerID": 8,
+    "killerName": "Sylas",
+    "victimID": 3,
+    "victimName": "Malzahar",
+    "position": {
+      "x": 6304,
+      "y": 6387
+    },
+    "placeIndex": 4,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 307949,
+    "killerID": 10,
+    "killerName": "Lulu",
+    "victimID": 5,
+    "victimName": "Morgana",
+    "position": {
+      "x": 11234,
+      "y": 991
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 421237,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 2937,
+      "y": 13386
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 423978,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 2708,
+      "y": 13470
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 506627,
+    "killerID": 7,
+    "killerName": "Kaisa",
+    "victimID": 5,
+    "victimName": "Morgana",
+    "position": {
+      "x": 10303,
+      "y": 1658
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 509041,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 9293,
+      "y": 1296
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 512420,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 9872,
+      "y": 1762
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 519324,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 10,
+    "victimName": "Lulu",
+    "position": {
+      "x": 12221,
+      "y": 2442
+    },
+    "placeIndex": 11,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 535980,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 1999,
+      "y": 12276
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 545310,
+    "killerID": 2,
+    "killerName": "Diana",
+    "position": {
+      "x": 9866,
+      "y": 4414
+    },
+    "placeIndex": 10,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 591251,
+    "killerID": 2,
+    "killerName": "Diana",
+    "position": {
+      "x": 4562,
+      "y": 10034
+    },
+    "placeIndex": 8,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 625754,
+    "killerID": 7,
+    "killerName": "Kaisa",
+    "victimID": 5,
+    "victimName": "Morgana",
+    "position": {
+      "x": 13022,
+      "y": 1933
+    },
+    "placeIndex": 11,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 651608,
+    "killerID": 8,
+    "killerName": "Sylas",
+    "victimID": 3,
+    "victimName": "Malzahar",
+    "position": {
+      "x": 5646,
+      "y": 6273
+    },
+    "placeIndex": 4,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 711464,
+    "killerID": 6,
+    "killerName": "Aatrox",
+    "victimID": 1,
+    "victimName": "Warwick",
+    "position": {
+      "x": 2589,
+      "y": 13434
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 736132,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 8,
+    "victimName": "Sylas",
+    "position": {
+      "x": 7828,
+      "y": 6969
+    },
+    "placeIndex": 5,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 741666,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 8024,
+      "y": 6310
+    },
+    "placeIndex": 5,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 797529,
+    "killerID": 9,
+    "killerName": "RekSai",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 11285,
+      "y": 5909
+    },
+    "placeIndex": 10,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 854978,
+    "killerID": 3,
+    "killerName": "Malzahar",
+    "victimID": 8,
+    "victimName": "Sylas",
+    "position": {
+      "x": 6846,
+      "y": 7926
+    },
+    "placeIndex": 9,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 903279,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 10005,
+      "y": 1065
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 905004,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 1983,
+      "y": 12413
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 905367,
+    "killerID": 7,
+    "killerName": "Kaisa",
+    "victimID": 4,
+    "victimName": "Jinx",
+    "position": {
+      "x": 10276,
+      "y": 872
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 910264,
+    "killerID": 7,
+    "killerName": "Kaisa",
+    "victimID": 5,
+    "victimName": "Morgana",
+    "position": {
+      "x": 9570,
+      "y": 2481
+    },
+    "placeIndex": 5,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 971195,
+    "killerID": 2,
+    "killerName": "Diana",
+    "position": {
+      "x": 4768,
+      "y": 9898
+    },
+    "placeIndex": 8,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 972351,
+    "killerID": 9,
+    "killerName": "RekSai",
+    "position": {
+      "x": 10078,
+      "y": 4658
+    },
+    "placeIndex": 10,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 1006988,
+    "killerID": 3,
+    "killerName": "Malzahar",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 1657,
+      "y": 13498
+    },
+    "placeIndex": 7,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1020401,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 8,
+    "victimName": "Sylas",
+    "position": {
+      "x": 7058,
+      "y": 7280
+    },
+    "placeIndex": 9,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1020401,
+    "killerID": 5,
+    "killerName": "Morgana",
+    "victimID": 10,
+    "victimName": "Lulu",
+    "position": {
+      "x": 11064,
+      "y": 1677
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1024159,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 10796,
+      "y": 1922
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1037574,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 8342,
+      "y": 12363
+    },
+    "placeIndex": 13,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1063878,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 13278,
+      "y": 5286
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1091172,
+    "killerID": 3,
+    "killerName": "Malzahar",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 7848,
+      "y": 10139
+    },
+    "placeIndex": 13,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1176837,
+    "killerID": 9,
+    "killerName": "RekSai",
+    "victimID": 5,
+    "victimName": "Morgana",
+    "position": {
+      "x": 12582,
+      "y": 2520
+    },
+    "placeIndex": 11,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1209033,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 11408,
+      "y": 1638
+    },
+    "placeIndex": 6,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1235117,
+    "killerID": 2,
+    "killerName": "Diana",
+    "position": {
+      "x": 5007,
+      "y": 10471
+    },
+    "placeIndex": 8,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 1279638,
+    "killerID": 2,
+    "killerName": "Diana",
+    "position": {
+      "x": 9866,
+      "y": 4414
+    },
+    "placeIndex": 10,
+    "killType": "ELITE_MONSTER_KILL"
+  },
+  {
+    "timestamp": 1297590,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 13363,
+      "y": 6170
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1341256,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 8,
+    "victimName": "Sylas",
+    "position": {
+      "x": 13449,
+      "y": 9387
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1343018,
+    "killerID": 7,
+    "killerName": "Kaisa",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 13423,
+      "y": 8332
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1352135,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "RekSai",
+    "position": {
+      "x": 13561,
+      "y": 8131
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1353922,
+    "killerID": 1,
+    "killerName": "Warwick",
+    "victimID": 6,
+    "victimName": "Aatrox",
+    "position": {
+      "x": 13399,
+      "y": 8642
+    },
+    "placeIndex": 15,
+    "killType": "CHAMPION_KILL"
+  }
+]

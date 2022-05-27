@@ -358,6 +358,7 @@ export default class iStoryline {
   stylish(names, timeSpan, style) {
     if (names.length === 1 && timeSpan.length === 2) {
       this._constraintStore.add(names, timeSpan, style, {})
+      console.log('Styled!')
     } else {
       logConstraintError('Stylish')
     }
