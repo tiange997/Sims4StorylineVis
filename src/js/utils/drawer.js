@@ -1,5 +1,6 @@
 import Snap from 'snapsvg'
 import $ from 'jquery'
+import * as path from 'path'
 
 let playerInfo
 
@@ -47,7 +48,7 @@ export function drawSegmentPath(
 
   let text
 
-  console.log('Received: ' + playerInfo)
+  // console.log('Received: ' + playerInfo)
 
   /*if (!doOnce) {
     let perTimestamp = 0
@@ -520,6 +521,7 @@ export function drawStoryline(
   locationSet,
   perTimestamp,
   participantsInfo,
+  pathList,
   type = 'simple'
 ) {
   // console.log(positionInfo)
@@ -594,7 +596,7 @@ export function drawStoryline(
           namePosition.push(character, segment[0][0], segment[0][1])
           pointTwoXPos = parseInt(segment[0][0])
           pointTwoYPos = parseInt(segment[0][1])
-          console.log('printed: ' + pointTwoXPos, pointTwoYPos)
+          // console.log('printed: ' + pointTwoXPos, pointTwoYPos)
         }
         break
       default:
@@ -603,7 +605,8 @@ export function drawStoryline(
           namePosition.push(character, segment[0][0], segment[0][1])
           pointOneXPos = segment[0][0]
           pointOneYPos = segment[0][1]
-          console.log('get first point:' + pointOneXPos, pointOneYPos)
+          // console.log('get first point:' + pointOneXPos, pointOneYPos)
+          // console.log(segment)
         }
     }
 
@@ -720,7 +723,7 @@ export function drawStoryline(
       }
     )
 
-    svg.mousemove(event => {
+    /*svg.mousemove(event => {
       pt.x = event.clientX
       pt.y = event.clientY
 
@@ -729,7 +732,7 @@ export function drawStoryline(
       pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
       console.log(pt.x, pt.y)
-    })
+    })*/
   })
 
   // console.log(namePosition)
@@ -741,6 +744,7 @@ function generateSimplePath(points) {
   for (let i = 1, len = points.length; i < len; i++) {
     pathStr += `L ${points[i][0]} ${points[i][1]}`
   }
+  // console.log(pathStr)
   return pathStr
 }
 
