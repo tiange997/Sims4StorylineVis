@@ -13,6 +13,19 @@ let jsonReadTwo = d3Fetch.json('../../data/json/KillingInfo.json')
 // We need to set the total timestamp first
 let totalTimestamp = 1390168
 
+// Get the drawing path info
+let paths,
+  playerOnePath = [],
+  playerTwoPath = [],
+  playerThreePath = [],
+  playerFourPath = [],
+  playerFivePath = [],
+  playerSixPath = [],
+  playerSevenPath = [],
+  playerEightPath = [],
+  playerNinePath = [],
+  playerTenPath = []
+
 console.log('Match Length: ' + timeStamp(totalTimestamp))
 
 async function main(fileName) {
@@ -51,6 +64,29 @@ async function main(fileName) {
 
   const session = iStorylineInstance._story._tableMap.get('session')._mat._data
   // console.log(session)
+
+  paths = iStorylineInstance._story._paths
+
+  // console.log(paths)
+
+  let pathList = [
+    playerOnePath,
+    playerTwoPath,
+    playerThreePath,
+    playerFourPath,
+    playerFivePath,
+    playerSixPath,
+    playerSevenPath,
+    playerEightPath,
+    playerNinePath,
+    playerTenPath,
+  ]
+
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 76; j++) {
+      pathList[i].push(paths[i * 76 + j])
+    }
+  }
 
   let zero = false
 
@@ -155,7 +191,7 @@ for (let segments = 0; segments < 11; segments++) {
   txt.attr({
     'font-size': 30,
   })
-  console.log(segments)
+  // console.log(segments)
 }
 
 function timeStamp(perTimestamp) {
@@ -254,46 +290,55 @@ for (let i = 0; i < 17; i++) {
   locationMap.push(incremental * i + 60 + 58.8 / 2)
 }
 
-let locationIndexChart = {}
-
-/*
-for (let i in locationMap) {
-  locationIndexChart[loc] : locationMap[i]
-  // svg.circle(220, locationMap[i], 26).attr({'fill':'none', 'stroke': 'red', 'strokeWidth': 3})
-}
-*/
-
-console.log(locationIndexChart)
-
 async function drawEvents() {
-  let matchKillingPlaces = []
-
   await jsonReadTwo.then(function(result) {
     let data = result
+
+    console.log(data)
+
+    let pathList = [
+      playerOnePath,
+      playerTwoPath,
+      playerThreePath,
+      playerFourPath,
+      playerFivePath,
+      playerSixPath,
+      playerSevenPath,
+      playerEightPath,
+      playerNinePath,
+      playerTenPath,
+    ]
+
     for (let i in data) {
-      // console.log(data[i])
-      matchKillingPlaces.push(data[i]['placeIndex'] - 1) // minus one to get the correct index for later use
-    }
+      let playerIndex = data[i]['victimID'] - 1
+      let localPath = pathList[playerIndex]
 
-    // console.log(matchKillingPlaces)
+      let circle_x =
+        ((6000 - 180) * data[i]['timestamp']) / totalTimestamp + 180
 
-    for (let i in matchKillingPlaces) {
-      // console.log("mat: " + matchKillingPlaces[i])
-      let localIndex = matchKillingPlaces[i]
-      let circle_x = ((6000 - 180) * data[i]['timestamp']) / 1390168 + 180
-      let circle_y = locationMap[localIndex]
-      console.log(circle_x, circle_y)
-      svg
-        .circle(circle_x, circle_y, 26)
-        .attr({ fill: 'none', stroke: 'red', strokeWidth: 3 })
+      // "M 300 0 L 300 1080" ( Replace 300 with real X based on the timestamp)
+
+      let findingPath = `M ${circle_x} 0 L${circle_x} 1080`
+
+      let intersection = Snap.path.intersection(localPath, findingPath)[0]
+
+      if (intersection === undefined) {
+        console.log('Undefined at data point: ' + i)
+        console.log('Undefined storyline (Victim ID): ' + data[i]['victimID'])
+        console.log(
+          'Undefined position X (Cannot find its corresponding Y): ' + circle_x
+        )
+      }
+
+      if (intersection) {
+        let circle_y = parseInt(intersection.y)
+        svg
+          .circle(circle_x, circle_y, 26)
+          .attr({ fill: 'none', stroke: 'red', strokeWidth: 3 })
+      }
     }
   })
 }
-
-// function drawEvents(killingInfo) {
-//     let circle_x = 6000 * killingInfo['timestamp']/139608 - 180
-//     // let circle_y =
-// }
 
 // function main2() {
 //   const iStoryliner = new iStoryline()
