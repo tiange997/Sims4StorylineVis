@@ -82,6 +82,9 @@ async function main(fileName) {
     playerTenPath,
   ]
 
+  // push players' path BASED ON RENDERING ORDER
+  // IMPORTANT TO WORK OUT THE RENDERING ORDER
+
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 76; j++) {
       pathList[i].push(paths[i * 76 + j])
@@ -217,43 +220,13 @@ function locationBox(locationSet) {
 
   let pat = stripe.pattern(0, 0, 5920, 58.8)
 
-  let rect1,
-    rect2,
-    rect3,
-    rect4,
-    rect5,
-    rect6,
-    rect7,
-    rect8,
-    rect9,
-    rect10,
-    rect11,
-    rect12,
-    rect13,
-    rect14,
-    rect15,
-    rect16,
-    rect17
+  let rect = []
 
-  const rectObjArray = [
-    rect1,
-    rect2,
-    rect3,
-    rect4,
-    rect5,
-    rect6,
-    rect7,
-    rect8,
-    rect9,
-    rect10,
-    rect11,
-    rect12,
-    rect13,
-    rect14,
-    rect15,
-    rect16,
-    rect17,
-  ]
+  // console.log(locationSet.length)
+
+  for (let i = 0; i < locationSet.length; i++) {
+    rect[i] = []
+  }
 
   const textXPos = 6200
 
@@ -262,7 +235,7 @@ function locationBox(locationSet) {
     // console.log(height)
 
     if ((i + 1) % 2 !== 0) {
-      rectObjArray[i] = svg.rect(185, incremental * i + 60, 6000, 58.8).attr({
+      rect[i] = svg.rect(185, incremental * i + 60, 6000, 58.8).attr({
         fill: 'rgba(128, 128, 128, 0.5)',
         fillOpacity: '0.1',
         stroke: 'none',
@@ -272,7 +245,7 @@ function locationBox(locationSet) {
     }
 
     if ((i + 1) % 2 === 0) {
-      rectObjArray[i] = svg.rect(185, incremental * i + 60, 6000, 58.8).attr({
+      rect[i] = svg.rect(185, incremental * i + 60, 6000, 58.8).attr({
         fill: 'none',
         stroke: 'none',
       })
@@ -285,7 +258,7 @@ function locationBox(locationSet) {
 
 let locationMap = []
 
-for (let i = 0; i < 17; i++) {
+for (let i = 0; i < locationSet.length; i++) {
   const incremental = 64.7
   locationMap.push(incremental * i + 60 + 58.8 / 2)
 }
@@ -333,7 +306,7 @@ async function drawEvents() {
       if (intersection) {
         let circle_y = parseInt(intersection.y)
         svg
-          .circle(circle_x, circle_y, 26)
+          .circle(circle_x, circle_y, 10)
           .attr({ fill: 'none', stroke: 'red', strokeWidth: 3 })
       }
     }

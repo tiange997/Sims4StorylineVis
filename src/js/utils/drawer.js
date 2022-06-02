@@ -50,30 +50,6 @@ export function drawSegmentPath(
 
   // console.log('Received: ' + playerInfo)
 
-  /*if (!doOnce) {
-    let perTimestamp = 0
-    let accumTimestamp = 139016.8
-
-    let timeAidedLine
-
-    for (let segments = 0; segments < 11; segments++){
-      // draw vertical lines
-      posX = 80 + distance * segments
-      console.log(posX)
-      timeAidedLine = svg.line(posX, 0, posX, 1100)
-      timeAidedLine.attr({
-        fill: 'none',
-        stroke: "black",
-        // 'stroke-width': defaultWidth
-        'stroke-dasharray':'4'
-      })
-
-      // write labels
-      let txt = svg.text(70 + distance * segments, 1120, timeStamp(perTimestamp + accumTimestamp * segments)) // we need a loop to draw all lines#
-      console.log(segments)
-    }
-  }*/
-
   switch (
     character // text can be replaced with icons in later use
   ) {
