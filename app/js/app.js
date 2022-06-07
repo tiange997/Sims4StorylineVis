@@ -14,17 +14,11 @@ let jsonReadTwo = d3Fetch.json('../../data/json/KillingInfo.json')
 let totalTimestamp = 1390168
 
 // Get the drawing path info
-let paths,
-  playerOnePath = [],
-  playerTwoPath = [],
-  playerThreePath = [],
-  playerFourPath = [],
-  playerFivePath = [],
-  playerSixPath = [],
-  playerSevenPath = [],
-  playerEightPath = [],
-  playerNinePath = [],
-  playerTenPath = []
+let paths
+// Set a path list for later use
+let pathList = []
+// Save characters number for later use
+let characterNum
 
 console.log('Match Length: ' + timeStamp(totalTimestamp))
 
@@ -69,18 +63,11 @@ async function main(fileName) {
 
   // console.log(paths)
 
-  let pathList = [
-    playerOnePath,
-    playerTwoPath,
-    playerThreePath,
-    playerFourPath,
-    playerFivePath,
-    playerSixPath,
-    playerSevenPath,
-    playerEightPath,
-    playerNinePath,
-    playerTenPath,
-  ]
+  const characters = graph.characters
+
+  for (let i = 0; i < characters.length; i++) {
+    pathList[i] = []
+  }
 
   // push players' path BASED ON RENDERING ORDER
   // IMPORTANT TO WORK OUT THE RENDERING ORDER
@@ -116,10 +103,6 @@ async function main(fileName) {
   locationBox(locationSet)
 
   const storylines = graph.storylines
-
-  // console.log(storylines)
-
-  const characters = graph.characters
 
   // Timestamp
   const timestamps = iStorylineInstance._story._timeStamps
@@ -222,8 +205,6 @@ function locationBox(locationSet) {
 
   let rect = []
 
-  // console.log(locationSet.length)
-
   for (let i = 0; i < locationSet.length; i++) {
     rect[i] = []
   }
@@ -268,19 +249,6 @@ async function drawEvents() {
     let data = result
 
     console.log(data)
-
-    let pathList = [
-      playerOnePath,
-      playerTwoPath,
-      playerThreePath,
-      playerFourPath,
-      playerFivePath,
-      playerSixPath,
-      playerSevenPath,
-      playerEightPath,
-      playerNinePath,
-      playerTenPath,
-    ]
 
     for (let i in data) {
       let playerIndex = data[i]['victimID'] - 1
