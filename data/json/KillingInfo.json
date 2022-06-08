@@ -156,28 +156,6 @@
     "killType": "CHAMPION_KILL"
   },
   {
-    "timestamp": 545310,
-    "killerID": 2,
-    "killerName": "Diana",
-    "position": {
-      "x": 9866,
-      "y": 4414
-    },
-    "placeIndex": 10,
-    "killType": "ELITE_MONSTER_KILL"
-  },
-  {
-    "timestamp": 591251,
-    "killerID": 2,
-    "killerName": "Diana",
-    "position": {
-      "x": 4562,
-      "y": 10034
-    },
-    "placeIndex": 8,
-    "killType": "ELITE_MONSTER_KILL"
-  },
-  {
     "timestamp": 625754,
     "killerID": 7,
     "killerName": "Kaisa",
@@ -321,28 +299,6 @@
     "killType": "CHAMPION_KILL"
   },
   {
-    "timestamp": 971195,
-    "killerID": 2,
-    "killerName": "Diana",
-    "position": {
-      "x": 4768,
-      "y": 9898
-    },
-    "placeIndex": 8,
-    "killType": "ELITE_MONSTER_KILL"
-  },
-  {
-    "timestamp": 972351,
-    "killerID": 9,
-    "killerName": "RekSai",
-    "position": {
-      "x": 10078,
-      "y": 4658
-    },
-    "placeIndex": 10,
-    "killType": "ELITE_MONSTER_KILL"
-  },
-  {
     "timestamp": 1006988,
     "killerID": 3,
     "killerName": "Malzahar",
@@ -458,28 +414,6 @@
     },
     "placeIndex": 6,
     "killType": "CHAMPION_KILL"
-  },
-  {
-    "timestamp": 1235117,
-    "killerID": 2,
-    "killerName": "Diana",
-    "position": {
-      "x": 5007,
-      "y": 10471
-    },
-    "placeIndex": 8,
-    "killType": "ELITE_MONSTER_KILL"
-  },
-  {
-    "timestamp": 1279638,
-    "killerID": 2,
-    "killerName": "Diana",
-    "position": {
-      "x": 9866,
-      "y": 4414
-    },
-    "placeIndex": 10,
-    "killType": "ELITE_MONSTER_KILL"
   },
   {
     "timestamp": 1297590,

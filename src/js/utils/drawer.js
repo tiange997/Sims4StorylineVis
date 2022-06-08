@@ -62,7 +62,7 @@ export function drawSegmentPath(
       })
       let iconTwo = svg.image(
         player2Img,
-        positionInfo[index + 1] - offset + 80 + 6,
+        positionInfo[index + 1] - offset + 80 + 6 - 70 - 100,
         positionInfo[index + 2] - 20 + 6,
         42,
         42
@@ -80,7 +80,7 @@ export function drawSegmentPath(
       )
       let borderTwo = svg
         .rect(
-          positionInfo[index + 1] - offset + 80,
+          positionInfo[index + 1] - offset + 80 - 70 - 100,
           positionInfo[index + 2] - 20,
           53,
           53
@@ -100,7 +100,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player3")
       let iconThree = svg.image(
         player3Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] + 72 + 6,
         41,
         41
@@ -118,7 +118,7 @@ export function drawSegmentPath(
       )
       let borderThree = svg
         .rect(
-          positionInfo[index + 1] - offset,
+          positionInfo[index + 1] - offset - 70 - 100,
           positionInfo[index + 2] + 72,
           53,
           53
@@ -138,7 +138,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player4")
       let iconFour = svg.image(
         player4Img,
-        positionInfo[index + 1] - offset + 80 + 6,
+        positionInfo[index + 1] - offset + 80 + 6 - 70 - 100,
         positionInfo[index + 2] + 53 + 6,
         42,
         42
@@ -156,7 +156,7 @@ export function drawSegmentPath(
       )
       let borderFour = svg
         .rect(
-          positionInfo[index + 1] - offset + 80,
+          positionInfo[index + 1] - offset + 80 - 70 - 100,
           positionInfo[index + 2] + 53,
           53,
           53
@@ -176,7 +176,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player5")
       let iconFive = svg.image(
         player5Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] + 110 + 14,
         41,
         41
@@ -194,7 +194,7 @@ export function drawSegmentPath(
       )
       let borderFive = svg
         .rect(
-          positionInfo[index + 1] - offset,
+          positionInfo[index + 1] - offset - 70 - 100,
           positionInfo[index + 2] + 110 + 5 + 3,
           53,
           53
@@ -211,7 +211,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player6")
       let iconSix = svg.image(
         player6Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] - 160 + 6,
         41,
         41
@@ -229,7 +229,7 @@ export function drawSegmentPath(
       )
       let borderSix = svg
         .rect(
-          positionInfo[index + 1] - offset,
+          positionInfo[index + 1] - offset - 70 - 100,
           positionInfo[index + 2] - 160,
           53,
           53
@@ -246,7 +246,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player7")
       let iconSeven = svg.image(
         player7Img,
-        positionInfo[index + 1] - offset + 70 + 6,
+        positionInfo[index + 1] - offset + 70 + 6 - 70 - 100,
         positionInfo[index + 2] - 180 + 6,
         42,
         42
@@ -264,7 +264,7 @@ export function drawSegmentPath(
       )
       let borderSeven = svg
         .rect(
-          positionInfo[index + 1] - offset + 70,
+          positionInfo[index + 1] - offset + 70 - 70 - 100,
           positionInfo[index + 2] - 180,
           53,
           53
@@ -281,7 +281,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player8")
       let iconEight = svg.image(
         player8Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] - 80 + 6,
         40,
         40
@@ -299,7 +299,7 @@ export function drawSegmentPath(
       )
       let borderEight = svg
         .rect(
-          positionInfo[index + 1] - offset,
+          positionInfo[index + 1] - offset - 70 - 100,
           positionInfo[index + 2] - 80,
           53,
           53
@@ -316,7 +316,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player9")
       let iconNine = svg.image(
         player9Img,
-        positionInfo[index + 1] - offset + 70 + 6,
+        positionInfo[index + 1] - offset + 70 + 6 - 70 - 100,
         positionInfo[index + 2] - 100 + 6,
         42,
         42
@@ -334,7 +334,7 @@ export function drawSegmentPath(
       )
       let borderNine = svg
         .rect(
-          positionInfo[index + 1] - offset + 70,
+          positionInfo[index + 1] - offset + 70 - 70 - 100,
           positionInfo[index + 2] - 100,
           53,
           53
@@ -351,7 +351,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player10")
       let iconTen = svg.image(
         player10Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] - 50 + 6,
         42,
         42
@@ -369,7 +369,7 @@ export function drawSegmentPath(
       )
       let borderTen = svg
         .rect(
-          positionInfo[index + 1] - offset,
+          positionInfo[index + 1] - offset - 70 - 100,
           positionInfo[index + 2] - 50,
           53,
           53
@@ -389,7 +389,7 @@ export function drawSegmentPath(
       // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player1")
       let icon = svg.image(
         player1Img,
-        positionInfo[index + 1] - offset + 6,
+        positionInfo[index + 1] - offset + 6 - 70 - 100,
         positionInfo[index + 2] + 6,
         42,
         42
@@ -407,7 +407,12 @@ export function drawSegmentPath(
       )
       // Add decorative border according to the color scheme
       let borderOne = svg
-        .rect(positionInfo[index + 1] - offset, positionInfo[index + 2], 53, 53)
+        .rect(
+          positionInfo[index + 1] - offset - 70 - 100,
+          positionInfo[index + 2],
+          53,
+          53
+        )
         .attr({
           fill: 'none',
           stroke: color,
@@ -620,6 +625,7 @@ export function drawStoryline(
         break
       default:
         segmentPath = generateSimplePath(segment)
+        // console.log(segmentPath)
         break
     }
 
@@ -637,6 +643,7 @@ export function drawStoryline(
     ) // To pass the character info, participants info as well as the generated array
     segmentPathSvg.click(() => {
       console.log(namePosition)
+      console.log(segmentPath)
 
       // Find out character's name in nameposition array
       // let i = namePosition.indexOf(character)
@@ -648,7 +655,7 @@ export function drawStoryline(
       console.log(parseInt(idNumber))
       console.log(character, idx, session[parseInt(idNumber) - 1][idx]) // parseInt(idNumber)-1][idx] has undefined element when it was 14, this needs to minus 1
 
-      console.log(locationSet)
+      // console.log(locationSet)
 
       let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
       console.log(locationSet[accessIndex])
