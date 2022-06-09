@@ -21,8 +21,7 @@ export function drawSegmentPath(
   pathStr,
   defaultWidth = 2,
   hoverWidth = 4,
-  character,
-  positionInfo
+  character
 ) {
   const pathSvg = svg.path(pathStr)
 
@@ -31,393 +30,53 @@ export function drawSegmentPath(
 
   // console.log(positionInfo)
 
-  let index = 0 // Initialise the index
-
-  const offset = 145 // set an offset before drawing lines
-
-  let player1Img = '../../src/image/NA1_4178165221/1.png'
-  let player2Img = '../../src/image/NA1_4178165221/2.png'
-  let player3Img = '../../src/image/NA1_4178165221/3.png'
-  let player4Img = '../../src/image/NA1_4178165221/4.png'
-  let player5Img = '../../src/image/NA1_4178165221/5.png'
-  let player6Img = '../../src/image/NA1_4178165221/6.png'
-  let player7Img = '../../src/image/NA1_4178165221/7.png'
-  let player8Img = '../../src/image/NA1_4178165221/8.png'
-  let player9Img = '../../src/image/NA1_4178165221/9.png'
-  let player10Img = '../../src/image/NA1_4178165221/10.png'
-
-  let text
-
   // console.log('Received: ' + playerInfo)
 
-  switch (
-    character // text can be replaced with icons in later use
-  ) {
+  switch (character) {
     case 'Player2':
       color = '#00B8D1'
-      index = positionInfo.indexOf('Player2') // Find the index based on the character's name
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player2")
       pathSvg.attr({
         'stroke-dasharray': '4',
       })
-      let iconTwo = svg.image(
-        player2Img,
-        positionInfo[index + 1] - offset + 80 + 6 - 70 - 100,
-        positionInfo[index + 2] - 20 + 6,
-        42,
-        42
-      )
-      iconTwo.hover(
-        () => {
-          text = svg.text(35, 250 + 60, playerInfo[3])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderTwo = svg
-        .rect(
-          positionInfo[index + 1] - offset + 80 - 70 - 100,
-          positionInfo[index + 2] - 20,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player3':
       color = '#00B827'
-      index = positionInfo.indexOf('Player3')
       pathSvg.attr({
         'stroke-dasharray': '4',
       })
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player3")
-      let iconThree = svg.image(
-        player3Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] + 72 + 6,
-        41,
-        41
-      )
-      iconThree.hover(
-        () => {
-          text = svg.text(35, 250 + 60, playerInfo[5])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderThree = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2] + 72,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player4':
       color = '#5BB58A'
-      index = positionInfo.indexOf('Player4')
       pathSvg.attr({
         'stroke-dasharray': '4',
       })
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player4")
-      let iconFour = svg.image(
-        player4Img,
-        positionInfo[index + 1] - offset + 80 + 6 - 70 - 100,
-        positionInfo[index + 2] + 53 + 6,
-        42,
-        42
-      )
-      iconFour.hover(
-        () => {
-          text = svg.text(35, 250 + 60, playerInfo[7])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderFour = svg
-        .rect(
-          positionInfo[index + 1] - offset + 80 - 70 - 100,
-          positionInfo[index + 2] + 53,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player5':
       color = '#9B8BD6'
-      index = positionInfo.indexOf('Player5')
       pathSvg.attr({
         'stroke-dasharray': '4',
       })
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player5")
-      let iconFive = svg.image(
-        player5Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] + 110 + 14,
-        41,
-        41
-      )
-      iconFive.hover(
-        () => {
-          text = svg.text(35, 250 + 60, playerInfo[9])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderFive = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2] + 110 + 5 + 3,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player6':
       color = '#ff4e00'
-      index = positionInfo.indexOf('Player6')
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player6")
-      let iconSix = svg.image(
-        player6Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] - 160 + 6,
-        41,
-        41
-      )
-      iconSix.hover(
-        () => {
-          text = svg.text(35, 900, playerInfo[11])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderSix = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2] - 160,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player7':
       color = '#ff5c8a'
-      index = positionInfo.indexOf('Player7')
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player7")
-      let iconSeven = svg.image(
-        player7Img,
-        positionInfo[index + 1] - offset + 70 + 6 - 70 - 100,
-        positionInfo[index + 2] - 180 + 6,
-        42,
-        42
-      )
-      iconSeven.hover(
-        () => {
-          text = svg.text(35, 900, playerInfo[13])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderSeven = svg
-        .rect(
-          positionInfo[index + 1] - offset + 70 - 70 - 100,
-          positionInfo[index + 2] - 180,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '3',
-        })
       break
     case 'Player8':
       color = '#f5bb00'
-      index = positionInfo.indexOf('Player8')
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player8")
-      let iconEight = svg.image(
-        player8Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] - 80 + 6,
-        40,
-        40
-      )
-      iconEight.hover(
-        () => {
-          text = svg.text(35, 900, playerInfo[15])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderEight = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2] - 80,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     case 'Player9':
       color = '#ec9f05'
-      index = positionInfo.indexOf('Player9')
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player9")
-      let iconNine = svg.image(
-        player9Img,
-        positionInfo[index + 1] - offset + 70 + 6 - 70 - 100,
-        positionInfo[index + 2] - 100 + 6,
-        42,
-        42
-      )
-      iconNine.hover(
-        () => {
-          text = svg.text(35, 900, playerInfo[17])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderNine = svg
-        .rect(
-          positionInfo[index + 1] - offset + 70 - 70 - 100,
-          positionInfo[index + 2] - 100,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '3',
-        })
       break
     case 'Player10':
       color = '#bf3100'
-      index = positionInfo.indexOf('Player10')
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player10")
-      let iconTen = svg.image(
-        player10Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] - 50 + 6,
-        42,
-        42
-      )
-      iconTen.hover(
-        () => {
-          text = svg.text(35, 900, playerInfo[19])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      let borderTen = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2] - 50,
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
       break
     default:
       color = '#5B7DB1'
-      index = positionInfo.indexOf('Player1')
       pathSvg.attr({
         'stroke-dasharray': '4',
       })
-      // svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Player1")
-      let icon = svg.image(
-        player1Img,
-        positionInfo[index + 1] - offset + 6 - 70 - 100,
-        positionInfo[index + 2] + 6,
-        42,
-        42
-      )
-      icon.hover(
-        () => {
-          text = svg.text(35, 250 + 60, playerInfo[1])
-          text.attr({
-            fill: color,
-          })
-        },
-        () => {
-          text.remove()
-        }
-      )
-      // Add decorative border according to the color scheme
-      let borderOne = svg
-        .rect(
-          positionInfo[index + 1] - offset - 70 - 100,
-          positionInfo[index + 2],
-          53,
-          53
-        )
-        .attr({
-          fill: 'none',
-          stroke: color,
-          'stroke-width': '5',
-        })
   }
 
   /*switch(character) // text can be replaced with icons in later use
@@ -628,8 +287,6 @@ export function drawStoryline(
         // console.log(segmentPath)
         break
     }
-
-    let point = [pointOneXPos, pointOneYPos, pointTwoXPos, pointTwoYPos]
 
     playerInfo = participantsInfo
 

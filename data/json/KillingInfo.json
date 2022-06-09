@@ -299,6 +299,42 @@
     "killType": "CHAMPION_KILL"
   },
   {
+    "timestamp": 926917,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 979853,
+    "killerId": 3,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 982330,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
     "timestamp": 1006988,
     "killerID": 3,
     "killerName": "Malzahar",
@@ -310,6 +346,18 @@
     },
     "placeIndex": 7,
     "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1017096,
+    "killerId": 7,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
   },
   {
     "timestamp": 1020401,
@@ -364,6 +412,18 @@
     "killType": "CHAMPION_KILL"
   },
   {
+    "timestamp": 1062159,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
     "timestamp": 1063878,
     "killerID": 4,
     "killerName": "Jinx",
@@ -375,6 +435,18 @@
     },
     "placeIndex": 15,
     "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1073063,
+    "killerId": 2,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11134,
+      "y": 11207
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
   },
   {
     "timestamp": 1091172,
@@ -403,6 +475,17 @@
     "killType": "CHAMPION_KILL"
   },
   {
+    "timestamp": 1193972,
+    "killerId": 2,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
     "timestamp": 1209033,
     "killerID": 4,
     "killerName": "Jinx",
@@ -427,6 +510,30 @@
     },
     "placeIndex": 15,
     "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1305095,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1337685,
+    "killerId": 4,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13327,
+      "y": 8226
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
   },
   {
     "timestamp": 1341256,
@@ -479,5 +586,52 @@
     },
     "placeIndex": 15,
     "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1364179,
+    "killerId": 5,
+    "towerType": "BASE_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13624,
+      "y": 10572
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1369375,
+    "killerId": 5,
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13615,
+      "y": 11307
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1375617,
+    "killerId": 4,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 13052,
+      "y": 12612
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1380178,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 12611,
+      "y": 13084
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
   }
 ]
