@@ -144,18 +144,15 @@ async function main(fileName) {
     // console.log("Tab " + graph.getCharacterY("Player5", 506627))
   })
 
-  // console.log(characters)
-
-  drawEvents(graph)
+  await drawEvents(graph)
 
   return iStorylineInstance
 }
-main('result6.json')
+main('resultCC.json')
 
 const svg = Snap('#mySvg')
 
 // Draw hero info
-
 function heroInfo(character, participantsInfo) {
   let playerImg = []
   for (let i = 0; i < character.length; i++) {
@@ -524,10 +521,9 @@ function timeStamp(perTimestamp) {
 // console.log('TIME: ' + timeStamp(26063))
 
 function locationBox(locationSet) {
-  let height = 0,
-    incremental = 64.7
+  // console.log(locationSet)
 
-  const lineHeight = 63.52
+  let lineHeight = height / locationSet.length
 
   let stripe = svg.image('../../src/image/stripe.svg', 0, 0, 5920, lineHeight)
 
@@ -544,45 +540,51 @@ function locationBox(locationSet) {
   const textXPosOne = 210
   const textXPosTwo = 6380
 
+  let localHeight = 0
+
   for (let i = 0; i < locationSet.length; i++) {
-    height = height + incremental
+    localHeight = localHeight + lineHeight
     // console.log(height)
 
     if ((i + 1) % 2 !== 0) {
       rect[i] = svg
-        .rect(xOrigin, incremental * i + yOrigin, width, lineHeight)
+        .rect(xOrigin, lineHeight * i + yOrigin, width, lineHeight)
         .attr({
           fill: 'rgba(128, 128, 128, 0.5)',
           fillOpacity: '0.1',
           stroke: 'none',
         })
-      console.log('y Value: ' + (incremental * (i + 1)) / 2 + yOrigin)
+      console.log('y Value: ' + (lineHeight * (i + 1)) / 2 + yOrigin)
       svg.text(
         textXPosOne,
-        incremental * (i + 1) - 20 + yOrigin,
+        localHeight + yOrigin - lineHeight / 2,
         locationSet[i]
       )
       svg.text(
         textXPosTwo,
-        incremental * (i + 1) - 20 + yOrigin,
+        localHeight + yOrigin - lineHeight / 2,
         locationSet[i]
       )
     }
 
     if ((i + 1) % 2 === 0) {
       rect[i] = svg
-        .rect(xOrigin, incremental * i + yOrigin, width, lineHeight)
+        .rect(xOrigin, lineHeight * i + yOrigin, width, lineHeight)
         .attr({
           fill: 'none',
           stroke: 'none',
         })
-      console.log('y Value: ' + incremental * i + yOrigin)
+      console.log('y Value: ' + lineHeight * i + yOrigin)
       svg.text(
         textXPosOne,
-        incremental * (i + 1) - 20 + yOrigin,
+        localHeight + yOrigin - lineHeight / 2,
         locationSet[i]
       )
-      svg.text(textXPosTwo, incremental * i + 40 + yOrigin, locationSet[i])
+      svg.text(
+        textXPosTwo,
+        localHeight + yOrigin - lineHeight / 2,
+        locationSet[i]
+      )
     }
     console.log('LOC: ' + locationSet[i])
   }
@@ -598,17 +600,35 @@ async function drawEvents(graph) {
         let playerIndex = data[i]['victimID']
         let currentTimestamp = data[i]['timestamp']
         let currentPlayer = 'Player' + String(playerIndex)
-        let circleX = graph.getCharacterX(currentPlayer, currentTimestamp)
-        let circleY = graph.getCharacterY(currentPlayer, currentTimestamp)
-        console.log(currentPlayer, circleX, circleY)
-        svg.circle(circleX, circleY, 10).attr({
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+        console.log(currentPlayer, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+        console.log('CP: ' + (parseInt(indexHolder) - 1))
+
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        svg.image(
+          `../../src/image/${currentPlayer}.png`,
+          deathPosX - offset,
+          deathPosY - offset,
+          iconSize,
+          iconSize
+        )
+
+        // Circle Placeholder
+        /*svg.circle(posX, posY, 10).attr({
           fill: 'none',
           stroke: playerColour[currentPlayer],
           strokeWidth: 3,
-        })
+        })*/
       }
 
-      const scaling = 0.1
+      const scaling = 0.07
 
       if (data[i]['killType'] === 'BUILDING_KILL') {
         console.log('building kill detected')
@@ -618,19 +638,22 @@ async function drawEvents(graph) {
         let posX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let posY = graph.getCharacterY(currentPlayer, currentTimestamp)
         console.log(currentPlayer, posX, posY)
-        if (data[i]['buildingType'] === 'TOWER_BUILDING') {
-          svg
-            .polygon(
-              '208 288 192 160 224 160 240 144 240 0 192 0 192 48 160 48 160 0 96 0 96 48 64 48 64 0 16 0 16 144 32 160 64 160 48 288 16 288 0 304 0 384 256 384 256 304 240 288'
-            )
-            .attr({
-              transform: `translate(${posX} ${posY})
+
+        svg
+          .polygon(
+            '208 288 192 160 224 160 240 144 240 0 192 0 192 48 160 48 160 0 96 0 96 48 64 48 64 0 16 0 16 144 32 160 64 160 48 288 16 288 0 304 0 384 256 384 256 304 240 288'
+          )
+          .attr({
+            transform: `translate(${posX} ${posY})
                             scale(${scaling})`,
-              fill: playerColour[currentPlayer],
-              // stroke: playerColour[currentPlayer],
-              // strokeWidth: 3
-            })
-        }
+            fill: playerColour[currentPlayer],
+            // stroke: playerColour[currentPlayer],
+            // strokeWidth: 3
+          })
+
+        /*if (data[i]['buildingType'] === 'TOWER_BUILDING') {
+
+        }*/
         // if (data[i]['buildingType'] === "TOWER_BUILDING")
       }
     }
