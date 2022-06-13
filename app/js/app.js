@@ -7,14 +7,20 @@ import Snap from 'snapsvg'
 import * as d3Fetch from 'd3-fetch'
 import { image } from 'd3-fetch'
 
-let locationSet
+// Initialise json files
+const jsonRead = d3Fetch.json('../../data/json/MatchDetail.json')
+const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfo.json')
 
-let jsonRead = d3Fetch.json('../../data/json/MatchDetail.json')
-let jsonReadTwo = d3Fetch.json('../../data/json/KillingInfo.json')
+// Screen Width and Height
+const width = 6000
+const height = 1080
 
 // We need to set the total timestamp first
-let totalTimestamp = 1390168
+// Sections decide how the interval of timeline display
+let totalTimestamp
+let sections = 10
 
+// Canvas Origin
 let xOrigin = 350,
   yOrigin = 60
 
@@ -33,10 +39,10 @@ let playerColour = {
   Player10: '#bf3100',
 }
 
-const width = 6000
-const height = 1080
+// Save location info for later use
+let locationSet
 
-console.log('Match Length: ' + timeStamp(totalTimestamp))
+// console.log('Match Length: ' + timeStamp(totalTimestamp))
 
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
@@ -113,17 +119,17 @@ async function main(fileName) {
 
   // Timestamp
   const timestamps = iStorylineInstance._story._timeStamps
-  const lastTimeStamp = timestamps[timestamps.length - 1]
-  console.log(lastTimeStamp)
+  totalTimestamp = timestamps[timestamps.length - 1]
+  console.log(totalTimestamp)
 
   // convert the last timestamp into minutes
 
-  let min = Math.floor((lastTimeStamp / 1000 / 60) << 0),
-    sec = Math.floor((lastTimeStamp / 1000) % 60)
+  let min = Math.floor((totalTimestamp / 1000 / 60) << 0),
+    sec = Math.floor((totalTimestamp / 1000) % 60)
 
   console.log(min + ':' + sec)
 
-  const perTimeStamp = lastTimeStamp / 10 //divided by 10
+  const perTimeStamp = totalTimestamp / 10 //divided by 10
 
   let perMin = Math.floor((perTimeStamp / 1000 / 60) << 0),
     perSec = Math.floor((perTimeStamp / 1000) % 60)
@@ -156,7 +162,7 @@ const svg = Snap('#mySvg')
 function heroInfo(character, participantsInfo) {
   let playerImg = []
   for (let i = 0; i < character.length; i++) {
-    playerImg[i] = `../../src/image/NA1_4178165221/${i + 1}.png`
+    playerImg[i] = `../../src/image/playerIcons/${i + 1}.png`
   }
   console.log(playerImg)
   console.log(participantsInfo)
@@ -479,8 +485,7 @@ function heroInfo(character, participantsInfo) {
 
 // Draw timeline
 function timeline() {
-  let perTimestamp = 0
-  let accumTimestamp = 139016.8
+  let accumTimestamp = totalTimestamp / sections
   let timeAidedLine
   const distance = 592
   let posX
@@ -501,7 +506,7 @@ function timeline() {
     let txt = svg.text(
       70 + distance * segments + 95 + 70 + 100,
       1120 + 20 + 60,
-      timeStamp(perTimestamp + accumTimestamp * segments)
+      timeStamp(accumTimestamp * segments)
     ) // we need a loop to draw all lines#
     txt.attr({
       'font-size': 30,
@@ -621,7 +626,7 @@ async function drawEvents(graph) {
         const offset = iconSize / 2
 
         svg.image(
-          `../../src/image/${currentPlayer}.png`,
+          `../../src/image/playerDeathIcon/${currentPlayer}.png`,
           deathPosX - offset,
           deathPosY - offset,
           iconSize,
