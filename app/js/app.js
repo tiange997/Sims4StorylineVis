@@ -555,16 +555,20 @@ function locationBox(locationSet) {
           stroke: 'none',
         })
       console.log('y Value: ' + (lineHeight * (i + 1)) / 2 + yOrigin)
-      svg.text(
-        textXPosOne,
-        localHeight + yOrigin - lineHeight / 2,
-        locationSet[i]
-      )
-      svg.text(
-        textXPosTwo,
-        localHeight + yOrigin - lineHeight / 2,
-        locationSet[i]
-      )
+      svg
+        .text(
+          textXPosOne,
+          localHeight + yOrigin - lineHeight / 2,
+          locationSet[i]
+        )
+        .attr({ 'font-size': 17 })
+      svg
+        .text(
+          textXPosTwo,
+          localHeight + yOrigin - lineHeight / 2,
+          locationSet[i]
+        )
+        .attr({ 'font-size': 17 })
     }
 
     if ((i + 1) % 2 === 0) {
@@ -575,16 +579,20 @@ function locationBox(locationSet) {
           stroke: 'none',
         })
       console.log('y Value: ' + lineHeight * i + yOrigin)
-      svg.text(
-        textXPosOne,
-        localHeight + yOrigin - lineHeight / 2,
-        locationSet[i]
-      )
-      svg.text(
-        textXPosTwo,
-        localHeight + yOrigin - lineHeight / 2,
-        locationSet[i]
-      )
+      svg
+        .text(
+          textXPosOne,
+          localHeight + yOrigin - lineHeight / 2,
+          locationSet[i]
+        )
+        .attr({ 'font-size': 17 })
+      svg
+        .text(
+          textXPosTwo,
+          localHeight + yOrigin - lineHeight / 2,
+          locationSet[i]
+        )
+        .attr({ 'font-size': 17 })
     }
     console.log('LOC: ' + locationSet[i])
   }
