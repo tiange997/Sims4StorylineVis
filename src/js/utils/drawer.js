@@ -37,45 +37,55 @@ export function drawSegmentPath(
       color = '#00B8D1'
       pathSvg.attr({
         'stroke-dasharray': '4',
+        opacity: 0.7,
       })
       break
     case 'Player3':
       color = '#00B827'
       pathSvg.attr({
         'stroke-dasharray': '4',
+        opacity: 0.7,
       })
       break
     case 'Player4':
       color = '#5BB58A'
       pathSvg.attr({
         'stroke-dasharray': '4',
+        opacity: 0.7,
       })
       break
     case 'Player5':
       color = '#9B8BD6'
       pathSvg.attr({
         'stroke-dasharray': '4',
+        opacity: 0.7,
       })
       break
     case 'Player6':
       color = '#ff4e00'
+      pathSvg.attr({ opacity: 0.7 })
       break
     case 'Player7':
       color = '#ff5c8a'
+      pathSvg.attr({ opacity: 0.7 })
       break
     case 'Player8':
       color = '#f5bb00'
+      pathSvg.attr({ opacity: 0.7 })
       break
     case 'Player9':
       color = '#ec9f05'
+      pathSvg.attr({ opacity: 0.7 })
       break
     case 'Player10':
       color = '#bf3100'
+      pathSvg.attr({ opacity: 0.7 })
       break
     default:
       color = '#5B7DB1'
       pathSvg.attr({
         'stroke-dasharray': '4',
+        opacity: 0.7,
       })
   }
 

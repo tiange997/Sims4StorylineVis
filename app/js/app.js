@@ -8,8 +8,8 @@ import * as d3Fetch from 'd3-fetch'
 import { image } from 'd3-fetch'
 
 // Initialise json files
-const jsonRead = d3Fetch.json('../../data/json/MatchDetail.json')
-const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfo.json')
+const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
+const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfoMatchOne.json')
 
 // Screen Width and Height
 const width = 6000
@@ -111,8 +111,6 @@ async function main(fileName) {
 
   heroInfo(characters, participantsInfo)
 
-  timeline()
-
   locationBox(locationSet)
 
   const storylines = graph.storylines
@@ -120,7 +118,7 @@ async function main(fileName) {
   // Timestamp
   const timestamps = iStorylineInstance._story._timeStamps
   totalTimestamp = timestamps[timestamps.length - 1]
-  console.log(totalTimestamp)
+  // console.log(totalTimestamp)
 
   // convert the last timestamp into minutes
 
@@ -135,6 +133,8 @@ async function main(fileName) {
     perSec = Math.floor((perTimeStamp / 1000) % 60)
 
   console.log('Per timestamp: ' + perMin + ':' + perSec)
+
+  timeline()
 
   storylines.forEach((storyline, idx) => {
     // drawStoryline(characters[idx], storyline, positionName);
@@ -154,19 +154,25 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-main('resultCC.json')
+main('testResult.json')
 
 const svg = Snap('#mySvg')
 
 // Draw hero info
 function heroInfo(character, participantsInfo) {
   let playerImg = []
-  for (let i = 0; i < character.length; i++) {
-    playerImg[i] = `../../src/image/playerIcons/${i + 1}.png`
-  }
-  console.log(playerImg)
   console.log(participantsInfo)
-  console.log(character)
+  for (let i = 0; i < character.length; i++) {
+    playerImg[i] = `../../src/image/Champions/${
+      participantsInfo[i * 2 + 1]
+    }Square.png`
+    console.log(
+      `../../src/image/Champions/${participantsInfo[i * 2 + 1]}Square.png`
+    )
+  }
+  // console.log(playerImg)
+  // console.log(participantsInfo)
+  // console.log(character)
 
   const teamOneX = 30
   const teamOneY = 50
@@ -204,6 +210,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player1'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconTwo = svg.image(
@@ -235,6 +242,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player2'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconThree = svg.image(
@@ -266,6 +274,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player3'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconFour = svg.image(
@@ -297,6 +306,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player4'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconFive = svg.image(
@@ -328,6 +338,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player5'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   const teamTwoX = teamOneX
@@ -356,6 +367,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player6'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconSeven = svg.image(
@@ -387,6 +399,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player7'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconEight = svg.image(
@@ -418,6 +431,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player8'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconNine = svg.image(
@@ -449,6 +463,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player8'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 
   let iconTen = svg.image(
@@ -480,6 +495,7 @@ function heroInfo(character, participantsInfo) {
       fill: 'none',
       stroke: playerColour['Player10'],
       'stroke-width': '5',
+      opacity: 0.7,
     })
 }
 
@@ -498,7 +514,6 @@ function timeline() {
     timeAidedLine.attr({
       fill: 'none',
       stroke: 'black',
-      // 'stroke-width': defaultWidth
       'stroke-dasharray': '4',
     })
 
@@ -660,8 +675,6 @@ async function drawEvents(graph) {
             transform: `translate(${posX} ${posY})
                             scale(${scaling})`,
             fill: playerColour[currentPlayer],
-            // stroke: playerColour[currentPlayer],
-            // strokeWidth: 3
           })
 
         /*if (data[i]['buildingType'] === 'TOWER_BUILDING') {
