@@ -618,10 +618,13 @@ function locationBox(locationSet) {
   }
 }
 
+console.log('TS: ' + timeStamp(300092))
+
 async function drawEvents(graph) {
   await jsonReadTwo.then(function(result) {
-    let data = result
-    console.log(data)
+    const data = result
+    // console.log(data)
+    const scaling = 0.07
 
     for (let i in data) {
       if (data[i]['killType'] === 'CHAMPION_KILL') {
@@ -635,7 +638,7 @@ async function drawEvents(graph) {
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
-        console.log('CP: ' + (parseInt(indexHolder) - 1))
+        // console.log('CP: ' + (parseInt(indexHolder) - 1))
 
         const iconSize = 30
         const offset = iconSize / 2
@@ -647,25 +650,36 @@ async function drawEvents(graph) {
           iconSize,
           iconSize
         )
-
-        // Circle Placeholder
-        /*svg.circle(posX, posY, 10).attr({
-          fill: 'none',
-          stroke: playerColour[currentPlayer],
-          strokeWidth: 3,
-        })*/
+        console.log(
+          currentPlayer +
+            ' ' +
+            timeStamp(currentTimestamp) +
+            ' ' +
+            currentTimestamp
+        )
       }
 
-      const scaling = 0.07
-
-      if (data[i]['killType'] === 'BUILDING_KILL') {
-        console.log('building kill detected')
+      building: if (data[i]['killType'] === 'BUILDING_KILL') {
+        // console.log('building kill detected')
         let playerIndex = data[i]['killerId']
         let currentTimestamp = data[i]['timestamp']
-        let currentPlayer = 'Player' + String(playerIndex + 1)
+        console.log(
+          'BUILDING KILLED: ' +
+            timeStamp(currentTimestamp) +
+            ' ' +
+            currentTimestamp
+        )
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        if (playerIndex === 0) {
+          break building
+        } // We need to ignore the case 0, later on we should ignore it when we collect the data
+        // turret destroyed => 0 means it either self-destructed (azir tower) or minions got it
+
+        console.log('BUILDING KILLER: ' + currentPlayer)
         let posX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let posY = graph.getCharacterY(currentPlayer, currentTimestamp)
-        console.log(currentPlayer, posX, posY)
+        // console.log(currentPlayer, posX, posY)
 
         svg
           .polygon(
@@ -676,11 +690,6 @@ async function drawEvents(graph) {
                             scale(${scaling})`,
             fill: playerColour[currentPlayer],
           })
-
-        /*if (data[i]['buildingType'] === 'TOWER_BUILDING') {
-
-        }*/
-        // if (data[i]['buildingType'] === "TOWER_BUILDING")
       }
     }
   })
