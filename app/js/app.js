@@ -154,7 +154,7 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-main('testResult.json')
+main('Correction.json')
 
 const svg = Snap('#mySvg')
 
@@ -618,7 +618,8 @@ function locationBox(locationSet) {
   }
 }
 
-console.log('TS: ' + timeStamp(300092))
+console.log('TS: ' + timeStamp(209564))
+console.log('TS: ' + timeStamp(214564))
 
 async function drawEvents(graph) {
   await jsonReadTwo.then(function(result) {
@@ -686,7 +687,7 @@ async function drawEvents(graph) {
             '208 288 192 160 224 160 240 144 240 0 192 0 192 48 160 48 160 0 96 0 96 48 64 48 64 0 16 0 16 144 32 160 64 160 48 288 16 288 0 304 0 384 256 384 256 304 240 288'
           )
           .attr({
-            transform: `translate(${posX} ${posY})
+            transform: `translate(${posX} ${posY - 13})
                             scale(${scaling})`,
             fill: playerColour[currentPlayer],
           })
