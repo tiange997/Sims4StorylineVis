@@ -11,7 +11,8 @@ const svg = Snap('#mySvg')
 
 let name
 let place
-let tipWindow
+let mask
+let img
 
 let mySvg = $('#mySvg')[0]
 
@@ -88,33 +89,6 @@ export function drawSegmentPath(
         opacity: 0.7,
       })
   }
-
-  /*switch(character) // text can be replaced with icons in later use
-  {
-    case "Red cap":
-      color = "red"
-      index = positionInfo.indexOf("Red cap"); // Find the index based on the character's name
-      svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Red cap") // set an offset to write text
-      break
-    case "Mother":
-      color = "green"
-      index = positionInfo.indexOf("Mother");
-      svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Mother")
-      break
-    case "Wolf":
-      color = "blue"
-      index = positionInfo.indexOf("Wolf");
-      svg.text(positionInfo[index+1] -offset, positionInfo[index+2] , "Wolf")
-      break
-    default:
-      color = "black"
-      index = positionInfo.indexOf("Grandmother");
-      svg.text(positionInfo[index+1] -100, positionInfo[index+2] , "Grandmother")
-  }*/
-
-  /*  let strokeAttr = pathStr.attr().stroke
-  console.log("ATTR: " + strokeAttr)
-  // let strokeWidthAttr = pathStr.attr().*/
 
   pathSvg.hover(
     () => {
@@ -260,33 +234,6 @@ export function drawStoryline(
         }
     }
 
-    /*    switch(character)
-    {
-      case "Red cap":
-        if (!redCap){
-          redCap = true
-          namePosition.push(character, segment[0][0], segment[0][1]) // character's name followed by the x,y coordinates of the starting point
-        }
-        break
-      case "Mother":
-        if (!mother){
-          mother = true
-          namePosition.push(character, segment[0][0], segment[0][1])
-        }
-        break
-      case "Wolf":
-        if (!wolf){
-          wolf = true
-          namePosition.push(character, segment[0][0], segment[0][1])
-        }
-        break
-      default:
-        if (!grandmother){
-          grandmother = true
-          namePosition.push(character, segment[0][0], segment[0][1])
-        }
-    }*/
-
     let segmentPath = ''
     switch (type) {
       case 'bezier':
@@ -294,7 +241,6 @@ export function drawStoryline(
         break
       default:
         segmentPath = generateSimplePath(segment)
-        // console.log(segmentPath)
         break
     }
 
@@ -308,7 +254,8 @@ export function drawStoryline(
       namePosition,
       perTimestamp
     ) // To pass the character info, participants info as well as the generated array
-    segmentPathSvg.click(() => {
+
+    /*    segmentPathSvg.click(() => {
       console.log(namePosition)
       console.log(segmentPath)
 
@@ -328,7 +275,7 @@ export function drawStoryline(
       console.log(locationSet[accessIndex])
       idNumber = ''
       console.log(character, idx) // parseInt(idNumber)-1][idx] has undefined element when it was 14, this needs to minus 1
-    })
+    })*/
 
     segmentPathSvg.hover(
       event => {
@@ -339,53 +286,94 @@ export function drawStoryline(
 
         pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-        console.log(pt.x, pt.y)
+        // console.log(pt.x, pt.y)
 
         let idNumber = character.match(/\d/g)
         idNumber = parseInt(idNumber.join(''))
-        console.log(idNumber, playerInfo[idNumber * 2 - 1])
+        // console.log(idNumber, playerInfo[idNumber * 2 - 1])
+
+        let placeIndex = session[parseInt(idNumber) - 1][idx]
+        console.log(placeIndex)
 
         let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
 
-        if (event.clientY > 180) {
-          tipWindow = svg.rect(pt.x - 50, pt.y - 100, 150, 70).attr({
-            fill: 'yellow',
-          })
-          name = svg.text(
-            pt.x - 30,
-            pt.y - 130 + 60,
-            playerInfo[idNumber * 2 - 1]
+        const tipWindowSize = 200
+        const maskSize = 200
+        let tipX = pt.x
+        let tipY = pt.y
+
+        if (event.clientY > 220) {
+          tipX -= 100
+          tipY -= 100
+          drawTips(
+            tipX,
+            tipY,
+            tipWindowSize,
+            maskSize,
+            playerInfo,
+            idNumber,
+            locationSet,
+            accessIndex,
+            placeIndex
           )
-          place = svg.text(pt.x - 30, pt.y - 110 + 60, locationSet[accessIndex])
         } else {
-          tipWindow = svg.rect(pt.x - 75, pt.y - 50, 150, 70).attr({
-            fill: 'yellow',
-          })
-          name = svg.text(pt.x - 50, pt.y - 20, playerInfo[idNumber * 2 - 1])
-          place = svg.text(pt.x - 50, pt.y, locationSet[accessIndex])
+          tipX -= 100
+          tipY += 50
+          drawTips(
+            tipX,
+            tipY,
+            tipWindowSize,
+            maskSize,
+            playerInfo,
+            idNumber,
+            locationSet,
+            accessIndex,
+            placeIndex
+          )
         }
       },
-
       () => {
-        tipWindow.remove()
-        name.remove()
-        place.remove()
+        removeTips()
       }
     )
-
-    /*svg.mousemove(event => {
-      pt.x = event.clientX
-      pt.y = event.clientY
-
-      // console.log(event.clientX, event.clientY)
-
-      pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-      console.log(pt.x, pt.y)
-    })*/
   })
+}
 
-  // console.log(namePosition)
+function drawTips(
+  tipX,
+  tipY,
+  tipWindowSize,
+  maskSize,
+  playerInfo,
+  idNumber,
+  locationSet,
+  accessIndex,
+  placeIndex
+) {
+  let playerName = playerInfo[idNumber * 2 - 1]
+
+  mask = svg
+    .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+    .attr({ fill: 'rgba(225, 225, 0, 0.9)' })
+  img = svg.image(
+    `../../src/image/MiniMaps/${placeIndex}.png`,
+    tipX,
+    tipY,
+    tipWindowSize,
+    tipWindowSize
+  )
+  img.attr({
+    mask: mask,
+  })
+  name = svg.text(tipX + 50, tipY + 80, playerName)
+  place = svg.text(tipX + 50, tipY + 120, locationSet[accessIndex])
+}
+
+function removeTips() {
+  mask.remove()
+  img.remove()
+  name.remove()
+  place.remove()
 }
 
 function generateSimplePath(points) {
@@ -394,7 +382,6 @@ function generateSimplePath(points) {
   for (let i = 1, len = points.length; i < len; i++) {
     pathStr += `L ${points[i][0]} ${points[i][1]}`
   }
-  // console.log(pathStr)
   return pathStr
 }
 

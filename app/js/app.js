@@ -6,10 +6,11 @@ import Snap from 'snapsvg'
 
 import * as d3Fetch from 'd3-fetch'
 import { image } from 'd3-fetch'
+import $ from 'jquery'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
-const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfoMatchOne.json')
+const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfoMatchOneC.json')
 
 // Screen Width and Height
 const width = 6000
@@ -43,6 +44,10 @@ let playerColour = {
 let locationSet
 
 // console.log('Match Length: ' + timeStamp(totalTimestamp))
+
+let mySvg = $('#mySvg')[0]
+
+let pt = mySvg.createSVGPoint()
 
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
@@ -562,6 +567,9 @@ function locationBox(locationSet) {
 
   let localHeight = 0
 
+  let mask
+  let img
+
   for (let i = 0; i < locationSet.length; i++) {
     localHeight = localHeight + lineHeight
     // console.log(height)
@@ -582,6 +590,43 @@ function locationBox(locationSet) {
           locationSet[i]
         )
         .attr({ 'font-size': 17 })
+        .hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+            const tipWindowSize = 200
+            const maskSize = 200
+
+            let tipX = pt.x
+            let tipY = pt.y
+
+            if (i > 4) {
+              tipX -= 100
+              tipY -= 100
+            }
+
+            mask = svg
+              .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+              .attr({ fill: 'yellow' })
+            img = svg.image(
+              `../../src/image/sessionImgs/${i + 1}.png`,
+              tipX,
+              tipY,
+              tipWindowSize,
+              tipWindowSize
+            )
+            img.attr({
+              mask: mask,
+            })
+          },
+          () => {
+            mask.remove()
+            img.remove()
+          }
+        )
       svg
         .text(
           textXPosTwo,
@@ -606,6 +651,44 @@ function locationBox(locationSet) {
           locationSet[i]
         )
         .attr({ 'font-size': 17 })
+        .hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+            const tipWindowSize = 200
+            const maskSize = 200
+
+            let tipX = pt.x
+            let tipY = pt.y
+
+            if (i > 4) {
+              tipX -= 100
+              tipY -= 100
+            }
+
+            mask = svg
+              .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+              .attr({ fill: 'yellow' })
+            img = svg.image(
+              `../../src/image/sessionImgs/${i + 1}.png`,
+              tipX,
+              tipY,
+              tipWindowSize,
+              tipWindowSize
+            )
+            img.attr({
+              mask: mask,
+            })
+          },
+          () => {
+            mask.remove()
+            img.remove()
+          }
+        )
+
       svg
         .text(
           textXPosTwo,
@@ -618,8 +701,8 @@ function locationBox(locationSet) {
   }
 }
 
-console.log('TS: ' + timeStamp(209564))
-console.log('TS: ' + timeStamp(214564))
+// console.log('TS: ' + timeStamp(209564))
+// console.log('TS: ' + timeStamp(214564))
 
 async function drawEvents(graph) {
   await jsonReadTwo.then(function(result) {
@@ -628,13 +711,21 @@ async function drawEvents(graph) {
     const scaling = 0.07
 
     for (let i in data) {
+      let sessionID = data[i]['placeIndex']
       if (data[i]['killType'] === 'CHAMPION_KILL') {
         let playerIndex = data[i]['victimID']
         let currentTimestamp = data[i]['timestamp']
         let currentPlayer = 'Player' + String(playerIndex)
+
+        // How to fix the Y position?
+        // const timestampOffsetX = 3000
+        // const timestampOffsetY = 5000
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
         console.log(currentPlayer, deathPosX, deathPosY)
+        // let segmentStart = graph.getStorySegment(deathPosX, deathPosY)[0]
+        // console.log(segmentStart)
+        // svg.circle(segmentStart[0], segmentStart[1], 10).attr({fill:"blue"})
 
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
@@ -644,26 +735,67 @@ async function drawEvents(graph) {
         const iconSize = 30
         const offset = iconSize / 2
 
-        svg.image(
-          `../../src/image/playerDeathIcon/${currentPlayer}.png`,
-          deathPosX - offset,
-          deathPosY - offset,
-          iconSize,
-          iconSize
-        )
-        console.log(
+        let mask, img
+
+        svg
+          .image(
+            `../../src/image/playerDeathIcon/${currentPlayer}.png`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              const tipWindowSize = 200
+              const maskSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              if (i > 4) {
+                tipX -= 100
+                tipY -= 100
+              }
+
+              mask = svg
+                .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+                .attr({ fill: 'rgba(225, 225, 0, 0.9)' })
+              img = svg.image(
+                `../../src/image/sessionImgs/${sessionID}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              img.attr({
+                mask: mask,
+              })
+            },
+            () => {
+              mask.remove()
+              img.remove()
+            }
+          )
+        /*console.log(
           currentPlayer +
             ' ' +
             timeStamp(currentTimestamp) +
             ' ' +
             currentTimestamp
-        )
+        )*/
       }
 
       building: if (data[i]['killType'] === 'BUILDING_KILL') {
         // console.log('building kill detected')
         let playerIndex = data[i]['killerId']
         let currentTimestamp = data[i]['timestamp']
+
         console.log(
           'BUILDING KILLED: ' +
             timeStamp(currentTimestamp) +
@@ -682,6 +814,8 @@ async function drawEvents(graph) {
         let posY = graph.getCharacterY(currentPlayer, currentTimestamp)
         // console.log(currentPlayer, posX, posY)
 
+        let mask, img
+
         svg
           .polygon(
             '208 288 192 160 224 160 240 144 240 0 192 0 192 48 160 48 160 0 96 0 96 48 64 48 64 0 16 0 16 144 32 160 64 160 48 288 16 288 0 304 0 384 256 384 256 304 240 288'
@@ -691,6 +825,43 @@ async function drawEvents(graph) {
                             scale(${scaling})`,
             fill: playerColour[currentPlayer],
           })
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              const tipWindowSize = 200
+              const maskSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              if (i > 4) {
+                tipX -= 100
+                tipY -= 100
+              }
+
+              mask = svg
+                .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+                .attr({ fill: 'yellow' })
+              img = svg.image(
+                `../../src/image/sessionImgs/${sessionID}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              img.attr({
+                mask: mask,
+              })
+            },
+            () => {
+              mask.remove()
+              img.remove()
+            }
+          )
       }
     }
   })
