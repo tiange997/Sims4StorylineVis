@@ -749,7 +749,7 @@ async function drawEvents(graph, participantsInfo) {
 
         svg
           .image(
-            `../../src/image/playerDeathIcon/${currentPlayer}.png`,
+            `../../src/image/Skulls/${currentPlayer}.png`,
             deathPosX - offset,
             deathPosY - offset,
             iconSize,
@@ -775,13 +775,11 @@ async function drawEvents(graph, participantsInfo) {
               let xOffset = (posX / 15000) * 200
               let yOffset = 200 - (posY / 15000) * 200
 
-              border = svg
-                .rect(tipX, tipY, 250, 300, 10, 10)
-                .attr({
-                  stroke: 'black',
-                  fill: 'rgba(255,255,255, 0.9)',
-                  strokeWidth: '3px',
-                })
+              border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
 
               killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
               victim = svg.text(130 + tipX, 25 + tipY, 'DEATH: ')
@@ -886,13 +884,11 @@ async function drawEvents(graph, participantsInfo) {
               let xOffset = (posX / 15000) * 200
               let yOffset = 200 - (posY / 15000) * 200
 
-              border = svg
-                .rect(tipX, tipY, 250, 300, 10, 10)
-                .attr({
-                  stroke: 'black',
-                  fill: 'rgba(255,255,255, 0.9)',
-                  strokeWidth: '3px',
-                })
+              border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
 
               killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
               victim = svg.text(90 + tipX, 65 + tipY, buildingType)
