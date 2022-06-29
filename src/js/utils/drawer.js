@@ -7,12 +7,17 @@ let playerInfo
 // An array to store characters' name and starting point
 let namePosition = []
 
-const svg = Snap('#mySvg')
+// For tips
 
-let name
-let place
-let mask
-let img
+let border, mask, img
+
+let zone
+
+let heroIcon
+
+// For SVG selection
+
+const svg = Snap('#mySvg')
 
 let mySvg = $('#mySvg')[0]
 
@@ -297,18 +302,36 @@ export function drawStoryline(
 
         let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
 
-        const tipWindowSize = 200
+        const mapSize = 200
         const maskSize = 200
         let tipX = pt.x
         let tipY = pt.y
 
-        if (event.clientY > 220) {
+        // console.log(playerInfo)
+
+        console.log(pt.y)
+
+        if (pt.y > 220 && pt.y < 995) {
           tipX -= 100
           tipY -= 100
-          drawTips(
+          drawLineTip(
             tipX,
             tipY,
-            tipWindowSize,
+            mapSize,
+            maskSize,
+            playerInfo,
+            idNumber,
+            locationSet,
+            accessIndex,
+            placeIndex
+          )
+        } else if (pt.y >= 995) {
+          tipX -= 100
+          tipY -= 400
+          drawLineTip(
+            tipX,
+            tipY,
+            mapSize,
             maskSize,
             playerInfo,
             idNumber,
@@ -319,10 +342,10 @@ export function drawStoryline(
         } else {
           tipX -= 100
           tipY += 50
-          drawTips(
+          drawLineTip(
             tipX,
             tipY,
-            tipWindowSize,
+            mapSize,
             maskSize,
             playerInfo,
             idNumber,
@@ -339,10 +362,10 @@ export function drawStoryline(
   })
 }
 
-function drawTips(
+function drawLineTip(
   tipX,
   tipY,
-  tipWindowSize,
+  mapSize,
   maskSize,
   playerInfo,
   idNumber,
@@ -350,30 +373,47 @@ function drawTips(
   accessIndex,
   placeIndex
 ) {
-  let playerName = playerInfo[idNumber * 2 - 1]
+  let playerName = playerInfo[idNumber * 2 - 1] + 'Square'
+
+  border = svg
+    .rect(tipX, tipY, 250, 300, 10, 10)
+    .attr({
+      stroke: 'black',
+      fill: 'rgba(255,255,255, 0.9)',
+      strokeWidth: '3px',
+    })
+
+  heroIcon = svg.image(
+    `../../src/image/Champions/${playerName}.png`,
+    30 + tipX,
+    20 + tipY,
+    50,
+    50
+  )
+
+  zone = svg.text(90 + tipX, 45 + tipY, locationSet[accessIndex])
 
   mask = svg
-    .rect(tipX, tipY, maskSize, maskSize, 10, 10)
-    .attr({ fill: 'rgba(225, 225, 0, 0.9)' })
+    .rect(tipX + 25, tipY + 90, maskSize, maskSize, 10, 10)
+    .attr({ fill: 'rgba(225, 225, 0)' })
   img = svg.image(
     `../../src/image/MiniMaps/${placeIndex}.png`,
-    tipX,
-    tipY,
-    tipWindowSize,
-    tipWindowSize
+    tipX + 25,
+    tipY + 90,
+    mapSize,
+    mapSize
   )
   img.attr({
     mask: mask,
   })
-  name = svg.text(tipX + 50, tipY + 80, playerName)
-  place = svg.text(tipX + 50, tipY + 120, locationSet[accessIndex])
 }
 
 function removeTips() {
+  border.remove()
+  heroIcon.remove()
+  zone.remove()
   mask.remove()
   img.remove()
-  name.remove()
-  place.remove()
 }
 
 function generateSimplePath(points) {

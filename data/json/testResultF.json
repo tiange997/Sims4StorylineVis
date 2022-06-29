@@ -48,16 +48,11 @@
         },
         {
           "Start": 300092,
-          "End": 298560,
+          "End": 306060,
           "Session": 7
         },
         {
-          "Start": 298560,
-          "End": 303560,
-          "Session": 7
-        },
-        {
-          "Start": 303560,
+          "Start": 306060,
           "End": 360098,
           "Session": 1
         },
@@ -68,31 +63,21 @@
         },
         {
           "Start": 420109,
-          "End": 420888,
+          "End": 428388,
           "Session": 7
         },
         {
-          "Start": 420888,
-          "End": 425888,
-          "Session": 7
-        },
-        {
-          "Start": 425888,
+          "Start": 428388,
           "End": 480116,
           "Session": 1
         },
         {
           "Start": 480116,
-          "End": 527100,
+          "End": 534600,
           "Session": 3
         },
         {
-          "Start": 527100,
-          "End": 532100,
-          "Session": 7
-        },
-        {
-          "Start": 532100,
+          "Start": 534600,
           "End": 540125,
           "Session": 1
         },
@@ -108,18 +93,13 @@
         },
         {
           "Start": 660139,
-          "End": 661096,
+          "End": 672645,
           "Session": 12
         },
         {
-          "Start": 661096,
-          "End": 670145,
-          "Session": 12
-        },
-        {
-          "Start": 670145,
+          "Start": 672645,
           "End": 720148,
-          "Session": 7
+          "Session": 1
         },
         {
           "Start": 720148,
@@ -133,16 +113,11 @@
         },
         {
           "Start": 840176,
-          "End": 856908,
+          "End": 864408,
           "Session": 7
         },
         {
-          "Start": 856908,
-          "End": 861908,
-          "Session": 7
-        },
-        {
-          "Start": 861908,
+          "Start": 864408,
           "End": 900188,
           "Session": 1
         },
@@ -153,16 +128,11 @@
         },
         {
           "Start": 960199,
-          "End": 986772,
+          "End": 994272,
           "Session": 9
         },
         {
-          "Start": 986772,
-          "End": 991772,
-          "Session": 8
-        },
-        {
-          "Start": 991772,
+          "Start": 994272,
           "End": 1020207,
           "Session": 1
         },
@@ -173,31 +143,21 @@
         },
         {
           "Start": 1080214,
-          "End": 1094240,
+          "End": 1101740,
           "Session": 7
         },
         {
-          "Start": 1094240,
-          "End": 1099240,
-          "Session": 7
-        },
-        {
-          "Start": 1099240,
+          "Start": 1101740,
           "End": 1140238,
           "Session": 1
         },
         {
           "Start": 1140238,
-          "End": 1189191,
+          "End": 1196691,
           "Session": 1
         },
         {
-          "Start": 1189191,
-          "End": 1194191,
-          "Session": 2
-        },
-        {
-          "Start": 1194191,
+          "Start": 1196691,
           "End": 1200267,
           "Session": 1
         },
@@ -213,31 +173,21 @@
         },
         {
           "Start": 1320288,
-          "End": 1326582,
+          "End": 1334082,
           "Session": 12
         },
         {
-          "Start": 1326582,
-          "End": 1331582,
-          "Session": 12
-        },
-        {
-          "Start": 1331582,
+          "Start": 1334082,
           "End": 1380293,
           "Session": 1
         },
         {
           "Start": 1380293,
-          "End": 1424731,
+          "End": 1432231,
           "Session": 1
         },
         {
-          "Start": 1424731,
-          "End": 1429731,
-          "Session": 6
-        },
-        {
-          "Start": 1429731,
+          "Start": 1432231,
           "End": 1440299,
           "Session": 1
         },
@@ -248,16 +198,11 @@
         },
         {
           "Start": 1500311,
-          "End": 1500958,
+          "End": 1508458,
           "Session": 6
         },
         {
-          "Start": 1500958,
-          "End": 1505958,
-          "Session": 1
-        },
-        {
-          "Start": 1505958,
+          "Start": 1508458,
           "End": 1560321,
           "Session": 1
         },
@@ -305,28 +250,18 @@
         },
         {
           "Start": 180045,
-          "End": 212801,
+          "End": 220301,
           "Session": 6
         },
         {
-          "Start": 212801,
-          "End": 217801,
-          "Session": 6
-        },
-        {
-          "Start": 217801,
+          "Start": 220301,
           "End": 240066,
           "Session": 1
         },
         {
           "Start": 240066,
-          "End": 285820,
-          "Session": 1
-        },
-        {
-          "Start": 285820,
           "End": 300092,
-          "Session": 11
+          "Session": 1
         },
         {
           "Start": 300092,
@@ -340,16 +275,11 @@
         },
         {
           "Start": 420109,
-          "End": 460783,
+          "End": 468283,
           "Session": 6
         },
         {
-          "Start": 460783,
-          "End": 465783,
-          "Session": 6
-        },
-        {
-          "Start": 465783,
+          "Start": 468283,
           "End": 480116,
           "Session": 1
         },
@@ -365,13 +295,8 @@
         },
         {
           "Start": 600131,
-          "End": 646530,
-          "Session": 1
-        },
-        {
-          "Start": 646530,
           "End": 660139,
-          "Session": 6
+          "Session": 1
         },
         {
           "Start": 660139,
@@ -390,76 +315,41 @@
         },
         {
           "Start": 840176,
-          "End": 836894,
+          "End": 844394,
           "Session": 11
         },
         {
-          "Start": 836894,
-          "End": 841894,
-          "Session": 11
-        },
-        {
-          "Start": 841894,
+          "Start": 844394,
           "End": 900188,
           "Session": 1
         },
         {
           "Start": 900188,
-          "End": 912573,
+          "End": 935880,
           "Session": 6
         },
         {
-          "Start": 912573,
-          "End": 928380,
-          "Session": 15
-        },
-        {
-          "Start": 928380,
-          "End": 933380,
-          "Session": 15
-        },
-        {
-          "Start": 933380,
+          "Start": 935880,
           "End": 960199,
           "Session": 1
         },
         {
           "Start": 960199,
-          "End": 979012,
+          "End": 986512,
           "Session": 15
         },
         {
-          "Start": 979012,
-          "End": 984012,
-          "Session": 1
-        },
-        {
-          "Start": 984012,
-          "End": 986951,
-          "Session": 1
-        },
-        {
-          "Start": 986951,
+          "Start": 986512,
           "End": 1020207,
           "Session": 1
         },
         {
           "Start": 1020207,
-          "End": 1050590,
+          "End": 1072345,
           "Session": 1
         },
         {
-          "Start": 1050590,
-          "End": 1064845,
-          "Session": 4
-        },
-        {
-          "Start": 1064845,
-          "End": 1069845,
-          "Session": 4
-        },
-        {
-          "Start": 1069845,
+          "Start": 1072345,
           "End": 1080214,
           "Session": 1
         },
@@ -470,66 +360,41 @@
         },
         {
           "Start": 1140238,
-          "End": 1192493,
+          "End": 1199993,
           "Session": 2
         },
         {
-          "Start": 1192493,
-          "End": 1197493,
-          "Session": 5
-        },
-        {
-          "Start": 1197493,
+          "Start": 1199993,
           "End": 1200267,
           "Session": 1
         },
         {
           "Start": 1200267,
-          "End": 1240329,
-          "Session": 5
-        },
-        {
-          "Start": 1240329,
           "End": 1260278,
-          "Session": 1
+          "Session": 5
         },
         {
           "Start": 1260278,
-          "End": 1261335,
-          "Session": 3
-        },
-        {
-          "Start": 1261335,
-          "End": 1313372,
-          "Session": 3
-        },
-        {
-          "Start": 1313372,
-          "End": 1318372,
-          "Session": 4
-        },
-        {
-          "Start": 1318372,
           "End": 1320288,
-          "Session": 1
+          "Session": 3
         },
         {
           "Start": 1320288,
-          "End": 1380293,
+          "End": 1320872,
           "Session": 4
         },
         {
+          "Start": 1320872,
+          "End": 1380293,
+          "Session": 1
+        },
+        {
           "Start": 1380293,
-          "End": 1417631,
+          "End": 1425131,
           "Session": 6
         },
         {
-          "Start": 1417631,
-          "End": 1422631,
-          "Session": 5
-        },
-        {
-          "Start": 1422631,
+          "Start": 1425131,
           "End": 1440299,
           "Session": 1
         },
@@ -540,21 +405,11 @@
         },
         {
           "Start": 1500311,
-          "End": 1507015,
+          "End": 1511496,
           "Session": 3
         },
         {
-          "Start": 1507015,
-          "End": 1503996,
-          "Session": 3
-        },
-        {
-          "Start": 1503996,
-          "End": 1508996,
-          "Session": 3
-        },
-        {
-          "Start": 1508996,
+          "Start": 1511496,
           "End": 1560321,
           "Session": 1
         },
@@ -565,63 +420,33 @@
         },
         {
           "Start": 1620348,
-          "End": 1618782,
+          "End": 1626282,
           "Session": 6
         },
         {
-          "Start": 1618782,
-          "End": 1623782,
-          "Session": 6
-        },
-        {
-          "Start": 1623782,
+          "Start": 1626282,
           "End": 1680359,
           "Session": 1
         },
         {
           "Start": 1680359,
-          "End": 1690466,
-          "Session": 1
-        },
-        {
-          "Start": 1690466,
-          "End": 1687315,
-          "Session": 1
-        },
-        {
-          "Start": 1687315,
-          "End": 1692315,
-          "Session": 1
-        },
-        {
-          "Start": 1692315,
           "End": 1740376,
           "Session": 1
         },
         {
           "Start": 1740376,
-          "End": 1783875,
+          "End": 1795820,
           "Session": 1
         },
         {
-          "Start": 1783875,
-          "End": 1788320,
-          "Session": 1
-        },
-        {
-          "Start": 1788320,
-          "End": 1793320,
-          "Session": 1
-        },
-        {
-          "Start": 1793320,
+          "Start": 1795820,
           "End": 1808942,
           "Session": 1
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 7
+          "Session": 1
         }
       ],
       "Player3": [
@@ -682,16 +507,11 @@
         },
         {
           "Start": 660139,
-          "End": 700054,
+          "End": 707554,
           "Session": 12
         },
         {
-          "Start": 700054,
-          "End": 705054,
-          "Session": 7
-        },
-        {
-          "Start": 705054,
+          "Start": 707554,
           "End": 720148,
           "Session": 1
         },
@@ -712,16 +532,11 @@
         },
         {
           "Start": 900188,
-          "End": 939477,
+          "End": 946977,
           "Session": 12
         },
         {
-          "Start": 939477,
-          "End": 944477,
-          "Session": 7
-        },
-        {
-          "Start": 944477,
+          "Start": 946977,
           "End": 960199,
           "Session": 1
         },
@@ -732,13 +547,8 @@
         },
         {
           "Start": 1020207,
-          "End": 1047749,
-          "Session": 3
-        },
-        {
-          "Start": 1047749,
           "End": 1080214,
-          "Session": 4
+          "Session": 3
         },
         {
           "Start": 1080214,
@@ -757,16 +567,11 @@
         },
         {
           "Start": 1260278,
-          "End": 1306833,
+          "End": 1314333,
           "Session": 1
         },
         {
-          "Start": 1306833,
-          "End": 1311833,
-          "Session": 4
-        },
-        {
-          "Start": 1311833,
+          "Start": 1314333,
           "End": 1320288,
           "Session": 1
         },
@@ -777,31 +582,21 @@
         },
         {
           "Start": 1380293,
-          "End": 1398675,
+          "End": 1406175,
           "Session": 12
         },
         {
-          "Start": 1398675,
-          "End": 1403675,
-          "Session": 13
-        },
-        {
-          "Start": 1403675,
+          "Start": 1406175,
           "End": 1440299,
           "Session": 1
         },
         {
           "Start": 1440299,
-          "End": 1468659,
+          "End": 1476159,
           "Session": 13
         },
         {
-          "Start": 1468659,
-          "End": 1473659,
-          "Session": 1
-        },
-        {
-          "Start": 1473659,
+          "Start": 1476159,
           "End": 1500311,
           "Session": 1
         },
@@ -817,16 +612,11 @@
         },
         {
           "Start": 1620348,
-          "End": 1620103,
+          "End": 1627603,
           "Session": 1
         },
         {
-          "Start": 1620103,
-          "End": 1625103,
-          "Session": 6
-        },
-        {
-          "Start": 1625103,
+          "Start": 1627603,
           "End": 1680359,
           "Session": 1
         },
@@ -837,23 +627,18 @@
         },
         {
           "Start": 1740376,
-          "End": 1744195,
+          "End": 1751695,
           "Session": 2
         },
         {
-          "Start": 1744195,
-          "End": 1749195,
-          "Session": 2
-        },
-        {
-          "Start": 1749195,
+          "Start": 1751695,
           "End": 1808942,
           "Session": 1
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 7
+          "Session": 1
         }
       ],
       "Player4": [
@@ -864,26 +649,16 @@
         },
         {
           "Start": 60011,
-          "End": 114026,
+          "End": 120017,
           "Session": 4
         },
         {
-          "Start": 114026,
-          "End": 124026,
-          "Session": 1
-        },
-        {
-          "Start": 124026,
-          "End": 142897,
+          "Start": 120017,
+          "End": 150397,
           "Session": 4
         },
         {
-          "Start": 142897,
-          "End": 147897,
-          "Session": 4
-        },
-        {
-          "Start": 147897,
+          "Start": 150397,
           "End": 180045,
           "Session": 1
         },
@@ -894,21 +669,11 @@
         },
         {
           "Start": 240066,
-          "End": 270393,
-          "Session": 4
-        },
-        {
-          "Start": 270393,
           "End": 300092,
           "Session": 4
         },
         {
           "Start": 300092,
-          "End": 324861,
-          "Session": 4
-        },
-        {
-          "Start": 324861,
           "End": 360098,
           "Session": 4
         },
@@ -924,16 +689,11 @@
         },
         {
           "Start": 480116,
-          "End": 514120,
+          "End": 521620,
           "Session": 11
         },
         {
-          "Start": 514120,
-          "End": 519120,
-          "Session": 6
-        },
-        {
-          "Start": 519120,
+          "Start": 521620,
           "End": 540125,
           "Session": 1
         },
@@ -949,21 +709,11 @@
         },
         {
           "Start": 660139,
-          "End": 676254,
+          "End": 680240,
           "Session": 4
         },
         {
-          "Start": 676254,
-          "End": 672740,
-          "Session": 4
-        },
-        {
-          "Start": 672740,
-          "End": 677740,
-          "Session": 4
-        },
-        {
-          "Start": 677740,
+          "Start": 680240,
           "End": 720148,
           "Session": 1
         },
@@ -974,31 +724,21 @@
         },
         {
           "Start": 780155,
-          "End": 788731,
+          "End": 796231,
           "Session": 4
         },
         {
-          "Start": 788731,
-          "End": 793731,
-          "Session": 1
-        },
-        {
-          "Start": 793731,
+          "Start": 796231,
           "End": 840176,
           "Session": 1
         },
         {
           "Start": 840176,
-          "End": 878441,
+          "End": 885941,
           "Session": 1
         },
         {
-          "Start": 878441,
-          "End": 883441,
-          "Session": 4
-        },
-        {
-          "Start": 883441,
+          "Start": 885941,
           "End": 900188,
           "Session": 1
         },
@@ -1029,16 +769,11 @@
         },
         {
           "Start": 1200267,
-          "End": 1230276,
+          "End": 1237776,
           "Session": 4
         },
         {
-          "Start": 1230276,
-          "End": 1235276,
-          "Session": 1
-        },
-        {
-          "Start": 1235276,
+          "Start": 1237776,
           "End": 1260278,
           "Session": 1
         },
@@ -1049,16 +784,11 @@
         },
         {
           "Start": 1320288,
-          "End": 1322487,
+          "End": 1329987,
           "Session": 1
         },
         {
-          "Start": 1322487,
-          "End": 1327487,
-          "Session": 1
-        },
-        {
-          "Start": 1327487,
+          "Start": 1329987,
           "End": 1380293,
           "Session": 1
         },
@@ -1084,11 +814,6 @@
         },
         {
           "Start": 1620348,
-          "End": 1642078,
-          "Session": 1
-        },
-        {
-          "Start": 1642078,
           "End": 1680359,
           "Session": 1
         },
@@ -1099,23 +824,18 @@
         },
         {
           "Start": 1740376,
-          "End": 1776035,
+          "End": 1783535,
           "Session": 5
         },
         {
-          "Start": 1776035,
-          "End": 1781035,
-          "Session": 1
-        },
-        {
-          "Start": 1781035,
+          "Start": 1783535,
           "End": 1808942,
           "Session": 1
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 7
+          "Session": 1
         }
       ],
       "Player5": [
@@ -1136,16 +856,11 @@
         },
         {
           "Start": 180045,
-          "End": 209564,
+          "End": 217064,
           "Session": 5
         },
         {
-          "Start": 209564,
-          "End": 214564,
-          "Session": 6
-        },
-        {
-          "Start": 214564,
+          "Start": 217064,
           "End": 240066,
           "Session": 1
         },
@@ -1166,46 +881,26 @@
         },
         {
           "Start": 420109,
-          "End": 473875,
-          "Session": 10
-        },
-        {
-          "Start": 473875,
           "End": 480116,
-          "Session": 6
+          "Session": 9
         },
         {
           "Start": 480116,
-          "End": 476569,
+          "End": 484069,
           "Session": 11
         },
         {
-          "Start": 476569,
-          "End": 481569,
-          "Session": 11
-        },
-        {
-          "Start": 481569,
+          "Start": 484069,
           "End": 540125,
           "Session": 1
         },
         {
           "Start": 540125,
-          "End": 556637,
+          "End": 576178,
           "Session": 10
         },
         {
-          "Start": 556637,
-          "End": 568678,
-          "Session": 10
-        },
-        {
-          "Start": 568678,
-          "End": 573678,
-          "Session": 9
-        },
-        {
-          "Start": 573678,
+          "Start": 576178,
           "End": 600131,
           "Session": 1
         },
@@ -1216,36 +911,21 @@
         },
         {
           "Start": 660139,
-          "End": 660667,
+          "End": 704449,
           "Session": 8
         },
         {
-          "Start": 660667,
-          "End": 696949,
-          "Session": 8
-        },
-        {
-          "Start": 696949,
-          "End": 701949,
-          "Session": 4
-        },
-        {
-          "Start": 701949,
+          "Start": 704449,
           "End": 720148,
           "Session": 1
         },
         {
           "Start": 720148,
-          "End": 754514,
+          "End": 762014,
           "Session": 4
         },
         {
-          "Start": 754514,
-          "End": 759514,
-          "Session": 9
-        },
-        {
-          "Start": 759514,
+          "Start": 762014,
           "End": 780155,
           "Session": 1
         },
@@ -1271,51 +951,21 @@
         },
         {
           "Start": 1020207,
-          "End": 1019797,
+          "End": 1027297,
           "Session": 10
         },
         {
-          "Start": 1019797,
-          "End": 1024797,
-          "Session": 5
-        },
-        {
-          "Start": 1024797,
+          "Start": 1027297,
           "End": 1080214,
           "Session": 1
         },
         {
           "Start": 1080214,
-          "End": 1113180,
+          "End": 1139963,
           "Session": 3
         },
         {
-          "Start": 1113180,
-          "End": 1127120,
-          "Session": 8
-        },
-        {
-          "Start": 1127120,
-          "End": 1130118,
-          "Session": 9
-        },
-        {
-          "Start": 1130118,
-          "End": 1135118,
-          "Session": 1
-        },
-        {
-          "Start": 1135118,
-          "End": 1132463,
-          "Session": 1
-        },
-        {
-          "Start": 1132463,
-          "End": 1137463,
-          "Session": 4
-        },
-        {
-          "Start": 1137463,
+          "Start": 1139963,
           "End": 1140238,
           "Session": 1
         },
@@ -1326,31 +976,21 @@
         },
         {
           "Start": 1200267,
-          "End": 1197149,
+          "End": 1204649,
           "Session": 5
         },
         {
-          "Start": 1197149,
-          "End": 1202149,
-          "Session": 10
-        },
-        {
-          "Start": 1202149,
+          "Start": 1204649,
           "End": 1260278,
           "Session": 1
         },
         {
           "Start": 1260278,
-          "End": 1306107,
+          "End": 1313607,
           "Session": 3
         },
         {
-          "Start": 1306107,
-          "End": 1311107,
-          "Session": 4
-        },
-        {
-          "Start": 1311107,
+          "Start": 1313607,
           "End": 1320288,
           "Session": 1
         },
@@ -1361,46 +1001,26 @@
         },
         {
           "Start": 1380293,
-          "End": 1380425,
-          "Session": 4
-        },
-        {
-          "Start": 1380425,
           "End": 1440299,
           "Session": 4
         },
         {
           "Start": 1440299,
-          "End": 1469099,
+          "End": 1472162,
           "Session": 1
         },
         {
-          "Start": 1469099,
-          "End": 1464662,
-          "Session": 6
-        },
-        {
-          "Start": 1464662,
-          "End": 1469662,
-          "Session": 6
-        },
-        {
-          "Start": 1469662,
+          "Start": 1472162,
           "End": 1500311,
           "Session": 1
         },
         {
           "Start": 1500311,
-          "End": 1547789,
+          "End": 1555289,
           "Session": 6
         },
         {
-          "Start": 1547789,
-          "End": 1552789,
-          "Session": 5
-        },
-        {
-          "Start": 1552789,
+          "Start": 1555289,
           "End": 1560321,
           "Session": 1
         },
@@ -1411,53 +1031,33 @@
         },
         {
           "Start": 1620348,
-          "End": 1618749,
+          "End": 1626249,
           "Session": 6
         },
         {
-          "Start": 1618749,
-          "End": 1623749,
-          "Session": 6
-        },
-        {
-          "Start": 1623749,
-          "End": 1678278,
-          "Session": 1
-        },
-        {
-          "Start": 1678278,
+          "Start": 1626249,
           "End": 1680359,
           "Session": 1
         },
         {
           "Start": 1680359,
-          "End": 1707132,
+          "End": 1714632,
           "Session": 1
         },
         {
-          "Start": 1707132,
-          "End": 1712132,
-          "Session": 10
-        },
-        {
-          "Start": 1712132,
+          "Start": 1714632,
           "End": 1740376,
           "Session": 1
         },
         {
           "Start": 1740376,
-          "End": 1780638,
-          "Session": 10
-        },
-        {
-          "Start": 1780638,
           "End": 1808942,
-          "Session": 1
+          "Session": 10
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 1
+          "Session": 10
         }
       ],
       "Player6": [
@@ -1479,7 +1079,7 @@
         {
           "Start": 180045,
           "End": 240066,
-          "Session": 7
+          "Session": 12
         },
         {
           "Start": 240066,
@@ -1488,13 +1088,8 @@
         },
         {
           "Start": 300092,
-          "End": 303560,
-          "Session": 12
-        },
-        {
-          "Start": 303560,
           "End": 360098,
-          "Session": 7
+          "Session": 12
         },
         {
           "Start": 360098,
@@ -1503,21 +1098,11 @@
         },
         {
           "Start": 420109,
-          "End": 425888,
-          "Session": 7
-        },
-        {
-          "Start": 425888,
           "End": 480116,
           "Session": 7
         },
         {
           "Start": 480116,
-          "End": 532100,
-          "Session": 7
-        },
-        {
-          "Start": 532100,
           "End": 540125,
           "Session": 7
         },
@@ -1533,16 +1118,11 @@
         },
         {
           "Start": 660139,
-          "End": 656096,
+          "End": 663596,
           "Session": 12
         },
         {
-          "Start": 656096,
-          "End": 661096,
-          "Session": 12
-        },
-        {
-          "Start": 661096,
+          "Start": 663596,
           "End": 720148,
           "Session": 17
         },
@@ -1558,23 +1138,13 @@
         },
         {
           "Start": 840176,
-          "End": 861908,
-          "Session": 12
-        },
-        {
-          "Start": 861908,
           "End": 900188,
-          "Session": 7
+          "Session": 12
         },
         {
           "Start": 900188,
-          "End": 944477,
-          "Session": 12
-        },
-        {
-          "Start": 944477,
           "End": 960199,
-          "Session": 7
+          "Session": 12
         },
         {
           "Start": 960199,
@@ -1583,26 +1153,16 @@
         },
         {
           "Start": 1020207,
-          "End": 1045590,
+          "End": 1053090,
           "Session": 4
         },
         {
-          "Start": 1045590,
-          "End": 1050590,
-          "Session": 4
-        },
-        {
-          "Start": 1050590,
+          "Start": 1053090,
           "End": 1080214,
           "Session": 17
         },
         {
           "Start": 1080214,
-          "End": 1137463,
-          "Session": 4
-        },
-        {
-          "Start": 1137463,
           "End": 1140238,
           "Session": 4
         },
@@ -1618,41 +1178,21 @@
         },
         {
           "Start": 1260278,
-          "End": 1256335,
+          "End": 1263835,
           "Session": 3
         },
         {
-          "Start": 1256335,
-          "End": 1261335,
-          "Session": 3
-        },
-        {
-          "Start": 1261335,
+          "Start": 1263835,
           "End": 1320288,
           "Session": 17
         },
         {
           "Start": 1320288,
-          "End": 1326582,
+          "End": 1380293,
           "Session": 12
         },
         {
-          "Start": 1326582,
-          "End": 1331582,
-          "Session": 17
-        },
-        {
-          "Start": 1331582,
-          "End": 1380293,
-          "Session": 17
-        },
-        {
           "Start": 1380293,
-          "End": 1387526,
-          "Session": 10
-        },
-        {
-          "Start": 1387526,
           "End": 1440299,
           "Session": 10
         },
@@ -1663,13 +1203,8 @@
         },
         {
           "Start": 1500311,
-          "End": 1505958,
-          "Session": 6
-        },
-        {
-          "Start": 1505958,
           "End": 1560321,
-          "Session": 1
+          "Session": 6
         },
         {
           "Start": 1560321,
@@ -1678,53 +1213,28 @@
         },
         {
           "Start": 1620348,
-          "End": 1677518,
+          "End": 1680359,
           "Session": 8
         },
         {
-          "Start": 1677518,
-          "End": 1673278,
+          "Start": 1680359,
+          "End": 1680778,
           "Session": 1
         },
         {
-          "Start": 1673278,
-          "End": 1678278,
-          "Session": 1
-        },
-        {
-          "Start": 1678278,
-          "End": 1680359,
+          "Start": 1680778,
+          "End": 1740376,
           "Session": 17
         },
         {
-          "Start": 1680359,
-          "End": 1740376,
-          "Session": 1
-        },
-        {
           "Start": 1740376,
-          "End": 1775189,
-          "Session": 13
-        },
-        {
-          "Start": 1775189,
-          "End": 1783577,
-          "Session": 1
-        },
-        {
-          "Start": 1783577,
-          "End": 1793320,
-          "Session": 1
-        },
-        {
-          "Start": 1793320,
           "End": 1808942,
-          "Session": 1
+          "Session": 13
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 1
+          "Session": 13
         }
       ],
       "Player7": [
@@ -1735,23 +1245,18 @@
         },
         {
           "Start": 60011,
-          "End": 114026,
+          "End": 120017,
           "Session": 10
         },
         {
-          "Start": 114026,
-          "End": 119026,
-          "Session": 9
-        },
-        {
-          "Start": 119026,
-          "End": 120017,
-          "Session": 17
-        },
-        {
           "Start": 120017,
-          "End": 180045,
+          "End": 121526,
           "Session": 9
+        },
+        {
+          "Start": 121526,
+          "End": 180045,
+          "Session": 17
         },
         {
           "Start": 180045,
@@ -1760,31 +1265,21 @@
         },
         {
           "Start": 240066,
-          "End": 265393,
+          "End": 272893,
           "Session": 9
         },
         {
-          "Start": 265393,
-          "End": 270393,
-          "Session": 4
-        },
-        {
-          "Start": 270393,
+          "Start": 272893,
           "End": 300092,
           "Session": 17
         },
         {
           "Start": 300092,
-          "End": 319861,
+          "End": 327361,
           "Session": 17
         },
         {
-          "Start": 319861,
-          "End": 324861,
-          "Session": 4
-        },
-        {
-          "Start": 324861,
+          "Start": 327361,
           "End": 360098,
           "Session": 17
         },
@@ -1815,16 +1310,11 @@
         },
         {
           "Start": 660139,
-          "End": 671254,
+          "End": 678754,
           "Session": 9
         },
         {
-          "Start": 671254,
-          "End": 676254,
-          "Session": 4
-        },
-        {
-          "Start": 676254,
+          "Start": 678754,
           "End": 720148,
           "Session": 17
         },
@@ -1855,31 +1345,21 @@
         },
         {
           "Start": 1020207,
-          "End": 1042749,
+          "End": 1050249,
           "Session": 9
         },
         {
-          "Start": 1042749,
-          "End": 1047749,
-          "Session": 4
-        },
-        {
-          "Start": 1047749,
+          "Start": 1050249,
           "End": 1080214,
           "Session": 17
         },
         {
           "Start": 1080214,
-          "End": 1122120,
+          "End": 1129620,
           "Session": 17
         },
         {
-          "Start": 1122120,
-          "End": 1127120,
-          "Session": 9
-        },
-        {
-          "Start": 1127120,
+          "Start": 1129620,
           "End": 1140238,
           "Session": 17
         },
@@ -1900,26 +1380,16 @@
         },
         {
           "Start": 1320288,
-          "End": 1336536,
-          "Session": 4
-        },
-        {
-          "Start": 1336536,
           "End": 1380293,
-          "Session": 1
+          "Session": 4
         },
         {
           "Start": 1380293,
-          "End": 1375425,
+          "End": 1382925,
           "Session": 4
         },
         {
-          "Start": 1375425,
-          "End": 1380425,
-          "Session": 4
-        },
-        {
-          "Start": 1380425,
+          "Start": 1382925,
           "End": 1440299,
           "Session": 17
         },
@@ -1945,16 +1415,11 @@
         },
         {
           "Start": 1680359,
-          "End": 1687315,
+          "End": 1694815,
           "Session": 1
         },
         {
-          "Start": 1687315,
-          "End": 1692315,
-          "Session": 1
-        },
-        {
-          "Start": 1692315,
+          "Start": 1694815,
           "End": 1740376,
           "Session": 17
         },
@@ -1982,13 +1447,8 @@
         },
         {
           "Start": 120017,
-          "End": 147897,
-          "Session": 9
-        },
-        {
-          "Start": 147897,
           "End": 180045,
-          "Session": 4
+          "Session": 9
         },
         {
           "Start": 180045,
@@ -2022,13 +1482,8 @@
         },
         {
           "Start": 540125,
-          "End": 573678,
-          "Session": 4
-        },
-        {
-          "Start": 573678,
           "End": 600131,
-          "Session": 9
+          "Session": 4
         },
         {
           "Start": 600131,
@@ -2037,18 +1492,8 @@
         },
         {
           "Start": 660139,
-          "End": 677740,
-          "Session": 9
-        },
-        {
-          "Start": 677740,
-          "End": 707068,
-          "Session": 4
-        },
-        {
-          "Start": 707068,
           "End": 720148,
-          "Session": 4
+          "Session": 9
         },
         {
           "Start": 720148,
@@ -2057,21 +1502,11 @@
         },
         {
           "Start": 780155,
-          "End": 825805,
-          "Session": 4
-        },
-        {
-          "Start": 825805,
           "End": 840176,
           "Session": 4
         },
         {
           "Start": 840176,
-          "End": 883441,
-          "Session": 4
-        },
-        {
-          "Start": 883441,
           "End": 900188,
           "Session": 4
         },
@@ -2082,33 +1517,13 @@
         },
         {
           "Start": 960199,
-          "End": 991772,
+          "End": 1020207,
           "Session": 3
         },
         {
-          "Start": 991772,
-          "End": 1020207,
-          "Session": 8
-        },
-        {
           "Start": 1020207,
-          "End": 1024797,
-          "Session": 5
-        },
-        {
-          "Start": 1024797,
-          "End": 1027208,
-          "Session": 5
-        },
-        {
-          "Start": 1027208,
-          "End": 1069845,
-          "Session": 10
-        },
-        {
-          "Start": 1069845,
           "End": 1080214,
-          "Session": 4
+          "Session": 5
         },
         {
           "Start": 1080214,
@@ -2117,163 +1532,68 @@
         },
         {
           "Start": 1140238,
-          "End": 1197493,
-          "Session": 6
-        },
-        {
-          "Start": 1197493,
           "End": 1200267,
-          "Session": 5
+          "Session": 6
         },
         {
           "Start": 1200267,
-          "End": 1197149,
+          "End": 1260278,
           "Session": 5
         },
         {
-          "Start": 1197149,
-          "End": 1202149,
-          "Session": 17
-        },
-        {
-          "Start": 1202149,
-          "End": 1260278,
-          "Session": 17
-        },
-        {
           "Start": 1260278,
-          "End": 1291688,
-          "Session": 6
-        },
-        {
-          "Start": 1291688,
           "End": 1320288,
           "Session": 6
         },
         {
           "Start": 1320288,
-          "End": 1327487,
-          "Session": 5
-        },
-        {
-          "Start": 1327487,
           "End": 1380293,
-          "Session": 1
+          "Session": 5
         },
         {
           "Start": 1380293,
-          "End": 1422631,
-          "Session": 15
-        },
-        {
-          "Start": 1422631,
-          "End": 1429731,
-          "Session": 5
-        },
-        {
-          "Start": 1429731,
-          "End": 1429731,
-          "Session": 6
-        },
-        {
-          "Start": 1429731,
           "End": 1440299,
-          "Session": 6
+          "Session": 15
         },
         {
           "Start": 1440299,
-          "End": 1464099,
+          "End": 1471599,
           "Session": 1
         },
         {
-          "Start": 1464099,
-          "End": 1469099,
-          "Session": 6
-        },
-        {
-          "Start": 1469099,
-          "End": 1469662,
-          "Session": 17
-        },
-        {
-          "Start": 1469662,
+          "Start": 1471599,
           "End": 1500311,
-          "Session": 6
+          "Session": 17
         },
         {
           "Start": 1500311,
-          "End": 1552789,
-          "Session": 6
-        },
-        {
-          "Start": 1552789,
           "End": 1560321,
-          "Session": 5
+          "Session": 6
         },
         {
           "Start": 1560321,
-          "End": 1594645,
-          "Session": 6
-        },
-        {
-          "Start": 1594645,
           "End": 1620348,
-          "Session": 1
+          "Session": 6
         },
         {
           "Start": 1620348,
-          "End": 1623749,
-          "Session": 5
-        },
-        {
-          "Start": 1623749,
-          "End": 1623782,
-          "Session": 6
-        },
-        {
-          "Start": 1623782,
-          "End": 1623782,
-          "Session": 6
-        },
-        {
-          "Start": 1623782,
-          "End": 1632270,
-          "Session": 5
-        },
-        {
-          "Start": 1632270,
           "End": 1680359,
-          "Session": 1
+          "Session": 5
         },
         {
           "Start": 1680359,
-          "End": 1708796,
+          "End": 1740376,
           "Session": 15
         },
         {
-          "Start": 1708796,
-          "End": 1712132,
-          "Session": 10
-        },
-        {
-          "Start": 1712132,
-          "End": 1740376,
-          "Session": 10
-        },
-        {
           "Start": 1740376,
-          "End": 1781035,
-          "Session": 17
-        },
-        {
-          "Start": 1781035,
           "End": 1808942,
-          "Session": 1
+          "Session": 17
         },
         {
           "Start": 1808942,
           "End": 1808942,
-          "Session": 1
+          "Session": 17
         }
       ],
       "Player9": [
@@ -2294,11 +1614,6 @@
         },
         {
           "Start": 180045,
-          "End": 214564,
-          "Session": 6
-        },
-        {
-          "Start": 214564,
           "End": 240066,
           "Session": 6
         },
@@ -2319,16 +1634,11 @@
         },
         {
           "Start": 420109,
-          "End": 468875,
+          "End": 476375,
           "Session": 6
         },
         {
-          "Start": 468875,
-          "End": 473875,
-          "Session": 6
-        },
-        {
-          "Start": 473875,
+          "Start": 476375,
           "End": 480116,
           "Session": 17
         },
@@ -2349,13 +1659,8 @@
         },
         {
           "Start": 660139,
-          "End": 701949,
-          "Session": 6
-        },
-        {
-          "Start": 701949,
           "End": 720148,
-          "Session": 4
+          "Session": 11
         },
         {
           "Start": 720148,
@@ -2389,16 +1694,11 @@
         },
         {
           "Start": 1080214,
-          "End": 1130118,
+          "End": 1137618,
           "Session": 5
         },
         {
-          "Start": 1130118,
-          "End": 1135118,
-          "Session": 4
-        },
-        {
-          "Start": 1135118,
+          "Start": 1137618,
           "End": 1140238,
           "Session": 17
         },
@@ -2434,13 +1734,8 @@
         },
         {
           "Start": 1500311,
-          "End": 1508996,
-          "Session": 5
-        },
-        {
-          "Start": 1508996,
           "End": 1560321,
-          "Session": 3
+          "Session": 5
         },
         {
           "Start": 1560321,
@@ -2454,31 +1749,21 @@
         },
         {
           "Start": 1680359,
-          "End": 1685466,
+          "End": 1692966,
           "Session": 1
         },
         {
-          "Start": 1685466,
-          "End": 1690466,
-          "Session": 1
-        },
-        {
-          "Start": 1690466,
+          "Start": 1692966,
           "End": 1740376,
           "Session": 17
         },
         {
           "Start": 1740376,
-          "End": 1775638,
+          "End": 1783138,
           "Session": 17
         },
         {
-          "Start": 1775638,
-          "End": 1780638,
-          "Session": 1
-        },
-        {
-          "Start": 1780638,
+          "Start": 1783138,
           "End": 1808942,
           "Session": 17
         },
@@ -2506,26 +1791,16 @@
         },
         {
           "Start": 180045,
-          "End": 217801,
-          "Session": 6
-        },
-        {
-          "Start": 217801,
           "End": 240066,
           "Session": 6
         },
         {
           "Start": 240066,
-          "End": 280820,
+          "End": 288320,
           "Session": 6
         },
         {
-          "Start": 280820,
-          "End": 285820,
-          "Session": 11
-        },
-        {
-          "Start": 285820,
+          "Start": 288320,
           "End": 300092,
           "Session": 17
         },
@@ -2541,28 +1816,13 @@
         },
         {
           "Start": 420109,
-          "End": 465783,
-          "Session": 6
-        },
-        {
-          "Start": 465783,
           "End": 480116,
           "Session": 6
         },
         {
           "Start": 480116,
-          "End": 481569,
-          "Session": 11
-        },
-        {
-          "Start": 481569,
-          "End": 519120,
-          "Session": 11
-        },
-        {
-          "Start": 519120,
           "End": 540125,
-          "Session": 6
+          "Session": 11
         },
         {
           "Start": 540125,
@@ -2571,86 +1831,46 @@
         },
         {
           "Start": 600131,
-          "End": 641530,
+          "End": 649030,
           "Session": 5
         },
         {
-          "Start": 641530,
-          "End": 646530,
-          "Session": 6
-        },
-        {
-          "Start": 646530,
+          "Start": 649030,
           "End": 660139,
           "Session": 17
         },
         {
           "Start": 660139,
-          "End": 705054,
+          "End": 720148,
           "Session": 6
         },
         {
-          "Start": 705054,
-          "End": 720148,
-          "Session": 7
-        },
-        {
           "Start": 720148,
-          "End": 759514,
+          "End": 780155,
           "Session": 2
         },
         {
-          "Start": 759514,
-          "End": 780155,
-          "Session": 9
-        },
-        {
           "Start": 780155,
-          "End": 793731,
+          "End": 840176,
           "Session": 4
         },
         {
-          "Start": 793731,
-          "End": 840176,
-          "Session": 1
-        },
-        {
           "Start": 840176,
-          "End": 841894,
-          "Session": 11
-        },
-        {
-          "Start": 841894,
           "End": 900188,
-          "Session": 11
-        },
-        {
-          "Start": 900188,
-          "End": 933380,
-          "Session": 5
-        },
-        {
-          "Start": 933380,
-          "End": 960199,
           "Session": 15
         },
         {
-          "Start": 960199,
-          "End": 984012,
+          "Start": 900188,
+          "End": 960199,
           "Session": 5
         },
         {
-          "Start": 984012,
-          "End": 981951,
-          "Session": 1
+          "Start": 960199,
+          "End": 989451,
+          "Session": 5
         },
         {
-          "Start": 981951,
-          "End": 986951,
-          "Session": 1
-        },
-        {
-          "Start": 986951,
+          "Start": 989451,
           "End": 1020207,
           "Session": 17
         },
@@ -2661,78 +1881,28 @@
         },
         {
           "Start": 1080214,
-          "End": 1099240,
-          "Session": 7
-        },
-        {
-          "Start": 1099240,
           "End": 1140238,
           "Session": 7
         },
         {
           "Start": 1140238,
-          "End": 1194191,
-          "Session": 2
-        },
-        {
-          "Start": 1194191,
           "End": 1200267,
           "Session": 2
         },
         {
           "Start": 1200267,
-          "End": 1222129,
+          "End": 1242829,
           "Session": 2
         },
         {
-          "Start": 1222129,
-          "End": 1235276,
-          "Session": 2
-        },
-        {
-          "Start": 1235276,
-          "End": 1235329,
-          "Session": 1
-        },
-        {
-          "Start": 1235329,
-          "End": 1240329,
-          "Session": 1
-        },
-        {
-          "Start": 1240329,
+          "Start": 1242829,
           "End": 1260278,
           "Session": 17
         },
         {
           "Start": 1260278,
-          "End": 1311107,
-          "Session": 1
-        },
-        {
-          "Start": 1311107,
-          "End": 1306833,
-          "Session": 4
-        },
-        {
-          "Start": 1306833,
-          "End": 1311833,
-          "Session": 17
-        },
-        {
-          "Start": 1311833,
-          "End": 1313372,
-          "Session": 17
-        },
-        {
-          "Start": 1313372,
-          "End": 1318372,
-          "Session": 17
-        },
-        {
-          "Start": 1318372,
           "End": 1320288,
-          "Session": 17
+          "Session": 1
         },
         {
           "Start": 1320288,
@@ -2741,41 +1911,21 @@
         },
         {
           "Start": 1380293,
-          "End": 1403675,
-          "Session": 13
-        },
-        {
-          "Start": 1403675,
           "End": 1440299,
           "Session": 13
         },
         {
           "Start": 1440299,
-          "End": 1473659,
+          "End": 1500311,
           "Session": 2
         },
         {
-          "Start": 1473659,
-          "End": 1479834,
-          "Session": 1
-        },
-        {
-          "Start": 1479834,
-          "End": 1500311,
-          "Session": 1
-        },
-        {
           "Start": 1500311,
-          "End": 1502015,
+          "End": 1509515,
           "Session": 3
         },
         {
-          "Start": 1502015,
-          "End": 1507015,
-          "Session": 3
-        },
-        {
-          "Start": 1507015,
+          "Start": 1509515,
           "End": 1560321,
           "Session": 17
         },
@@ -2786,21 +1936,11 @@
         },
         {
           "Start": 1620348,
-          "End": 1625103,
+          "End": 1644578,
           "Session": 5
         },
         {
-          "Start": 1625103,
-          "End": 1637078,
-          "Session": 6
-        },
-        {
-          "Start": 1637078,
-          "End": 1642078,
-          "Session": 1
-        },
-        {
-          "Start": 1642078,
+          "Start": 1644578,
           "End": 1680359,
           "Session": 17
         },
@@ -2811,21 +1951,11 @@
         },
         {
           "Start": 1740376,
-          "End": 1749195,
+          "End": 1786375,
           "Session": 2
         },
         {
-          "Start": 1749195,
-          "End": 1778875,
-          "Session": 2
-        },
-        {
-          "Start": 1778875,
-          "End": 1783875,
-          "Session": 1
-        },
-        {
-          "Start": 1783875,
+          "Start": 1786375,
           "End": 1808942,
           "Session": 17
         },
