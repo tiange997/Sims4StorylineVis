@@ -9,9 +9,9 @@ let namePosition = []
 
 // For tips
 
-let border, mask, img
+let border //, mask, img
 
-let zone
+let name //zone
 
 let heroIcon
 
@@ -22,6 +22,19 @@ const svg = Snap('#mySvg')
 let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
+
+let playerColour = {
+  Player1: '#5B7DB1',
+  Player2: '#00B8D1',
+  Player3: '#00B827',
+  Player4: '#5BB58A',
+  Player5: '#9B8BD6',
+  Player6: '#ff4e00',
+  Player7: '#ff5c8a',
+  Player8: '#f5bb00',
+  Player9: '#ec9f05',
+  Player10: '#bf3100',
+}
 
 export function drawSegmentPath(
   pathStr,
@@ -298,7 +311,7 @@ export function drawStoryline(
         // console.log(idNumber, playerInfo[idNumber * 2 - 1])
 
         let placeIndex = session[parseInt(idNumber) - 1][idx]
-        console.log(placeIndex)
+        // console.log(placeIndex)
 
         let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
 
@@ -308,8 +321,6 @@ export function drawStoryline(
         let tipY = pt.y
 
         // console.log(playerInfo)
-
-        console.log(pt.y)
 
         if (pt.y > 220 && pt.y < 995) {
           tipX -= 100
@@ -373,27 +384,32 @@ function drawLineTip(
   accessIndex,
   placeIndex
 ) {
-  let playerName = playerInfo[idNumber * 2 - 1] + 'Square'
+  let playerName = playerInfo[idNumber * 2 - 1]
+  // console.log(playerInfo)
 
-  border = svg
-    .rect(tipX, tipY, 250, 300, 10, 10)
-    .attr({
-      stroke: 'black',
-      fill: 'rgba(255,255,255, 0.9)',
-      strokeWidth: '3px',
-    })
+  if (pt.x >= 5700) {
+    tipX -= 200
+  }
+
+  border = svg.rect(tipX, tipY, 220, 80, 10, 10).attr({
+    stroke: playerColour[`Player${idNumber}`],
+    fill: 'rgba(255,255,255, 0.9)',
+    strokeWidth: '3px',
+  })
 
   heroIcon = svg.image(
-    `../../src/image/Champions/${playerName}.png`,
+    `../../src/image/Champions/${playerName}Square.png`,
     30 + tipX,
     20 + tipY,
     50,
     50
   )
 
-  zone = svg.text(90 + tipX, 45 + tipY, locationSet[accessIndex])
+  name = svg.text(90 + tipX, 45 + tipY, playerName)
 
-  mask = svg
+  // zone = svg.text(90 + tipX, 45 + tipY, locationSet[accessIndex])
+
+  /*  mask = svg
     .rect(tipX + 25, tipY + 90, maskSize, maskSize, 10, 10)
     .attr({ fill: 'rgba(225, 225, 0)' })
   img = svg.image(
@@ -405,15 +421,16 @@ function drawLineTip(
   )
   img.attr({
     mask: mask,
-  })
+  })*/
 }
 
 function removeTips() {
   border.remove()
   heroIcon.remove()
-  zone.remove()
-  mask.remove()
-  img.remove()
+  name.remove()
+  // zone.remove()
+  // mask.remove()
+  // img.remove()
 }
 
 function generateSimplePath(points) {

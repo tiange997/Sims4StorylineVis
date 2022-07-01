@@ -640,7 +640,7 @@ function locationBox(locationSet) {
       rect[i] = svg
         .rect(xOrigin, lineHeight * i + yOrigin, width, lineHeight)
         .attr({
-          fill: 'none',
+          fill: 'rgba(255, 255, 255, 0.1)',
           stroke: 'none',
         })
       console.log('y Value: ' + lineHeight * i + yOrigin)
@@ -697,7 +697,64 @@ function locationBox(locationSet) {
         )
         .attr({ 'font-size': 17 })
     }
+
     console.log('LOC: ' + locationSet[i])
+  }
+
+  let border
+
+  let text
+
+  for (let i = 0; i < locationSet.length; i++) {
+    rect[i].mousedown(() => {
+      console.log(rect[i])
+      pt.x = event.clientX
+      pt.y = event.clientY
+      pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+      const mapSize = 200
+
+      let tipX = pt.x
+      let tipY = pt.y
+
+      if (pt.y >= 800) {
+        tipX -= 100
+        tipY -= 400
+      }
+
+      border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
+        stroke: 'black',
+        fill: 'rgba(255,255,255, 0.9)',
+        strokeWidth: '3px',
+      })
+
+      mask = svg
+        .rect(tipX + 25, tipY + 90, mapSize, mapSize, 10, 10)
+        .attr({ fill: 'rgba(225, 225, 0)' })
+      img = svg.image(
+        `../../src/image/Minimaps/${i + 1}.png`,
+        tipX + 25,
+        tipY + 90,
+        mapSize,
+        mapSize
+      )
+      img.attr({
+        mask: mask,
+      })
+
+      text = svg
+        .text(tipX + 28, tipY + 35, locationSet[i])
+        .attr('pointer-events', 'none')
+    })
+
+    rect[i].mouseup(() => {
+      console.log('REMOVE')
+      border.remove()
+      img.remove()
+      mask.remove()
+      text.remove()
+      event.preventDefault()
+    })
   }
 }
 
@@ -772,17 +829,24 @@ async function drawEvents(graph, participantsInfo) {
                 tipY -= 400
               }
 
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              console.log(posX, posY)
+              console.log(timeStamp(currentTimestamp))
+
               let xOffset = (posX / 15000) * 200
               let yOffset = 200 - (posY / 15000) * 200
 
               border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
-                stroke: 'black',
+                stroke: playerColour[currentPlayer],
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
               killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
-              victim = svg.text(130 + tipX, 25 + tipY, 'DEATH: ')
+              victim = svg.text(130 + tipX, 25 + tipY, 'VICTIM: ')
 
               killerIcon = svg.image(
                 `../../src/image/Champions/${killerName}Square.png`,
@@ -879,6 +943,10 @@ async function drawEvents(graph, participantsInfo) {
               if (pt.y >= 995) {
                 tipX -= 100
                 tipY -= 400
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
               }
 
               let xOffset = (posX / 15000) * 200
