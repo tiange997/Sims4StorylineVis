@@ -373,17 +373,7 @@ export function drawStoryline(
   })
 }
 
-function drawLineTip(
-  tipX,
-  tipY,
-  mapSize,
-  maskSize,
-  playerInfo,
-  idNumber,
-  locationSet,
-  accessIndex,
-  placeIndex
-) {
+function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
   let playerName = playerInfo[idNumber * 2 - 1]
   // console.log(playerInfo)
 
@@ -406,22 +396,6 @@ function drawLineTip(
   )
 
   name = svg.text(90 + tipX, 45 + tipY, playerName)
-
-  // zone = svg.text(90 + tipX, 45 + tipY, locationSet[accessIndex])
-
-  /*  mask = svg
-    .rect(tipX + 25, tipY + 90, maskSize, maskSize, 10, 10)
-    .attr({ fill: 'rgba(225, 225, 0)' })
-  img = svg.image(
-    `../../src/image/MiniMaps/${placeIndex}.png`,
-    tipX + 25,
-    tipY + 90,
-    mapSize,
-    mapSize
-  )
-  img.attr({
-    mask: mask,
-  })*/
 }
 
 function removeTips() {

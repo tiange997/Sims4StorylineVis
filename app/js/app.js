@@ -159,7 +159,7 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-main('testResultF.json')
+main('Complex.json')
 
 const svg = Snap('#mySvg')
 
@@ -557,8 +557,11 @@ function locationBox(locationSet) {
   // Initialise Rectangles
 
   let rect = []
+  let length = locationSet.length
 
-  for (let i = 0; i < locationSet.length; i++) {
+  console.log('LEN: ' + length)
+
+  for (let i = 0; i < length; i++) {
     rect[i] = []
   }
 
@@ -570,7 +573,7 @@ function locationBox(locationSet) {
   let mask
   let img
 
-  for (let i = 0; i < locationSet.length; i++) {
+  for (let i = 0; i < length; i++) {
     localHeight = localHeight + lineHeight
     // console.log(height)
 
@@ -611,13 +614,25 @@ function locationBox(locationSet) {
             mask = svg
               .rect(tipX, tipY, maskSize, maskSize, 10, 10)
               .attr({ fill: 'yellow' })
-            img = svg.image(
-              `../../src/image/sessionImgs/${i + 1}.png`,
-              tipX,
-              tipY,
-              tipWindowSize,
-              tipWindowSize
-            )
+            // draw for complex and simple version
+            if (length == 6) {
+              img = svg.image(
+                `../../src/image/sessionImgsSimple/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+            } else {
+              img = svg.image(
+                `../../src/image/MiniMaps/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+            }
             img.attr({
               mask: mask,
             })
@@ -672,13 +687,25 @@ function locationBox(locationSet) {
             mask = svg
               .rect(tipX, tipY, maskSize, maskSize, 10, 10)
               .attr({ fill: 'yellow' })
-            img = svg.image(
-              `../../src/image/sessionImgs/${i + 1}.png`,
-              tipX,
-              tipY,
-              tipWindowSize,
-              tipWindowSize
-            )
+            // draw for complex and simple version
+            if (length == 6) {
+              img = svg.image(
+                `../../src/image/sessionImgsSimple/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+            } else {
+              img = svg.image(
+                `../../src/image/MiniMaps/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+            }
             img.attr({
               mask: mask,
             })
@@ -705,7 +732,7 @@ function locationBox(locationSet) {
 
   let text
 
-  for (let i = 0; i < locationSet.length; i++) {
+  for (let i = 0; i < length; i++) {
     rect[i].mousedown(() => {
       console.log(rect[i])
       pt.x = event.clientX
@@ -722,22 +749,33 @@ function locationBox(locationSet) {
         tipY -= 400
       }
 
-      border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
+      border = svg.rect(tipX, tipY, 250, 280, 10, 10).attr({
         stroke: 'black',
         fill: 'rgba(255,255,255, 0.9)',
         strokeWidth: '3px',
       })
 
       mask = svg
-        .rect(tipX + 25, tipY + 90, mapSize, mapSize, 10, 10)
+        .rect(tipX + 25, tipY + 50, mapSize, mapSize, 10, 10)
         .attr({ fill: 'rgba(225, 225, 0)' })
-      img = svg.image(
-        `../../src/image/Minimaps/${i + 1}.png`,
-        tipX + 25,
-        tipY + 90,
-        mapSize,
-        mapSize
-      )
+      if (length != 6) {
+        img = svg.image(
+          `../../src/image/Minimaps/${i + 1}.png`,
+          tipX + 25,
+          tipY + 50,
+          mapSize,
+          mapSize
+        )
+      } else {
+        img = svg.image(
+          `../../src/image/sessionImgsSimple/${i + 1}.png`,
+          tipX + 25,
+          tipY + 50,
+          mapSize,
+          mapSize
+        )
+      }
+
       img.attr({
         mask: mask,
       })
@@ -745,6 +783,7 @@ function locationBox(locationSet) {
       text = svg
         .text(tipX + 28, tipY + 35, locationSet[i])
         .attr('pointer-events', 'none')
+        .attr({ 'font-size': 20 })
     })
 
     rect[i].mouseup(() => {
