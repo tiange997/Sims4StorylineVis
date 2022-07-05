@@ -159,7 +159,7 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-main('Complex.json')
+main('Simple.json')
 
 const svg = Snap('#mySvg')
 
