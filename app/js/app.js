@@ -5,10 +5,12 @@ import Snap from 'snapsvg'
 
 import * as d3Fetch from 'd3-fetch'
 import $ from 'jquery'
+import time from 'd3-scale/src/time'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
 const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfoMatchOneC.json')
+const jsonDBSCAN = d3Fetch.json('../../data/json/dbscan.json')
 
 // Screen Width and Height
 const width = 6000
@@ -51,6 +53,7 @@ async function main(fileName) {
   const iStorylineInstance = new iStoryline()
   const fileUrl = `../../data/${fileName.split('.')[1]}/${fileName}`
   let graph = await iStorylineInstance.loadFile(fileUrl)
+  let dbSCANData
 
   // Read Json through the Promise and save participants data
 
@@ -66,6 +69,12 @@ async function main(fileName) {
     // console.log(participantList)
     return participantList
   })
+
+  let dbscan = await jsonDBSCAN.then(function(result) {
+    dbSCANData = result
+  })
+
+  // console.log("DB: " + dbscan[0][0])
 
   // console.log(participantsInfo)
 
@@ -159,7 +168,7 @@ async function main(fileName) {
     // console.log("Tab " + graph.getCharacterY("Player5", 506627))
   })
 
-  await drawEvents(graph, participantsInfo)
+  await drawEvents(graph, participantsInfo, dbSCANData)
 
   return iStorylineInstance
 }
@@ -947,10 +956,11 @@ function locationBox(locationSet, simple) {
 // console.log('TS: ' + timeStamp(209564))
 // console.log('TS: ' + timeStamp(214564))
 
-async function drawEvents(graph, participantsInfo) {
+async function drawEvents(graph, participantsInfo, dbSCANData) {
   await jsonReadTwo.then(function(result) {
     const data = result
     // console.log(data)
+    console.log(dbSCANData)
 
     for (let i in data) {
       let posX = data[i]['position']['x']
@@ -1187,6 +1197,15 @@ async function drawEvents(graph, participantsInfo) {
           )
       }
     }
+
+    /*for (let item in dbSCANData) {
+      for (let element in data) {
+        // 1 second offset for timestamp calculation
+        if (data[element]['timestamp'] - 1 >= dbSCANData[item]['timestamp'] && data[element]['timestamp'] + 1 <= dbSCANData[item]['timestamp']) {
+          console.log("OK")
+        }
+      }
+    }*/
   })
 }
 
