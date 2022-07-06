@@ -108,13 +108,19 @@ async function main(fileName) {
     console.log('0 Exists!')
   }
 
+  let simple = true
+
   locationSet = iStorylineInstance._story._locations
+
+  if (locationSet.length > 6) {
+    simple = false
+  }
 
   // console.log("Loc: " + locationSet)
 
-  heroInfo(characters, participantsInfo)
+  heroInfo(characters, participantsInfo, simple)
 
-  locationBox(locationSet)
+  locationBox(locationSet, simple)
 
   const storylines = graph.storylines
 
@@ -162,7 +168,7 @@ main('Simple.json')
 const svg = Snap('#mySvg')
 
 // Draw hero info
-function heroInfo(character, participantsInfo) {
+function heroInfo(character, participantsInfo, simple) {
   let playerImg = []
   console.log(participantsInfo)
   for (let i = 0; i < character.length; i++) {
@@ -532,6 +538,24 @@ function heroInfo(character, participantsInfo) {
       'stroke-width': '5',
       opacity: 0.7,
     })
+
+  const mapSize = 128
+  const mapX = 23
+  const mapY = 520
+
+  svg.text(mapX + 15, mapY - 25, 'Map Division')
+
+  if (simple) {
+    svg.image('../../src/image/MiniMapSimple.png', mapX, mapY, mapSize, mapSize)
+  } else {
+    svg.image(
+      '../../src/image/MiniMapComplex.png',
+      mapX,
+      mapY,
+      mapSize,
+      mapSize
+    )
+  }
 }
 
 // Draw timeline
@@ -574,7 +598,7 @@ function timeStamp(perTimestamp) {
 
 // console.log('TIME: ' + timeStamp(26063))
 
-function locationBox(locationSet) {
+function locationBox(locationSet, simple) {
   // console.log(locationSet)
 
   let lineHeight = height / locationSet.length
@@ -644,7 +668,7 @@ function locationBox(locationSet) {
               .rect(tipX, tipY, maskSize, maskSize, 10, 10)
               .attr({ fill: 'yellow' })
             // draw for complex and simple version
-            if (length == 6) {
+            if (simple) {
               img = svg.image(
                 `../../src/image/sessionImgsSimple/${i + 1}.png`,
                 tipX,
@@ -678,6 +702,53 @@ function locationBox(locationSet) {
           locationSet[i]
         )
         .attr({ 'font-size': 17 })
+        .hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+            const tipWindowSize = 200
+            const maskSize = 200
+
+            let tipX = pt.x
+            let tipY = pt.y
+
+            tipX -= 300
+            tipY -= 100
+
+            mask = svg
+              .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+              .attr({ fill: 'yellow' })
+            // draw for complex and simple version
+            if (length == 6) {
+              img = svg.image(
+                `../../src/image/sessionImgsSimple/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+            } else {
+              img = svg.image(
+                `../../src/image/MiniMaps/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+            }
+            img.attr({
+              mask: mask,
+            })
+          },
+          () => {
+            mask.remove()
+            img.remove()
+          }
+        )
     }
 
     if ((i + 1) % 2 === 0) {
@@ -752,6 +823,53 @@ function locationBox(locationSet) {
           locationSet[i]
         )
         .attr({ 'font-size': 17 })
+        .hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+            const tipWindowSize = 200
+            const maskSize = 200
+
+            let tipX = pt.x
+            let tipY = pt.y
+
+            tipX -= 300
+            tipY -= 100
+
+            mask = svg
+              .rect(tipX, tipY, maskSize, maskSize, 10, 10)
+              .attr({ fill: 'yellow' })
+            // draw for complex and simple version
+            if (length == 6) {
+              img = svg.image(
+                `../../src/image/sessionImgsSimple/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+            } else {
+              img = svg.image(
+                `../../src/image/MiniMaps/${i + 1}.png`,
+                tipX,
+                tipY,
+                tipWindowSize,
+                tipWindowSize
+              )
+            }
+            img.attr({
+              mask: mask,
+            })
+          },
+          () => {
+            mask.remove()
+            img.remove()
+          }
+        )
     }
 
     console.log('LOC: ' + locationSet[i])
