@@ -1,6 +1,5 @@
 import Snap from 'snapsvg'
 import $ from 'jquery'
-import * as path from 'path'
 
 let playerInfo
 
@@ -374,14 +373,19 @@ export function drawStoryline(
 }
 
 function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
+  const borderHeight = 85
   let playerName = playerInfo[idNumber * 2 - 1]
+  let iconSize = 50
   // console.log(playerInfo)
 
   if (pt.x >= 5700) {
     tipX -= 200
   }
 
-  border = svg.rect(tipX, tipY, 220, 80, 10, 10).attr({
+  let borderLength = calculateBorderLength(playerName, iconSize)
+  console.log(borderLength)
+
+  border = svg.rect(tipX, tipY, borderLength, borderHeight, 10, 10).attr({
     stroke: playerColour[`Player${idNumber}`],
     fill: 'rgba(255,255,255, 0.9)',
     strokeWidth: '3px',
@@ -389,13 +393,19 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
 
   heroIcon = svg.image(
     `../../src/image/Champions/${playerName}Square.png`,
-    30 + tipX,
-    20 + tipY,
-    50,
-    50
+    borderLength / 2 - iconSize / 2 + tipX,
+    10 + tipY,
+    iconSize,
+    iconSize
   )
 
-  name = svg.text(90 + tipX, 45 + tipY, playerName)
+  if (playerName.length > 5) {
+    name = svg.text(15 + tipX, 78 + tipY, playerName)
+  } else if (playerName.length == 5) {
+    name = svg.text(10 + tipX, 78 + tipY, playerName)
+  } else {
+    name = svg.text(13 + tipX, 78 + tipY, playerName)
+  }
 }
 
 function removeTips() {
@@ -434,10 +444,18 @@ function generateBezierPath(points) {
   return pathStr
 }
 
-function timeStamp(perTimestamp) {
-  let perMin = Math.floor((perTimestamp / 1000 / 60) << 0),
-    perSec = Math.floor((perTimestamp / 1000) % 60)
-
-  let log = perMin + ':' + perSec
-  return log
+function calculateBorderLength(text, iconSize) {
+  if (text.length <= 1) {
+    console.log('Invalid Name!')
+  } else {
+    // Length for one uppercase letter is 16
+    // Length for one lowercase letter is 8
+    let length = 16 + (text.length - 1) * 8
+    if (length <= iconSize) {
+      return 60 // default length if text length less than the iconsize
+    } else {
+      length += 20 // offset
+      return length
+    }
+  }
 }

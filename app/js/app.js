@@ -940,6 +940,8 @@ async function drawEvents(graph, participantsInfo) {
           buildingType = data[i]['buildingType']
         }
 
+        let resultType = buildingType.replace('_', ' ')
+
         let currentPlayer = 'Player' + String(playerIndex)
 
         if (playerIndex === 0) {
@@ -993,7 +995,7 @@ async function drawEvents(graph, participantsInfo) {
               })
 
               killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
-              victim = svg.text(80 + tipX, 62 + tipY, buildingType)
+              victim = svg.text(80 + tipX, 62 + tipY, resultType)
 
               killerName =
                 participantsInfo[participantsInfo.indexOf(playerIndex) + 1]
