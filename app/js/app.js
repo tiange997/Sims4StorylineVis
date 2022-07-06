@@ -1,11 +1,9 @@
 import { logStoryInfo } from '../../src/js/utils/logger'
 import { drawStoryline } from '../../src/js/utils/drawer'
-import { Graph } from '../../src/js/data/graph'
 import iStoryline from '../../src/js'
 import Snap from 'snapsvg'
 
 import * as d3Fetch from 'd3-fetch'
-import { image } from 'd3-fetch'
 import $ from 'jquery'
 
 // Initialise json files
@@ -539,8 +537,7 @@ function timeStamp(perTimestamp) {
   let perMin = Math.floor((perTimestamp / 1000 / 60) << 0),
     perSec = Math.floor((perTimestamp / 1000) % 60)
 
-  let log = perMin + ':' + perSec
-  return log
+  return perMin + ':' + perSec
 }
 
 // console.log('TIME: ' + timeStamp(26063))
@@ -804,7 +801,6 @@ async function drawEvents(graph, participantsInfo) {
   await jsonReadTwo.then(function(result) {
     const data = result
     // console.log(data)
-    const scaling = 0.07
 
     for (let i in data) {
       let posX = data[i]['position']['x']
@@ -821,6 +817,9 @@ async function drawEvents(graph, participantsInfo) {
       let killing
 
       if (data[i]['killType'] === 'CHAMPION_KILL') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
         let playerIndex = data[i]['victimID']
         let currentTimestamp = data[i]['timestamp']
         let currentPlayer = 'Player' + String(playerIndex)
@@ -839,9 +838,6 @@ async function drawEvents(graph, participantsInfo) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
         // console.log('CP: ' + (parseInt(indexHolder) - 1))
-
-        const iconSize = 30
-        const offset = iconSize / 2
 
         svg
           .image(
@@ -933,17 +929,17 @@ async function drawEvents(graph, participantsInfo) {
       }
 
       building: if (data[i]['killType'] === 'BUILDING_KILL') {
+        const iconSize = 35
+        const offset = iconSize / 2
         // console.log('building kill detected')
         let playerIndex = data[i]['killerId']
         let currentTimestamp = data[i]['timestamp']
-        let buildingType = data[i]['buildingType']
+        let buildingType = data[i]['towerType']
 
-        console.log(
-          'BUILDING KILLED: ' +
-            timeStamp(currentTimestamp) +
-            ' ' +
-            currentTimestamp
-        )
+        if (data[i]['towerType'] == undefined) {
+          buildingType = data[i]['buildingType']
+        }
+
         let currentPlayer = 'Player' + String(playerIndex)
 
         if (playerIndex === 0) {
@@ -959,14 +955,13 @@ async function drawEvents(graph, participantsInfo) {
         let mask, img
 
         svg
-          .polygon(
-            '208 288 192 160 224 160 240 144 240 0 192 0 192 48 160 48 160 0 96 0 96 48 64 48 64 0 16 0 16 144 32 160 64 160 48 288 16 288 0 304 0 384 256 384 256 304 240 288'
+          .image(
+            `../../src/image/Turrets/${currentPlayer}.png`,
+            iconPosX - offset,
+            iconPosY - offset,
+            iconSize,
+            iconSize
           )
-          .attr({
-            transform: `translate(${iconPosX} ${iconPosY - 13})
-                            scale(${scaling})`,
-            fill: playerColour[currentPlayer],
-          })
           .hover(
             event => {
               pt.x = event.clientX
@@ -998,7 +993,7 @@ async function drawEvents(graph, participantsInfo) {
               })
 
               killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
-              victim = svg.text(90 + tipX, 65 + tipY, buildingType)
+              victim = svg.text(80 + tipX, 62 + tipY, buildingType)
 
               killerName =
                 participantsInfo[participantsInfo.indexOf(playerIndex) + 1]
