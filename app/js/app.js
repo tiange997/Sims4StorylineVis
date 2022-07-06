@@ -5,7 +5,6 @@ import Snap from 'snapsvg'
 
 import * as d3Fetch from 'd3-fetch'
 import $ from 'jquery'
-import time from 'd3-scale/src/time'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
@@ -960,7 +959,75 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
   await jsonReadTwo.then(function(result) {
     const data = result
     // console.log(data)
+
+    let killTimestamp = []
+    let clusters = []
+
+    let clusterColors = {
+      '0': '#f7f7f7',
+      '1': '#d9d9d9',
+      '2': '#bdbdbd',
+      '3': '#969696',
+      '4': '#636363',
+      '5': '#252525',
+    }
+
+    for (let item in dbSCANData) {
+      let currentTimestamp = dbSCANData[item]['timestamp']
+
+      for (let element in data) {
+        // 1 second offset for timestamp calculation
+        let beforeOffset = currentTimestamp - 1
+        let afterOffset = currentTimestamp + 1
+        let innerTimestamp = data[element]['timestamp']
+
+        // For Debug
+        if (
+          currentTimestamp == innerTimestamp ||
+          beforeOffset == innerTimestamp ||
+          afterOffset == innerTimestamp
+        ) {
+          let clusterLabel = dbSCANData[item]['label']
+          if (clusters.length == 0) {
+            clusters.push(clusterLabel)
+          } else {
+            if (clusters.includes(clusterLabel) == false) {
+              clusters.push(clusterLabel)
+            }
+          }
+          killTimestamp.push(currentTimestamp)
+          dbSCANData[item]['timestamp'] = innerTimestamp // innerTimestamp is more accurate
+        }
+      }
+    }
+
     console.log(dbSCANData)
+
+    // Debug: make sure the len of inner timestamp == outer timestamp
+    if (dbSCANData.length == killTimestamp.length) {
+      console.log('OK')
+      // Get avg of posX in the same cluster
+      // console.log(clusters) // check how many clusters do we have
+
+      /*let avgTimestamp = []
+
+      for (let num in clusters) {
+        let tempX = 0
+        let counter = 0
+        for (let item in dbSCANData) {
+          if (clusters[num] == dbSCANData[item]['label']){
+            tempX = tempX + dbSCANData[item]['timestamp']
+            counter ++
+          }
+        }
+        tempX = tempX/counter
+        // console.log(tempX)
+        avgTimestamp.push(parseInt(tempX))
+      }
+      console.log(avgTimestamp)*/
+    } else {
+      console.warn('Cannot find all DBSCAN results in death json')
+    }
 
     for (let i in data) {
       let posX = data[i]['position']['x']
@@ -1086,6 +1153,98 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
               killing.remove()
             }
           )
+
+        // Show DBSCAN result using white-black gradient color
+        for (let item in dbSCANData) {
+          if (dbSCANData[item]['timestamp'] == currentTimestamp) {
+            svg
+              .circle(deathPosX, deathPosY, 15)
+              .attr({
+                fill: clusterColors[`${dbSCANData[item]['label']}`],
+                opacity: '0.9',
+                stroke: 'black',
+              })
+              .hover(
+                event => {
+                  pt.x = event.clientX
+                  pt.y = event.clientY
+
+                  pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+                  const mapSize = 200
+
+                  let tipX = pt.x
+                  let tipY = pt.y
+
+                  if (pt.y >= 995) {
+                    tipX -= 100
+                    tipY -= 400
+                  }
+
+                  if (pt.x >= 5700) {
+                    tipX -= 200
+                  }
+
+                  console.log(posX, posY)
+                  console.log(timeStamp(currentTimestamp))
+
+                  let xOffset = (posX / 15000) * 200
+                  let yOffset = 200 - (posY / 15000) * 200
+
+                  border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
+                    stroke: playerColour[currentPlayer],
+                    fill: 'rgba(255,255,255, 0.9)',
+                    strokeWidth: '3px',
+                  })
+
+                  killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
+                  victim = svg.text(130 + tipX, 25 + tipY, 'VICTIM: ')
+
+                  killerIcon = svg.image(
+                    `../../src/image/Champions/${killerName}Square.png`,
+                    35 + tipX,
+                    35 + tipY,
+                    40,
+                    40
+                  )
+                  victimIcon = svg.image(
+                    `../../src/image/Champions/${victimName}Square.png`,
+                    130 + tipX,
+                    35 + tipY,
+                    40,
+                    40
+                  )
+
+                  mask = svg
+                    .rect(tipX + 25, tipY + 90, mapSize, mapSize, 10, 10)
+                    .attr({ fill: 'rgba(225, 225, 0)' })
+                  img = svg.image(
+                    `../../src/image/MiniMap.png`,
+                    tipX + 25,
+                    tipY + 90,
+                    mapSize,
+                    mapSize
+                  )
+                  img.attr({
+                    mask: mask,
+                  })
+                  killing = svg
+                    .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 5)
+                    .attr({ fill: 'none', stroke: 'white', strokeWidth: '3px' })
+                },
+                () => {
+                  border.remove()
+                  killer.remove()
+                  killerIcon.remove()
+                  victim.remove()
+                  victimIcon.remove()
+                  mask.remove()
+                  img.remove()
+                  killing.remove()
+                }
+              )
+          }
+        }
       }
 
       building: if (data[i]['killType'] === 'BUILDING_KILL') {
@@ -1197,15 +1356,6 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
           )
       }
     }
-
-    /*for (let item in dbSCANData) {
-      for (let element in data) {
-        // 1 second offset for timestamp calculation
-        if (data[element]['timestamp'] - 1 >= dbSCANData[item]['timestamp'] && data[element]['timestamp'] + 1 <= dbSCANData[item]['timestamp']) {
-          console.log("OK")
-        }
-      }
-    }*/
   })
 }
 
