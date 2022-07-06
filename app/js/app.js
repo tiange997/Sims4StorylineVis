@@ -185,14 +185,14 @@ function heroInfo(character, participantsInfo) {
   const borderSize = 52
 
   const horizontalAdj = 70
-  const verticalAdj = 70
+  const verticalAdj = 110
 
   let text
 
   let icon = svg.image(playerImg[0], teamOneX, teamOneY, iconSize, iconSize)
   icon.hover(
     () => {
-      text = svg.text(35, 250 + 60, participantsInfo[1])
+      text = svg.text(teamOneX, teamOneY + 80, participantsInfo[1])
       text.attr({
         fill: playerColour['Player1'],
       })
@@ -225,7 +225,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconTwo.hover(
     () => {
-      text = svg.text(35, 250 + 60, participantsInfo[3])
+      text = svg.text(
+        teamOneX + horizontalAdj,
+        teamOneY + 80,
+        participantsInfo[3]
+      )
       text.attr({
         fill: playerColour['Player2'],
       })
@@ -257,7 +261,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconThree.hover(
     () => {
-      text = svg.text(35, 250 + 60, participantsInfo[5])
+      text = svg.text(
+        teamOneX,
+        teamOneY + verticalAdj + 80,
+        participantsInfo[5]
+      )
       text.attr({
         fill: playerColour['Player3'],
       })
@@ -289,7 +297,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconFour.hover(
     () => {
-      text = svg.text(35, 250 + 60, participantsInfo[7])
+      text = svg.text(
+        teamOneX + horizontalAdj,
+        teamOneY + verticalAdj + 80,
+        participantsInfo[7]
+      )
       text.attr({
         fill: playerColour['Player4'],
       })
@@ -321,7 +333,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconFive.hover(
     () => {
-      text = svg.text(35, 250 + 60, participantsInfo[9])
+      text = svg.text(
+        teamOneX,
+        teamOneY + verticalAdj * 2 + 80,
+        participantsInfo[9]
+      )
       text.attr({
         fill: playerColour['Player5'],
       })
@@ -345,12 +361,12 @@ function heroInfo(character, participantsInfo) {
     })
 
   const teamTwoX = teamOneX
-  const teamTwoY = 950
+  const teamTwoY = 850
 
   let iconSix = svg.image(playerImg[5], teamTwoX, teamTwoY, iconSize, iconSize)
   iconSix.hover(
     () => {
-      text = svg.text(35, 900, participantsInfo[11])
+      text = svg.text(teamTwoX, teamTwoY + 80, participantsInfo[11])
       text.attr({
         fill: playerColour['Player6'],
       })
@@ -382,7 +398,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconSeven.hover(
     () => {
-      text = svg.text(35, 900, participantsInfo[13])
+      text = svg.text(
+        teamTwoX + horizontalAdj,
+        teamTwoY + 80,
+        participantsInfo[13]
+      )
       text.attr({
         fill: playerColour['Player7'],
       })
@@ -414,7 +434,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconEight.hover(
     () => {
-      text = svg.text(35, 900, participantsInfo[15])
+      text = svg.text(
+        teamTwoX,
+        teamTwoY + verticalAdj + 80,
+        participantsInfo[15]
+      )
       text.attr({
         fill: playerColour['Player8'],
       })
@@ -446,7 +470,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconNine.hover(
     () => {
-      text = svg.text(35, 900, participantsInfo[17])
+      text = svg.text(
+        teamTwoX + horizontalAdj,
+        teamTwoY + verticalAdj + 80,
+        participantsInfo[17]
+      )
       text.attr({
         fill: playerColour['Player8'],
       })
@@ -478,7 +506,11 @@ function heroInfo(character, participantsInfo) {
   )
   iconTen.hover(
     () => {
-      text = svg.text(35, 900, participantsInfo[19])
+      text = svg.text(
+        teamTwoX,
+        teamTwoY + verticalAdj * 2 + 80,
+        participantsInfo[19]
+      )
       text.attr({
         fill: playerColour['Player10'],
       })
