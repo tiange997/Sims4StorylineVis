@@ -201,10 +201,14 @@ function heroInfo(character, participantsInfo, simple) {
   const horizontalAdj = 70
   const verticalAdj = 110
 
-  let text
+  // let text
 
   let icon = svg.image(playerImg[0], teamOneX, teamOneY, iconSize, iconSize)
-  icon.hover(
+  svg.text(teamOneX, teamOneY + 80, participantsInfo[1]).attr({
+    fill: playerColour['Player1'],
+  })
+
+  /*icon.hover(
     () => {
       text = svg.text(teamOneX, teamOneY + 80, participantsInfo[1])
       text.attr({
@@ -214,7 +218,7 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
   // Add decorative border according to the color scheme
   svg
     .rect(
@@ -237,7 +241,12 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconTwo.hover(
+
+  svg.text(teamOneX + horizontalAdj, teamOneY + 80, participantsInfo[3]).attr({
+    fill: playerColour['Player2'],
+  })
+
+  /*  iconTwo.hover(
     () => {
       text = svg.text(
         teamOneX + horizontalAdj,
@@ -251,7 +260,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamOneX - borderOffset + horizontalAdj,
@@ -273,7 +283,11 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconThree.hover(
+
+  svg.text(teamOneX, teamOneY + verticalAdj + 80, participantsInfo[5]).attr({
+    fill: playerColour['Player3'],
+  })
+  /*iconThree.hover(
     () => {
       text = svg.text(
         teamOneX,
@@ -287,7 +301,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamOneX - borderOffset,
@@ -309,7 +324,18 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconFour.hover(
+
+  svg
+    .text(
+      teamOneX + horizontalAdj,
+      teamOneY + verticalAdj + 80,
+      participantsInfo[7]
+    )
+    .attr({
+      fill: playerColour['Player4'],
+    })
+
+  /*iconFour.hover(
     () => {
       text = svg.text(
         teamOneX + horizontalAdj,
@@ -323,7 +349,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamOneX - borderOffset + horizontalAdj,
@@ -345,7 +372,14 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconFive.hover(
+
+  svg
+    .text(teamOneX, teamOneY + verticalAdj * 2 + 80, participantsInfo[9])
+    .attr({
+      fill: playerColour['Player5'],
+    })
+
+  /*iconFive.hover(
     () => {
       text = svg.text(
         teamOneX,
@@ -359,7 +393,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamOneX - borderOffset,
@@ -378,7 +413,10 @@ function heroInfo(character, participantsInfo, simple) {
   const teamTwoY = 850
 
   let iconSix = svg.image(playerImg[5], teamTwoX, teamTwoY, iconSize, iconSize)
-  iconSix.hover(
+  svg.text(teamTwoX, teamTwoY + 80, participantsInfo[11]).attr({
+    fill: playerColour['Player6'],
+  })
+  /*iconSix.hover(
     () => {
       text = svg.text(teamTwoX, teamTwoY + 80, participantsInfo[11])
       text.attr({
@@ -388,7 +426,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamTwoX - borderOffset,
@@ -410,7 +449,12 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconSeven.hover(
+
+  svg.text(teamTwoX + horizontalAdj, teamTwoY + 80, participantsInfo[13]).attr({
+    fill: playerColour['Player7'],
+  })
+
+  /*iconSeven.hover(
     () => {
       text = svg.text(
         teamTwoX + horizontalAdj,
@@ -424,7 +468,7 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
   svg
     .rect(
       teamTwoX - borderOffset + horizontalAdj,
@@ -446,7 +490,12 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconEight.hover(
+
+  svg.text(teamTwoX, teamTwoY + verticalAdj + 80, participantsInfo[15]).attr({
+    fill: playerColour['Player8'],
+  })
+
+  /*iconEight.hover(
     () => {
       text = svg.text(
         teamTwoX,
@@ -460,7 +509,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamTwoX - borderOffset,
@@ -482,7 +532,18 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconNine.hover(
+
+  svg
+    .text(
+      teamTwoX + horizontalAdj,
+      teamTwoY + verticalAdj + 80,
+      participantsInfo[17]
+    )
+    .attr({
+      fill: playerColour['Player8'],
+    })
+
+  /*iconNine.hover(
     () => {
       text = svg.text(
         teamTwoX + horizontalAdj,
@@ -496,7 +557,8 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
+
   svg
     .rect(
       teamTwoX - borderOffset + horizontalAdj,
@@ -518,7 +580,14 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize,
     iconSize
   )
-  iconTen.hover(
+
+  svg
+    .text(teamTwoX, teamTwoY + verticalAdj * 2 + 80, participantsInfo[19])
+    .attr({
+      fill: playerColour['Player10'],
+    })
+
+  /*iconTen.hover(
     () => {
       text = svg.text(
         teamTwoX,
@@ -532,7 +601,7 @@ function heroInfo(character, participantsInfo, simple) {
     () => {
       text.remove()
     }
-  )
+  )*/
   svg
     .rect(
       teamTwoX - borderOffset,
