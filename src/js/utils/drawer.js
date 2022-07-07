@@ -28,11 +28,11 @@ let playerColour = {
   Player3: '#00B827',
   Player4: '#5BB58A',
   Player5: '#9B8BD6',
-  Player6: '#ff4e00',
-  Player7: '#ff5c8a',
-  Player8: '#f5bb00',
-  Player9: '#ec9f05',
-  Player10: '#bf3100',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#ffa000',
+  Player10: '#ffd149',
 }
 
 export function drawSegmentPath(
@@ -54,55 +54,51 @@ export function drawSegmentPath(
     case 'Player2':
       color = '#00B8D1'
       pathSvg.attr({
-        'stroke-dasharray': '4',
         opacity: 0.7,
       })
       break
     case 'Player3':
       color = '#00B827'
       pathSvg.attr({
-        'stroke-dasharray': '4',
         opacity: 0.7,
       })
       break
     case 'Player4':
       color = '#5BB58A'
       pathSvg.attr({
-        'stroke-dasharray': '4',
         opacity: 0.7,
       })
       break
     case 'Player5':
       color = '#9B8BD6'
       pathSvg.attr({
-        'stroke-dasharray': '4',
         opacity: 0.7,
       })
       break
     case 'Player6':
-      color = '#ff4e00'
-      pathSvg.attr({ opacity: 0.7 })
+      color = '#ff0000'
+      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6,4' })
       break
     case 'Player7':
-      color = '#ff5c8a'
-      pathSvg.attr({ opacity: 0.7 })
+      color = '#ba000d'
+      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player8':
-      color = '#f5bb00'
-      pathSvg.attr({ opacity: 0.7 })
+      color = '#ff94c2'
+      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player9':
-      color = '#ec9f05'
-      pathSvg.attr({ opacity: 0.7 })
+      color = '#ffa000'
+      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player10':
-      color = '#bf3100'
-      pathSvg.attr({ opacity: 0.7 })
+      color = '#ffd149'
+      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     default:
       color = '#5B7DB1'
       pathSvg.attr({
-        'stroke-dasharray': '4',
+        // 'stroke-dasharray': '4',
         opacity: 0.7,
       })
   }

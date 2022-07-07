@@ -8,8 +8,8 @@ import $ from 'jquery'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
-const jsonReadTwo = d3Fetch.json('../../data/json/KillingInfoMatchOneC.json')
-const jsonDBSCAN = d3Fetch.json('../../data/json/dbscan.json')
+const jsonReadTwo = d3Fetch.json('../../data/json/newKillingInfo.json')
+const jsonDBSCAN = d3Fetch.json('../../data/json/dbscan2.json')
 
 // Screen Width and Height
 const width = 6000
@@ -32,17 +32,18 @@ let playerColour = {
   Player3: '#00B827',
   Player4: '#5BB58A',
   Player5: '#9B8BD6',
-  Player6: '#ff4e00',
-  Player7: '#ff5c8a',
-  Player8: '#f5bb00',
-  Player9: '#ec9f05',
-  Player10: '#bf3100',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#ffa000',
+  Player10: '#ffd149',
 }
 
 // Save location info for later use
 let locationSet
 
 // console.log('Match Length: ' + timeStamp(totalTimestamp))
+console.log(timeStamp(573678))
 
 let mySvg = $('#mySvg')[0]
 
@@ -204,7 +205,7 @@ function heroInfo(character, participantsInfo, simple) {
   // let text
 
   let icon = svg.image(playerImg[0], teamOneX, teamOneY, iconSize, iconSize)
-  svg.text(teamOneX, teamOneY + 80, participantsInfo[1]).attr({
+  svg.text(teamOneX - 10, teamOneY + 80, participantsInfo[1]).attr({
     fill: playerColour['Player1'],
   })
 
@@ -284,9 +285,11 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize
   )
 
-  svg.text(teamOneX, teamOneY + verticalAdj + 80, participantsInfo[5]).attr({
-    fill: playerColour['Player3'],
-  })
+  svg
+    .text(teamOneX - 10, teamOneY + verticalAdj + 80, participantsInfo[5])
+    .attr({
+      fill: playerColour['Player3'],
+    })
   /*iconThree.hover(
     () => {
       text = svg.text(
@@ -374,7 +377,7 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamOneX, teamOneY + verticalAdj * 2 + 80, participantsInfo[9])
+    .text(teamOneX - 10, teamOneY + verticalAdj * 2 + 80, participantsInfo[9])
     .attr({
       fill: playerColour['Player5'],
     })
@@ -413,7 +416,7 @@ function heroInfo(character, participantsInfo, simple) {
   const teamTwoY = 850
 
   let iconSix = svg.image(playerImg[5], teamTwoX, teamTwoY, iconSize, iconSize)
-  svg.text(teamTwoX, teamTwoY + 80, participantsInfo[11]).attr({
+  svg.text(teamTwoX - 10, teamTwoY + 80, participantsInfo[11]).attr({
     fill: playerColour['Player6'],
   })
   /*iconSix.hover(
@@ -491,9 +494,11 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize
   )
 
-  svg.text(teamTwoX, teamTwoY + verticalAdj + 80, participantsInfo[15]).attr({
-    fill: playerColour['Player8'],
-  })
+  svg
+    .text(teamTwoX - 10, teamTwoY + verticalAdj + 80, participantsInfo[15])
+    .attr({
+      fill: playerColour['Player8'],
+    })
 
   /*iconEight.hover(
     () => {
@@ -540,7 +545,7 @@ function heroInfo(character, participantsInfo, simple) {
       participantsInfo[17]
     )
     .attr({
-      fill: playerColour['Player8'],
+      fill: playerColour['Player9'],
     })
 
   /*iconNine.hover(
@@ -568,7 +573,7 @@ function heroInfo(character, participantsInfo, simple) {
     )
     .attr({
       fill: 'none',
-      stroke: playerColour['Player8'],
+      stroke: playerColour['Player9'],
       'stroke-width': '5',
       opacity: 0.7,
     })
@@ -582,7 +587,7 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamTwoX, teamTwoY + verticalAdj * 2 + 80, participantsInfo[19])
+    .text(teamTwoX - 10, teamTwoY + verticalAdj * 2 + 80, participantsInfo[19])
     .attr({
       fill: playerColour['Player10'],
     })
@@ -1034,43 +1039,38 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
 
     let clusterColors = {
       '0': '#f7f7f7',
-      '1': '#d9d9d9',
-      '2': '#bdbdbd',
-      '3': '#969696',
-      '4': '#636363',
-      '5': '#252525',
+      '1': '#f0f0f0',
+      '2': '#d9d9d9',
+      '3': '#bdbdbd',
+      '4': '#969696',
+      '5': '#737373',
+      '6': '#525252',
+      '7': '#252525',
+      '8': '#000000',
     }
 
-    for (let item in dbSCANData) {
+    /*    for (let item in dbSCANData) {
       let currentTimestamp = dbSCANData[item]['timestamp']
 
       for (let element in data) {
         // 1 second offset for timestamp calculation
-        let beforeOffset = currentTimestamp - 1
-        let afterOffset = currentTimestamp + 1
         let innerTimestamp = data[element]['timestamp']
 
         // For Debug
-        if (
-          currentTimestamp == innerTimestamp ||
-          beforeOffset == innerTimestamp ||
-          afterOffset == innerTimestamp
-        ) {
-          let clusterLabel = dbSCANData[item]['label']
-          if (clusters.length == 0) {
-            clusters.push(clusterLabel)
+        let clusterLabel = dbSCANData[item]['label']
+        if (clusters.length == 0) {
+          clusters.push(clusterLabel)
           } else {
             if (clusters.includes(clusterLabel) == false) {
               clusters.push(clusterLabel)
             }
           }
           killTimestamp.push(currentTimestamp)
-          dbSCANData[item]['timestamp'] = innerTimestamp // innerTimestamp is more accurate
-        }
       }
     }
 
     console.log(dbSCANData)
+    console.log(killTimestamp)
 
     // Debug: make sure the len of inner timestamp == outer timestamp
     if (dbSCANData.length == killTimestamp.length) {
@@ -1078,7 +1078,7 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
       // Get avg of posX in the same cluster
       // console.log(clusters) // check how many clusters do we have
 
-      /*let avgTimestamp = []
+      /!*let avgTimestamp = []
 
       for (let num in clusters) {
         let tempX = 0
@@ -1093,10 +1093,10 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
         // console.log(tempX)
         avgTimestamp.push(parseInt(tempX))
       }
-      console.log(avgTimestamp)*/
+      console.log(avgTimestamp)*!/
     } else {
       console.warn('Cannot find all DBSCAN results in death json')
-    }
+    }*/
 
     for (let i in data) {
       let posX = data[i]['position']['x']
@@ -1120,9 +1120,6 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
         let currentTimestamp = data[i]['timestamp']
         let currentPlayer = 'Player' + String(playerIndex)
 
-        // How to fix the Y position?
-        // const timestampOffsetX = 3000
-        // const timestampOffsetY = 5000
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
         console.log(currentPlayer, deathPosX, deathPosY)
@@ -1210,6 +1207,7 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
               killing = svg
                 .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 5)
                 .attr({ fill: 'none', stroke: 'white', strokeWidth: '3px' })
+              console.log(currentTimestamp, currentPlayer)
             },
             () => {
               border.remove()
@@ -1226,6 +1224,10 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
         // Show DBSCAN result using white-black gradient color
         for (let item in dbSCANData) {
           if (dbSCANData[item]['timestamp'] == currentTimestamp) {
+            console.log(
+              'DB: ' + dbSCANData[item]['timestamp'],
+              dbSCANData[item]['label']
+            )
             svg
               .circle(deathPosX, deathPosY, 15)
               .attr({
@@ -1300,6 +1302,10 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
                   killing = svg
                     .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 5)
                     .attr({ fill: 'none', stroke: 'white', strokeWidth: '3px' })
+                  console.log(
+                    'DB Label: ' + dbSCANData[item]['label'],
+                    currentTimestamp
+                  )
                 },
                 () => {
                   border.remove()
