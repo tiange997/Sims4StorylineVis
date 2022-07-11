@@ -52,51 +52,51 @@ export function drawSegmentPath(
 
   switch (character) {
     case 'Player2':
-      color = '#00B8D1'
+      color = playerColour[character]
       pathSvg.attr({
         opacity: 0.7,
       })
       break
     case 'Player3':
-      color = '#00B827'
+      color = playerColour[character]
       pathSvg.attr({
         opacity: 0.7,
       })
       break
     case 'Player4':
-      color = '#5BB58A'
+      color = playerColour[character]
       pathSvg.attr({
         opacity: 0.7,
       })
       break
     case 'Player5':
-      color = '#9B8BD6'
+      color = playerColour[character]
       pathSvg.attr({
         opacity: 0.7,
       })
       break
     case 'Player6':
-      color = '#ff0000'
+      color = playerColour[character]
       pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6,4' })
       break
     case 'Player7':
-      color = '#ba000d'
+      color = playerColour[character]
       pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player8':
-      color = '#ff94c2'
+      color = playerColour[character]
       pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player9':
-      color = '#ffa000'
+      color = playerColour[character]
       pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     case 'Player10':
-      color = '#ffd149'
+      color = playerColour[character]
       pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
       break
     default:
-      color = '#5B7DB1'
+      color = playerColour[character]
       pathSvg.attr({
         // 'stroke-dasharray': '4',
         opacity: 0.7,

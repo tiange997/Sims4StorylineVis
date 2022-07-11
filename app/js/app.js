@@ -3,13 +3,16 @@ import { drawStoryline } from '../../src/js/utils/drawer'
 import iStoryline from '../../src/js'
 import Snap from 'snapsvg'
 
+import { Ellipse } from '../../src/js/ellipse'
+
 import * as d3Fetch from 'd3-fetch'
 import $ from 'jquery'
+import { none } from 'html-webpack-plugin/lib/chunksorter'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
 const jsonReadTwo = d3Fetch.json('../../data/json/newKillingInfo.json')
-const jsonDBSCAN = d3Fetch.json('../../data/json/dbscan2.json')
+const jsonDBSCAN = d3Fetch.json('../../data/json/dbscan4.json')
 
 // Screen Width and Height
 const width = 6000
@@ -48,6 +51,17 @@ console.log(timeStamp(573678))
 let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
+
+let ellipse = new Ellipse()
+// ellipse.setFromPoints([{x: 1065, y:395}, {x: 1075, y: 394}, {x: 1308, y: 710}]);
+ellipse.setFromPoints([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 2 }])
+console.log(
+  ellipse.equation.a,
+  ellipse.equation.b,
+  ellipse.equation.c,
+  ellipse.equation.d,
+  ellipse.equation.e
+)
 
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
@@ -172,7 +186,7 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-main('Simple.json')
+main('Complex.json')
 
 const svg = Snap('#mySvg')
 
@@ -188,9 +202,6 @@ function heroInfo(character, participantsInfo, simple) {
       `../../src/image/Champions/${participantsInfo[i * 2 + 1]}Square.png`
     )
   }
-  // console.log(playerImg)
-  // console.log(participantsInfo)
-  // console.log(character)
 
   const teamOneX = 30
   const teamOneY = 50
@@ -202,24 +213,13 @@ function heroInfo(character, participantsInfo, simple) {
   const horizontalAdj = 70
   const verticalAdj = 110
 
-  // let text
+  const yOffset = 70
 
   let icon = svg.image(playerImg[0], teamOneX, teamOneY, iconSize, iconSize)
-  svg.text(teamOneX - 10, teamOneY + 80, participantsInfo[1]).attr({
+  svg.text(teamOneX - 10, teamOneY + yOffset, participantsInfo[1]).attr({
     fill: playerColour['Player1'],
   })
 
-  /*icon.hover(
-    () => {
-      text = svg.text(teamOneX, teamOneY + 80, participantsInfo[1])
-      text.attr({
-        fill: playerColour['Player1'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
   // Add decorative border according to the color scheme
   svg
     .rect(
@@ -243,25 +243,11 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize
   )
 
-  svg.text(teamOneX + horizontalAdj, teamOneY + 80, participantsInfo[3]).attr({
-    fill: playerColour['Player2'],
-  })
-
-  /*  iconTwo.hover(
-    () => {
-      text = svg.text(
-        teamOneX + horizontalAdj,
-        teamOneY + 80,
-        participantsInfo[3]
-      )
-      text.attr({
-        fill: playerColour['Player2'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
+  svg
+    .text(teamOneX + horizontalAdj, teamOneY + yOffset, participantsInfo[3])
+    .attr({
+      fill: playerColour['Player2'],
+    })
 
   svg
     .rect(
@@ -286,25 +272,10 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamOneX - 10, teamOneY + verticalAdj + 80, participantsInfo[5])
+    .text(teamOneX - 10, teamOneY + verticalAdj + yOffset, participantsInfo[5])
     .attr({
       fill: playerColour['Player3'],
     })
-  /*iconThree.hover(
-    () => {
-      text = svg.text(
-        teamOneX,
-        teamOneY + verticalAdj + 80,
-        participantsInfo[5]
-      )
-      text.attr({
-        fill: playerColour['Player3'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -331,28 +302,12 @@ function heroInfo(character, participantsInfo, simple) {
   svg
     .text(
       teamOneX + horizontalAdj,
-      teamOneY + verticalAdj + 80,
+      teamOneY + verticalAdj + yOffset,
       participantsInfo[7]
     )
     .attr({
       fill: playerColour['Player4'],
     })
-
-  /*iconFour.hover(
-    () => {
-      text = svg.text(
-        teamOneX + horizontalAdj,
-        teamOneY + verticalAdj + 80,
-        participantsInfo[7]
-      )
-      text.attr({
-        fill: playerColour['Player4'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -377,26 +332,14 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamOneX - 10, teamOneY + verticalAdj * 2 + 80, participantsInfo[9])
+    .text(
+      teamOneX - 10,
+      teamOneY + verticalAdj * 2 + yOffset,
+      participantsInfo[9]
+    )
     .attr({
       fill: playerColour['Player5'],
     })
-
-  /*iconFive.hover(
-    () => {
-      text = svg.text(
-        teamOneX,
-        teamOneY + verticalAdj * 2 + 80,
-        participantsInfo[9]
-      )
-      text.attr({
-        fill: playerColour['Player5'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -416,20 +359,9 @@ function heroInfo(character, participantsInfo, simple) {
   const teamTwoY = 850
 
   let iconSix = svg.image(playerImg[5], teamTwoX, teamTwoY, iconSize, iconSize)
-  svg.text(teamTwoX - 10, teamTwoY + 80, participantsInfo[11]).attr({
+  svg.text(teamTwoX - 10, teamTwoY + yOffset, participantsInfo[11]).attr({
     fill: playerColour['Player6'],
   })
-  /*iconSix.hover(
-    () => {
-      text = svg.text(teamTwoX, teamTwoY + 80, participantsInfo[11])
-      text.attr({
-        fill: playerColour['Player6'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -453,25 +385,12 @@ function heroInfo(character, participantsInfo, simple) {
     iconSize
   )
 
-  svg.text(teamTwoX + horizontalAdj, teamTwoY + 80, participantsInfo[13]).attr({
-    fill: playerColour['Player7'],
-  })
+  svg
+    .text(teamTwoX + horizontalAdj, teamTwoY + yOffset, participantsInfo[13])
+    .attr({
+      fill: playerColour['Player7'],
+    })
 
-  /*iconSeven.hover(
-    () => {
-      text = svg.text(
-        teamTwoX + horizontalAdj,
-        teamTwoY + 80,
-        participantsInfo[13]
-      )
-      text.attr({
-        fill: playerColour['Player7'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
   svg
     .rect(
       teamTwoX - borderOffset + horizontalAdj,
@@ -495,26 +414,10 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamTwoX - 10, teamTwoY + verticalAdj + 80, participantsInfo[15])
+    .text(teamTwoX - 10, teamTwoY + verticalAdj + yOffset, participantsInfo[15])
     .attr({
       fill: playerColour['Player8'],
     })
-
-  /*iconEight.hover(
-    () => {
-      text = svg.text(
-        teamTwoX,
-        teamTwoY + verticalAdj + 80,
-        participantsInfo[15]
-      )
-      text.attr({
-        fill: playerColour['Player8'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -541,28 +444,12 @@ function heroInfo(character, participantsInfo, simple) {
   svg
     .text(
       teamTwoX + horizontalAdj,
-      teamTwoY + verticalAdj + 80,
+      teamTwoY + verticalAdj + yOffset,
       participantsInfo[17]
     )
     .attr({
       fill: playerColour['Player9'],
     })
-
-  /*iconNine.hover(
-    () => {
-      text = svg.text(
-        teamTwoX + horizontalAdj,
-        teamTwoY + verticalAdj + 80,
-        participantsInfo[17]
-      )
-      text.attr({
-        fill: playerColour['Player8'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
 
   svg
     .rect(
@@ -587,26 +474,15 @@ function heroInfo(character, participantsInfo, simple) {
   )
 
   svg
-    .text(teamTwoX - 10, teamTwoY + verticalAdj * 2 + 80, participantsInfo[19])
+    .text(
+      teamTwoX - 10,
+      teamTwoY + verticalAdj * 2 + yOffset,
+      participantsInfo[19]
+    )
     .attr({
       fill: playerColour['Player10'],
     })
 
-  /*iconTen.hover(
-    () => {
-      text = svg.text(
-        teamTwoX,
-        teamTwoY + verticalAdj * 2 + 80,
-        participantsInfo[19]
-      )
-      text.attr({
-        fill: playerColour['Player10'],
-      })
-    },
-    () => {
-      text.remove()
-    }
-  )*/
   svg
     .rect(
       teamTwoX - borderOffset,
@@ -1034,9 +910,6 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
     const data = result
     // console.log(data)
 
-    let killTimestamp = []
-    let clusters = []
-
     let clusterColors = {
       '0': '#f7f7f7',
       '1': '#f0f0f0',
@@ -1049,54 +922,14 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
       '8': '#000000',
     }
 
-    /*    for (let item in dbSCANData) {
-      let currentTimestamp = dbSCANData[item]['timestamp']
+    let dbScanLabel = []
 
-      for (let element in data) {
-        // 1 second offset for timestamp calculation
-        let innerTimestamp = data[element]['timestamp']
-
-        // For Debug
-        let clusterLabel = dbSCANData[item]['label']
-        if (clusters.length == 0) {
-          clusters.push(clusterLabel)
-          } else {
-            if (clusters.includes(clusterLabel) == false) {
-              clusters.push(clusterLabel)
-            }
-          }
-          killTimestamp.push(currentTimestamp)
+    for (let item in dbSCANData) {
+      if (dbScanLabel.indexOf(dbSCANData[item]['label']) === -1) {
+        dbScanLabel.push(dbSCANData[item]['label'])
       }
     }
-
-    console.log(dbSCANData)
-    console.log(killTimestamp)
-
-    // Debug: make sure the len of inner timestamp == outer timestamp
-    if (dbSCANData.length == killTimestamp.length) {
-      console.log('OK')
-      // Get avg of posX in the same cluster
-      // console.log(clusters) // check how many clusters do we have
-
-      /!*let avgTimestamp = []
-
-      for (let num in clusters) {
-        let tempX = 0
-        let counter = 0
-        for (let item in dbSCANData) {
-          if (clusters[num] == dbSCANData[item]['label']){
-            tempX = tempX + dbSCANData[item]['timestamp']
-            counter ++
-          }
-        }
-        tempX = tempX/counter
-        // console.log(tempX)
-        avgTimestamp.push(parseInt(tempX))
-      }
-      console.log(avgTimestamp)*!/
-    } else {
-      console.warn('Cannot find all DBSCAN results in death json')
-    }*/
+    console.log(dbScanLabel)
 
     for (let i in data) {
       let posX = data[i]['position']['x']
@@ -1122,7 +955,8 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
 
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
-        console.log(currentPlayer, deathPosX, deathPosY)
+        // console.log(currentPlayer, deathPosX, deathPosY)
+
         // let segmentStart = graph.getStorySegment(deathPosX, deathPosY)[0]
         // console.log(segmentStart)
         // svg.circle(segmentStart[0], segmentStart[1], 10).attr({fill:"blue"})
@@ -1224,10 +1058,6 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
         // Show DBSCAN result using white-black gradient color
         for (let item in dbSCANData) {
           if (dbSCANData[item]['timestamp'] == currentTimestamp) {
-            console.log(
-              'DB: ' + dbSCANData[item]['timestamp'],
-              dbSCANData[item]['label']
-            )
             svg
               .circle(deathPosX, deathPosY, 15)
               .attr({
@@ -1430,6 +1260,73 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
             }
           )
       }
+    }
+
+    // Draw ellipse for clusters
+    for (let element in dbScanLabel) {
+      let x, y
+      let sumX = 0,
+        sumY = 0
+      let xGroup = [],
+        yGroup = []
+
+      for (let item in dbSCANData) {
+        if (dbScanLabel[element] == dbSCANData[item]['label']) {
+          x = graph.getCharacterX(
+            dbSCANData[item]['player'],
+            dbSCANData[item]['timestamp']
+          )
+          y = graph.getCharacterY(
+            dbSCANData[item]['player'],
+            dbSCANData[item]['timestamp']
+          )
+
+          sumX = sumX + x
+          sumY = sumY + y
+
+          xGroup.push(x)
+          yGroup.push(y)
+        }
+      }
+
+      console.log(xGroup)
+      console.log(yGroup)
+
+      let centreX = sumX / xGroup.length
+      let centreY = sumY / yGroup.length
+
+      //calculate x radius
+      // Max - Min x value
+      let rx = (Math.max.apply(Math, xGroup) - Math.min.apply(Math, xGroup)) / 2
+
+      //calculate y radius
+      // Max - Min y value
+      let ry = (Math.max.apply(Math, yGroup) - Math.min.apply(Math, yGroup)) / 2
+
+      console.log('Draw: ' + centreX, centreY, rx, ry)
+
+      const offset = 50
+
+      if (rx < 300) {
+        centreX += 25
+      }
+
+      if (ry < 150) {
+        ry += 45
+      }
+
+      if (ry > 200) {
+        centreX += 20
+        centreY -= 40
+        ry += 90
+      }
+
+      svg
+        .circle(centreX, centreY, 3)
+        .attr({ stroke: 'none', fill: 'red', opacity: '0.9' })
+      svg
+        .ellipse(centreX, centreY, rx + offset, ry)
+        .attr({ stroke: 'red', fill: 'none', strokeWidth: '3', opacity: '0.7' })
     }
   })
 }
