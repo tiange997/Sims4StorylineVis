@@ -3,11 +3,13 @@ import { drawStoryline } from '../../src/js/utils/drawer'
 import iStoryline from '../../src/js'
 import Snap from 'snapsvg'
 
-import { Ellipse } from '../../src/js/ellipse'
-
 import * as d3Fetch from 'd3-fetch'
 import $ from 'jquery'
 import { none } from 'html-webpack-plugin/lib/chunksorter'
+
+// import {multiply, zeros, hStack, matrixMultiplication, matrixSelfMultiplication, ones_like, copy2DArray} from '../../src/js/Ellipse'
+
+import { drawEllipseByPoints } from '../../src/js/Ellipse'
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/EUW1_5922388644Info.json')
@@ -52,16 +54,7 @@ let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
 
-let ellipse = new Ellipse()
-// ellipse.setFromPoints([{x: 1065, y:395}, {x: 1075, y: 394}, {x: 1308, y: 710}]);
-ellipse.setFromPoints([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 2 }])
-console.log(
-  ellipse.equation.a,
-  ellipse.equation.b,
-  ellipse.equation.c,
-  ellipse.equation.d,
-  ellipse.equation.e
-)
+// drawEllipseByPoints()
 
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
@@ -1262,13 +1255,15 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
       }
     }
 
+    let flag = true
+
     // Draw ellipse for clusters
     for (let element in dbScanLabel) {
       let x, y
       let sumX = 0,
         sumY = 0
-      let xGroup = [],
-        yGroup = []
+      let xGroup = [[]],
+        yGroup = [[]]
 
       for (let item in dbSCANData) {
         if (dbScanLabel[element] == dbSCANData[item]['label']) {
@@ -1284,15 +1279,17 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
           sumX = sumX + x
           sumY = sumY + y
 
-          xGroup.push(x)
-          yGroup.push(y)
+          xGroup[0].push(x)
+          yGroup[0].push(y)
         }
       }
 
       console.log(xGroup)
       console.log(yGroup)
 
-      let centreX = sumX / xGroup.length
+      drawEllipseByPoints(xGroup, yGroup)
+
+      /*      let centreX = sumX / xGroup.length
       let centreY = sumY / yGroup.length
 
       //calculate x radius
@@ -1326,7 +1323,7 @@ async function drawEvents(graph, participantsInfo, dbSCANData) {
         .attr({ stroke: 'none', fill: 'red', opacity: '0.9' })
       svg
         .ellipse(centreX, centreY, rx + offset, ry)
-        .attr({ stroke: 'red', fill: 'none', strokeWidth: '3', opacity: '0.7' })
+        .attr({ stroke: 'red', fill: 'none', strokeWidth: '3', opacity: '0.7' })*/
     }
   })
 }
