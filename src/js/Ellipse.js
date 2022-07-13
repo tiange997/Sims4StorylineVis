@@ -7,18 +7,18 @@ const svg = Snap('#mySvg')
 
 // xArray, yArray
 export function drawEllipseByPoints(x, y) {
-  console.log(x, y)
+  // console.log(x, y)
 
-  /*    let x = [[
+  /*      let x = [[
         1065.8122150150684,
         1075.9012773700374,
         1308.1351601014105
-    ]]
+      ]]
 
     let y = [[
-        395.06024096385545,
-        394.33075301204826,
-        710.6024096385543
+      395.06024096385545,
+      394.33075301204826,
+      710.6024096385543
     ]]*/
 
   for (let i = 0; i < x[0].length; i++) {
@@ -39,16 +39,16 @@ export function drawEllipseByPoints(x, y) {
   let onesLike = ones_like(x[0])
 
   let D = hStack(xx, xy, yy, x, y, onesLike)
-  // console.log("Stack: ")
-  // console.log(D)
+  console.log('Stack: ')
+  console.log(D)
 
   let transD = math.transpose(D)
-  // console.log("D Transpose: ")
-  // console.log(transD)
+  console.log('D Transpose: ')
+  console.log(transD)
 
   let S = multiply(transD, D)
-  // console.log("Multi: " )
-  // console.log(S)
+  console.log('Multi: ')
+  console.log(S)
 
   // console.log("Create Zeros")
   let C = zeros(6, 6)
@@ -58,11 +58,11 @@ export function drawEllipseByPoints(x, y) {
   C[1][1] = -1
   // console.log(C)
 
-  // console.log(math.inv(S))
+  console.log(math.inv(S))
 
   let tempA = multiply(math.inv(S), C)
-  // console.log("Dot product of inv(S) and C")
-  // console.log(tempA) // This is correct
+  console.log('Dot product of inv(S) and C')
+  console.log(tempA) // This is correct
 
   // Maybe need to re-organise the code here
   let M = new mat.EigenvalueDecomposition(tempA)
@@ -70,8 +70,8 @@ export function drawEllipseByPoints(x, y) {
   // console.log("E: ")
   // console.log(E)
   // console.log(M.imaginaryEigenvalues)
-  // console.log("V: ")
-  // console.log(V)
+  console.log('V: ')
+  console.log(V)
 
   let a = []
 
@@ -102,20 +102,17 @@ export function drawEllipseByPoints(x, y) {
   console.log('rx: ' + rx + 'ry: ' + ry)
 
   // From here, we can implement svg drawing
-
   svg
     .circle(centreX, centreY, 5)
     .attr({ stroke: 'none', fill: 'blue', opacity: '0.9' })
 
-  svg
-    .ellipse(centreX, centreY, rx / 2, ry / 2)
-    .attr({
-      stroke: 'red',
-      fill: 'none',
-      strokeWidth: '3',
-      opacity: '0.7',
-      transform: `rotate(${angleInDeg + 30}, ${centreX}, ${centreY})`,
-    })
+  svg.ellipse(centreX, centreY, rx / 2, ry / 2).attr({
+    stroke: 'red',
+    fill: 'none',
+    strokeWidth: '3',
+    opacity: '0.7',
+    transform: `rotate(${angleInDeg + 30}, ${centreX}, ${centreY})`,
+  })
 }
 
 function radToDeg(rad) {
@@ -141,7 +138,7 @@ function ellipseAxisLength(array) {
   return [res1, res2]
 }
 
-function ellipseCentre(array) {
+/*function ellipseCentre(array) {
   let b = array[1] / 2,
     c = array[2],
     d = array[3] / 2,
@@ -152,7 +149,7 @@ function ellipseCentre(array) {
   let x0 = (c * d - b * f) / num
   let y0 = (a * f - b * d) / num
   return [x0, y0]
-}
+}*/
 
 function ellipseAngleOfRotation(array) {
   let b = array[1] / 2,
