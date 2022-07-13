@@ -43,9 +43,6 @@ let playerColour = {
 // Save location info for later use
 let locationSet
 
-// console.log('Match Length: ' + timeStamp(totalTimestamp))
-console.log(timeStamp(573678))
-
 let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
@@ -59,7 +56,6 @@ async function main(fileName) {
   // Read Json through the Promise and save participants data
 
   let participantsInfo = await jsonRead.then(function(result) {
-    // console.log(result['info']['participants'])
     let data = result['info']['participants']
     let participantList = []
 
@@ -67,17 +63,12 @@ async function main(fileName) {
       participantList.push(element['participantId'], element['championName'])
     }
 
-    // console.log(participantList)
     return participantList
   })
 
   let dbscan = await jsonDBSCAN.then(function(result) {
     dbSCANData = result
   })
-
-  // console.log("DB: " + dbscan[0][0])
-
-  // console.log(participantsInfo)
 
   // Scale to window size
   const containerDom = document.getElementById('mySvg')
@@ -86,37 +77,11 @@ async function main(fileName) {
   // graph = iStorylineInstance.scale(80, 10, windowW / 1.2 , windowH / 1.5)
   graph = iStorylineInstance.scale(xOrigin, yOrigin, width, height)
 
-  console.log(iStorylineInstance)
-
-  // graph = iStorylineInstance.bend(['Mother'], [10]);
   logStoryInfo(iStorylineInstance._story)
 
   const session = iStorylineInstance._story._tableMap.get('session')._mat._data
-  // console.log(session)
-
-  // paths = iStorylineInstance._story._paths
-
-  // console.log(paths)
 
   const characters = graph.characters
-
-  let zero = false
-
-  // To check if there is a zero element in the session table
-  for (let i = 0; i < 10; i++) {
-    let sessionElement = session[i]
-    sessionElement.forEach(item => {
-      if (item === 0 || item === '0') {
-        zero = true
-      }
-    })
-  }
-
-  if (!zero) {
-    console.log('0 Does not Exist!')
-  } else {
-    console.log('0 Exists!')
-  }
 
   let simple = true
 
@@ -125,8 +90,6 @@ async function main(fileName) {
   if (locationSet.length > 6) {
     simple = false
   }
-
-  // console.log("Loc: " + locationSet)
 
   heroInfo(characters, participantsInfo, simple)
 
@@ -139,7 +102,8 @@ async function main(fileName) {
   // Timestamp
   const timestamps = iStorylineInstance._story._timeStamps
   totalTimestamp = timestamps[timestamps.length - 1]
-  // console.log(totalTimestamp)
+
+  console.log('Match Length: ' + timeStamp(totalTimestamp))
 
   // convert the last timestamp into minutes
 
@@ -158,7 +122,6 @@ async function main(fileName) {
   timeline()
 
   storylines.forEach((storyline, idx) => {
-    // drawStoryline(characters[idx], storyline, positionName);
     drawStoryline(
       characters[idx],
       storyline,
@@ -167,8 +130,6 @@ async function main(fileName) {
       perTimeStamp,
       participantsInfo
     )
-    // console.log(characters[idx]);
-    // console.log("Tab " + graph.getCharacterY("Player5", 506627))
   })
 
   await drawEvents(graph, participantsInfo)
@@ -182,14 +143,10 @@ const svg = Snap('#mySvg')
 // Draw hero info
 function heroInfo(character, participantsInfo, simple) {
   let playerImg = []
-  console.log(participantsInfo)
   for (let i = 0; i < character.length; i++) {
     playerImg[i] = `../../src/image/Champions/${
       participantsInfo[i * 2 + 1]
     }Square.png`
-    console.log(
-      `../../src/image/Champions/${participantsInfo[i * 2 + 1]}Square.png`
-    )
   }
 
   const teamOneX = 30
@@ -515,7 +472,6 @@ function timeline() {
   for (let segments = 0; segments < 11; segments++) {
     // draw vertical lines
     posX = xOrigin + distance * segments
-    // console.log(posX)
     timeAidedLine = svg.line(posX, yOrigin, posX, 1160)
     timeAidedLine.attr({
       fill: 'none',
@@ -532,7 +488,6 @@ function timeline() {
     txt.attr({
       'font-size': 30,
     })
-    // console.log(segments)
   }
 }
 
@@ -543,11 +498,7 @@ function timeStamp(perTimestamp) {
   return perMin + ':' + perSec
 }
 
-// console.log('TIME: ' + timeStamp(26063))
-
 function locationBox(locationSet, simple) {
-  // console.log(locationSet)
-
   let lineHeight = height / locationSet.length
 
   let stripe = svg.image('../../src/image/stripe.svg', 0, 0, 5920, lineHeight)
@@ -575,7 +526,6 @@ function locationBox(locationSet, simple) {
 
   for (let i = 0; i < length; i++) {
     localHeight = localHeight + lineHeight
-    // console.log(height)
 
     if ((i + 1) % 2 !== 0) {
       rect[i] = svg
@@ -585,7 +535,7 @@ function locationBox(locationSet, simple) {
           fillOpacity: '0.1',
           stroke: 'none',
         })
-      console.log('y Value: ' + (lineHeight * (i + 1)) / 2 + yOrigin)
+      // console.log('y Value: ' + (lineHeight * (i + 1)) / 2 + yOrigin)
       svg
         .text(
           textXPosOne,
@@ -623,7 +573,7 @@ function locationBox(locationSet, simple) {
                 tipWindowSize,
                 tipWindowSize
               )
-              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+              // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else {
               img = svg.image(
                 `../../src/image/MiniMaps/${i + 1}.png`,
@@ -677,7 +627,7 @@ function locationBox(locationSet, simple) {
                 tipWindowSize,
                 tipWindowSize
               )
-              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+              // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else {
               img = svg.image(
                 `../../src/image/MiniMaps/${i + 1}.png`,
@@ -705,7 +655,7 @@ function locationBox(locationSet, simple) {
           fill: 'rgba(255, 255, 255, 0.1)',
           stroke: 'none',
         })
-      console.log('y Value: ' + lineHeight * i + yOrigin)
+      // console.log('y Value: ' + lineHeight * i + yOrigin)
       svg
         .text(
           textXPosOne,
@@ -743,7 +693,7 @@ function locationBox(locationSet, simple) {
                 tipWindowSize,
                 tipWindowSize
               )
-              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+              // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else {
               img = svg.image(
                 `../../src/image/MiniMaps/${i + 1}.png`,
@@ -798,7 +748,7 @@ function locationBox(locationSet, simple) {
                 tipWindowSize,
                 tipWindowSize
               )
-              console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
+              // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else {
               img = svg.image(
                 `../../src/image/MiniMaps/${i + 1}.png`,
@@ -818,8 +768,6 @@ function locationBox(locationSet, simple) {
           }
         )
     }
-
-    console.log('LOC: ' + locationSet[i])
   }
 
   let border
@@ -828,7 +776,7 @@ function locationBox(locationSet, simple) {
 
   for (let i = 0; i < length; i++) {
     rect[i].mousedown(() => {
-      console.log(rect[i])
+      // console.log(rect[i])
       pt.x = event.clientX
       pt.y = event.clientY
       pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
@@ -881,7 +829,7 @@ function locationBox(locationSet, simple) {
     })
 
     rect[i].mouseup(() => {
-      console.log('REMOVE')
+      // console.log('REMOVE')
       border.remove()
       img.remove()
       mask.remove()
@@ -891,13 +839,9 @@ function locationBox(locationSet, simple) {
   }
 }
 
-// console.log('TS: ' + timeStamp(209564))
-// console.log('TS: ' + timeStamp(214564))
-
 async function drawEvents(graph, participantsInfo) {
   await jsonReadTwo.then(function(result) {
     const data = result
-    // console.log(data)
     for (let i in data) {
       let posX = data[i]['position']['x']
       let posY = data[i]['position']['y']
@@ -957,8 +901,8 @@ async function drawEvents(graph, participantsInfo) {
                 tipX -= 200
               }
 
-              console.log(posX, posY)
-              console.log(timeStamp(currentTimestamp))
+              // console.log(posX, posY)
+              // console.log(timeStamp(currentTimestamp))
 
               let xOffset = (posX / 15000) * 200
               let yOffset = 200 - (posY / 15000) * 200
@@ -1003,7 +947,7 @@ async function drawEvents(graph, participantsInfo) {
               killing = svg
                 .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 5)
                 .attr({ fill: 'none', stroke: 'white', strokeWidth: '3px' })
-              console.log(currentTimestamp, currentPlayer)
+              // console.log(currentTimestamp, currentPlayer)
             },
             () => {
               border.remove()
@@ -1021,7 +965,6 @@ async function drawEvents(graph, participantsInfo) {
       building: if (data[i]['killType'] === 'BUILDING_KILL') {
         const iconSize = 35
         const offset = iconSize / 2
-        // console.log('building kill detected')
         let playerIndex = data[i]['killerId']
         let currentTimestamp = data[i]['timestamp']
         let buildingType = data[i]['towerType']
@@ -1039,7 +982,7 @@ async function drawEvents(graph, participantsInfo) {
         } // We need to ignore the case 0, later on we should ignore it when we collect the data
         // turret destroyed => 0 means it either self-destructed (azir tower) or minions got it
 
-        console.log('BUILDING KILLER: ' + currentPlayer)
+        // console.log('BUILDING KILLER: ' + currentPlayer)
         let iconPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let iconPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
         // console.log(currentPlayer, posX, posY)
@@ -1138,7 +1081,7 @@ function drawDBSCAN(dbSCANData, graph) {
       dbScanLabel.push(dbSCANData[item]['label'])
     }
   }
-  console.log(dbScanLabel)
+  // console.log(dbScanLabel)
 
   for (let element in dbScanLabel) {
     let x, y
@@ -1164,7 +1107,7 @@ function drawDBSCAN(dbSCANData, graph) {
       }
     }
 
-    console.log(points)
+    // console.log(points)
 
     shapeCovering(points)
   }

@@ -1,4 +1,6 @@
 const path = require('path')
+const webpack = require('webpack')
+const WebpackBar = require('webpackbar')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -8,6 +10,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
+  context: path.resolve(__dirname),
+  devtool: 'source-map',
   entry: './app/js/app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -21,5 +25,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [HtmlWebpackPluginConfig, new WebpackBar()],
 }
