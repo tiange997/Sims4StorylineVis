@@ -19,9 +19,9 @@ export function shapeCovering(points) {
       np.push([nx, ny])
     }
   }
-  console.log(np)
+  // console.log(np)
 
-  console.log(hull(np, 1000))
+  // console.log(hull(np, 1000))
 
   let border = hull(np, 1000)
 
@@ -35,9 +35,11 @@ export function shapeCovering(points) {
     } else {
       path += `L${border[i][0]} ${border[i][1]} `
     }
-    console.log(border[i][0], border[i][1])
+    // console.log(border[i][0], border[i][1])
   }
-  console.log(path)
+  // console.log(path)
   svg.path(path).attr({ stroke: 'none', fillOpacity: '0.5', fill: 'lightgrey' })
-  // svg.path(path).attr({stroke: 'black', strokeWidth: '5', opacity: '0.5', fill:'none'})
+  svg
+    .path(path)
+    .attr({ stroke: 'black', strokeWidth: '5', opacity: '0.5', fill: 'none' })
 }
