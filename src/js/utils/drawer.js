@@ -165,13 +165,6 @@ export function drawStoryline(
 
   // console.log(participantsInfo)
 
-  if (!printOnce && session && locationSet) {
-    console.log('Session passed in!')
-    console.log('Location info passed in!')
-    console.log(perTimestamp)
-    printOnce = true
-  }
-
   storyline.forEach((segment, idx) => {
     // console.log(character)
     // console.log(segment)
@@ -268,28 +261,6 @@ export function drawStoryline(
       perTimestamp
     ) // To pass the character info, participants info as well as the generated array
 
-    /*    segmentPathSvg.click(() => {
-      console.log(namePosition)
-      console.log(segmentPath)
-
-      // Find out character's name in nameposition array
-      // let i = namePosition.indexOf(character)
-      // let startingPoint = [namePosition[i+1], namePosition[i+2]]
-      // console.log(startingPoint)
-
-      let idNumber = character.match(/\d/g)
-      idNumber = idNumber.join('')
-      console.log(parseInt(idNumber))
-      console.log(character, idx, session[parseInt(idNumber) - 1][idx]) // parseInt(idNumber)-1][idx] has undefined element when it was 14, this needs to minus 1
-
-      // console.log(locationSet)
-
-      let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
-      console.log(locationSet[accessIndex])
-      idNumber = ''
-      console.log(character, idx) // parseInt(idNumber)-1][idx] has undefined element when it was 14, this needs to minus 1
-    })*/
-
     segmentPathSvg.hover(
       event => {
         pt.x = event.clientX
@@ -379,7 +350,7 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
   }
 
   let borderLength = calculateBorderLength(playerName, iconSize)
-  console.log(borderLength)
+  // console.log(borderLength)
 
   border = svg.rect(tipX, tipY, borderLength, borderHeight, 10, 10).attr({
     stroke: playerColour[`Player${idNumber}`],

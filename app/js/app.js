@@ -80,7 +80,7 @@ async function main(fileName) {
   // graph = iStorylineInstance.scale(80, 10, windowW / 1.2 , windowH / 1.5)
   graph = iStorylineInstance.scale(xOrigin, yOrigin, width, height)
 
-  logStoryInfo(iStorylineInstance._story)
+  // logStoryInfo(iStorylineInstance._story)
 
   const session = iStorylineInstance._story._tableMap.get('session')._mat._data
 
@@ -119,14 +119,14 @@ async function main(fileName) {
   let min = Math.floor((totalTimestamp / 1000 / 60) << 0),
     sec = Math.floor((totalTimestamp / 1000) % 60)
 
-  console.log(min + ':' + sec)
+  // console.log(min + ':' + sec)
 
   const perTimeStamp = totalTimestamp / 10 //divided by 10
 
   let perMin = Math.floor((perTimeStamp / 1000 / 60) << 0),
     perSec = Math.floor((perTimeStamp / 1000) % 60)
 
-  console.log('Per timestamp: ' + perMin + ':' + perSec)
+  // console.log('Per timestamp: ' + perMin + ':' + perSec)
 
   timeline()
 
@@ -518,13 +518,13 @@ function locationBox(locationSet, useMode) {
   let rect = []
   let length = locationSet.length
 
-  console.log('LEN: ' + length)
+  // console.log('LEN: ' + length)
 
   for (let i = 0; i < length; i++) {
     rect[i] = []
   }
 
-  console.log(rect)
+  // console.log(rect)
 
   const textXPosOne = 210
   const textXPosTwo = 6380
@@ -1154,8 +1154,6 @@ function drawDBSCAN(dbSCANData, graph) {
         points.push([x, y])
       }
     }
-
-    // console.log(points)
 
     shapeCovering(points)
   }

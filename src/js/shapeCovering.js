@@ -35,9 +35,8 @@ export function shapeCovering(points) {
     } else {
       path += `L${border[i][0]} ${border[i][1]} `
     }
-    // console.log(border[i][0], border[i][1])
   }
-  // console.log(path)
+
   svg.path(path).attr({ stroke: 'none', fillOpacity: '0.5', fill: 'lightgrey' })
   svg
     .path(path)
