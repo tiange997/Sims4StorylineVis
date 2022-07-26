@@ -288,7 +288,19 @@ export function drawStoryline(
 
         // console.log(playerInfo)
 
-        if (pt.y > 220 && pt.y < 995) {
+        drawLineTip(
+          tipX,
+          tipY,
+          mapSize,
+          maskSize,
+          playerInfo,
+          idNumber,
+          locationSet,
+          accessIndex,
+          placeIndex
+        )
+
+        /*if (pt.y > 220 && pt.y < 995) {
           tipX -= 100
           tipY -= 100
           drawLineTip(
@@ -319,18 +331,8 @@ export function drawStoryline(
         } else {
           tipX -= 100
           tipY += 50
-          drawLineTip(
-            tipX,
-            tipY,
-            mapSize,
-            maskSize,
-            playerInfo,
-            idNumber,
-            locationSet,
-            accessIndex,
-            placeIndex
-          )
-        }
+
+        }*/
       },
       () => {
         removeTips()
@@ -345,12 +347,12 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
   let iconSize = 50
   // console.log(playerInfo)
 
-  if (pt.x >= 5700) {
-    tipX -= 200
-  }
-
   let borderLength = calculateBorderLength(playerName, iconSize)
   // console.log(borderLength)
+
+  if (pt.x >= 5700) {
+    tipX -= borderLength
+  }
 
   border = svg.rect(tipX, tipY, borderLength, borderHeight, 10, 10).attr({
     stroke: playerColour[`Player${idNumber}`],

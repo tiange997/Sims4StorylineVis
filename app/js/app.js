@@ -22,7 +22,7 @@ const height = 1080
 // We need to set the total timestamp first
 // Sections decide how the interval of timeline display
 let totalTimestamp
-let sections = 10
+let sections
 
 // Canvas Origin
 let xOrigin = 350,
@@ -472,14 +472,17 @@ function heroInfo(character, participantsInfo, useMode) {
 
 // Draw timeline
 function timeline() {
+  sections = totalTimestamp / 180000 // 3 mins interval
+  console.log(sections)
   let accumTimestamp = totalTimestamp / sections
   let timeAidedLine
   const distance = 592
   let posX
 
-  for (let segments = 0; segments < 11; segments++) {
+  for (let segments = 0; segments < sections + 1; segments++) {
     // draw vertical lines
     posX = xOrigin + distance * segments
+    console.log(posX)
     timeAidedLine = svg.line(posX, yOrigin, posX, 1160)
     timeAidedLine.attr({
       fill: 'none',
@@ -502,6 +505,8 @@ function timeline() {
 function timeStamp(perTimestamp) {
   let perMin = Math.floor((perTimestamp / 1000 / 60) << 0),
     perSec = Math.floor((perTimestamp / 1000) % 60)
+
+  // perMin + ':' + perSec
 
   return perMin + ':' + perSec
 }
@@ -630,7 +635,7 @@ function locationBox(locationSet, useMode) {
             let tipX = pt.x
             let tipY = pt.y
 
-            tipX -= 300
+            // tipX -= 300
             tipY -= 100
 
             mask = svg
@@ -703,7 +708,7 @@ function locationBox(locationSet, useMode) {
             let tipY = pt.y
 
             if (i > 4) {
-              tipX -= 100
+              // tipX -= 100
               tipY -= 100
             }
 
@@ -766,7 +771,7 @@ function locationBox(locationSet, useMode) {
             let tipX = pt.x
             let tipY = pt.y
 
-            tipX -= 300
+            // tipX -= 300
             tipY -= 100
 
             mask = svg
@@ -827,8 +832,7 @@ function locationBox(locationSet, useMode) {
       let tipY = pt.y
 
       if (pt.y >= 800) {
-        tipX -= 100
-        tipY -= 400
+        tipY -= 280
       }
 
       border = svg.rect(tipX, tipY, 250, 280, 10, 10).attr({
@@ -874,15 +878,24 @@ function locationBox(locationSet, useMode) {
         .text(tipX + 28, tipY + 35, locationSet[i])
         .attr('pointer-events', 'none')
         .attr({ 'font-size': 20 })
-    })
 
-    rect[i].mouseup(() => {
-      // console.log('REMOVE')
-      border.remove()
-      img.remove()
-      mask.remove()
-      text.remove()
-      event.preventDefault()
+      rect[i].mousemove(() => {
+        // console.log('REMOVE')
+        border.remove()
+        img.remove()
+        mask.remove()
+        text.remove()
+        event.preventDefault()
+      })
+
+      rect[i].mouseup(() => {
+        console.log('REMOVE')
+        border.remove()
+        img.remove()
+        mask.remove()
+        text.remove()
+        event.preventDefault()
+      })
     })
   }
 }
@@ -940,9 +953,16 @@ async function drawEvents(graph, participantsInfo) {
               let tipX = pt.x
               let tipY = pt.y
 
-              if (pt.y >= 995) {
-                tipX -= 100
-                tipY -= 400
+              console.log(tipX, tipY)
+
+              if (pt.y >= 850) {
+                // tipX -= 100
+                tipY -= 100
+              }
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 200
               }
 
               if (pt.x >= 5700) {
@@ -1058,7 +1078,7 @@ async function drawEvents(graph, participantsInfo) {
               let tipY = pt.y
 
               if (pt.y >= 995) {
-                tipX -= 100
+                // tipX -= 100
                 tipY -= 400
               }
 
