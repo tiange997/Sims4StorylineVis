@@ -644,7 +644,7 @@ function locationBox(locationSet, useMode) {
             let tipX = pt.x
             let tipY = pt.y
 
-            // tipX -= 300
+            tipX -= 100
             tipY -= 100
 
             mask = svg
@@ -780,7 +780,7 @@ function locationBox(locationSet, useMode) {
             let tipX = pt.x
             let tipY = pt.y
 
-            // tipX -= 300
+            tipX -= 100
             tipY -= 100
 
             mask = svg
