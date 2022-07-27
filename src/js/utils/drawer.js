@@ -354,6 +354,10 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
     tipX -= borderLength
   }
 
+  if (pt.y > 1000) {
+    tipY -= 50
+  }
+
   border = svg.rect(tipX, tipY, borderLength, borderHeight, 10, 10).attr({
     stroke: playerColour[`Player${idNumber}`],
     fill: 'rgba(255,255,255, 0.9)',

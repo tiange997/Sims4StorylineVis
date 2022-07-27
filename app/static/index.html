@@ -18,18 +18,21 @@
       }
 
       .mySvg {
-        width: 6500px;
-        height: 1200px;
+        height: 95vh;
+        width: calc(62 / 12 * 95vh);
       }
     </style>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
     </style>
+    <script>
+      alert('For best experience, please use the fullscreen mode.')
+    </script>
   </head>
 
   <body>
     <div id="container">
-      <svg id="mySvg" class="mySvg"></svg>
+      <svg id="mySvg" class="mySvg" height="100vh"></svg>
     </div>
     <script>
       const scrollContainer = document.getElementById('container')

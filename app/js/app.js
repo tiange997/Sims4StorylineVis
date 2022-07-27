@@ -50,6 +50,9 @@ let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
 
+const svg = Snap('#mySvg')
+svg.attr({ viewBox: '0 0 6500 1200' })
+
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
   const fileUrl = `../../data/${fileName.split('.')[1]}/${fileName}`
@@ -145,8 +148,6 @@ async function main(fileName) {
 
   return iStorylineInstance
 }
-
-const svg = Snap('#mySvg')
 
 // Draw hero info
 function heroInfo(character, participantsInfo, useMode) {
@@ -476,7 +477,10 @@ function timeline() {
   console.log(sections)
   let accumTimestamp = totalTimestamp / sections
   let timeAidedLine
-  const distance = 592
+  const distance =
+    (width /
+      (timeReturn(totalTimestamp)[0] * 60 + timeReturn(totalTimestamp)[1])) *
+    180
   let posX
 
   for (let segments = 0; segments < sections + 1; segments++) {
@@ -503,12 +507,17 @@ function timeline() {
 }
 
 function timeStamp(perTimestamp) {
+  let perMin = Math.floor((perTimestamp / 1000 / 60) << 0)
+  return perMin + 'Min'
+}
+
+function timeReturn(perTimestamp) {
   let perMin = Math.floor((perTimestamp / 1000 / 60) << 0),
     perSec = Math.floor((perTimestamp / 1000) % 60)
 
   // perMin + ':' + perSec
 
-  return perMin + ':' + perSec
+  return [perMin, perSec]
 }
 
 function locationBox(locationSet, useMode) {
@@ -879,14 +888,14 @@ function locationBox(locationSet, useMode) {
         .attr('pointer-events', 'none')
         .attr({ 'font-size': 20 })
 
-      rect[i].mousemove(() => {
+      /*      rect[i].mousemove(() => {
         // console.log('REMOVE')
         border.remove()
         img.remove()
         mask.remove()
         text.remove()
         event.preventDefault()
-      })
+      })*/
 
       rect[i].mouseup(() => {
         console.log('REMOVE')
