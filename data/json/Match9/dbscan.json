@@ -1,0 +1,87 @@
+[
+  {
+    "label": 0,
+    "timestamp": 1050617,
+    "player": "Player5"
+  },
+  {
+    "label": 0,
+    "timestamp": 1052665,
+    "player": "Player7"
+  },
+  {
+    "label": 0,
+    "timestamp": 1054449,
+    "player": "Player4"
+  },
+  {
+    "label": 1,
+    "timestamp": 1202892,
+    "player": "Player10"
+  },
+  {
+    "label": 1,
+    "timestamp": 1205104,
+    "player": "Player5"
+  },
+  {
+    "label": 1,
+    "timestamp": 1242130,
+    "player": "Player7"
+  },
+  {
+    "label": 1,
+    "timestamp": 1247349,
+    "player": "Player4"
+  },
+  {
+    "label": 2,
+    "timestamp": 1292053,
+    "player": "Player6"
+  },
+  {
+    "label": 2,
+    "timestamp": 1294497,
+    "player": "Player3"
+  },
+  {
+    "label": 2,
+    "timestamp": 1300808,
+    "player": "Player2"
+  },
+  {
+    "label": 2,
+    "timestamp": 1303186,
+    "player": "Player8"
+  },
+  {
+    "label": 2,
+    "timestamp": 1376516,
+    "player": "Player7"
+  },
+  {
+    "label": 2,
+    "timestamp": 1379059,
+    "player": "Player10"
+  },
+  {
+    "label": 2,
+    "timestamp": 1438524,
+    "player": "Player8"
+  },
+  {
+    "label": 2,
+    "timestamp": 1504073,
+    "player": "Player6"
+  },
+  {
+    "label": 2,
+    "timestamp": 1504139,
+    "player": "Player5"
+  },
+  {
+    "label": 2,
+    "timestamp": 1511999,
+    "player": "Player8"
+  }
+]

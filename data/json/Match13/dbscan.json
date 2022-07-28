@@ -1,0 +1,262 @@
+[
+  {
+    "label": 0,
+    "timestamp": 759968,
+    "player": "Player10"
+  },
+  {
+    "label": 0,
+    "timestamp": 761983,
+    "player": "Player4"
+  },
+  {
+    "label": 1,
+    "timestamp": 809609,
+    "player": "Player6"
+  },
+  {
+    "label": 1,
+    "timestamp": 810171,
+    "player": "Player1"
+  },
+  {
+    "label": 1,
+    "timestamp": 811856,
+    "player": "Player7"
+  },
+  {
+    "label": 0,
+    "timestamp": 826324,
+    "player": "Player10"
+  },
+  {
+    "label": 0,
+    "timestamp": 885714,
+    "player": "Player10"
+  },
+  {
+    "label": 2,
+    "timestamp": 933049,
+    "player": "Player7"
+  },
+  {
+    "label": 2,
+    "timestamp": 958017,
+    "player": "Player10"
+  },
+  {
+    "label": 2,
+    "timestamp": 961847,
+    "player": "Player8"
+  },
+  {
+    "label": 3,
+    "timestamp": 1044396,
+    "player": "Player2"
+  },
+  {
+    "label": 3,
+    "timestamp": 1052253,
+    "player": "Player10"
+  },
+  {
+    "label": 3,
+    "timestamp": 1072765,
+    "player": "Player5"
+  },
+  {
+    "label": 4,
+    "timestamp": 1119182,
+    "player": "Player10"
+  },
+  {
+    "label": 4,
+    "timestamp": 1166415,
+    "player": "Player7"
+  },
+  {
+    "label": 4,
+    "timestamp": 1168498,
+    "player": "Player10"
+  },
+  {
+    "label": 4,
+    "timestamp": 1169258,
+    "player": "Player2"
+  },
+  {
+    "label": 4,
+    "timestamp": 1221224,
+    "player": "Player3"
+  },
+  {
+    "label": 4,
+    "timestamp": 1221951,
+    "player": "Player8"
+  },
+  {
+    "label": 4,
+    "timestamp": 1224100,
+    "player": "Player5"
+  },
+  {
+    "label": 4,
+    "timestamp": 1224859,
+    "player": "Player10"
+  },
+  {
+    "label": 4,
+    "timestamp": 1228427,
+    "player": "Player7"
+  },
+  {
+    "label": 4,
+    "timestamp": 1233977,
+    "player": "Player9"
+  },
+  {
+    "label": 4,
+    "timestamp": 1244286,
+    "player": "Player4"
+  },
+  {
+    "label": 4,
+    "timestamp": 1250431,
+    "player": "Player6"
+  },
+  {
+    "label": 5,
+    "timestamp": 1303269,
+    "player": "Player10"
+  },
+  {
+    "label": 5,
+    "timestamp": 1307333,
+    "player": "Player3"
+  },
+  {
+    "label": 5,
+    "timestamp": 1336175,
+    "player": "Player7"
+  },
+  {
+    "label": 5,
+    "timestamp": 1342553,
+    "player": "Player5"
+  },
+  {
+    "label": 5,
+    "timestamp": 1345099,
+    "player": "Player6"
+  },
+  {
+    "label": 5,
+    "timestamp": 1397428,
+    "player": "Player10"
+  },
+  {
+    "label": 5,
+    "timestamp": 1429339,
+    "player": "Player7"
+  },
+  {
+    "label": 5,
+    "timestamp": 1433502,
+    "player": "Player2"
+  },
+  {
+    "label": 5,
+    "timestamp": 1435219,
+    "player": "Player9"
+  },
+  {
+    "label": 5,
+    "timestamp": 1451808,
+    "player": "Player10"
+  },
+  {
+    "label": 5,
+    "timestamp": 1455274,
+    "player": "Player3"
+  },
+  {
+    "label": 5,
+    "timestamp": 1457155,
+    "player": "Player5"
+  },
+  {
+    "label": 5,
+    "timestamp": 1463100,
+    "player": "Player4"
+  },
+  {
+    "label": 5,
+    "timestamp": 1463299,
+    "player": "Player6"
+  },
+  {
+    "label": 6,
+    "timestamp": 1546034,
+    "player": "Player1"
+  },
+  {
+    "label": 6,
+    "timestamp": 1549171,
+    "player": "Player6"
+  },
+  {
+    "label": 6,
+    "timestamp": 1553298,
+    "player": "Player5"
+  },
+  {
+    "label": 6,
+    "timestamp": 1557263,
+    "player": "Player7"
+  },
+  {
+    "label": 6,
+    "timestamp": 1560734,
+    "player": "Player2"
+  },
+  {
+    "label": 6,
+    "timestamp": 1564535,
+    "player": "Player8"
+  },
+  {
+    "label": 7,
+    "timestamp": 1642093,
+    "player": "Player7"
+  },
+  {
+    "label": 7,
+    "timestamp": 1643810,
+    "player": "Player9"
+  },
+  {
+    "label": 8,
+    "timestamp": 1647180,
+    "player": "Player8"
+  },
+  {
+    "label": 8,
+    "timestamp": 1648338,
+    "player": "Player4"
+  },
+  {
+    "label": 8,
+    "timestamp": 1652798,
+    "player": "Player5"
+  },
+  {
+    "label": 7,
+    "timestamp": 1677803,
+    "player": "Player10"
+  },
+  {
+    "label": 7,
+    "timestamp": 1694563,
+    "player": "Player7"
+  }
+]

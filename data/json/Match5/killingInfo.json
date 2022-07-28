@@ -1,0 +1,1200 @@
+[
+  {
+    "timestamp": 205973,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7194,
+      "y": 7171
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 273418,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10040,
+      "y": 5665
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 348603,
+    "killerID": 9,
+    "killerName": "Sivir",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 12318,
+      "y": 2498
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 389754,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 8663,
+      "y": 6669
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 405872,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 2368,
+      "y": 12509
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 469307,
+    "killerID": 7,
+    "killerName": "MasterYi",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 1928,
+      "y": 12636
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 470298,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 12490,
+      "y": 2596
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 472345,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 2031,
+      "y": 12798
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 476970,
+    "killerID": 9,
+    "killerName": "Sivir",
+    "victimID": 5,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 10808,
+      "y": 1838
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 510993,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 6874,
+      "y": 11413
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 626842,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Vladimir",
+    "position": {
+      "x": 7630,
+      "y": 7916
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 646165,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 6706,
+      "y": 8527
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 670920,
+    "killerID": 9,
+    "killerName": "Sivir",
+    "victimID": 2,
+    "victimName": "Tryndamere",
+    "position": {
+      "x": 11219,
+      "y": 5709
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 675709,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 3572,
+      "y": 13115
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 696419,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 9467,
+      "y": 1930
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 700019,
+    "killerID": 7,
+    "killerName": "MasterYi",
+    "victimID": 5,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 9933,
+      "y": 1468
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 700283,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10069,
+      "y": 1378
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 749177,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 13449,
+      "y": 4283
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 774810,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11885,
+      "y": 4125
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 805738,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7078,
+      "y": 8127
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 825422,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 12723,
+      "y": 2369
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 874274,
+    "killerId": 10,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 881969,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 2271,
+      "y": 12193
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 912701,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9347,
+      "y": 9223
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 919934,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 4182,
+      "y": 13548
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 926077,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 6159,
+      "y": 9050
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 933939,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 6866,
+      "y": 7625
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 938101,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 983327,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11231,
+      "y": 5640
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 987588,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 2,
+    "victimName": "Tryndamere",
+    "position": {
+      "x": 10053,
+      "y": 5875
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1068816,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Vladimir",
+    "position": {
+      "x": 5416,
+      "y": 6001
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1070535,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 6172,
+      "y": 6317
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1071625,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 7671,
+      "y": 13695
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1072384,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 7216,
+      "y": 13699
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1089591,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 3124,
+      "y": 7092
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1092200,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 7943,
+      "y": 13411
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1188525,
+    "killerID": 9,
+    "killerName": "Sivir",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 5834,
+      "y": 5884
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1189582,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 10047,
+      "y": 6675
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1190044,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 6202,
+      "y": 8096
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1191929,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 10002,
+      "y": 6699
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1197745,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 10215,
+      "y": 8191
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1198141,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 9055,
+      "y": 6387
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1201147,
+    "killerID": 7,
+    "killerName": "MasterYi",
+    "victimID": 5,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 11140,
+      "y": 8434
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1260441,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 6291,
+      "y": 8770
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1271934,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7213,
+      "y": 7501
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1283066,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 7739,
+      "y": 8103
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1306454,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 8896,
+      "y": 8388
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1308369,
+    "killerId": 9,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 6919,
+      "y": 1483
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1310913,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1336549,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9952,
+      "y": 13694
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1348278,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 10338,
+      "y": 13796
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1350458,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10218,
+      "y": 13802
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1398101,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1420098,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 13142,
+      "y": 8153
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1433606,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 11596,
+      "y": 8408
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1445628,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 10287,
+      "y": 6616
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1448171,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 9837,
+      "y": 7051
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1522848,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1524334,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9999,
+      "y": 6779
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1531864,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 8833,
+      "y": 8976
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1547751,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Tryndamere",
+    "position": {
+      "x": 13105,
+      "y": 2725
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1567934,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 13873,
+      "y": 6631
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1586398,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Vladimir",
+    "position": {
+      "x": 14096,
+      "y": 5754
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1590758,
+    "killerId": 9,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1599641,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 13968,
+      "y": 5924
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1607799,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 7,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 13800,
+      "y": 8190
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1616688,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13327,
+      "y": 8226
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1627168,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 8529,
+      "y": 7822
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1631164,
+    "killerId": 4,
+    "towerType": "BASE_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13624,
+      "y": 10572
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1642294,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 13360,
+      "y": 10369
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1647842,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 13922,
+      "y": 12562
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1657222,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 13677,
+      "y": 9390
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1707766,
+    "killerID": 3,
+    "killerName": "Vladimir",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 8694,
+      "y": 8456
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1727484,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 7884,
+      "y": 8177
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1731381,
+    "killerID": 6,
+    "killerName": "Gwen",
+    "victimID": 3,
+    "victimName": "Vladimir",
+    "position": {
+      "x": 7665,
+      "y": 7773
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1738946,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 8324,
+      "y": 8606
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1749431,
+    "killerId": 4,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1781205,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 9105,
+      "y": 5711
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1788999,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9520,
+      "y": 5698
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1792236,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 8480,
+      "y": 5436
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1842671,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 8565,
+      "y": 8790
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1843497,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Tryndamere",
+    "position": {
+      "x": 7950,
+      "y": 8142
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1872605,
+    "killerID": 4,
+    "killerName": "Tristana",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 1253,
+      "y": 5079
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1956927,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Tristana",
+    "position": {
+      "x": 7164,
+      "y": 13708
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2021749,
+    "killerId": 8,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2031461,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 9,
+    "victimName": "Sivir",
+    "position": {
+      "x": 6611,
+      "y": 7445
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2045830,
+    "killerID": 2,
+    "killerName": "Tryndamere",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7838,
+      "y": 5991
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2050949,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 7502,
+      "y": 7522
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2073148,
+    "killerId": 1,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11134,
+      "y": 11207
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2077507,
+    "killerId": 1,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2092600,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 13052,
+      "y": 12612
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2116327,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 12432,
+      "y": 11331
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2137893,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 10489,
+      "y": 14007
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2161640,
+    "killerId": 1,
+    "towerType": "BASE_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 10481,
+      "y": 13650
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2162631,
+    "killerId": 4,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 12611,
+      "y": 13084
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2165537,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Tryndamere",
+    "position": {
+      "x": 12956,
+      "y": 13598
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2168048,
+    "killerId": 1,
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 11261,
+      "y": 13659
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2191762,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 10576,
+      "y": 14012
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2261502,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 11351,
+      "y": 11933
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2270918,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 14186,
+      "y": 12992
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "label": 0,
+    "timestamp": 288039,
+    "player": "Player2"
+  },
+  {
+    "label": 0,
+    "timestamp": 331382,
+    "player": "Player5"
+  },
+  {
+    "label": 0,
+    "timestamp": 335049,
+    "player": "Player8"
+  },
+  {
+    "label": 1,
+    "timestamp": 465089,
+    "player": "Player4"
+  },
+  {
+    "label": 1,
+    "timestamp": 468559,
+    "player": "Player7"
+  },
+  {
+    "label": 1,
+    "timestamp": 491284,
+    "player": "Player3"
+  },
+  {
+    "label": 2,
+    "timestamp": 588496,
+    "player": "Player2"
+  },
+  {
+    "label": 2,
+    "timestamp": 594210,
+    "player": "Player5"
+  },
+  {
+    "label": 2,
+    "timestamp": 612972,
+    "player": "Player8"
+  },
+  {
+    "label": 2,
+    "timestamp": 615383,
+    "player": "Player7"
+  },
+  {
+    "label": 2,
+    "timestamp": 621096,
+    "player": "Player6"
+  },
+  {
+    "label": 3,
+    "timestamp": 696899,
+    "player": "Player3"
+  },
+  {
+    "label": 3,
+    "timestamp": 698254,
+    "player": "Player4"
+  },
+  {
+    "label": 3,
+    "timestamp": 716255,
+    "player": "Player9"
+  },
+  {
+    "label": 3,
+    "timestamp": 719031,
+    "player": "Player1"
+  },
+  {
+    "label": 3,
+    "timestamp": 721673,
+    "player": "Player7"
+  },
+  {
+    "label": 3,
+    "timestamp": 722796,
+    "player": "Player10"
+  },
+  {
+    "label": 3,
+    "timestamp": 722961,
+    "player": "Player2"
+  },
+  {
+    "label": 4,
+    "timestamp": 811848,
+    "player": "Player7"
+  },
+  {
+    "label": 4,
+    "timestamp": 814160,
+    "player": "Player4"
+  },
+  {
+    "label": 5,
+    "timestamp": 822351,
+    "player": "Player8"
+  },
+  {
+    "label": 5,
+    "timestamp": 822516,
+    "player": "Player5"
+  },
+  {
+    "label": 4,
+    "timestamp": 828692,
+    "player": "Player1"
+  },
+  {
+    "label": 4,
+    "timestamp": 828725,
+    "player": "Player9"
+  },
+  {
+    "label": 4,
+    "timestamp": 887123,
+    "player": "Player4"
+  },
+  {
+    "label": 4,
+    "timestamp": 889303,
+    "player": "Player5"
+  },
+  {
+    "label": 5,
+    "timestamp": 910509,
+    "player": "Player2"
+  },
+  {
+    "label": 5,
+    "timestamp": 921212,
+    "player": "Player3"
+  },
+  {
+    "label": 6,
+    "timestamp": 983741,
+    "player": "Player7"
+  },
+  {
+    "label": 6,
+    "timestamp": 984369,
+    "player": "Player4"
+  },
+  {
+    "label": 6,
+    "timestamp": 989985,
+    "player": "Player6"
+  },
+  {
+    "label": 6,
+    "timestamp": 1013599,
+    "player": "Player9"
+  },
+  {
+    "label": 7,
+    "timestamp": 1060898,
+    "player": "Player8"
+  },
+  {
+    "label": 7,
+    "timestamp": 1071501,
+    "player": "Player7"
+  },
+  {
+    "label": 7,
+    "timestamp": 1093727,
+    "player": "Player1"
+  },
+  {
+    "label": 7,
+    "timestamp": 1096336,
+    "player": "Player4"
+  },
+  {
+    "label": 8,
+    "timestamp": 1128340,
+    "player": "Player5"
+  },
+  {
+    "label": 8,
+    "timestamp": 1135245,
+    "player": "Player2"
+  },
+  {
+    "label": 8,
+    "timestamp": 1138383,
+    "player": "Player8"
+  },
+  {
+    "label": 9,
+    "timestamp": 1209367,
+    "player": "Player1"
+  },
+  {
+    "label": 9,
+    "timestamp": 1210887,
+    "player": "Player9"
+  },
+  {
+    "label": 9,
+    "timestamp": 1213696,
+    "player": "Player4"
+  },
+  {
+    "label": 9,
+    "timestamp": 1213960,
+    "player": "Player3"
+  },
+  {
+    "label": 9,
+    "timestamp": 1214224,
+    "player": "Player2"
+  },
+  {
+    "label": 9,
+    "timestamp": 1215875,
+    "player": "Player5"
+  }
+]

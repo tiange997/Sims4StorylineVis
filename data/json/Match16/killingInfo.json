@@ -1,0 +1,422 @@
+[
+  {
+    "timestamp": 185825,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 2,
+    "victimName": "Viego",
+    "position": {
+      "x": 4858,
+      "y": 13783
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 192001,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 8034,
+      "y": 7846
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 253801,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12372,
+      "y": 3181
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 293836,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 1,
+    "victimName": "Fiora",
+    "position": {
+      "x": 1707,
+      "y": 11381
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 352105,
+    "killerID": 1,
+    "killerName": "Fiora",
+    "victimID": 6,
+    "victimName": "Renekton",
+    "position": {
+      "x": 2882,
+      "y": 11818
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 412444,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 1,
+    "victimName": "Fiora",
+    "position": {
+      "x": 3168,
+      "y": 12845
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 451784,
+    "killerID": 5,
+    "killerName": "Yuumi",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 14110,
+      "y": 4963
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 455945,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 10,
+    "victimName": "Morgana",
+    "position": {
+      "x": 13454,
+      "y": 4850
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 456176,
+    "killerID": 10,
+    "killerName": "Morgana",
+    "victimID": 5,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 12966,
+      "y": 3570
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 496898,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13088,
+      "y": 3848
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 511365,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 10,
+    "victimName": "Morgana",
+    "position": {
+      "x": 13684,
+      "y": 3616
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 540840,
+    "killerID": 8,
+    "killerName": "Pantheon",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 7866,
+      "y": 7315
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 543746,
+    "killerID": 2,
+    "killerName": "Viego",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 8328,
+      "y": 7830
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 561911,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 1,
+    "victimName": "Fiora",
+    "position": {
+      "x": 1281,
+      "y": 10531
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 629977,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13237,
+      "y": 2738
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 633015,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 10,
+    "victimName": "Morgana",
+    "position": {
+      "x": 13873,
+      "y": 3481
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 637903,
+    "killerID": 2,
+    "killerName": "Viego",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 13480,
+      "y": 2949
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 665185,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 706072,
+    "killerID": 2,
+    "killerName": "Viego",
+    "victimID": 7,
+    "victimName": "Nocturne",
+    "position": {
+      "x": 11600,
+      "y": 7801
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 715815,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 8768,
+      "y": 8564
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 722486,
+    "killerID": 8,
+    "killerName": "Pantheon",
+    "victimID": 4,
+    "victimName": "Riven",
+    "position": {
+      "x": 6976,
+      "y": 7503
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 728993,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 9135,
+      "y": 8834
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 729026,
+    "killerID": 8,
+    "killerName": "Pantheon",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 9063,
+      "y": 8359
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 737546,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 1,
+    "victimName": "Fiora",
+    "position": {
+      "x": 1459,
+      "y": 11076
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 754325,
+    "killerID": 9,
+    "killerName": "Vayne",
+    "victimID": 5,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 14114,
+      "y": 6136
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 820182,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 10,
+    "victimName": "Morgana",
+    "position": {
+      "x": 8048,
+      "y": 6694
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 821866,
+    "killerID": 8,
+    "killerName": "Pantheon",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 8227,
+      "y": 6513
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 822593,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 8113,
+      "y": 6798
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 828935,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 6342,
+      "y": 9744
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 835506,
+    "killerID": 6,
+    "killerName": "Renekton",
+    "victimID": 2,
+    "victimName": "Viego",
+    "position": {
+      "x": 3536,
+      "y": 12898
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 856677,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 862490,
+    "killerID": 1,
+    "killerName": "Fiora",
+    "victimID": 6,
+    "victimName": "Renekton",
+    "position": {
+      "x": 1022,
+      "y": 10092
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 902415,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12114,
+      "y": 4823
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 913745,
+    "killerID": 4,
+    "killerName": "Riven",
+    "victimID": 10,
+    "victimName": "Morgana",
+    "position": {
+      "x": 13310,
+      "y": 3670
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 917478,
+    "killerID": 2,
+    "killerName": "Viego",
+    "victimID": 8,
+    "victimName": "Pantheon",
+    "position": {
+      "x": 13066,
+      "y": 4537
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

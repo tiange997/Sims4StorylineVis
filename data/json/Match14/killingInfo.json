@@ -1,0 +1,1116 @@
+[
+  {
+    "timestamp": 127531,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 8219,
+      "y": 6931
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 196676,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 11526,
+      "y": 1885
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 260191,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 1,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 818,
+      "y": 10529
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 261842,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 2565,
+      "y": 12153
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 264286,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 1033,
+      "y": 11447
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 309707,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 9376,
+      "y": 1499
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 321665,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 10776,
+      "y": 2454
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 374936,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 10105,
+      "y": 4550
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 421970,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 5026,
+      "y": 13243
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 431944,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 9956,
+      "y": 8225
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 432968,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 13757,
+      "y": 3901
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 436898,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 13195,
+      "y": 3272
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 440598,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 13600,
+      "y": 2884
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 443439,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 12520,
+      "y": 2766
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 536573,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 10098,
+      "y": 1102
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 545147,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 7114,
+      "y": 1115
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 561233,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 3690,
+      "y": 13443
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 581515,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7948,
+      "y": 7308
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 583199,
+    "killerId": 7,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 586997,
+    "killerID": 2,
+    "killerName": "Zac",
+    "victimID": 8,
+    "victimName": "Katarina",
+    "position": {
+      "x": 7843,
+      "y": 8027
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 613057,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 6754,
+      "y": 1280
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 618076,
+    "killerID": 7,
+    "killerName": "Viego",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 6656,
+      "y": 1091
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 618175,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 6652,
+      "y": 1046
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 638056,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 2840,
+      "y": 12580
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 706840,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 9883,
+      "y": 4436
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 707765,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 9933,
+      "y": 4406
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 736532,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 8678,
+      "y": 4442
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 758202,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 8039,
+      "y": 1971
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 782317,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 7183,
+      "y": 1234
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 799095,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 7695,
+      "y": 1661
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 806033,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 7622,
+      "y": 10956
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 824892,
+    "killerId": 9,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 6919,
+      "y": 1483
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 835066,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 5921,
+      "y": 1044
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 838005,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 5896,
+      "y": 1306
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 851149,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 4354,
+      "y": 13492
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 864789,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 877208,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7355,
+      "y": 7029
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 887050,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 7328,
+      "y": 7569
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 902947,
+    "killerId": 9,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 924152,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 6526,
+      "y": 1096
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 930790,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 932309,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 4712,
+      "y": 1271
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 934357,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 4140,
+      "y": 1923
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 936008,
+    "killerID": 2,
+    "killerName": "Zac",
+    "victimID": 9,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 4732,
+      "y": 1489
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 955362,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 5312,
+      "y": 5260
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 977953,
+    "killerID": 2,
+    "killerName": "Zac",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 5976,
+      "y": 5519
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 987861,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 8,
+    "victimName": "Katarina",
+    "position": {
+      "x": 7923,
+      "y": 8120
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 995788,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 7970,
+      "y": 6691
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 998695,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 6847,
+      "y": 6578
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1024202,
+    "killerID": 2,
+    "killerName": "Zac",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 9894,
+      "y": 4860
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1046596,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 6677,
+      "y": 4636
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1047455,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 9,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 6480,
+      "y": 4814
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1058419,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 7316,
+      "y": 6280
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1152888,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 7112,
+      "y": 7509
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1153516,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1153615,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7090,
+      "y": 7420
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1156950,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 1,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 7132,
+      "y": 6992
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1161872,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 4796,
+      "y": 4958
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1176670,
+    "killerId": 8,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5048,
+      "y": 4812
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1210921,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 5770,
+      "y": 5411
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1252704,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 4617,
+      "y": 5467
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1273515,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 3379,
+      "y": 2669
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1284743,
+    "killerID": 2,
+    "killerName": "Zac",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 4090,
+      "y": 4175
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1285272,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 1,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 3076,
+      "y": 3352
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1287880,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 3665,
+      "y": 3470
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1295279,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 3924,
+      "y": 2508
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1299011,
+    "killerID": 1,
+    "killerName": "Gangplank",
+    "victimID": 9,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 5730,
+      "y": 1613
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1357638,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 10102,
+      "y": 4911
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1362099,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 8630,
+      "y": 5428
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1365401,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 10623,
+      "y": 4661
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1367912,
+    "killerID": 8,
+    "killerName": "Katarina",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 11013,
+      "y": 4068
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1403851,
+    "killerId": 9,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3651,
+      "y": 3696
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1423536,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 5082,
+      "y": 4618
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1423801,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 4743,
+      "y": 3999
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1424989,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 4338,
+      "y": 4284
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1429686,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 1,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 4748,
+      "y": 4021
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1430181,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 8,
+    "victimName": "Katarina",
+    "position": {
+      "x": 4828,
+      "y": 4782
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1431073,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 4892,
+      "y": 4865
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1431965,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 4430,
+      "y": 4532
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1441707,
+    "killerId": 6,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1463472,
+    "killerId": 6,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 1748,
+      "y": 2270
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1472951,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 1601,
+      "y": 2709
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1474834,
+    "killerID": 4,
+    "killerName": "Twitch",
+    "victimID": 7,
+    "victimName": "Viego",
+    "position": {
+      "x": 1693,
+      "y": 2580
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1515098,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 3693,
+      "y": 9088
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1518038,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 3766,
+      "y": 9344
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1541786,
+    "killerId": 10,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1555757,
+    "killerId": 10,
+    "towerType": "BASE_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1169,
+      "y": 4287
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1560447,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Twitch",
+    "position": {
+      "x": 2854,
+      "y": 2893
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1566495,
+    "killerId": 0,
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1169,
+      "y": 3573
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1567783,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 3193,
+      "y": 2629
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1568609,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Zac",
+    "position": {
+      "x": 3509,
+      "y": 2867
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1570856,
+    "killerID": 9,
+    "killerName": "Yasuo",
+    "victimID": 1,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 2994,
+      "y": 2708
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1571021,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 3769,
+      "y": 3048
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

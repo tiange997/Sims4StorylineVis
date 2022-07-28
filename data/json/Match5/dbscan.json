@@ -1,0 +1,152 @@
+[
+  {
+    "label": 0,
+    "timestamp": 405872,
+    "player": "Player6"
+  },
+  {
+    "label": 0,
+    "timestamp": 469307,
+    "player": "Player1"
+  },
+  {
+    "label": 0,
+    "timestamp": 472345,
+    "player": "Player7"
+  },
+  {
+    "label": 1,
+    "timestamp": 696419,
+    "player": "Player9"
+  },
+  {
+    "label": 1,
+    "timestamp": 700019,
+    "player": "Player5"
+  },
+  {
+    "label": 1,
+    "timestamp": 700283,
+    "player": "Player7"
+  },
+  {
+    "label": 2,
+    "timestamp": 1189582,
+    "player": "Player6"
+  },
+  {
+    "label": 3,
+    "timestamp": 1190044,
+    "player": "Player8"
+  },
+  {
+    "label": 2,
+    "timestamp": 1191929,
+    "player": "Player1"
+  },
+  {
+    "label": 2,
+    "timestamp": 1198141,
+    "player": "Player9"
+  },
+  {
+    "label": 3,
+    "timestamp": 1260441,
+    "player": "Player4"
+  },
+  {
+    "label": 3,
+    "timestamp": 1271934,
+    "player": "Player8"
+  },
+  {
+    "label": 3,
+    "timestamp": 1283066,
+    "player": "Player7"
+  },
+  {
+    "label": 3,
+    "timestamp": 1306454,
+    "player": "Player6"
+  },
+  {
+    "label": 4,
+    "timestamp": 1336549,
+    "player": "Player8"
+  },
+  {
+    "label": 4,
+    "timestamp": 1348278,
+    "player": "Player9"
+  },
+  {
+    "label": 4,
+    "timestamp": 1350458,
+    "player": "Player7"
+  },
+  {
+    "label": 5,
+    "timestamp": 1445628,
+    "player": "Player4"
+  },
+  {
+    "label": 5,
+    "timestamp": 1448171,
+    "player": "Player7"
+  },
+  {
+    "label": 5,
+    "timestamp": 1524334,
+    "player": "Player8"
+  },
+  {
+    "label": 6,
+    "timestamp": 1567934,
+    "player": "Player10"
+  },
+  {
+    "label": 6,
+    "timestamp": 1586398,
+    "player": "Player3"
+  },
+  {
+    "label": 6,
+    "timestamp": 1599641,
+    "player": "Player8"
+  },
+  {
+    "label": 7,
+    "timestamp": 1707766,
+    "player": "Player8"
+  },
+  {
+    "label": 7,
+    "timestamp": 1727484,
+    "player": "Player9"
+  },
+  {
+    "label": 7,
+    "timestamp": 1731381,
+    "player": "Player3"
+  },
+  {
+    "label": 7,
+    "timestamp": 1738946,
+    "player": "Player6"
+  },
+  {
+    "label": 8,
+    "timestamp": 1781205,
+    "player": "Player1"
+  },
+  {
+    "label": 8,
+    "timestamp": 1788999,
+    "player": "Player8"
+  },
+  {
+    "label": 8,
+    "timestamp": 1792236,
+    "player": "Player4"
+  }
+]

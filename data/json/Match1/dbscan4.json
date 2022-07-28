@@ -1,0 +1,157 @@
+[
+  {
+    "label": 0,
+    "timestamp": 214564,
+    "player": "Player5"
+  },
+  {
+    "label": 0,
+    "timestamp": 217801,
+    "player": "Player2"
+  },
+  {
+    "label": 0,
+    "timestamp": 285820,
+    "player": "Player10"
+  },
+  {
+    "label": 1,
+    "timestamp": 465783,
+    "player": "Player2"
+  },
+  {
+    "label": 1,
+    "timestamp": 473875,
+    "player": "Player9"
+  },
+  {
+    "label": 1,
+    "timestamp": 481569,
+    "player": "Player5"
+  },
+  {
+    "label": 1,
+    "timestamp": 519120,
+    "player": "Player4"
+  },
+  {
+    "label": 2,
+    "timestamp": 676254,
+    "player": "Player7"
+  },
+  {
+    "label": 2,
+    "timestamp": 677740,
+    "player": "Player4"
+  },
+  {
+    "label": 2,
+    "timestamp": 701949,
+    "player": "Player5"
+  },
+  {
+    "label": 3,
+    "timestamp": 1047749,
+    "player": "Player7"
+  },
+  {
+    "label": 3,
+    "timestamp": 1050590,
+    "player": "Player6"
+  },
+  {
+    "label": 3,
+    "timestamp": 1069845,
+    "player": "Player2"
+  },
+  {
+    "label": 3,
+    "timestamp": 1127120,
+    "player": "Player7"
+  },
+  {
+    "label": 3,
+    "timestamp": 1135118,
+    "player": "Player9"
+  },
+  {
+    "label": 3,
+    "timestamp": 1137463,
+    "player": "Player5"
+  },
+  {
+    "label": 4,
+    "timestamp": 1311107,
+    "player": "Player5"
+  },
+  {
+    "label": 4,
+    "timestamp": 1311833,
+    "player": "Player3"
+  },
+  {
+    "label": 4,
+    "timestamp": 1318372,
+    "player": "Player2"
+  },
+  {
+    "label": 4,
+    "timestamp": 1327487,
+    "player": "Player4"
+  },
+  {
+    "label": 4,
+    "timestamp": 1380425,
+    "player": "Player7"
+  },
+  {
+    "label": 5,
+    "timestamp": 1469099,
+    "player": "Player8"
+  },
+  {
+    "label": 5,
+    "timestamp": 1469662,
+    "player": "Player5"
+  },
+  {
+    "label": 5,
+    "timestamp": 1505958,
+    "player": "Player1"
+  },
+  {
+    "label": 6,
+    "timestamp": 1623749,
+    "player": "Player5"
+  },
+  {
+    "label": 6,
+    "timestamp": 1623782,
+    "player": "Player2"
+  },
+  {
+    "label": 6,
+    "timestamp": 1625103,
+    "player": "Player3"
+  },
+  {
+    "label": 7,
+    "timestamp": 1780638,
+    "player": "Player9"
+  },
+  {
+    "label": 7,
+    "timestamp": 1781035,
+    "player": "Player4"
+  },
+  {
+    "label": 7,
+    "timestamp": 1783875,
+    "player": "Player10"
+  },
+  {
+    "label": 7,
+    "timestamp": 1793320,
+    "player": "Player2"
+  }
+]

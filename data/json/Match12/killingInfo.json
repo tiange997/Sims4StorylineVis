@@ -1,0 +1,338 @@
+[
+  {
+    "timestamp": 150690,
+    "killerID": 8,
+    "killerName": "Qiyana",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 6785,
+      "y": 6403
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 196605,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 9,
+    "victimName": "Kalista",
+    "position": {
+      "x": 12760,
+      "y": 1397
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 200435,
+    "killerID": 1,
+    "killerName": "Jax",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 1991,
+      "y": 13274
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 298605,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 10,
+    "victimName": "Leona",
+    "position": {
+      "x": 13360,
+      "y": 3198
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 318653,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7566,
+      "y": 8288
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 363875,
+    "killerID": 9,
+    "killerName": "Kalista",
+    "victimID": 4,
+    "victimName": "Jinx",
+    "position": {
+      "x": 13406,
+      "y": 2462
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 365593,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 9,
+    "victimName": "Kalista",
+    "position": {
+      "x": 13344,
+      "y": 2219
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 442598,
+    "killerID": 8,
+    "killerName": "Qiyana",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 8132,
+      "y": 7522
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 451383,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 10,
+    "victimName": "Leona",
+    "position": {
+      "x": 12914,
+      "y": 3143
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 512684,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 5,
+    "victimName": "Amumu",
+    "position": {
+      "x": 11796,
+      "y": 2763
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 519918,
+    "killerID": 9,
+    "killerName": "Kalista",
+    "victimID": 4,
+    "victimName": "Jinx",
+    "position": {
+      "x": 11266,
+      "y": 3220
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 552124,
+    "killerID": 8,
+    "killerName": "Qiyana",
+    "victimID": 2,
+    "victimName": "Warwick",
+    "position": {
+      "x": 8676,
+      "y": 4643
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 574986,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "Kalista",
+    "position": {
+      "x": 13807,
+      "y": 3462
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 623139,
+    "killerID": 6,
+    "killerName": "Gwen",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 3328,
+      "y": 13106
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 642827,
+    "killerID": 9,
+    "killerName": "Kalista",
+    "victimID": 4,
+    "victimName": "Jinx",
+    "position": {
+      "x": 10307,
+      "y": 1216
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 652438,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 9,
+    "victimName": "Kalista",
+    "position": {
+      "x": 10746,
+      "y": 2760
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 660370,
+    "killerID": 2,
+    "killerName": "Warwick",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 1238,
+      "y": 12516
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 667801,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 10,
+    "victimName": "Leona",
+    "position": {
+      "x": 11690,
+      "y": 3284
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 762803,
+    "killerID": 10,
+    "killerName": "Leona",
+    "victimID": 4,
+    "victimName": "Jinx",
+    "position": {
+      "x": 12193,
+      "y": 2089
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 770663,
+    "killerID": 2,
+    "killerName": "Warwick",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 10237,
+      "y": 5587
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 778489,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 10,
+    "victimName": "Leona",
+    "position": {
+      "x": 10712,
+      "y": 896
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 779448,
+    "killerID": 5,
+    "killerName": "Amumu",
+    "victimID": 9,
+    "victimName": "Kalista",
+    "position": {
+      "x": 11380,
+      "y": 1030
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 830186,
+    "killerID": 1,
+    "killerName": "Jax",
+    "victimID": 6,
+    "victimName": "Gwen",
+    "position": {
+      "x": 1808,
+      "y": 12105
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 869752,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 874442,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 8,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 7870,
+      "y": 9420
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 877746,
+    "killerID": 4,
+    "killerName": "Jinx",
+    "victimID": 10,
+    "victimName": "Leona",
+    "position": {
+      "x": 13232,
+      "y": 6276
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 882898,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 9353,
+      "y": 9778
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 923098,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  }
+]

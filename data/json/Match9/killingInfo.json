@@ -1,0 +1,780 @@
+[
+  {
+    "timestamp": 157913,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 1153,
+      "y": 10752
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 160159,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 8494,
+      "y": 8115
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 202177,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 1349,
+      "y": 12207
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 270850,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1207,
+      "y": 12581
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 312077,
+    "killerID": 2,
+    "killerName": "Volibear",
+    "victimID": 9,
+    "victimName": "Evelynn",
+    "position": {
+      "x": 5102,
+      "y": 9431
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 361459,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 2143,
+      "y": 12498
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 426538,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 8453,
+      "y": 6640
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 449327,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 2934,
+      "y": 11129
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 469375,
+    "killerID": 2,
+    "killerName": "Volibear",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 13525,
+      "y": 3561
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 482257,
+    "killerID": 4,
+    "killerName": "Samira",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 11952,
+      "y": 2579
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 562967,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7600,
+      "y": 6894
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 675178,
+    "killerID": 7,
+    "killerName": "Ziggs",
+    "victimID": 4,
+    "victimName": "Samira",
+    "position": {
+      "x": 10954,
+      "y": 1007
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 690965,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7937,
+      "y": 7832
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 709098,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 714151,
+    "killerId": 7,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 753122,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1357,
+      "y": 11132
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 803073,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Volibear",
+    "position": {
+      "x": 13496,
+      "y": 2676
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 809084,
+    "killerID": 5,
+    "killerName": "Ahri",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 12219,
+      "y": 2581
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 829269,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 9472,
+      "y": 8852
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 831878,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9288,
+      "y": 9299
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 879112,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 1967,
+      "y": 11789
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 908387,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 9000,
+      "y": 1256
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 910104,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 9764,
+      "y": 896
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 910203,
+    "killerId": 6,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 921596,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 2,
+    "victimName": "Volibear",
+    "position": {
+      "x": 1289,
+      "y": 12674
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 935733,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 6218,
+      "y": 4487
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 943000,
+    "killerID": 5,
+    "killerName": "Ahri",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 6985,
+      "y": 4490
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1004930,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 2510,
+      "y": 13560
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1041037,
+    "killerID": 4,
+    "killerName": "Samira",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 13488,
+      "y": 2779
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1050617,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 5,
+    "victimName": "Ahri",
+    "position": {
+      "x": 10805,
+      "y": 1195
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1052665,
+    "killerID": 4,
+    "killerName": "Samira",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 9522,
+      "y": 1136
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1054449,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Samira",
+    "position": {
+      "x": 9338,
+      "y": 1101
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1054945,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1082821,
+    "killerId": 0,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1093290,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 11772,
+      "y": 11411
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1095867,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 12078,
+      "y": 12061
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1097353,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11134,
+      "y": 11207
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1103693,
+    "killerId": 2,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1129953,
+    "killerID": 5,
+    "killerName": "Ahri",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 8500,
+      "y": 5126
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1155791,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 9992,
+      "y": 8173
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1179342,
+    "killerID": 4,
+    "killerName": "Samira",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 10065,
+      "y": 8917
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1194074,
+    "killerID": 2,
+    "killerName": "Volibear",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 12520,
+      "y": 10468
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1200646,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 7943,
+      "y": 13411
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1202892,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 12882,
+      "y": 13240
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1205104,
+    "killerID": 7,
+    "killerName": "Ziggs",
+    "victimID": 5,
+    "victimName": "Ahri",
+    "position": {
+      "x": 12192,
+      "y": 12120
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1242130,
+    "killerID": 4,
+    "killerName": "Samira",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 11918,
+      "y": 14060
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1245763,
+    "killerID": 6,
+    "killerName": "Teemo",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 7931,
+      "y": 13272
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1247349,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 4,
+    "victimName": "Samira",
+    "position": {
+      "x": 11592,
+      "y": 13491
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1292053,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 12230,
+      "y": 11303
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1294497,
+    "killerID": 7,
+    "killerName": "Ziggs",
+    "victimID": 3,
+    "victimName": "Katarina",
+    "position": {
+      "x": 11400,
+      "y": 11229
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1300808,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 2,
+    "victimName": "Volibear",
+    "position": {
+      "x": 10788,
+      "y": 10390
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1303186,
+    "killerID": 5,
+    "killerName": "Ahri",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 10881,
+      "y": 10628
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1370272,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9112,
+      "y": 8350
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1376516,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 10186,
+      "y": 10749
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1379059,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 9980,
+      "y": 10450
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1410714,
+    "killerID": 5,
+    "killerName": "Ahri",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 12818,
+      "y": 12578
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1415634,
+    "killerId": 3,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1438524,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 9381,
+      "y": 9475
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1504073,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 6,
+    "victimName": "Teemo",
+    "position": {
+      "x": 9313,
+      "y": 8921
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1504139,
+    "killerID": 8,
+    "killerName": "Akali",
+    "victimID": 5,
+    "victimName": "Ahri",
+    "position": {
+      "x": 8042,
+      "y": 8146
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1508367,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 7,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 10394,
+      "y": 10446
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1511999,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 8,
+    "victimName": "Akali",
+    "position": {
+      "x": 7322,
+      "y": 7832
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1525047,
+    "killerID": 3,
+    "killerName": "Katarina",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 13923,
+      "y": 13572
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1529935,
+    "killerId": 4,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 13052,
+      "y": 12612
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1532148,
+    "killerId": 2,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 12611,
+      "y": 13084
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  }
+]

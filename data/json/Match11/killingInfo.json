@@ -1,0 +1,1056 @@
+[
+  {
+    "timestamp": 150927,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Kayle",
+    "position": {
+      "x": 4129,
+      "y": 13930
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 202739,
+    "killerID": 3,
+    "killerName": "Lux",
+    "victimID": 8,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7414,
+      "y": 7633
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 319707,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6709,
+      "y": 6529
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 321689,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Kayle",
+    "position": {
+      "x": 3616,
+      "y": 13190
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 401343,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 9634,
+      "y": 4447
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 408578,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 8792,
+      "y": 5525
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 452539,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 12727,
+      "y": 2235
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 460797,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6400,
+      "y": 6875
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 464165,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 3081,
+      "y": 7956
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 482932,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 10257,
+      "y": 1204
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 503224,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 1320,
+      "y": 10745
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 554449,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 13398,
+      "y": 3397
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 558052,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 12902,
+      "y": 3335
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 568689,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 11456,
+      "y": 5618
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 572490,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Kayle",
+    "position": {
+      "x": 2951,
+      "y": 12665
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 575067,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6533,
+      "y": 6873
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 635374,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6609,
+      "y": 6940
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 659030,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 10760,
+      "y": 1081
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 660892,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 9,
+    "victimName": "Samira",
+    "position": {
+      "x": 11512,
+      "y": 1733
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 684380,
+    "killerID": 6,
+    "killerName": "Kayle",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 1604,
+      "y": 12824
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 696769,
+    "killerID": 6,
+    "killerName": "Kayle",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 2498,
+      "y": 12870
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 740056,
+    "killerID": 10,
+    "killerName": "Yuumi",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 12284,
+      "y": 1676
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 740716,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 12650,
+      "y": 2002
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 753176,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6478,
+      "y": 6520
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 763451,
+    "killerID": 2,
+    "killerName": "Rengar",
+    "victimID": 7,
+    "victimName": "Poppy",
+    "position": {
+      "x": 10204,
+      "y": 4724
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 769433,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 9971,
+      "y": 4478
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 838759,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 7436,
+      "y": 3353
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 858981,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Kayle",
+    "position": {
+      "x": 3661,
+      "y": 13557
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 872166,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 10265,
+      "y": 1333
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 875998,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 9924,
+      "y": 1622
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 876792,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 887,
+      "y": 10145
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 877254,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 10,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 9476,
+      "y": 1396
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 888289,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 2298,
+      "y": 9306
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 893111,
+    "killerId": 7,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 940801,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6214,
+      "y": 6432
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 982352,
+    "killerID": 6,
+    "killerName": "Kayle",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 3183,
+      "y": 10791
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 994538,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 5002,
+      "y": 9266
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1006631,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 7114,
+      "y": 1412
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1007424,
+    "killerID": 3,
+    "killerName": "Lux",
+    "victimID": 8,
+    "victimName": "Irelia",
+    "position": {
+      "x": 4846,
+      "y": 6698
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1039804,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 7757,
+      "y": 7009
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1044264,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1056616,
+    "killerId": 9,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1066193,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 3132,
+      "y": 7952
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1073394,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 2639,
+      "y": 7254
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1079669,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 3618,
+      "y": 6512
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1082971,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 4261,
+      "y": 6072
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1118911,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 2871,
+      "y": 5817
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1148086,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 6,
+    "victimName": "Kayle",
+    "position": {
+      "x": 7214,
+      "y": 9976
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1149572,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 7224,
+      "y": 9965
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1151421,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 7525,
+      "y": 6907
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1155286,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 5911,
+      "y": 9332
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1159086,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 6650,
+      "y": 6682
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1179734,
+    "killerId": 0,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5048,
+      "y": 4812
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1214318,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 9,
+    "victimName": "Samira",
+    "position": {
+      "x": 5222,
+      "y": 5455
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1219009,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 10,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 6152,
+      "y": 6371
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1219142,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 4771,
+      "y": 5325
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1220793,
+    "killerID": 8,
+    "killerName": "Irelia",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 4990,
+      "y": 5749
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1227034,
+    "killerID": 7,
+    "killerName": "Poppy",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 6062,
+      "y": 6468
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1250687,
+    "killerId": 6,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1279001,
+    "killerID": 5,
+    "killerName": "Thresh",
+    "victimID": 8,
+    "victimName": "Irelia",
+    "position": {
+      "x": 5274,
+      "y": 3628
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1307809,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3651,
+      "y": 3696
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1313227,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 5985,
+      "y": 1338
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1313492,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 5759,
+      "y": 1711
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1314483,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 6255,
+      "y": 896
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1320328,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 10,
+    "victimName": "Yuumi",
+    "position": {
+      "x": 6415,
+      "y": 1330
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1324918,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 5910,
+      "y": 1569
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1325249,
+    "killerID": 2,
+    "killerName": "Rengar",
+    "victimID": 9,
+    "victimName": "Samira",
+    "position": {
+      "x": 6185,
+      "y": 1564
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1333245,
+    "killerId": 0,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 6919,
+      "y": 1483
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1403713,
+    "killerID": 3,
+    "killerName": "Lux",
+    "victimID": 8,
+    "victimName": "Irelia",
+    "position": {
+      "x": 3564,
+      "y": 4156
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1407148,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 2536,
+      "y": 3525
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1409757,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 2092,
+      "y": 3099
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1410847,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 1038,
+      "y": 2559
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1419930,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 3418,
+      "y": 3054
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1420559,
+    "killerID": 5,
+    "killerName": "Thresh",
+    "victimID": 7,
+    "victimName": "Poppy",
+    "position": {
+      "x": 3665,
+      "y": 2779
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1421814,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 2246,
+      "y": 2574
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1430928,
+    "killerId": 6,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1456496,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 4281,
+      "y": 1253
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1488902,
+    "killerID": 1,
+    "killerName": "Sett",
+    "victimID": 8,
+    "victimName": "Irelia",
+    "position": {
+      "x": 5047,
+      "y": 5529
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1536356,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 5794,
+      "y": 3910
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1546893,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 3504,
+      "y": 1007
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1563508,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 2,
+    "victimName": "Rengar",
+    "position": {
+      "x": 1188,
+      "y": 2082
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1566816,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 2515,
+      "y": 2374
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1567179,
+    "killerId": 6,
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 3454,
+      "y": 1241
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1574743,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 1189,
+      "y": 1035
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1587134,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 2177,
+      "y": 1807
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1587992,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 1748,
+      "y": 2270
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1591033,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 1,
+    "victimName": "Sett",
+    "position": {
+      "x": 2197,
+      "y": 1260
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1594435,
+    "killerID": 9,
+    "killerName": "Samira",
+    "victimID": 5,
+    "victimName": "Thresh",
+    "position": {
+      "x": 1782,
+      "y": 1166
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

@@ -1,0 +1,1116 @@
+[
+  {
+    "timestamp": 138129,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 12417,
+      "y": 3085
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 164727,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 6359,
+      "y": 6250
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 166409,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 1142,
+      "y": 11123
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 181388,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13450,
+      "y": 4622
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 255032,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 3814,
+      "y": 11251
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 281850,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 5350,
+      "y": 8836
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 285154,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 8,
+    "victimName": "Leblanc",
+    "position": {
+      "x": 5759,
+      "y": 8996
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 303960,
+    "killerID": 5,
+    "killerName": "Ashe",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13102,
+      "y": 3213
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 357083,
+    "killerID": 1,
+    "killerName": "Jax",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 2831,
+      "y": 12471
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 357149,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 2799,
+      "y": 12224
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 612360,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13173,
+      "y": 6598
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 617581,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13894,
+      "y": 6481
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 639982,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 11554,
+      "y": 4726
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 664203,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 1811,
+      "y": 12592
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 693770,
+    "killerID": 7,
+    "killerName": "Lillia",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 6570,
+      "y": 6472
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 698461,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 1890,
+      "y": 12381
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 759968,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13507,
+      "y": 2581
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 761983,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 4,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 13290,
+      "y": 2524
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 775071,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 7966,
+      "y": 9768
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 809609,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 5104,
+      "y": 13496
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 810171,
+    "killerID": 7,
+    "killerName": "Lillia",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 4765,
+      "y": 13375
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 811856,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 5074,
+      "y": 13506
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 826324,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 12223,
+      "y": 3086
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 848685,
+    "killerId": 2,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 885714,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13585,
+      "y": 3984
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 898668,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 905141,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 2954,
+      "y": 12280
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 917427,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 8615,
+      "y": 7950
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 932686,
+    "killerId": 6,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 933049,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 11210,
+      "y": 5722
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 958017,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 11458,
+      "y": 5621
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 961847,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 8,
+    "victimName": "Leblanc",
+    "position": {
+      "x": 12567,
+      "y": 5014
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1013970,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 8266,
+      "y": 8357
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1024218,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1033826,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 10309,
+      "y": 9713
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1041292,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 11807,
+      "y": 9564
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1044396,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 9553,
+      "y": 5367
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1052253,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 10192,
+      "y": 5578
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1072765,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 9407,
+      "y": 5636
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1082381,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 7943,
+      "y": 13411
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1092389,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 9315,
+      "y": 8682
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1111882,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 3372,
+      "y": 13312
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1119182,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 12899,
+      "y": 7362
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1166415,
+    "killerID": 5,
+    "killerName": "Ashe",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 13044,
+      "y": 7371
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1168498,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13497,
+      "y": 7983
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1169258,
+    "killerID": 10,
+    "killerName": "Brand",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 13586,
+      "y": 8066
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1194243,
+    "killerId": 4,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13327,
+      "y": 8226
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1221224,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 13893,
+      "y": 7644
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1221951,
+    "killerID": 5,
+    "killerName": "Ashe",
+    "victimID": 8,
+    "victimName": "Leblanc",
+    "position": {
+      "x": 13802,
+      "y": 7693
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1224100,
+    "killerID": 7,
+    "killerName": "Lillia",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 14096,
+      "y": 6434
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1224859,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13939,
+      "y": 9043
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1228427,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 13808,
+      "y": 7085
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1233977,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13695,
+      "y": 7491
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1244286,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 4,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 13463,
+      "y": 8254
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1250431,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 13175,
+      "y": 7984
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1303269,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 10084,
+      "y": 10167
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1307333,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 10482,
+      "y": 10437
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1333567,
+    "killerId": 4,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1336175,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 10693,
+      "y": 11058
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1338423,
+    "killerID": 1,
+    "killerName": "Jax",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 5728,
+      "y": 11032
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1342553,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 10848,
+      "y": 9825
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1345099,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 10836,
+      "y": 9824
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1397428,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 10655,
+      "y": 10344
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1429273,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11134,
+      "y": 11207
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1429339,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 11616,
+      "y": 11004
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1433271,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 8494,
+      "y": 10282
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1433502,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 12272,
+      "y": 11780
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1435219,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13346,
+      "y": 10241
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1441104,
+    "killerId": 5,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1451808,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13661,
+      "y": 12890
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1455274,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 3,
+    "victimName": "Yasuo",
+    "position": {
+      "x": 13831,
+      "y": 13090
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1457155,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 14189,
+      "y": 12691
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1463100,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 4,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 12262,
+      "y": 11506
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1463299,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 12420,
+      "y": 11386
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1476878,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13624,
+      "y": 10572
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1546034,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 1,
+    "victimName": "Jax",
+    "position": {
+      "x": 4664,
+      "y": 9350
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1549171,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 4343,
+      "y": 9222
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1553298,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 4169,
+      "y": 9364
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1554092,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 3341,
+      "y": 11417
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1557263,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 3844,
+      "y": 9660
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1560734,
+    "killerID": 8,
+    "killerName": "Leblanc",
+    "victimID": 2,
+    "victimName": "Diana",
+    "position": {
+      "x": 3707,
+      "y": 9967
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1564535,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 8,
+    "victimName": "Leblanc",
+    "position": {
+      "x": 4686,
+      "y": 9429
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1642093,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 11836,
+      "y": 12224
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1643810,
+    "killerID": 3,
+    "killerName": "Yasuo",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12072,
+      "y": 12788
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1647180,
+    "killerID": 4,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Leblanc",
+    "position": {
+      "x": 12087,
+      "y": 7361
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1648338,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 4,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 12078,
+      "y": 7256
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1652798,
+    "killerID": 6,
+    "killerName": "Qiyana",
+    "victimID": 5,
+    "victimName": "Ashe",
+    "position": {
+      "x": 11324,
+      "y": 7148
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1665717,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 6,
+    "victimName": "Qiyana",
+    "position": {
+      "x": 12054,
+      "y": 8706
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1677803,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 10,
+    "victimName": "Brand",
+    "position": {
+      "x": 13458,
+      "y": 12529
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1681046,
+    "killerId": 2,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 13052,
+      "y": 12612
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1684880,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 12611,
+      "y": 13084
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1694563,
+    "killerID": 2,
+    "killerName": "Diana",
+    "victimID": 7,
+    "victimName": "Lillia",
+    "position": {
+      "x": 13306,
+      "y": 13739
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1696811,
+    "killerId": 0,
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13598,
+      "y": 11316
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  }
+]

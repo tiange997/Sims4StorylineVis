@@ -1,0 +1,662 @@
+[
+  {
+    "timestamp": 128453,
+    "killerID": 6,
+    "killerName": "Kled",
+    "victimID": 1,
+    "victimName": "Yone",
+    "position": {
+      "x": 1515,
+      "y": 12270
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 211037,
+    "killerID": 6,
+    "killerName": "Kled",
+    "victimID": 1,
+    "victimName": "Yone",
+    "position": {
+      "x": 1123,
+      "y": 10890
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 242094,
+    "killerID": 2,
+    "killerName": "MonkeyKing",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12802,
+      "y": 2156
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 266838,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 3588,
+      "y": 13255
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 277244,
+    "killerID": 10,
+    "killerName": "Teemo",
+    "victimID": 3,
+    "victimName": "Ashe",
+    "position": {
+      "x": 10388,
+      "y": 853
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 426646,
+    "killerID": 3,
+    "killerName": "Ashe",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 13497,
+      "y": 3276
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 429519,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 2521,
+      "y": 9277
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 434408,
+    "killerID": 8,
+    "killerName": "Kassadin",
+    "victimID": 2,
+    "victimName": "MonkeyKing",
+    "position": {
+      "x": 2491,
+      "y": 8804
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 437152,
+    "killerID": 8,
+    "killerName": "Kassadin",
+    "victimID": 1,
+    "victimName": "Yone",
+    "position": {
+      "x": 3094,
+      "y": 9357
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 505073,
+    "killerID": 10,
+    "killerName": "Teemo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 9970,
+      "y": 1096
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 527271,
+    "killerID": 9,
+    "killerName": "Vayne",
+    "victimID": 2,
+    "victimName": "MonkeyKing",
+    "position": {
+      "x": 11724,
+      "y": 1683
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 535098,
+    "killerID": 8,
+    "killerName": "Kassadin",
+    "victimID": 4,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 9388,
+      "y": 6295
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 539028,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 1258,
+      "y": 11941
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 540953,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 1513,
+      "y": 12236
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 582773,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 13521,
+      "y": 1848
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 613793,
+    "killerID": 7,
+    "killerName": "Rammus",
+    "victimID": 4,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 6208,
+      "y": 6773
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 626773,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 2166,
+      "y": 11756
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 684259,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 3184,
+      "y": 13120
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 722617,
+    "killerID": 10,
+    "killerName": "Teemo",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 10599,
+      "y": 3324
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 726384,
+    "killerID": 7,
+    "killerName": "Rammus",
+    "victimID": 3,
+    "victimName": "Ashe",
+    "position": {
+      "x": 11704,
+      "y": 3266
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 726879,
+    "killerID": 2,
+    "killerName": "MonkeyKing",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 11378,
+      "y": 3738
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 729455,
+    "killerID": 2,
+    "killerName": "MonkeyKing",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 11911,
+      "y": 2676
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 733419,
+    "killerID": 2,
+    "killerName": "MonkeyKing",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12972,
+      "y": 3429
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 743797,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 4924,
+      "y": 13678
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 775439,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 784603,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 4533,
+      "y": 13601
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 788998,
+    "killerID": 6,
+    "killerName": "Kled",
+    "victimID": 1,
+    "victimName": "Yone",
+    "position": {
+      "x": 4782,
+      "y": 13687
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 847073,
+    "killerID": 8,
+    "killerName": "Kassadin",
+    "victimID": 2,
+    "victimName": "MonkeyKing",
+    "position": {
+      "x": 9134,
+      "y": 5832
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 852029,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 9968,
+      "y": 6833
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 853977,
+    "killerID": 7,
+    "killerName": "Rammus",
+    "victimID": 5,
+    "victimName": "Senna",
+    "position": {
+      "x": 9637,
+      "y": 5340
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 869404,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 6914,
+      "y": 13594
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 869702,
+    "killerID": 3,
+    "killerName": "Ashe",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 9749,
+      "y": 1036
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 930935,
+    "killerID": 4,
+    "killerName": "Ziggs",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 10540,
+      "y": 5346
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 931233,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 10917,
+      "y": 4759
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 934106,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 11154,
+      "y": 5472
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 951945,
+    "killerId": 4,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 963839,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 12961,
+      "y": 7363
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 964499,
+    "killerId": 2,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1014083,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 8574,
+      "y": 8713
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1015470,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 12516,
+      "y": 3095
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1015933,
+    "killerId": 6,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1017520,
+    "killerID": 2,
+    "killerName": "MonkeyKing",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 12362,
+      "y": 3046
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1020972,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 9610,
+      "y": 9522
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1038445,
+    "killerId": 4,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1079439,
+    "killerID": 10,
+    "killerName": "Teemo",
+    "victimID": 4,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 10331,
+      "y": 5460
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1119580,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 8957,
+      "y": 9191
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1135963,
+    "killerID": 5,
+    "killerName": "Senna",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 11929,
+      "y": 3996
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1142716,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 11922,
+      "y": 4008
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1145028,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 11539,
+      "y": 4239
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1175977,
+    "killerID": 8,
+    "killerName": "Kassadin",
+    "victimID": 4,
+    "victimName": "Ziggs",
+    "position": {
+      "x": 8665,
+      "y": 11534
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1180205,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 8,
+    "victimName": "Kassadin",
+    "position": {
+      "x": 8934,
+      "y": 11446
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1183408,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 6,
+    "victimName": "Kled",
+    "position": {
+      "x": 8699,
+      "y": 11712
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1190905,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 10,
+    "victimName": "Teemo",
+    "position": {
+      "x": 10813,
+      "y": 11735
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1195860,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 9,
+    "victimName": "Vayne",
+    "position": {
+      "x": 10717,
+      "y": 11867
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1204347,
+    "killerID": 1,
+    "killerName": "Yone",
+    "victimID": 7,
+    "victimName": "Rammus",
+    "position": {
+      "x": 11108,
+      "y": 11823
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

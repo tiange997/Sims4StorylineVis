@@ -1,0 +1,1320 @@
+[
+  {
+    "timestamp": 198025,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 3213,
+      "y": 13474
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 222535,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 13413,
+      "y": 4765
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 263891,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6875,
+      "y": 4746
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 281857,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11251,
+      "y": 5021
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 282221,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 11790,
+      "y": 5534
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 286053,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 10795,
+      "y": 3564
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 286548,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 11008,
+      "y": 3786
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 423376,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 13145,
+      "y": 5595
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 516914,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 7173,
+      "y": 7589
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 542758,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 13897,
+      "y": 3798
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 552566,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 13498,
+      "y": 2539
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 553557,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 13644,
+      "y": 2936
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 555307,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 13564,
+      "y": 2782
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 556760,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 13427,
+      "y": 2672
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 622059,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 3237,
+      "y": 13266
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 634974,
+    "killerID": 10,
+    "killerName": "Mordekaiser",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10948,
+      "y": 1614
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 642538,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 5896,
+      "y": 9160
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 659976,
+    "killerID": 8,
+    "killerName": "Seraphine",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 2463,
+      "y": 8647
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 690072,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 12610,
+      "y": 2317
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 698164,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 10,
+    "victimName": "Mordekaiser",
+    "position": {
+      "x": 12140,
+      "y": 2020
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 702459,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6289,
+      "y": 7151
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 731094,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11860,
+      "y": 3609
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 734132,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 11874,
+      "y": 4145
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 756265,
+    "killerID": 10,
+    "killerName": "Mordekaiser",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 11851,
+      "y": 2203
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 776512,
+    "killerID": 10,
+    "killerName": "Mordekaiser",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 11245,
+      "y": 1377
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 783056,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 2002,
+      "y": 12652
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 819686,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 13251,
+      "y": 3938
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 825796,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 2246,
+      "y": 13246
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 879827,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6707,
+      "y": 6698
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 880818,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 12560,
+      "y": 2257
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 922733,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 10494,
+      "y": 878
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 925705,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11039,
+      "y": 1060
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 954770,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 10435,
+      "y": 872
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 981457,
+    "killerId": 9,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 981820,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 9887,
+      "y": 2462
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1013821,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 3771,
+      "y": 13759
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1019205,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1031726,
+    "killerID": 8,
+    "killerName": "Seraphine",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 5513,
+      "y": 6078
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1031924,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6076,
+      "y": 6066
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1035889,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1053263,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 12694,
+      "y": 2647
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1056434,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 12336,
+      "y": 2860
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1097426,
+    "killerId": 9,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 6919,
+      "y": 1483
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1107699,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 7441,
+      "y": 11507
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1117606,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 5799,
+      "y": 11599
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1124607,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 7910,
+      "y": 10822
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1137324,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 6744,
+      "y": 11410
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1140866,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 10,
+    "victimName": "Mordekaiser",
+    "position": {
+      "x": 7393,
+      "y": 11938
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1212039,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 11417,
+      "y": 4877
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1223830,
+    "killerId": 2,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1250123,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 5263,
+      "y": 9180
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1258512,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 5625,
+      "y": 7460
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1279793,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 5770,
+      "y": 6144
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1288809,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 4785,
+      "y": 7370
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1305754,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 4004,
+      "y": 9430
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1321740,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 6890,
+      "y": 12974
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1353646,
+    "killerId": 6,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1359493,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 13107,
+      "y": 4771
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1367982,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 2410,
+      "y": 9937
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1377991,
+    "killerID": 8,
+    "killerName": "Seraphine",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 6091,
+      "y": 6389
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1390879,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 8644,
+      "y": 7671
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1407400,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 5244,
+      "y": 5113
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1413477,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 5625,
+      "y": 6351
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1415558,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 5171,
+      "y": 6067
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1436502,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 6833,
+      "y": 8926
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1442314,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 6384,
+      "y": 9504
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1477654,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1480594,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 6179,
+      "y": 6594
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1492985,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 4843,
+      "y": 4248
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1496419,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 4268,
+      "y": 3840
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1508516,
+    "killerId": 8,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5048,
+      "y": 4812
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1514098,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6745,
+      "y": 4623
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1557037,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 10234,
+      "y": 4303
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1564600,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 8965,
+      "y": 4867
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1568827,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 10,
+    "victimName": "Mordekaiser",
+    "position": {
+      "x": 9159,
+      "y": 5623
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1601327,
+    "killerID": 8,
+    "killerName": "Seraphine",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 8555,
+      "y": 8528
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1604235,
+    "killerID": 5,
+    "killerName": "MasterYi",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 10517,
+      "y": 10698
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1606414,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 10038,
+      "y": 9531
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1613748,
+    "killerID": 6,
+    "killerName": "Yone",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 7835,
+      "y": 7341
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1630066,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 8000,
+      "y": 13286
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1632840,
+    "killerId": 3,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1634854,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 7064,
+      "y": 12651
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1659988,
+    "killerId": 3,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13327,
+      "y": 8226
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1697186,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 9,
+    "victimName": "Karthus",
+    "position": {
+      "x": 2969,
+      "y": 7687
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1710099,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 10,
+    "victimName": "Mordekaiser",
+    "position": {
+      "x": 5795,
+      "y": 9424
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1715582,
+    "killerId": 6,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3651,
+      "y": 3696
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1722021,
+    "killerId": 6,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1737513,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 6397,
+      "y": 3073
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1743664,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 4025,
+      "y": 3751
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1744852,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 4215,
+      "y": 3791
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1792549,
+    "killerId": 0,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 7943,
+      "y": 13411
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1810284,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 7914,
+      "y": 11099
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1814964,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 8749,
+      "y": 11088
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1819378,
+    "killerID": 8,
+    "killerName": "Seraphine",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 8752,
+      "y": 11394
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1826683,
+    "killerID": 7,
+    "killerName": "Diana",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 7944,
+      "y": 10818
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1861344,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 1748,
+      "y": 2270
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1866661,
+    "killerId": 8,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 2177,
+      "y": 1807
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1881625,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 2013,
+      "y": 2682
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1886876,
+    "killerId": 7,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1916008,
+    "killerID": 2,
+    "killerName": "Jinx",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 5741,
+      "y": 10525
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1974546,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 7234,
+      "y": 2509
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1990640,
+    "killerID": 3,
+    "killerName": "Irelia",
+    "victimID": 6,
+    "victimName": "Yone",
+    "position": {
+      "x": 6044,
+      "y": 4343
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1993613,
+    "killerID": 1,
+    "killerName": "Malphite",
+    "victimID": 8,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6935,
+      "y": 2704
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2007321,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 3,
+    "victimName": "Irelia",
+    "position": {
+      "x": 5874,
+      "y": 5851
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2014111,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 5,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 5893,
+      "y": 5204
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2018649,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 1,
+    "victimName": "Malphite",
+    "position": {
+      "x": 5102,
+      "y": 5741
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2030439,
+    "killerId": 7,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2054288,
+    "killerID": 4,
+    "killerName": "Gangplank",
+    "victimID": 7,
+    "victimName": "Diana",
+    "position": {
+      "x": 1578,
+      "y": 1978
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2056269,
+    "killerID": 9,
+    "killerName": "Karthus",
+    "victimID": 4,
+    "victimName": "Gangplank",
+    "position": {
+      "x": 727,
+      "y": 1897
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2070475,
+    "killerID": 10,
+    "killerName": "Mordekaiser",
+    "victimID": 2,
+    "victimName": "Jinx",
+    "position": {
+      "x": 1309,
+      "y": 2303
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]

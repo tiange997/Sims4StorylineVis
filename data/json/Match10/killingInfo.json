@@ -1,0 +1,1224 @@
+[
+  {
+    "timestamp": 152140,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 12132,
+      "y": 1985
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 192092,
+    "killerID": 2,
+    "killerName": "Garen",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 13062,
+      "y": 3114
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 262908,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 8650,
+      "y": 8502
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 268918,
+    "killerID": 7,
+    "killerName": "Warwick",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 6607,
+      "y": 6531
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 270371,
+    "killerID": 2,
+    "killerName": "Garen",
+    "victimID": 7,
+    "victimName": "Warwick",
+    "position": {
+      "x": 6953,
+      "y": 6774
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 318971,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Gnar",
+    "position": {
+      "x": 4359,
+      "y": 13484
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 323132,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 11843,
+      "y": 1375
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 327890,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 11161,
+      "y": 1448
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 349886,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 7906,
+      "y": 8462
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 356558,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1765,
+      "y": 11814
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 419941,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 6788,
+      "y": 7717
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 437222,
+    "killerID": 9,
+    "killerName": "Ashe",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 11914,
+      "y": 1951
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 539993,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 9697,
+      "y": 4644
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 558543,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 6030,
+      "y": 6526
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 639595,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 13020,
+      "y": 2976
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 652971,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 11108,
+      "y": 1538
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 701018,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 12221,
+      "y": 2203
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 768366,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 12256,
+      "y": 2101
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 770316,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Gnar",
+    "position": {
+      "x": 3509,
+      "y": 11693
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 771307,
+    "killerId": 8,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 776063,
+    "killerID": 7,
+    "killerName": "Warwick",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 8150,
+      "y": 5265
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 778375,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 8275,
+      "y": 7802
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 792685,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 5591,
+      "y": 6403
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 816832,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 11470,
+      "y": 1637
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 844738,
+    "killerID": 2,
+    "killerName": "Garen",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 12041,
+      "y": 2237
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 850190,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1582,
+      "y": 13011
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 904872,
+    "killerId": 6,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 908538,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 13351,
+      "y": 2911
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 910852,
+    "killerId": 8,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5048,
+      "y": 4812
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 923568,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 2502,
+      "y": 6701
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 956433,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 9783,
+      "y": 1512
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 957060,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1850,
+      "y": 11684
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 968717,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 9376,
+      "y": 2104
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1001911,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 11370,
+      "y": 3596
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1014232,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 11291,
+      "y": 1202
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1026433,
+    "killerID": 2,
+    "killerName": "Garen",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 12660,
+      "y": 2506
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1036279,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 10302,
+      "y": 5315
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1041234,
+    "killerId": 8,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3651,
+      "y": 3696
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1060690,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 3394,
+      "y": 2565
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1098280,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 11248,
+      "y": 4188
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1100888,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 7,
+    "victimName": "Warwick",
+    "position": {
+      "x": 11077,
+      "y": 4218
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1114760,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 5223,
+      "y": 7662
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1134284,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 10845,
+      "y": 1074
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1163562,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 8694,
+      "y": 4018
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1174864,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 8782,
+      "y": 4006
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1198318,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 6,
+    "victimName": "Gnar",
+    "position": {
+      "x": 2077,
+      "y": 7582
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1210078,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 1801,
+      "y": 7602
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1212753,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 876,
+      "y": 6840
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1241858,
+    "killerId": 8,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1246550,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 2920,
+      "y": 2857
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1251839,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 3929,
+      "y": 3098
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1259931,
+    "killerID": 5,
+    "killerName": "Velkoz",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 3031,
+      "y": 2140
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1260096,
+    "killerId": 6,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1273949,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 6262,
+      "y": 4917
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1291590,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 2834,
+      "y": 4708
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1299285,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 3138,
+      "y": 5024
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1305065,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 1963,
+      "y": 2541
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1316330,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 7,
+    "victimName": "Warwick",
+    "position": {
+      "x": 8151,
+      "y": 7642
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1354779,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 5963,
+      "y": 6049
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1379423,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 6593,
+      "y": 6931
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1391257,
+    "killerId": 2,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1394429,
+    "killerID": 7,
+    "killerName": "Warwick",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 7933,
+      "y": 6440
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1414422,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 3340,
+      "y": 2356
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1422580,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Gnar",
+    "position": {
+      "x": 5074,
+      "y": 1483
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1426646,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 2497,
+      "y": 990
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1450561,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 6821,
+      "y": 12849
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1454725,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 3439,
+      "y": 3559
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1459086,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1467410,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 7,
+    "victimName": "Warwick",
+    "position": {
+      "x": 6124,
+      "y": 6096
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1496244,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 7804,
+      "y": 808
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1507978,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 10313,
+      "y": 2716
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1517721,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 9939,
+      "y": 4264
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1533710,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 6510,
+      "y": 4842
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1579827,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Gnar",
+    "position": {
+      "x": 4368,
+      "y": 2275
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1579860,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 4741,
+      "y": 5069
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1583790,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 4735,
+      "y": 4682
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1588975,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 5744,
+      "y": 5769
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1591122,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 6374,
+      "y": 4864
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1601763,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 6129,
+      "y": 5104
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1612798,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 7091,
+      "y": 4130
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1616267,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 5704,
+      "y": 5228
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1627087,
+    "killerId": 8,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 3203,
+      "y": 3208
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1648820,
+    "killerID": 2,
+    "killerName": "Garen",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 5414,
+      "y": 4940
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1657971,
+    "killerID": 10,
+    "killerName": "Lux",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 4668,
+      "y": 5408
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1666360,
+    "killerId": 0,
+    "towerType": "BASE_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1169,
+      "y": 4287
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1668739,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 5098,
+      "y": 4598
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1670061,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 3183,
+      "y": 4056
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1674488,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 3833,
+      "y": 3897
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1682086,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 9,
+    "victimName": "Ashe",
+    "position": {
+      "x": 8378,
+      "y": 8210
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1738023,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1770490,
+    "killerID": 4,
+    "killerName": "Jhin",
+    "victimID": 10,
+    "victimName": "Lux",
+    "position": {
+      "x": 8876,
+      "y": 5907
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1774288,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 2,
+    "victimName": "Garen",
+    "position": {
+      "x": 7126,
+      "y": 4847
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1781000,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 6468,
+      "y": 4555
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1781330,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 6128,
+      "y": 4570
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1800695,
+    "killerID": 7,
+    "killerName": "Warwick",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 6909,
+      "y": 4284
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1805387,
+    "killerID": 7,
+    "killerName": "Warwick",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 6793,
+      "y": 4676
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1874843,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 5,
+    "victimName": "Velkoz",
+    "position": {
+      "x": 4261,
+      "y": 4922
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1875702,
+    "killerID": 8,
+    "killerName": "Xerath",
+    "victimID": 4,
+    "victimName": "Jhin",
+    "position": {
+      "x": 4454,
+      "y": 4586
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1878048,
+    "killerID": 3,
+    "killerName": "Kaisa",
+    "victimID": 8,
+    "victimName": "Xerath",
+    "position": {
+      "x": 5590,
+      "y": 6042
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1881945,
+    "killerID": 6,
+    "killerName": "Gnar",
+    "victimID": 3,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 6017,
+      "y": 6427
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1913753,
+    "killerId": 0,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 1748,
+      "y": 2270
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1919273,
+    "killerId": 10,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 2177,
+      "y": 1807
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  }
+]

@@ -1,0 +1,1033 @@
+[
+  {
+    "timestamp": 228807,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 5911,
+      "y": 9400
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 305109,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 4044,
+      "y": 13074
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 313766,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 10327,
+      "y": 1540
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 321694,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 11760,
+      "y": 3599
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 325594,
+    "killerID": 10,
+    "killerName": "Thresh",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 11949,
+      "y": 3212
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 385690,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 927,
+      "y": 10687
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 391206,
+    "killerID": 5,
+    "killerName": "Seraphine",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 12577,
+      "y": 2290
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 396525,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 11715,
+      "y": 1506
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 502444,
+    "killerID": 9,
+    "killerName": "Xayah",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 11576,
+      "y": 1582
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 556529,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 4857,
+      "y": 8422
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 629048,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 13364,
+      "y": 1702
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 649336,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1297,
+      "y": 10489
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 651881,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 1484,
+      "y": 9909
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 656604,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 10223,
+      "y": 900
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 745046,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 1504,
+      "y": 10298
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 791270,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10929,
+      "y": 4367
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 791732,
+    "killerID": 3,
+    "killerName": "Lux",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 10719,
+      "y": 4864
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 799826,
+    "killerID": 10,
+    "killerName": "Thresh",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 12163,
+      "y": 2214
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 819749,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 1124,
+      "y": 12156
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 863686,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 4318,
+      "y": 13875
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 897649,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 10504,
+      "y": 1029
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 906770,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 9070,
+      "y": 8371
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 918667,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 4954,
+      "y": 7714
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 927422,
+    "killerID": 9,
+    "killerName": "Xayah",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 8771,
+      "y": 1160
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 930428,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 8673,
+      "y": 1399
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 945626,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 2488,
+      "y": 11646
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 957881,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 981,
+      "y": 10441
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 985835,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 1480,
+      "y": 7106
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1036016,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 6616,
+      "y": 6695
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1039519,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 7473,
+      "y": 6888
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1044045,
+    "killerID": 9,
+    "killerName": "Xayah",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 7233,
+      "y": 7115
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1081677,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 13123,
+      "y": 3391
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1082503,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 13396,
+      "y": 3269
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1098231,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 12474,
+      "y": 2301
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1239503,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 7401,
+      "y": 1073
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1242377,
+    "killerID": 9,
+    "killerName": "Xayah",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 9190,
+      "y": 1404
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1246077,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 3215,
+      "y": 12823
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1249248,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 7909,
+      "y": 7565
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1258298,
+    "killerId": 0,
+    "towerType": "INNER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 6919,
+      "y": 1483
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1278525,
+    "killerId": 8,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 5846,
+      "y": 6396
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1328540,
+    "killerID": 10,
+    "killerName": "Thresh",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 12915,
+      "y": 2671
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1329167,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 12751,
+      "y": 2681
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1333708,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 12027,
+      "y": 3004
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1338828,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 11979,
+      "y": 2768
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1340348,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 10,
+    "victimName": "Thresh",
+    "position": {
+      "x": 11563,
+      "y": 3072
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1350754,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 9617,
+      "y": 3349
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1360697,
+    "killerId": 6,
+    "towerType": "INNER_TURRET",
+    "laneType": "TOP_LANE",
+    "position": {
+      "x": 1512,
+      "y": 6699
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1364760,
+    "killerId": 1,
+    "towerType": "OUTER_TURRET",
+    "laneType": "BOT_LANE",
+    "position": {
+      "x": 13866,
+      "y": 4505
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1392217,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10121,
+      "y": 4623
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1412131,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 6876,
+      "y": 4322
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1423528,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 7717,
+      "y": 2477
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1430274,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 7075,
+      "y": 4164
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1446562,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 1,
+    "victimName": "Teemo",
+    "position": {
+      "x": 5386,
+      "y": 3187
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1447685,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 5448,
+      "y": 3330
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1454060,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 5988,
+      "y": 5715
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1480522,
+    "killerId": 0,
+    "towerType": "OUTER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 8955,
+      "y": 8510
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1490168,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 6525,
+      "y": 984
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1522515,
+    "killerID": 5,
+    "killerName": "Seraphine",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 4600,
+      "y": 9478
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1526233,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 5208,
+      "y": 9504
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1530497,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 4624,
+      "y": 9220
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1535747,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 8,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 5872,
+      "y": 9171
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1570735,
+    "killerId": 1,
+    "towerType": "INNER_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 9767,
+      "y": 10113
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1615438,
+    "killerID": 3,
+    "killerName": "Lux",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 8016,
+      "y": 7822
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1617982,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 7596,
+      "y": 7235
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1629785,
+    "killerID": 7,
+    "killerName": "LeeSin",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 10336,
+      "y": 10498
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1682940,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 8778,
+      "y": 9124
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1689660,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 9323,
+      "y": 9207
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1698446,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 3,
+    "victimName": "Lux",
+    "position": {
+      "x": 5764,
+      "y": 5793
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1699239,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 6024,
+      "y": 5956
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1703664,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 10,
+    "victimName": "Thresh",
+    "position": {
+      "x": 7176,
+      "y": 7284
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1708329,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 7334,
+      "y": 6636
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1711402,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 8,
+    "victimName": "Kaisa",
+    "position": {
+      "x": 7550,
+      "y": 7677
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1856766,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 4400,
+      "y": 11606
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1880337,
+    "killerId": 1,
+    "towerType": "BASE_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11134,
+      "y": 11207
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1885985,
+    "killerId": 3,
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 11603,
+      "y": 11667
+    },
+    "buildingType": "INHIBITOR_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 1904950,
+    "killerID": 8,
+    "killerName": "Kaisa",
+    "victimID": 4,
+    "victimName": "MissFortune",
+    "position": {
+      "x": 10810,
+      "y": 9966
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1926953,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 10,
+    "victimName": "Thresh",
+    "position": {
+      "x": 7183,
+      "y": 9632
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1927647,
+    "killerID": 9,
+    "killerName": "Xayah",
+    "victimID": 2,
+    "victimName": "MasterYi",
+    "position": {
+      "x": 7311,
+      "y": 9686
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 1947027,
+    "killerID": 6,
+    "killerName": "Illaoi",
+    "victimID": 5,
+    "victimName": "Seraphine",
+    "position": {
+      "x": 6552,
+      "y": 7675
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2005308,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 8430,
+      "y": 1404
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2040259,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 9,
+    "victimName": "Xayah",
+    "position": {
+      "x": 10099,
+      "y": 7099
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2057769,
+    "killerID": 1,
+    "killerName": "Teemo",
+    "victimID": 10,
+    "victimName": "Thresh",
+    "position": {
+      "x": 11368,
+      "y": 11132
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2073431,
+    "killerID": 4,
+    "killerName": "MissFortune",
+    "victimID": 6,
+    "victimName": "Illaoi",
+    "position": {
+      "x": 11519,
+      "y": 12095
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2076107,
+    "killerID": 2,
+    "killerName": "MasterYi",
+    "victimID": 7,
+    "victimName": "LeeSin",
+    "position": {
+      "x": 12565,
+      "y": 12846
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 2089915,
+    "killerId": 1,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 13052,
+      "y": 12612
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  },
+  {
+    "timestamp": 2092294,
+    "killerId": 2,
+    "towerType": "NEXUS_TURRET",
+    "laneType": "MID_LANE",
+    "position": {
+      "x": 12611,
+      "y": 13084
+    },
+    "buildingType": "TOWER_BUILDING",
+    "killType": "BUILDING_KILL"
+  }
+]
