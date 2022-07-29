@@ -887,15 +887,6 @@ function locationBox(locationSet, useMode) {
         .attr('pointer-events', 'none')
         .attr({ 'font-size': 20 })
 
-      /*      rect[i].mousemove(() => {
-        // console.log('REMOVE')
-        border.remove()
-        img.remove()
-        mask.remove()
-        text.remove()
-        event.preventDefault()
-      })*/
-
       rect[i].mouseup(() => {
         console.log('REMOVE')
         border.remove()
