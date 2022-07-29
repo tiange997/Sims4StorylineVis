@@ -12,12 +12,12 @@
       "ContestedMiddle": [9],
       "BottomRiver": [10],
       "ContestedBottom": [11],
-      "PurpleTopLane": [12],
+      "RedTopLane": [12],
       "TopRedJungle": [13],
-      "PurpleMiddleLane": [14],
+      "RedMiddleLane": [14],
       "BottomBlueJungle": [15],
-      "PurpleBottomLane": [16],
-      "PurpleBase": [17]
+      "RedBottomLane": [16],
+      "RedBase": [17]
     },
     "Characters": {
       "Player1": [
