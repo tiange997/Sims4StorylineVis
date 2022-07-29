@@ -17,6 +17,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -24,6 +25,11 @@ module.exports = {
         use: 'imports-loader?this=>window,fix=>module.exports=0',
       },
     ],
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
   plugins: [HtmlWebpackPluginConfig, new WebpackBar()],
 }
