@@ -27,7 +27,11 @@
   "scripts": {
     "build": "babel src -d build",
     "start": "webpack-dev-server",
-    "test": "mocha -r esm --recursive"
+    "test": "mocha -r esm --recursive",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
   },
   "husky": {
     "hooks": {
