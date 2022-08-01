@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>iStoryline</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: auto;
+        flex: none;
+        font-family: 'Lato', sans-serif;
+      }
+
+      div {
+        width: 100%;
+        height: 98vh;
+        overflow-x: scroll;
+      }
+
+      .mySvg {
+        height: 95vh;
+        width: calc(62 / 12 * 95vh);
+      }
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+    </style>
+    <script>
+      alert(
+        'For best experience, please use the fullscreen mode. Please also be patient while we are loading the page.'
+      )
+    </script>
+  </head>
+
+  <body>
+    <div id="container">
+      <svg id="mySvg" class="mySvg" height="100vh"></svg>
+    </div>
+    <script>
+      const scrollContainer = document.getElementById('container')
+      scrollContainer.addEventListener('wheel', evt => {
+        evt.preventDefault()
+        scrollContainer.scrollLeft += evt.deltaY
+      })
+    </script>
+  </body>
+</html>
