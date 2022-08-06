@@ -870,7 +870,7 @@ function locationBox(locationSet, useMode) {
         )
       } else {
         img = svg.image(
-          `../../src/image/Minimaps/${i + 1}.png`,
+          `../../src/image/MiniMaps/${i + 1}.png`,
           tipX + 25,
           tipY + 50,
           mapSize,
