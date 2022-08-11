@@ -6,7 +6,7 @@ import * as d3Fetch from 'd3-fetch'
 import Snap from 'snapsvg'
 import $ from 'jquery'
 
-main('Match5/test.json')
+main('Match5/test1.json')
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/Match5/MatchInfo.json') // Info of match
@@ -28,7 +28,7 @@ let xOrigin = 350,
 
 // We have to hard-code this part as we manually define colours
 // Saving this for decorating circles
-let playerColour = {
+/*let playerColour = {
   Player1: '#5B7DB1',
   Player2: '#00B8D1',
   Player3: '#00B827',
@@ -38,6 +38,19 @@ let playerColour = {
   Player7: '#ba000d',
   Player8: '#ff94c2',
   Player9: '#ffa000',
+  Player10: '#ffd149',
+}*/
+
+let playerColour = {
+  Player1: '#6A3D9A', // changed
+  Player2: '#00B8D1',
+  Player3: '#00B827',
+  Player4: '#5BB58A',
+  Player5: '#9B8BD6',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#FF7F00', // changed
   Player10: '#ffd149',
 }
 
@@ -59,16 +72,27 @@ async function main(fileName) {
 
   // Read Json through the Promise and save participants data
 
-  let participantsInfo = await jsonRead.then(function(result) {
-    let data = result['info']['participants']
-    let participantList = []
-
-    for (const element of data) {
-      participantList.push(element['participantId'], element['championName'])
-    }
-
-    return participantList
+  let participantsInfoData = await jsonRead.then(function(result) {
+    return result['info']['participants']
   })
+
+  let participantsInfo = []
+
+  for (const element of participantsInfoData) {
+    participantsInfo.push(element['participantId'], element['championName'])
+  }
+
+  let nexusKiller = null
+  let nexusKillerId = null
+
+  for (const element of participantsInfoData) {
+    if (element['nexusKills'] == 1) {
+      nexusKillerId = element['participantId']
+      nexusKiller = 'Player' + nexusKillerId
+    }
+  }
+
+  console.log(nexusKiller)
 
   let dbscan = await jsonDBSCAN.then(function(result) {
     dbSCANData = result
@@ -142,7 +166,7 @@ async function main(fileName) {
     )
   })
 
-  await drawEvents(graph, participantsInfo)
+  await drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId)
 
   return iStorylineInstance
 }
@@ -919,9 +943,12 @@ function locationBox(locationSet, useMode) {
   }
 }
 
-async function drawEvents(graph, participantsInfo) {
+let lastEventTime = null
+
+async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
   await jsonReadTwo.then(function(result) {
     const data = result
+    let lastTimestamp = null
     for (let i in data) {
       let posX = data[i]['position']['x']
       let posY = data[i]['position']['y']
@@ -1156,7 +1183,78 @@ async function drawEvents(graph, participantsInfo) {
             }
           )
       }
+
+      lastTimestamp = data[i]['timestamp']
     }
+
+    // draw the final nexus kill
+
+    let border
+
+    let killer, victim
+
+    let killerIcon
+
+    const iconSize = 35
+    const offset = iconSize / 2
+
+    let nexusKillPosX = graph.getCharacterX(nexusKiller, lastTimestamp)
+    let nexusKillPosY = graph.getCharacterY(nexusKiller, lastTimestamp)
+
+    svg
+      .image(
+        `../../src/image/Turrets/${nexusKiller}.png`,
+        nexusKillPosX - offset,
+        nexusKillPosY - offset,
+        iconSize,
+        iconSize
+      )
+      .hover(
+        event => {
+          pt.x = event.clientX
+          pt.y = event.clientY
+
+          pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+          let tipX = pt.x
+          let tipY = pt.y
+
+          if (pt.y >= 995) {
+            tipX -= 50
+            tipY -= 250
+          }
+
+          if (pt.x >= 5700) {
+            tipX -= 200
+          }
+
+          border = svg.rect(tipX, tipY, 220, 120, 10, 10).attr({
+            stroke: 'black',
+            fill: 'rgba(255,255,255, 0.9)',
+            strokeWidth: '3px',
+          })
+
+          killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
+          victim = svg.text(35 + tipX, 62 + tipY + 45, 'Nexus Kill')
+
+          let killerName =
+            participantsInfo[participantsInfo.indexOf(nexusKillerId) + 1]
+
+          killerIcon = svg.image(
+            `../../src/image/Champions/${killerName}Square.png`,
+            35 + tipX,
+            35 + tipY,
+            40,
+            40
+          )
+        },
+        () => {
+          border.remove()
+          killer.remove()
+          killerIcon.remove()
+          victim.remove()
+        }
+      )
   })
 }
 

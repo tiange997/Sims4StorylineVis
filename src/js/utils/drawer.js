@@ -22,7 +22,7 @@ let mySvg = $('#mySvg')[0]
 
 let pt = mySvg.createSVGPoint()
 
-let playerColour = {
+/*let playerColour = {
   Player1: '#5B7DB1',
   Player2: '#00B8D1',
   Player3: '#00B827',
@@ -32,6 +32,33 @@ let playerColour = {
   Player7: '#ba000d',
   Player8: '#ff94c2',
   Player9: '#ffa000',
+  Player10: '#ffd149',
+}*/
+
+// red team color changed
+/*let playerColour = {
+  Player1: '#5B7DB1',
+  Player2: '#00B8D1',
+  Player3: '#00B827',
+  Player4: '#5BB58A',
+  Player5: '#9B8BD6',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#FF7F00',
+  Player10: '#ffd149',
+}*/
+
+let playerColour = {
+  Player1: '#6A3D9A', // changed
+  Player2: '#00B8D1',
+  Player3: '#00B827',
+  Player4: '#5BB58A',
+  Player5: '#9B8BD6',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#FF7F00', // changed
   Player10: '#ffd149',
 }
 
