@@ -181,6 +181,8 @@ async function main(fileName) {
 
   await drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId)
 
+  $('#tip').remove()
+
   return iStorylineInstance
 }
 
