@@ -20,7 +20,9 @@ const height = 1080
 // We need to set the total timestamp first
 // Sections decide how the interval of timeline display
 let totalTimestamp
+let lastTimestamp = null
 let sections
+let sectionsForText
 
 // Canvas Origin
 let xOrigin = 350,
@@ -180,6 +182,8 @@ async function main(fileName) {
   })
 
   await drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId)
+
+  await timelineX(graph)
 
   $('#tip').remove()
 
@@ -509,17 +513,24 @@ function heroInfo(character, participantsInfo, useMode) {
   }
 }
 
-// Draw timeline
+// Draw timeline basis
 function timeline() {
   sections = totalTimestamp / 180000 // 3 mins interval
+  sectionsForText = totalTimestamp / 60000
   console.log(sections)
-  let accumTimestamp = totalTimestamp / sections
+  // let accumTimestamp = totalTimestamp / sections
+  let accumTimestampForText = totalTimestamp / sectionsForText
   let timeAidedLine
   const distance =
     (width /
       (timeReturn(totalTimestamp)[0] * 60 + timeReturn(totalTimestamp)[1])) *
     180
+  const distanceForText =
+    (width /
+      (timeReturn(totalTimestamp)[0] * 60 + timeReturn(totalTimestamp)[1])) *
+    60
   console.log(distance)
+
   let posX
 
   for (let segments = 0; segments < sections; segments++) {
@@ -532,17 +543,37 @@ function timeline() {
       stroke: 'black',
       'stroke-dasharray': '4',
     })
-
+  }
+  for (let segments = 0; segments < sectionsForText; segments++) {
     // write labels
     let txt = svg.text(
-      70 + distance * segments + 95 + 70 + 100,
+      70 + distanceForText * segments + 95 + 70 + 100,
       1120 + 20 + 60,
-      timeStamp(accumTimestamp * segments)
-    ) // we need a loop to draw all lines#
-    txt.attr({
-      'font-size': 30,
-    })
+      timeStamp(accumTimestampForText * segments)
+    )
+
+    if ((segments + 1) % 3 == 1) {
+      txt.attr({
+        'font-size': 30,
+      })
+    } else {
+      txt.attr({
+        'font-size': 15,
+      })
+    }
   }
+}
+
+// Draw X axis of the timeline
+async function timelineX(graph) {
+  let endPointX = graph.getCharacterX('Player1', lastTimestamp) + 30
+
+  // draw the horizontal line
+  const xAxis = svg.line(xOrigin, 1150, endPointX, 1150).attr({
+    fill: 'none',
+    stroke: 'black',
+    'stroke-dasharray': '4',
+  })
 }
 
 function timeStamp(perTimestamp) {
@@ -964,7 +995,6 @@ let lastEventTime = null
 async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
   await jsonReadTwo.then(function(result) {
     const data = result
-    let lastTimestamp = null
     for (let i in data) {
       let posX = data[i]['position']['x']
       let posY = data[i]['position']['y']
