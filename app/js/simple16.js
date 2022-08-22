@@ -170,6 +170,8 @@ async function main(fileName) {
 
   await drawEvents(graph, participantsInfo)
 
+  $('#tip').remove()
+
   return iStorylineInstance
 }
 
