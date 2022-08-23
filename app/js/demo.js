@@ -58,15 +58,28 @@ let playerColour = {
 }
 */
 
+/*let playerColour = {
+  Player1: '#ff0000',
+  Player2: '#ba000d',
+  Player3: '#ff94c2',
+  Player4: '#FF7F00', // changed
+  Player5: '#ffd149',
+  Player6: '#6A3D9A', // changed
+  Player7: '#00B8D1',
+  Player8: '#00B827',
+  Player9: '#5BB58A',
+  Player10: '#9B8BD6'
+}*/
+
 let playerColour = {
   Player1: '#ff0000',
   Player2: '#ba000d',
   Player3: '#ff94c2',
-  Player4: '#FF7F00',
+  Player4: '#FF7F00', // changed
   Player5: '#ffd149',
-  Player6: '#6A3D9A',
+  Player6: '#000080', // changed
   Player7: '#00B8D1',
-  Player8: '#00B827',
+  Player8: '#006400', // changed
   Player9: '#5BB58A',
   Player10: '#9B8BD6',
 }
@@ -516,8 +529,8 @@ function timeline() {
   sections = totalTimestamp / 180000 // 3 mins interval
   sectionsForText = totalTimestamp / 60000
   console.log(sections)
-  // let accumTimestamp = totalTimestamp / sections
-  let accumTimestampForText = totalTimestamp / sectionsForText
+  let accumTimestamp = totalTimestamp / sections
+  // let accumTimestampForText = totalTimestamp / sectionsForText
   let timeAidedLine
   let markInBetween
   const distance =
@@ -548,7 +561,7 @@ function timeline() {
     let txt = svg.text(
       70 + distance * segments + 95 + 70 + 100,
       1120 + 20 + 60,
-      timeStamp(accumTimestampForText * segments)
+      timeStamp(accumTimestamp * segments)
     )
 
     // draw vertical lines
@@ -676,7 +689,7 @@ function locationBox(locationSet, useMode) {
               // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else if (useMode === 1) {
               img = svg.image(
-                `../../src/image/sessionImgsSimpleSpecial/${i + 1}.png`,
+                `../../src/image/sessionImgsSimpleSpecialR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -684,7 +697,7 @@ function locationBox(locationSet, useMode) {
               )
             } else {
               img = svg.image(
-                `../../src/image/MiniMaps/${i + 1}.png`,
+                `../../src/image/MiniMapsR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -742,7 +755,7 @@ function locationBox(locationSet, useMode) {
               // console.log(`../../src/image/sessionImgsSimple/${i + 1}.png`)
             } else if (useMode === 1) {
               img = svg.image(
-                `../../src/image/sessionImgsSimpleSpecial/${i + 1}.png`,
+                `../../src/image/sessionImgsSimpleSpecialR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -750,7 +763,7 @@ function locationBox(locationSet, useMode) {
               )
             } else {
               img = svg.image(
-                `../../src/image/MiniMaps/${i + 1}.png`,
+                `../../src/image/MiniMapsR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -815,7 +828,7 @@ function locationBox(locationSet, useMode) {
               )
             } else if (useMode === 1) {
               img = svg.image(
-                `../../src/image/sessionImgsSimpleSpecial/${i + 1}.png`,
+                `../../src/image/sessionImgsSimpleSpecialR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -823,7 +836,7 @@ function locationBox(locationSet, useMode) {
               )
             } else {
               img = svg.image(
-                `../../src/image/MiniMaps/${i + 1}.png`,
+                `../../src/image/MiniMapsR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -881,7 +894,7 @@ function locationBox(locationSet, useMode) {
               )
             } else if (useMode === 1) {
               img = svg.image(
-                `../../src/image/sessionImgsSimpleSpecial/${i + 1}.png`,
+                `../../src/image/sessionImgsSimpleSpecialR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -889,7 +902,7 @@ function locationBox(locationSet, useMode) {
               )
             } else {
               img = svg.image(
-                `../../src/image/MiniMaps/${i + 1}.png`,
+                `../../src/image/MiniMapsR/${i + 1}.png`,
                 tipX,
                 tipY,
                 tipWindowSize,
@@ -956,7 +969,7 @@ function locationBox(locationSet, useMode) {
         )
       } else {
         img = svg.image(
-          `../../src/image/MiniMaps/${i + 1}.png`,
+          `../../src/image/MiniMapsR/${i + 1}.png`,
           tipX + 25,
           tipY + 50,
           mapSize,
@@ -1290,7 +1303,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
                 .text({ text: [resultType[0], resultType[1]] })
                 .selectAll('tspan')
                 .forEach(function(tspan, i) {
-                  tspan.attr({ x: 90 + tipX, y: 52 + tipY + 25 * i })
+                  tspan.attr({ x: 120 + tipX, y: 52 + tipY + 25 * i })
                 })
 
               killerNameElement = svg.text(
