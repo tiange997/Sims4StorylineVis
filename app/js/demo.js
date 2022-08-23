@@ -1,4 +1,4 @@
-import { drawStoryline } from '../../src/js/utils/drawer'
+import { drawStoryline } from '../../src/js/utils/drawerB'
 import { shapeCovering } from '../../src/js/shapeCovering'
 import { none } from 'html-webpack-plugin/lib/chunksorter'
 import iStoryline from '../../src/js'
@@ -1228,9 +1228,14 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
               let tipX = pt.x
               let tipY = pt.y
 
-              if (pt.y >= 995) {
-                tipX -= 50
-                tipY -= 250
+              if (pt.y >= 850) {
+                // tipX -= 100
+                tipY -= 100
+              }
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 200
               }
 
               if (pt.x >= 5700) {
@@ -1242,28 +1247,42 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
-              border = svg.rect(tipX, tipY, 250, 300, 10, 10).attr({
-                stroke: `${playerColour[currentPlayer]}`,
+              border = svg.rect(tipX, tipY, 250, 310, 10, 10).attr({
+                stroke: `Black`,
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ' + killerName)
-              victim = svg.text(80 + tipX, 62 + tipY, resultType)
-
-              killerName =
-                participantsInfo[participantsInfo.indexOf(playerIndex) + 1]
-
               killerIcon = svg.image(
                 `../../src/image/Champions/${killerName}Square.png`,
-                35 + tipX,
-                35 + tipY,
+                38 + tipX,
+                40 + tipY - 3,
                 40,
                 40
               )
 
+              killerBorder = svg.rect(35 + tipX, 37 + tipY - 3, 46, 46).attr({
+                fill: 'none',
+                stroke: `${playerColour[currentPlayer]}`,
+                'stroke-width': '3',
+                opacity: 0.7,
+              })
+
+              console.log(killerBorder)
+
+              killerName =
+                participantsInfo[participantsInfo.indexOf(playerIndex) + 1]
+
+              killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
+              victim = svg.text(85 + tipX, 62 + tipY, resultType)
+              killerNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 15 + tipY - 3,
+                killerName
+              )
+
               mask = svg
-                .rect(tipX + 25, tipY + 90, mapSize, mapSize, 10, 10)
+                .rect(tipX + 25, tipY + 100, mapSize, mapSize, 10, 10)
                 .attr({ fill: 'rgba(225, 225, 0)' })
               img = svg.image(
                 `../../src/image/MiniMap.png`,
@@ -1276,10 +1295,10 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
                 mask: mask,
               })
               innerCircle = svg
-                .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 4)
+                .circle(tipX + 25 + xOffset, tipY + 100 + yOffset, 4)
                 .attr({ fill: 'none', stroke: `white`, strokeWidth: '1px' })
               killing = svg
-                .circle(tipX + 25 + xOffset, tipY + 90 + yOffset, 5)
+                .circle(tipX + 25 + xOffset, tipY + 100 + yOffset, 5)
                 .attr({
                   fill: 'none',
                   stroke: `${playerColour[currentPlayer]}`,
@@ -1295,6 +1314,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
               img.remove()
               innerCircle.remove()
               killing.remove()
+              killerBorder.remove()
+              killerNameElement.remove()
             }
           )
       }
