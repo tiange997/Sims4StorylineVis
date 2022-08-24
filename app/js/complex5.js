@@ -6,7 +6,7 @@ import * as d3Fetch from 'd3-fetch'
 import Snap from 'snapsvg'
 import $ from 'jquery'
 
-main('Match5/test1C.json')
+main('Match5/test11C.json')
 
 // Initialise json files
 const jsonRead = d3Fetch.json('../../data/json/Match5/MatchInfo.json') // Info of match
