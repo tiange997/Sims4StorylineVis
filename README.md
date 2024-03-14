@@ -14,7 +14,7 @@ For more information, please check [Tang et al.'s paper](http://www.tantang.org/
 ## Visualizing League of Legends Matches
 
 Since storyline visualization could provide information of time, players and events in a direct manner, and is less developed. I adapted this framework to visualize League of Legend matches.
-As for now, this web app support visualizing the following information:
+As for now, this web app supports visualizing the following information:
 - Basic player information (which champion is used for which team)
 - Players' positions in 1 minute intervals
 - Players' kills and deaths
