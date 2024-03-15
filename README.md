@@ -62,7 +62,7 @@ console.log(graph.storylines);  // [[[x1, y1], [x2, y2], ...], ...]
 ## Basic Usage of iStoryline framework for League of Legends
 
 First using our python project to fetch the match data and convert it into a storyline json file. This will ultimately gives you match spatio-temporal data, general match information file, a killing info file and a DBSCAN result.
-For this, check our [Lol_Data_Analysis]() project and follow the instructions there.
+For this, check our [Lol_Storyline Data](https://github.com/tiange997/LoL-Storyline-Data) project and follow the instructions there.
 
 You should put your visualization instance javascript file under the `/app/js` folder. You should also check the `/data/json/Match` 
 folder to see the data files that are used in the storyline visualisation.
