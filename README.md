@@ -85,6 +85,7 @@ main('xxx.json');
 
 
 ```
+Please then check and modify the webpack config file for new entry.
 
 ### Notes
 
