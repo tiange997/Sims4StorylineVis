@@ -5,6 +5,7 @@
 Players increasingly adopt a data-driven approach to review and improve their gaming skills. In the wake of this, spatio-temporal visualizations gained popularity but remain challenging to design. Storyline visualizations are unique in the way they integrate time and location information into a single view to show how entity relationships develop over time. We adopt the storyline visualization technique to summarize gameplay for the purpose of post-play review.
 
 For more details, check [our paper](https://dl.acm.org/doi/10.1145/3611058).
+
 As for now, this web app supports visualizing the following information:
 - Basic player information (which champion is used for which team)
 - Players' positions in 1 minute intervals
