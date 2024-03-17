@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Since storyline visualization could provide information of time, players and events in a direct manner, and is less developed, I adapted this framework to visualize League of Legend matches. For more details, check [our paper](https://dl.acm.org/doi/10.1145/3611058).
+Since storyline visualization could provide spatio-temporal information in related to time in a direct manner, and is less developed in game data visaulization, I adapted this framework to visualize League of Legend matches. For more details, check [our paper](https://dl.acm.org/doi/10.1145/3611058).
 As for now, this web app supports visualizing the following information:
 - Basic player information (which champion is used for which team)
 - Players' positions in 1 minute intervals
