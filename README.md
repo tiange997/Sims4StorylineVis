@@ -1,17 +1,6 @@
 # Storyline Visualization for League of Legends
 
-## iStroyline.js Framework (developed by Tang et al.)
-iStoryline.js is a JavaScript library for producing storyline visualizations with diverse sketchy styles. [Storyline visualization](https://xkcd.com/657/) is a fancy way to tell a story. Lines represent characters in the story. This fancy visualization naturally has some advantages in explaining the story:
-
-- The overall trend of the lines can vividly represent the evolution of the plot.
-- The interval between the lines can also display the relation of the characters.
-
-![storylines](https://user-images.githubusercontent.com/18184786/88198333-2cea9600-cc76-11ea-83fa-bbf2676fc61d.png)
-
-Example storyline visualizations created using iStoryline.js. The styles and visual labels are customized manually to embellish the storylines.
-For more information, please check [Tang et al.'s paper](http://www.tantang.org/publication/2018_infovis_istoryline/2018_infovis_istoryline.pdf) and the [supplement material](https://istoryline.github.io/).
-
-## Visualizing League of Legends Matches
+## Introduction
 
 Since storyline visualization could provide information of time, players and events in a direct manner, and is less developed, I adapted this framework to visualize League of Legend matches. For more details, check [our paper](https://dl.acm.org/doi/10.1145/3611058).
 As for now, this web app supports visualizing the following information:
