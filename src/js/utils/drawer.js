@@ -35,73 +35,29 @@ let playerColour = {
   Player10: '#ffd149',
 }
 
-export function drawSegmentPath(
-  pathStr,
-  defaultWidth = 2,
-  hoverWidth = 4,
-  character
-) {
-  const pathSvg = svg.path(pathStr)
-
-  let color = 'black'
-  // let svgText = svg.text(10, 10, "Test")
-
-  // console.log(positionInfo)
-
-  // console.log('Received: ' + playerInfo)
-
-  switch (character) {
-    case 'Player2':
-      color = playerColour[character]
-      pathSvg.attr({
-        opacity: 0.7,
-      })
-      break
-    case 'Player3':
-      color = playerColour[character]
-      pathSvg.attr({
-        opacity: 0.7,
-      })
-      break
-    case 'Player4':
-      color = playerColour[character]
-      pathSvg.attr({
-        opacity: 0.7,
-      })
-      break
-    case 'Player5':
-      color = playerColour[character]
-      pathSvg.attr({
-        opacity: 0.7,
-      })
-      break
-    case 'Player6':
-      color = playerColour[character]
-      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6,4' })
-      break
-    case 'Player7':
-      color = playerColour[character]
-      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
-      break
-    case 'Player8':
-      color = playerColour[character]
-      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
-      break
-    case 'Player9':
-      color = playerColour[character]
-      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
-      break
-    case 'Player10':
-      color = playerColour[character]
-      pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' })
-      break
-    default:
-      color = playerColour[character]
-      pathSvg.attr({
-        // 'stroke-dasharray': '4',
-        opacity: 0.7,
-      })
+function setPathAttributes(pathSvg, character) {
+  if (['Player6', 'Player7', 'Player8', 'Player9', 'Player10'].includes(character)) {
+    pathSvg.attr({ opacity: 0.7, 'stroke-dasharray': '6, 4' });
+  } else {
+    pathSvg.attr({ opacity: 0.7 });
   }
+  pathSvg.attr({
+    fill: 'none',
+    stroke: playerColour[character],
+    'stroke-width': 4,
+  });
+}
+
+export function drawSegmentPath(pathStr, defaultWidth = 2, hoverWidth = 4, character) {
+  const pathSvg = svg.path(pathStr);
+  setPathAttributes(pathSvg, character);
+
+  pathSvg.hover(
+    () => pathSvg.attr({ 'stroke-width': 8 }),
+    () => pathSvg.attr({ 'stroke-width': 4 })
+  );
+
+  return pathSvg;
 
   pathSvg.hover(
     () => {

@@ -292,92 +292,22 @@ export function drawStoryline(
 
     playerInfo = participantsInfo
 
-    const segmentPathSvg = drawSegmentPath(
-      segmentPath,
-      2,
-      4,
-      character,
-      namePosition,
-      perTimestamp
-    ) // To pass the character info, participants info as well as the generated array
+    const segmentPathSvg = drawSegmentPath(segmentPath, 2, 4, character);
 
     segmentPathSvg.hover(
       event => {
-        pt.x = event.clientX
-        pt.y = event.clientY
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
 
-        console.log(event.clientX, event.clientY)
+        const idNumber = parseInt(character.match(/\d/g).join(''));
+        const placeIndex = session[idNumber - 1][idx];
+        const accessIndex = placeIndex - 1;
 
-        pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-        // console.log(pt.x, pt.y)
-
-        let idNumber = character.match(/\d/g)
-        idNumber = parseInt(idNumber.join(''))
-        // console.log(idNumber, playerInfo[idNumber * 2 - 1])
-
-        let placeIndex = session[parseInt(idNumber) - 1][idx]
-        // console.log(placeIndex)
-
-        let accessIndex = session[parseInt(idNumber) - 1][idx] - 1
-
-        const mapSize = 200
-        const maskSize = 200
-        let tipX = pt.x
-        let tipY = pt.y
-
-        // console.log(playerInfo)
-
-        drawLineTip(
-          tipX,
-          tipY,
-          mapSize,
-          maskSize,
-          playerInfo,
-          idNumber,
-          locationSet,
-          accessIndex,
-          placeIndex
-        )
-
-        /*if (pt.y > 220 && pt.y < 995) {
-          tipX -= 100
-          tipY -= 100
-          drawLineTip(
-            tipX,
-            tipY,
-            mapSize,
-            maskSize,
-            playerInfo,
-            idNumber,
-            locationSet,
-            accessIndex,
-            placeIndex
-          )
-        } else if (pt.y >= 995) {
-          tipX -= 100
-          tipY -= 400
-          drawLineTip(
-            tipX,
-            tipY,
-            mapSize,
-            maskSize,
-            playerInfo,
-            idNumber,
-            locationSet,
-            accessIndex,
-            placeIndex
-          )
-        } else {
-          tipX -= 100
-          tipY += 50
-
-        }*/
+        drawLineTip(pt.x, pt.y, 200, 200, playerInfo, idNumber, locationSet, accessIndex, placeIndex);
       },
-      () => {
-        removeTips()
-      }
-    )
+      removeTips
+    );
   })
 }
 
