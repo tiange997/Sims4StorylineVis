@@ -165,7 +165,9 @@ export function drawStoryline(
 
   // console.log(participantsInfo)
 
-
+  // Log storyline data for this character
+  console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
+  console.log('Storyline array:', storyline)
 
   storyline.forEach((segment, idx) => {
     // console.log(character)
