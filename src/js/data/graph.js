@@ -153,7 +153,7 @@ export class Graph {
 
   /**
    * Get the x pos of the specified character at a given time.
-   * Now uses linear interpolation between the two nearest timeStamps for more accurate event placement.
+   * Now uses arc-length interpolation along the polyline of the segment for accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -189,33 +189,59 @@ export class Graph {
     }
 
     // Defensive: if segment does not exist, return -1
-    if (!segments[segIdx] || segments[segIdx].length < 2) return -1;
+    const segment = segments[segIdx];
+    if (!segment || segment.length < 2) return -1;
 
-    // Get the start and end node for this segment
-    const startNode = segments[segIdx][0];
-    const endNode = segments[segIdx][segments[segIdx].length - 1];
-
-    // Get the start and end times
+    // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
     const t1 = timeStamps[segIdx + 1];
 
-    // Get the start and end X positions
-    const x0 = startNode[0];
-    const x1 = endNode[0];
-
-    // Linear interpolation
-    let x;
+    // Calculate the proportion of time between t0 and t1
+    let p;
     if (t1 === t0) {
-      x = x0;
+      p = 0;
     } else {
-      x = x0 + ((x1 - x0) * (time - t0)) / (t1 - t0);
+      p = (time - t0) / (t1 - t0);
+      if (p < 0) p = 0;
+      if (p > 1) p = 1;
     }
-    return x;
+
+    // Arc-length interpolate along the polyline of the segment
+    // 1. Compute total length of the polyline
+    let totalLength = 0;
+    let segLengths = [];
+    for (let i = 0; i < segment.length - 1; i++) {
+      const dx = segment[i + 1][0] - segment[i][0];
+      const dy = segment[i + 1][1] - segment[i][1];
+      const len = Math.sqrt(dx * dx + dy * dy);
+      segLengths.push(len);
+      totalLength += len;
+    }
+
+    // 2. Find the target length along the polyline
+    const targetLength = totalLength * p;
+
+    // 3. Walk along the polyline to find the correct segment and interpolate
+    let accLength = 0;
+    for (let i = 0; i < segment.length - 1; i++) {
+      if (accLength + segLengths[i] >= targetLength) {
+        // Interpolate within this segment
+        const remain = targetLength - accLength;
+        const localP = segLengths[i] === 0 ? 0 : remain / segLengths[i];
+        // Linear interpolate between segment[i] and segment[i+1]
+        const x =
+          segment[i][0] + (segment[i + 1][0] - segment[i][0]) * localP;
+        return x;
+      }
+      accLength += segLengths[i];
+    }
+    // If we didn't find it (shouldn't happen), return last point's x
+    return segment[segment.length - 1][0];
   }
 
   /**
    * Get the y pos of the specified character at a given time.
-   * Now uses linear interpolation between the two nearest timeStamps for more accurate event placement.
+   * Now uses arc-length interpolation along the polyline of the segment for accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -251,28 +277,54 @@ export class Graph {
     }
 
     // Defensive: if segment does not exist, return -1
-    if (!segments[segIdx] || segments[segIdx].length < 2) return -1;
+    const segment = segments[segIdx];
+    if (!segment || segment.length < 2) return -1;
 
-    // Get the start and end node for this segment
-    const startNode = segments[segIdx][0];
-    const endNode = segments[segIdx][segments[segIdx].length - 1];
-
-    // Get the start and end times
+    // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
     const t1 = timeStamps[segIdx + 1];
 
-    // Get the start and end Y positions
-    const y0 = startNode[1];
-    const y1 = endNode[1];
-
-    // Linear interpolation
-    let y;
+    // Calculate the proportion of time between t0 and t1
+    let p;
     if (t1 === t0) {
-      y = y0;
+      p = 0;
     } else {
-      y = y0 + ((y1 - y0) * (time - t0)) / (t1 - t0);
+      p = (time - t0) / (t1 - t0);
+      if (p < 0) p = 0;
+      if (p > 1) p = 1;
     }
-    return y;
+
+    // Arc-length interpolate along the polyline of the segment
+    // 1. Compute total length of the polyline
+    let totalLength = 0;
+    let segLengths = [];
+    for (let i = 0; i < segment.length - 1; i++) {
+      const dx = segment[i + 1][0] - segment[i][0];
+      const dy = segment[i + 1][1] - segment[i][1];
+      const len = Math.sqrt(dx * dx + dy * dy);
+      segLengths.push(len);
+      totalLength += len;
+    }
+
+    // 2. Find the target length along the polyline
+    const targetLength = totalLength * p;
+
+    // 3. Walk along the polyline to find the correct segment and interpolate
+    let accLength = 0;
+    for (let i = 0; i < segment.length - 1; i++) {
+      if (accLength + segLengths[i] >= targetLength) {
+        // Interpolate within this segment
+        const remain = targetLength - accLength;
+        const localP = segLengths[i] === 0 ? 0 : remain / segLengths[i];
+        // Linear interpolate between segment[i] and segment[i+1]
+        const y =
+          segment[i][1] + (segment[i + 1][1] - segment[i][1]) * localP;
+        return y;
+      }
+      accLength += segLengths[i];
+    }
+    // If we didn't find it (shouldn't happen), return last point's y
+    return segment[segment.length - 1][1];
   }
 
   getPosID(storylineID, storySegmentID, time) {
