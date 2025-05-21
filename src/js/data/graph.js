@@ -150,6 +150,7 @@ export class Graph {
 
   /**
    * Get the x pos of the specified character at a given time.
+   * Now uses linear interpolation between the two nearest timeStamps for more accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -157,26 +158,61 @@ export class Graph {
    * @return X
    */
   getCharacterX(storylineName, time) {
-    let storylineID = this.getStorylineIDByName(storylineName)
-    let retX = -1
-    for (let i = 0; i < this._nodes[Number(storylineID)].length; i++) {
-      let k = this.getPosID(storylineID, String(i), time)
-      if (Number(k) === -1) continue
-      if (Number(k) & 1) k--
-      let staX = this.getStoryNodeX(k, String(i), storylineID)
-      let endX = this.getStoryNodeX(
-        String(Number(k) + 1),
-        String(i),
-        storylineID
-      )
-      retX = (staX + endX) * 0.5
-      break
+    // Find the storyline index
+    let storylineID = this.getStorylineIDByName(storylineName);
+    storylineID = Number(storylineID);
+    // Defensive: if storylineID is invalid, return -1
+    if (storylineID < 0 || storylineID >= this._nodes.length) return -1;
+
+    // Get the timeline (timeStamps) and the segments for this character
+    const timeStamps = this._story._timeStamps;
+    const segments = this._nodes[storylineID];
+
+    // Defensive: if no segments or timeStamps, return -1
+    if (!segments || !timeStamps || timeStamps.length < 2) return -1;
+
+    // Find which segment/time interval the event time falls into
+    let segIdx = -1;
+    for (let i = 0; i < timeStamps.length - 1; i++) {
+      if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
+        segIdx = i;
+        break;
+      }
     }
-    return retX
+    // If not found, clamp to first or last
+    if (segIdx === -1) {
+      if (time < timeStamps[0]) segIdx = 0;
+      else segIdx = timeStamps.length - 2;
+    }
+
+    // Defensive: if segment does not exist, return -1
+    if (!segments[segIdx] || segments[segIdx].length < 2) return -1;
+
+    // Get the start and end node for this segment
+    const startNode = segments[segIdx][0];
+    const endNode = segments[segIdx][segments[segIdx].length - 1];
+
+    // Get the start and end times
+    const t0 = timeStamps[segIdx];
+    const t1 = timeStamps[segIdx + 1];
+
+    // Get the start and end X positions
+    const x0 = startNode[0];
+    const x1 = endNode[0];
+
+    // Linear interpolation
+    let x;
+    if (t1 === t0) {
+      x = x0;
+    } else {
+      x = x0 + ((x1 - x0) * (time - t0)) / (t1 - t0);
+    }
+    return x;
   }
 
   /**
    * Get the y pos of the specified character at a given time.
+   * Now uses linear interpolation between the two nearest timeStamps for more accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -184,23 +220,56 @@ export class Graph {
    * @return Y
    */
   getCharacterY(storylineName, time) {
-    let storylineID = this.getStorylineIDByName(storylineName)
-    let retY = -1
-    console.log(this._nodes)
-    for (let i = 0; i < this._nodes[Number(storylineID)].length; i++) {
-      let k = this.getPosID(storylineID, String(i), time)
-      if (Number(k) === -1) continue
-      if (Number(k) & 1) k--
-      let staY = this.getStoryNodeY(k, String(i), storylineID)
-      let endY = this.getStoryNodeY(
-        String(Number(k) + 1),
-        String(i),
-        storylineID
-      )
-      retY = (staY + endY) * 0.5
-      break
+    // Find the storyline index
+    let storylineID = this.getStorylineIDByName(storylineName);
+    storylineID = Number(storylineID);
+    // Defensive: if storylineID is invalid, return -1
+    if (storylineID < 0 || storylineID >= this._nodes.length) return -1;
+
+    // Get the timeline (timeStamps) and the segments for this character
+    const timeStamps = this._story._timeStamps;
+    const segments = this._nodes[storylineID];
+
+    // Defensive: if no segments or timeStamps, return -1
+    if (!segments || !timeStamps || timeStamps.length < 2) return -1;
+
+    // Find which segment/time interval the event time falls into
+    let segIdx = -1;
+    for (let i = 0; i < timeStamps.length - 1; i++) {
+      if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
+        segIdx = i;
+        break;
+      }
     }
-    return retY
+    // If not found, clamp to first or last
+    if (segIdx === -1) {
+      if (time < timeStamps[0]) segIdx = 0;
+      else segIdx = timeStamps.length - 2;
+    }
+
+    // Defensive: if segment does not exist, return -1
+    if (!segments[segIdx] || segments[segIdx].length < 2) return -1;
+
+    // Get the start and end node for this segment
+    const startNode = segments[segIdx][0];
+    const endNode = segments[segIdx][segments[segIdx].length - 1];
+
+    // Get the start and end times
+    const t0 = timeStamps[segIdx];
+    const t1 = timeStamps[segIdx + 1];
+
+    // Get the start and end Y positions
+    const y0 = startNode[1];
+    const y1 = endNode[1];
+
+    // Linear interpolation
+    let y;
+    if (t1 === t0) {
+      y = y0;
+    } else {
+      y = y0 + ((y1 - y0) * (time - t0)) / (t1 - t0);
+    }
+    return y;
   }
 
   getPosID(storylineID, storySegmentID, time) {
