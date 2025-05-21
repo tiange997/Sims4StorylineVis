@@ -186,6 +186,7 @@ export class Graph {
   getCharacterY(storylineName, time) {
     let storylineID = this.getStorylineIDByName(storylineName)
     let retY = -1
+    console.log(this._nodes)
     for (let i = 0; i < this._nodes[Number(storylineID)].length; i++) {
       let k = this.getPosID(storylineID, String(i), time)
       if (Number(k) === -1) continue
