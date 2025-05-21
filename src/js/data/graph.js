@@ -70,6 +70,9 @@ export class Graph {
         }
       }
       if (segments.length > 0) {
+        // Log segments for this character
+        console.log('--- SEGMENTS FOR CHARACTER (row index):', row, '---')
+        console.log('Segments data structure:', segments)
         this._nodes.push(segments)
       }
       if (segmentPaths.length > 0) {
