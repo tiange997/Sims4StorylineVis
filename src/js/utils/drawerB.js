@@ -166,8 +166,8 @@ export function drawStoryline(
   // console.log(participantsInfo)
 
   // Log storyline data for this character
-  console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
-  console.log('Storyline array:', storyline)
+  // console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
+  // console.log('Storyline array:', storyline)
 
   storyline.forEach((segment, idx) => {
     // console.log(character)
@@ -256,22 +256,29 @@ export function drawStoryline(
 
     playerInfo = participantsInfo
 
-    const segmentPathSvg = drawSegmentPath(segmentPath, 2, 4, character);
+    const segmentPathSvg = drawSegmentPath(segmentPath, 2, 4, character)
 
-    segmentPathSvg.hover(
-      event => {
-        pt.x = event.clientX;
-        pt.y = event.clientY;
-        pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
+    segmentPathSvg.hover(event => {
+      pt.x = event.clientX
+      pt.y = event.clientY
+      pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-        const idNumber = parseInt(character.match(/\d/g).join(''));
-        const placeIndex = session[idNumber - 1][idx];
-        const accessIndex = placeIndex - 1;
+      const idNumber = parseInt(character.match(/\d/g).join(''))
+      const placeIndex = session[idNumber - 1][idx]
+      const accessIndex = placeIndex - 1
 
-        drawLineTip(pt.x, pt.y, 200, 200, playerInfo, idNumber, locationSet, accessIndex, placeIndex);
-      },
-      removeTips
-    );
+      drawLineTip(
+        pt.x,
+        pt.y,
+        200,
+        200,
+        playerInfo,
+        idNumber,
+        locationSet,
+        accessIndex,
+        placeIndex
+      )
+    }, removeTips)
   })
 }
 

@@ -116,3 +116,5 @@ $RECYCLE.BIN/
 /data/json/Match13/
 /data/json/Match14/
 /data/json/Match15/
+.aider*
+.env
