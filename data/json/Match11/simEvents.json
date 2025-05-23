@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": 1860,
+    "killerID": 2,
+    "killerName": "Sett",
+    "victimID": 1,
+    "victimName": "Kayle",
+    "position": {
+      "x": 4129,
+      "y": 13930
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 3000,
+    "killerID": 2,
+    "killerName": "Sett",
+    "victimID": 1,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7414,
+      "y": 7633
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 5000,
+    "killerID": 2,
+    "killerName": "Sett",
+    "victimID": 1,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7414,
+      "y": 7633
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 8000,
+    "killerID": 2,
+    "killerName": "Sett",
+    "victimID": 1,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7414,
+      "y": 7633
+    },
+    "killType": "CHAMPION_KILL"
+  },
+  {
+    "timestamp": 35000,
+    "killerID": 2,
+    "killerName": "Sett",
+    "victimID": 1,
+    "victimName": "Irelia",
+    "position": {
+      "x": 7414,
+      "y": 7633
+    },
+    "killType": "CHAMPION_KILL"
+  }
+]
