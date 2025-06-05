@@ -188,9 +188,44 @@ export class Graph {
       else segIdx = timeStamps.length - 2;
     }
 
-    // Defensive: if segment does not exist, return -1
-    const segment = segments[segIdx];
+    // Defensive: if segment does not exist, try to extend from nearest valid neighbour
+    let segment = segments[segIdx];
     if (!segment || segment.length < 2) {
+      // Try to extend from previous or next valid segment
+      let prev = segIdx - 1;
+      let next = segIdx + 1;
+      let found = false;
+      // Try previous
+      while (prev >= 0) {
+        if (segments[prev] && segments[prev].length >= 2) {
+          // Extend last point of prev segment forward
+          const p0 = segments[prev][segments[prev].length - 2];
+          const p1 = segments[prev][segments[prev].length - 1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          const ex = p1[0] + (dx / norm) * extLen;
+          return ex;
+        }
+        prev--;
+      }
+      // Try next
+      while (next < segments.length) {
+        if (segments[next] && segments[next].length >= 2) {
+          // Extend first point of next segment backward
+          const p0 = segments[next][0];
+          const p1 = segments[next][1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          const ex = p0[0] - (dx / norm) * extLen;
+          return ex;
+        }
+        next++;
+      }
+      // If still not found, warn and return -1
       console.warn(
         `[getCharacterX] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
         segment
@@ -282,9 +317,44 @@ export class Graph {
       else segIdx = timeStamps.length - 2;
     }
 
-    // Defensive: if segment does not exist, return -1
-    const segment = segments[segIdx];
+    // Defensive: if segment does not exist, try to extend from nearest valid neighbour
+    let segment = segments[segIdx];
     if (!segment || segment.length < 2) {
+      // Try to extend from previous or next valid segment
+      let prev = segIdx - 1;
+      let next = segIdx + 1;
+      let found = false;
+      // Try previous
+      while (prev >= 0) {
+        if (segments[prev] && segments[prev].length >= 2) {
+          // Extend last point of prev segment forward
+          const p0 = segments[prev][segments[prev].length - 2];
+          const p1 = segments[prev][segments[prev].length - 1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          const ey = p1[1] + (dy / norm) * extLen;
+          return ey;
+        }
+        prev--;
+      }
+      // Try next
+      while (next < segments.length) {
+        if (segments[next] && segments[next].length >= 2) {
+          // Extend first point of next segment backward
+          const p0 = segments[next][0];
+          const p1 = segments[next][1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          const ey = p0[1] - (dy / norm) * extLen;
+          return ey;
+        }
+        next++;
+      }
+      // If still not found, warn and return -1
       console.warn(
         `[getCharacterY] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
         segment
