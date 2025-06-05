@@ -190,7 +190,13 @@ export class Graph {
 
     // Defensive: if segment does not exist, return -1
     const segment = segments[segIdx];
-    if (!segment || segment.length < 2) return -1;
+    if (!segment || segment.length < 2) {
+      console.warn(
+        `[getCharacterX] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
+        segment
+      );
+      return -1;
+    }
 
     // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
@@ -278,7 +284,13 @@ export class Graph {
 
     // Defensive: if segment does not exist, return -1
     const segment = segments[segIdx];
-    if (!segment || segment.length < 2) return -1;
+    if (!segment || segment.length < 2) {
+      console.warn(
+        `[getCharacterY] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
+        segment
+      );
+      return -1;
+    }
 
     // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
