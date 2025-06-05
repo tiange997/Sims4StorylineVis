@@ -188,45 +188,9 @@ export class Graph {
       else segIdx = timeStamps.length - 2;
     }
 
-    // Defensive: if segment does not exist, try to extend from nearest valid neighbour
-    let segment = segments[segIdx];
-    if (!segment || segment.length < 2) {
-      // Try to extend from previous or next valid segment
-      let prev = segIdx - 1;
-      let next = segIdx + 1;
-      // Try previous
-      while (prev >= 0) {
-        if (segments[prev] && segments[prev].length >= 2) {
-          const p0 = segments[prev][segments[prev].length - 2];
-          const p1 = segments[prev][segments[prev].length - 1];
-          const dx = p1[0] - p0[0];
-          const dy = p1[1] - p0[1];
-          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const extLen = Math.sqrt(dx * dx + dy * dy);
-          return p1[0] + (dx / norm) * extLen;
-        }
-        prev--;
-      }
-      // Try next
-      while (next < segments.length) {
-        if (segments[next] && segments[next].length >= 2) {
-          const p0 = segments[next][0];
-          const p1 = segments[next][1];
-          const dx = p1[0] - p0[0];
-          const dy = p1[1] - p0[1];
-          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const extLen = Math.sqrt(dx * dx + dy * dy);
-          return p0[0] - (dx / norm) * extLen;
-        }
-        next++;
-      }
-      // If still not found, warn and return -1
-      console.warn(
-        `[getCharacterX] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
-        segment
-      );
-      return -1;
-    }
+    // Defensive: if segment does not exist, return -1
+    const segment = segments[segIdx];
+    if (!segment || segment.length < 2) return -1;
 
     // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
@@ -312,45 +276,9 @@ export class Graph {
       else segIdx = timeStamps.length - 2;
     }
 
-    // Defensive: if segment does not exist, try to extend from nearest valid neighbour
-    let segment = segments[segIdx];
-    if (!segment || segment.length < 2) {
-      // Try to extend from previous or next valid segment
-      let prev = segIdx - 1;
-      let next = segIdx + 1;
-      // Try previous
-      while (prev >= 0) {
-        if (segments[prev] && segments[prev].length >= 2) {
-          const p0 = segments[prev][segments[prev].length - 2];
-          const p1 = segments[prev][segments[prev].length - 1];
-          const dx = p1[0] - p0[0];
-          const dy = p1[1] - p0[1];
-          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const extLen = Math.sqrt(dx * dx + dy * dy);
-          return p1[1] + (dy / norm) * extLen;
-        }
-        prev--;
-      }
-      // Try next
-      while (next < segments.length) {
-        if (segments[next] && segments[next].length >= 2) {
-          const p0 = segments[next][0];
-          const p1 = segments[next][1];
-          const dx = p1[0] - p0[0];
-          const dy = p1[1] - p0[1];
-          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const extLen = Math.sqrt(dx * dx + dy * dy);
-          return p0[1] - (dy / norm) * extLen;
-        }
-        next++;
-      }
-      // If still not found, warn and return -1
-      console.warn(
-        `[getCharacterY] Segment missing or too short for character "${storylineName}" at time ${time}. segIdx: ${segIdx}, segment:`,
-        segment
-      );
-      return -1;
-    }
+    // Defensive: if segment does not exist, return -1
+    const segment = segments[segIdx];
+    if (!segment || segment.length < 2) return -1;
 
     // Get the start and end times for this segment
     const t0 = timeStamps[segIdx];
