@@ -182,10 +182,51 @@ export class Graph {
         break;
       }
     }
-    // If not found, clamp to first or last
+    // If not found, clamp to first or last and try to extend the segment
     if (segIdx === -1) {
-      if (time < timeStamps[0]) segIdx = 0;
-      else segIdx = timeStamps.length - 2;
+      if (time < timeStamps[0]) {
+        // Extend the first segment backward
+        const firstValid = segments.find(seg => seg && seg.length >= 2);
+        if (firstValid) {
+          const p0 = firstValid[0];
+          const p1 = firstValid[1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          // Extrapolate backwards by a factor proportional to how far before the first timestamp
+          const tDiff = timeStamps[1] - timeStamps[0];
+          const timeOffset = (timeStamps[0] - time) / (tDiff || 1);
+          const extLen = Math.sqrt(dx * dx + dy * dy) * (1 + timeOffset);
+          return p0[0] - (dx / norm) * extLen;
+        }
+        // If no valid segment, warn and return -1
+        console.warn(
+          `[getCharacterX] No valid segment to extend backward for character "${storylineName}" at time ${time}.`
+        );
+        return -1;
+      } else {
+        // Extend the last segment forward
+        const reversed = [...segments].reverse();
+        const lastValid = reversed.find(seg => seg && seg.length >= 2);
+        if (lastValid) {
+          const n = lastValid.length;
+          const p0 = lastValid[n - 2];
+          const p1 = lastValid[n - 1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          // Extrapolate forward by a factor proportional to how far after the last timestamp
+          const tDiff = timeStamps[timeStamps.length - 1] - timeStamps[timeStamps.length - 2];
+          const timeOffset = (time - timeStamps[timeStamps.length - 1]) / (tDiff || 1);
+          const extLen = Math.sqrt(dx * dx + dy * dy) * (1 + timeOffset);
+          return p1[0] + (dx / norm) * extLen;
+        }
+        // If no valid segment, warn and return -1
+        console.warn(
+          `[getCharacterX] No valid segment to extend forward for character "${storylineName}" at time ${time}.`
+        );
+        return -1;
+      }
     }
 
     // Defensive: if segment does not exist, try to extend from nearest valid neighbour
@@ -194,34 +235,29 @@ export class Graph {
       // Try to extend from previous or next valid segment
       let prev = segIdx - 1;
       let next = segIdx + 1;
-      let found = false;
       // Try previous
       while (prev >= 0) {
         if (segments[prev] && segments[prev].length >= 2) {
-          // Extend last point of prev segment forward
           const p0 = segments[prev][segments[prev].length - 2];
           const p1 = segments[prev][segments[prev].length - 1];
           const dx = p1[0] - p0[0];
           const dy = p1[1] - p0[1];
-          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
           const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const ex = p1[0] + (dx / norm) * extLen;
-          return ex;
+          const extLen = Math.sqrt(dx * dx + dy * dy);
+          return p1[0] + (dx / norm) * extLen;
         }
         prev--;
       }
       // Try next
       while (next < segments.length) {
         if (segments[next] && segments[next].length >= 2) {
-          // Extend first point of next segment backward
           const p0 = segments[next][0];
           const p1 = segments[next][1];
           const dx = p1[0] - p0[0];
           const dy = p1[1] - p0[1];
-          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
           const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const ex = p0[0] - (dx / norm) * extLen;
-          return ex;
+          const extLen = Math.sqrt(dx * dx + dy * dy);
+          return p0[0] - (dx / norm) * extLen;
         }
         next++;
       }
@@ -311,10 +347,51 @@ export class Graph {
         break;
       }
     }
-    // If not found, clamp to first or last
+    // If not found, clamp to first or last and try to extend the segment
     if (segIdx === -1) {
-      if (time < timeStamps[0]) segIdx = 0;
-      else segIdx = timeStamps.length - 2;
+      if (time < timeStamps[0]) {
+        // Extend the first segment backward
+        const firstValid = segments.find(seg => seg && seg.length >= 2);
+        if (firstValid) {
+          const p0 = firstValid[0];
+          const p1 = firstValid[1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          // Extrapolate backwards by a factor proportional to how far before the first timestamp
+          const tDiff = timeStamps[1] - timeStamps[0];
+          const timeOffset = (timeStamps[0] - time) / (tDiff || 1);
+          const extLen = Math.sqrt(dx * dx + dy * dy) * (1 + timeOffset);
+          return p0[1] - (dy / norm) * extLen;
+        }
+        // If no valid segment, warn and return -1
+        console.warn(
+          `[getCharacterY] No valid segment to extend backward for character "${storylineName}" at time ${time}.`
+        );
+        return -1;
+      } else {
+        // Extend the last segment forward
+        const reversed = [...segments].reverse();
+        const lastValid = reversed.find(seg => seg && seg.length >= 2);
+        if (lastValid) {
+          const n = lastValid.length;
+          const p0 = lastValid[n - 2];
+          const p1 = lastValid[n - 1];
+          const dx = p1[0] - p0[0];
+          const dy = p1[1] - p0[1];
+          const norm = Math.sqrt(dx * dx + dy * dy) || 1;
+          // Extrapolate forward by a factor proportional to how far after the last timestamp
+          const tDiff = timeStamps[timeStamps.length - 1] - timeStamps[timeStamps.length - 2];
+          const timeOffset = (time - timeStamps[timeStamps.length - 1]) / (tDiff || 1);
+          const extLen = Math.sqrt(dx * dx + dy * dy) * (1 + timeOffset);
+          return p1[1] + (dy / norm) * extLen;
+        }
+        // If no valid segment, warn and return -1
+        console.warn(
+          `[getCharacterY] No valid segment to extend forward for character "${storylineName}" at time ${time}.`
+        );
+        return -1;
+      }
     }
 
     // Defensive: if segment does not exist, try to extend from nearest valid neighbour
@@ -323,34 +400,29 @@ export class Graph {
       // Try to extend from previous or next valid segment
       let prev = segIdx - 1;
       let next = segIdx + 1;
-      let found = false;
       // Try previous
       while (prev >= 0) {
         if (segments[prev] && segments[prev].length >= 2) {
-          // Extend last point of prev segment forward
           const p0 = segments[prev][segments[prev].length - 2];
           const p1 = segments[prev][segments[prev].length - 1];
           const dx = p1[0] - p0[0];
           const dy = p1[1] - p0[1];
-          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
           const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const ey = p1[1] + (dy / norm) * extLen;
-          return ey;
+          const extLen = Math.sqrt(dx * dx + dy * dy);
+          return p1[1] + (dy / norm) * extLen;
         }
         prev--;
       }
       // Try next
       while (next < segments.length) {
         if (segments[next] && segments[next].length >= 2) {
-          // Extend first point of next segment backward
           const p0 = segments[next][0];
           const p1 = segments[next][1];
           const dx = p1[0] - p0[0];
           const dy = p1[1] - p0[1];
-          const extLen = Math.sqrt(dx * dx + dy * dy) * 0.05;
           const norm = Math.sqrt(dx * dx + dy * dy) || 1;
-          const ey = p0[1] - (dy / norm) * extLen;
-          return ey;
+          const extLen = Math.sqrt(dx * dx + dy * dy);
+          return p0[1] - (dy / norm) * extLen;
         }
         next++;
       }
