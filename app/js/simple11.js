@@ -6,6 +6,24 @@ import * as d3Fetch from 'd3-fetch'
 import Snap from 'snapsvg'
 import $ from 'jquery'
 
+// Step 1: Dynamically generate event type filter checkboxes based on event data
+const eventTypeFilterDiv = document.getElementById('eventTypeFilters')
+const eventTypeJsonPath = '../../data/json/Match11/Mock_Events_Data_1.json'
+
+d3Fetch.json(eventTypeJsonPath).then(data => {
+  // Get unique event types
+  const eventTypes = Array.from(new Set(data.map(ev => ev.eventType))).sort()
+  // Generate checkboxes
+  eventTypeFilterDiv.innerHTML = '<label>Show Event Types:</label><br>'
+  eventTypes.forEach((type, idx) => {
+    const id = `eventType_${idx}`
+    eventTypeFilterDiv.innerHTML += `
+      <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
+      <label for="${id}">${type}</label>
+    `
+  })
+})
+
 main('Match11/simsTest.json')
 
 // Initialise json files

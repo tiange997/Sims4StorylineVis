@@ -40,24 +40,8 @@
       </div>
       <svg id="mySvg" class="mySvg" height="100vh"></svg>
     </div>
-    <div>
-      <!--checkbox for visualization of event types filtering-->
-      <!-- Event type from Mock_Events_Data_1 -->
-        <label for="eventTypes">Show Event Types:</label>
-        <input type="checkbox" id="event1" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event2" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event3" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event4" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event5" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event6" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
-        <input type="checkbox" id="event7" name="eventTypes" checked>
-        <label for="eventTypes">Show Event Types</label>
+    <div id="eventTypeFilters">
+      <!-- Event type checkboxes will be dynamically generated here -->
     </div>
     <script>
       document.addEventListener('contextmenu', event => event.preventDefault())
