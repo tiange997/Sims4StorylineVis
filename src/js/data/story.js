@@ -68,6 +68,8 @@ export class Story {
     } else {
       console.error('Wrong fileType!')
     }
+    // Diagnostic: log the timeStamps after loading
+    console.log('[DIAGNOSE] _timeStamps after loading:', this._timeStamps)
   }
 
   /**
@@ -77,6 +79,8 @@ export class Story {
    */
   loadJson(json) {
     parseJSONFile(json, this)
+    // Diagnostic: log the timeStamps after loading
+    console.log('[DIAGNOSE] _timeStamps after loading:', this._timeStamps)
   }
 
   /**
