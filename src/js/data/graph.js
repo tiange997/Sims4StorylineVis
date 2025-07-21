@@ -200,22 +200,20 @@ export class Graph {
     }
     console.log(`[DIAGNOSE] getCharacterX: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
 
-    let segment = segments[segIdx];
-
-    // loop through the segments 3d array and find the point that based on segIdx if undefined
-
-    if (segment === undefined) {
-        let counter = 0;
-        for (let i = 0; i < segments.length - 1; i++) {
-          for (let j = 0; j < segments[i].length; j++) {
-            counter++;
-            if (counter === segIdx) {
-              segment = segments[i];
-              break;
-            }
-          }
-        }
+    // Map global segIdx to the character's segment index using segmentTimeIndices
+    let charSegIdx = segmentTimeIndices.indexOf(segIdx);
+    if (charSegIdx === -1) {
+      // If not found, use the first segment if event is before first appearance, or last if after
+      if (segIdx < segmentTimeIndices[0]) {
+        charSegIdx = 0;
+      } else if (segIdx > segmentTimeIndices[segmentTimeIndices.length - 1]) {
+        charSegIdx = segmentTimeIndices.length - 1;
+      } else {
+        // fallback: use the closest available segment
+        charSegIdx = 0;
+      }
     }
+    let segment = segments[charSegIdx];
 
     if (!segment || segment.length < 2) return -1;
 
@@ -310,21 +308,20 @@ export class Graph {
     }
     console.log(`[DIAGNOSE] getCharacterY: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
 
-    // Defensive: if segment does not exist, return -1
-    let segment = segments[segIdx];
-
-    if (segment === undefined) {
-      let counter = 0;
-      for (let i = 0; i < segments.length - 1; i++) {
-        for (let j = 0; j < segments[i].length; j++) {
-          counter++;
-          if (counter === segIdx) {
-            segment = segments[i];
-          }
-        }
+    // Map global segIdx to the character's segment index using segmentTimeIndices
+    let charSegIdx = segmentTimeIndices.indexOf(segIdx);
+    if (charSegIdx === -1) {
+      // If not found, use the first segment if event is before first appearance, or last if after
+      if (segIdx < segmentTimeIndices[0]) {
+        charSegIdx = 0;
+      } else if (segIdx > segmentTimeIndices[segmentTimeIndices.length - 1]) {
+        charSegIdx = segmentTimeIndices.length - 1;
+      } else {
+        // fallback: use the closest available segment
+        charSegIdx = 0;
       }
     }
-
+    let segment = segments[charSegIdx];
 
     if (!segment || segment.length < 2) return -1;
 
