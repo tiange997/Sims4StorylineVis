@@ -193,6 +193,10 @@ export class Graph {
           break;
         }
       }
+      // If not found, and time is before the first timestamp, assign to first segment
+      if (segIdx === -1 && time < timeStamps[0]) {
+        segIdx = 0;
+      }
     }
     console.log(`[DIAGNOSE] getCharacterX: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
 
@@ -298,6 +302,10 @@ export class Graph {
           segIdx = i;
           break;
         }
+      }
+      // If not found, and time is before the first timestamp, assign to first segment
+      if (segIdx === -1 && time < timeStamps[0]) {
+        segIdx = 0;
       }
     }
     console.log(`[DIAGNOSE] getCharacterY: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
