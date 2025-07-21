@@ -181,9 +181,7 @@ export class Graph {
     // Defensive: if no segments or timeStamps, return -1
     if (!segments || !timeStamps || timeStamps.length < 2) return -1;
 
-
-
-    // Find which segment/time interval the event time falls into
+    // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
     for (let i = 0; i < timeStamps.length - 1; i++) {
       if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
@@ -191,6 +189,7 @@ export class Graph {
         break;
       }
     }
+    console.log(`[DIAGNOSE] getCharacterX: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
 
     let segment = segments[segIdx];
 
@@ -283,7 +282,7 @@ export class Graph {
     // Defensive: if no segments or timeStamps, return -1
     if (!segments || !timeStamps || timeStamps.length < 2) return -1;
 
-    // Find which segment/time interval the event time falls into
+    // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
     for (let i = 0; i < timeStamps.length - 1; i++) {
       if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
@@ -291,7 +290,7 @@ export class Graph {
         break;
       }
     }
-
+    console.log(`[DIAGNOSE] getCharacterY: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
 
     // Defensive: if segment does not exist, return -1
     let segment = segments[segIdx];
