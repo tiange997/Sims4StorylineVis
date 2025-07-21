@@ -184,7 +184,7 @@ export class Graph {
     // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
     for (let i = 0; i < timeStamps.length - 1; i++) {
-      if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
+      if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
         segIdx = i;
         break;
       }
@@ -285,7 +285,7 @@ export class Graph {
     // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
     for (let i = 0; i < timeStamps.length - 1; i++) {
-      if (time >= timeStamps[i] && time <= timeStamps[i + 1]) {
+      if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
         segIdx = i;
         break;
       }
