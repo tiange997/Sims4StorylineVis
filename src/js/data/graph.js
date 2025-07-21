@@ -183,10 +183,15 @@ export class Graph {
 
     // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
-    for (let i = 0; i < timeStamps.length - 1; i++) {
-      if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
-        segIdx = i;
-        break;
+    // Special handling for time equal to the last timestamp: assign to last segment
+    if (time === timeStamps[timeStamps.length - 1]) {
+      segIdx = timeStamps.length - 2;
+    } else {
+      for (let i = 0; i < timeStamps.length - 1; i++) {
+        if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
+          segIdx = i;
+          break;
+        }
       }
     }
     console.log(`[DIAGNOSE] getCharacterX: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
@@ -284,10 +289,15 @@ export class Graph {
 
     // DIAGNOSTIC: Log which interval this time falls into
     let segIdx = -1;
-    for (let i = 0; i < timeStamps.length - 1; i++) {
-      if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
-        segIdx = i;
-        break;
+    // Special handling for time equal to the last timestamp: assign to last segment
+    if (time === timeStamps[timeStamps.length - 1]) {
+      segIdx = timeStamps.length - 2;
+    } else {
+      for (let i = 0; i < timeStamps.length - 1; i++) {
+        if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
+          segIdx = i;
+          break;
+        }
       }
     }
     console.log(`[DIAGNOSE] getCharacterY: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
