@@ -46,6 +46,8 @@ export class Graph {
     for (let row = 0; row < rows; row++) {
       let segments = []
       let segmentPaths = []
+      let segmentTimeIndices = []; // New: stores the col index (time interval) for each segment
+
       for (let col = 0; col < cols; col++) {
         let characterStatus = characterTable.value(row, col)
         if (characterStatus > 0) {
@@ -53,6 +55,7 @@ export class Graph {
           let positionId = positionTable.value(row, col)
           let segment = this._story._positions[positionId]
           segments.push(segment)
+          segmentTimeIndices.push(col); // Map this segment to the col (time interval)
           // storyline paths
           let pathId = pathTable.value(row, col)
           let path = this._story._paths[pathId]
@@ -74,6 +77,8 @@ export class Graph {
         console.log('--- SEGMENTS FOR CHARACTER (row index):', row, '---')
         console.log('Segments data structure:', segments)
         this._nodes.push(segments)
+        this._segmentTimeIndices = this._segmentTimeIndices || [];
+        this._segmentTimeIndices.push(segmentTimeIndices);
       }
       if (segmentPaths.length > 0) {
         this._paths.push(segmentPaths)
@@ -164,15 +169,19 @@ export class Graph {
     // Find the storyline index
     let storylineID = this.getStorylineIDByName(storylineName);
     storylineID = Number(storylineID);
+
     // Defensive: if storylineID is invalid, return -1
-    if (storylineID < 0 || storylineID >= this._nodes.length) return -1;
+    if (storylineID < 0) return -1;
 
     // Get the timeline (timeStamps) and the segments for this character
     const timeStamps = this._story._timeStamps;
     const segments = this._nodes[storylineID];
+    const segmentTimeIndices = this._segmentTimeIndices[storylineID];
 
     // Defensive: if no segments or timeStamps, return -1
     if (!segments || !timeStamps || timeStamps.length < 2) return -1;
+
+
 
     // Find which segment/time interval the event time falls into
     let segIdx = -1;
@@ -182,14 +191,24 @@ export class Graph {
         break;
       }
     }
-    // If not found, clamp to first or last
-    if (segIdx === -1) {
-      if (time < timeStamps[0]) segIdx = 0;
-      else segIdx = timeStamps.length - 2;
+
+    let segment = segments[segIdx];
+
+    // loop through the segments 3d array and find the point that based on segIdx if undefined
+
+    if (segment === undefined) {
+        let counter = 0;
+        for (let i = 0; i < segments.length - 1; i++) {
+          for (let j = 0; j < segments[i].length; j++) {
+            counter++;
+            if (counter === segIdx) {
+              segment = segments[i];
+              break;
+            }
+          }
+        }
     }
 
-    // Defensive: if segment does not exist, return -1
-    const segment = segments[segIdx];
     if (!segment || segment.length < 2) return -1;
 
     // Get the start and end times for this segment
@@ -252,6 +271,8 @@ export class Graph {
     // Find the storyline index
     let storylineID = this.getStorylineIDByName(storylineName);
     storylineID = Number(storylineID);
+    const segmentTimeIndices = this._segmentTimeIndices[storylineID];
+
     // Defensive: if storylineID is invalid, return -1
     if (storylineID < 0 || storylineID >= this._nodes.length) return -1;
 
@@ -270,14 +291,24 @@ export class Graph {
         break;
       }
     }
-    // If not found, clamp to first or last
-    if (segIdx === -1) {
-      if (time < timeStamps[0]) segIdx = 0;
-      else segIdx = timeStamps.length - 2;
-    }
+
 
     // Defensive: if segment does not exist, return -1
-    const segment = segments[segIdx];
+    let segment = segments[segIdx];
+
+    if (segment === undefined) {
+      let counter = 0;
+      for (let i = 0; i < segments.length - 1; i++) {
+        for (let j = 0; j < segments[i].length; j++) {
+          counter++;
+          if (counter === segIdx) {
+            segment = segments[i];
+          }
+        }
+      }
+    }
+
+
     if (!segment || segment.length < 2) return -1;
 
     // Get the start and end times for this segment
