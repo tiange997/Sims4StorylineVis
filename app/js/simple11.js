@@ -1690,17 +1690,16 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        const chatIcon = svg
+        // using snap svg to read Chat icon from the file, then change the fill value to the player colour before drawing it
+
+        svg
           .image(
             `../../src/image/Interaction_Events/Chat.svg`,
             deathPosX - offset,
             deathPosY - offset,
             iconSize,
             iconSize
-          );
-        console.log(currentPlayer, playerColour[currentPlayer])
-        chatIcon.attr({ fill: `${playerColour[currentPlayer]}` })
-        chatIcon.hover(
+          ).hover(
             event => {
               pt.x = event.clientX
               pt.y = event.clientY
