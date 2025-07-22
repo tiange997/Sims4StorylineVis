@@ -999,7 +999,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
       // let posY = data[i]['position']['y']
       let interactee = data[i]['interactee']
       let interactor = data[i]['interactor']
-
+      let eventType = data[i]['eventType']
 
       let interacteeID = heroArray.indexOf(interactee) + 1 // +1 for real position
 
@@ -1023,181 +1023,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
       // let killing
 
-      if (data[i]['eventType'] === 'Relocation') {
-        const iconSize = 30
-        const offset = iconSize / 2
-
-        let playerIndex = data[i]['interactorID']
-        let currentTimestamp = data[i]['timestamp']
-        let currentPlayer = 'Player' + String(playerIndex)
-
-        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
-        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
-
-        // fixed issue here: getCharacterX and getCharacterY is not accurate when working with small amount of data (segment nodes <- this is generated based on the timestamp data)
-        // this is because the interpolation is linear and is based on the node positions in between a time segment
-        // and not based on the simple path used in the drawer js file
-
-        // try to pass the events to the drawer script and draw events for each segment
-
-        // console.log(currentTimestamp, deathPosX, deathPosY)
-
-        // console.log("Interactee: " + interactee)
-        // console.log("Interactor: " + interactor)
-
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
-        // console.log('CP: ' + (parseInt(indexHolder) - 1))
-
-        // playerIndex = reverseId(playerIndex)
-
-        svg
-          .image(
-            `../../src/image/Events_General/house.png`,
-            deathPosX - offset,
-            deathPosY - offset,
-            iconSize,
-            iconSize
-          )
-          .hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
-
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-              // const mapSize = 200
-
-              let tipX = pt.x
-              let tipY = pt.y
-
-              console.log(tipX, tipY)
-
-              console.log(currentTimestamp, deathPosX, deathPosY)
-
-              /*                  if (pt.y >= 850) {
-                                      // tipX -= 100
-                                      tipY -= 100
-                                    }*/
-
-              if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
-              }
-
-              if (pt.x >= 5700) {
-                tipX -= 200
-              }
-
-              // console.log(posX, posY)
-              // console.log(timeStamp(currentTimestamp))
-
-              // let xOffset = (posX / 15000) * 200
-              // let yOffset = 200 - (posY / 15000) * 200
-
-              currentPlayer = 'Player' + String(playerIndex)
-
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, 250, 125, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              })
-
-              interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
-              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
-
-              interacteeIcon = svg.image(
-                `../../src/image/Characters/${interactee}.png`, // hardcoded for now
-                  133 + tipX,
-                  41 + tipY,
-                  40,
-                  40
-              )
-
-              interactorIcon = svg.image(
-                  `../../src/image/Characters/${interactor}.png`, // hardcoded for now
-                  38 + tipX,
-                  40 + tipY,
-                  40,
-                  40
-              )
-
-              // interacteeBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour['Player' + interacteeID]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
-
-
-
-              interacteeNameElement = svg.text(
-                  130 + tipX,
-                  35 + 50 + 20 + tipY,
-                interactee
-              )
-
-
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
-
-              interactorNameElement = svg.text(
-                  35 + tipX,
-                  35 + 50 + 20 + tipY,
-                interactor
-              )
-
-              /*mask = svg
-                    .rect(tipX + 25, tipY + 115, mapSize, mapSize, 10, 10)
-                    .attr({ fill: 'rgba(225, 225, 0)' })
-                  img = svg.image(
-                    `../../src/image/MiniMap.png`,
-                    tipX + 25,
-                    tipY + 115,
-                    mapSize,
-                    mapSize
-                  )
-                  img.attr({
-                    mask: mask,
-                  })
-                  innerCircle = svg
-                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 4)
-                    .attr({ fill: 'none', stroke: `white`, strokeWidth: '3px' })
-                  killing = svg
-                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 5)
-                    .attr({
-                      fill: 'none',
-                      stroke: `${playerColour[currentPlayer]}`,
-                      strokeWidth: '2px',
-                    })*/
-              // console.log(currentTimestamp, currentPlayer)
-            },
-            () => {
-              border.remove()
-              interacteeText.remove()
-              interacteeIcon.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              /*mask.remove()
-                  img.remove()
-                  killing.remove()
-                  innerCircle.remove()*/
-              // interactorBorder.remove()
-              // interacteeBorder.remove()
-              interacteeNameElement.remove()
-              interactorNameElement.remove()
-            }
-          )
-      }
-
-      if (data[i]['eventType'] === 'Moving_In') {
+      if (eventType === 'Relocation') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1218,7 +1044,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
         svg
           .image(
-            `../../src/image/Events_General/Move.png`,
+            `../../src/image/Events_General/${eventType}.png`,
             deathPosX - offset,
             deathPosY - offset,
             iconSize,
@@ -1252,8 +1078,16 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, 250, 125, 10, 10).attr({
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1293,7 +1127,423 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           )
       }
 
-      if (data[i]['eventType'] === 'System_Sim_Status') {
+      if (eventType === 'Moving_In') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // console.log(eventDetails, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Events_General/${eventType}.png`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              // console.log(currentTimestamp, deathPosX, deathPosY)
+
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
+              //   fill: 'none',
+              //   stroke: `${playerColour[currentPlayer]}`,
+              //   'stroke-width': '3',
+              //   opacity: 0.7,
+              // })
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              )
+
+            },
+            () => {
+              border.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interactorNameElement.remove()
+            }
+          )
+      }
+
+      if (eventType === 'Sleep') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // console.log(eventDetails, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Events_General/${eventType}.svg`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              // console.log(currentTimestamp, deathPosX, deathPosY)
+
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
+              //   fill: 'none',
+              //   stroke: `${playerColour[currentPlayer]}`,
+              //   'stroke-width': '3',
+              //   opacity: 0.7,
+              // })
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              )
+
+            },
+            () => {
+              border.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interactorNameElement.remove()
+            }
+          )
+      }
+
+      if (eventType === 'Purchasing') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // console.log(eventDetails, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Events_General/${eventType}.svg`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              // console.log(currentTimestamp, deathPosX, deathPosY)
+
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
+              //   fill: 'none',
+              //   stroke: `${playerColour[currentPlayer]}`,
+              //   'stroke-width': '3',
+              //   opacity: 0.7,
+              // })
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              )
+
+            },
+            () => {
+              border.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interactorNameElement.remove()
+            }
+          )
+      }
+
+      if (eventType === 'Reading') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // console.log(eventDetails, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Events_General/${eventType}.svg`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              // console.log(currentTimestamp, deathPosX, deathPosY)
+
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
+              //   fill: 'none',
+              //   stroke: `${playerColour[currentPlayer]}`,
+              //   'stroke-width': '3',
+              //   opacity: 0.7,
+              // })
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              )
+
+            },
+            () => {
+              border.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interactorNameElement.remove()
+            }
+          )
+      }
+
+      if (eventType === 'System_Sim_Status') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1348,8 +1598,16 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, 250, 125, 10, 10).attr({
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1389,7 +1647,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           )
       }
 
-      if (data[i]['eventType'] === 'Hostility') {
+      if (eventType === 'Hostility') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1441,10 +1699,16 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
+              let length;
 
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, calculateBorderLength(eventDetails, 50), 180, 10, 10).attr({
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1531,7 +1795,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           )
       }
 
-      if (data[i]['eventType'] === 'Texting') {
+      if (eventType === 'Texting') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1583,10 +1847,16 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
+              let length;
 
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, calculateBorderLength(eventDetails, 50), 180, 10, 10).attr({
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1673,7 +1943,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           )
       }
 
-      if (data[i]['eventType'] === 'Chat') {
+      if (eventType === 'Chat') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1691,7 +1961,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
         indexHolder = indexHolder.join('')
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
-        Snap.load(`../../src/image/Interaction_Events/Chat.svg`, function (f) {
+        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function (f) {
           // Remove all fill attributes from the SVG to ensure full override
           f.selectAll('*').forEach(function(el) {
             el.attr({ fill: null });
@@ -1736,7 +2006,15 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
-              border = svg.rect(tipX, tipY, calculateBorderLength(eventDetails, 50), 180, 10, 10).attr({
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1792,6 +2070,399 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           );
         });
       }
+
+      if (eventType === 'Hug') {
+        const iconSize = 40
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function (f) {
+          // Remove all fill attributes from the SVG to ensure full override
+          f.selectAll('*').forEach(function(el) {
+            el.attr({ fill: null });
+          });
+          // Set fill for all paths/shapes in the SVG
+          f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
+            el.attr({ fill: playerColour[currentPlayer] || '#000' });
+          });
+          // Create a group for the icon
+          let g = svg.group();
+          g.append(f);
+          // Set the icon to the correct size and position
+          g.transform('');
+          g.attr({
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+          });
+          // Set the bounding box to the correct size
+          g.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
+          });
+          // Add hover behaviour as before
+          g.hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+              console.log(currentTimestamp, deathPosX, deathPosY)
+
+              if (pt.y >= 950) {
+                tipY -= 50
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+              interacteeIcon = svg.image(
+                `../../src/image/Characters/${interactee}.png`,
+                133 + tipX,
+                41 + tipY,
+                40,
+                40
+              )
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`,
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              interacteeNameElement = svg.text(
+                130 + tipX,
+                35 + 50 + 20 + tipY,
+                interactee
+              )
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                interactor
+              )
+
+              eventInfo = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY + 45,
+                eventDetails
+              )
+            },
+            () => {
+              border.remove()
+              interacteeText.remove()
+              interacteeIcon.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interacteeNameElement.remove()
+              interactorNameElement.remove()
+              eventInfo.remove()
+            }
+          );
+        });
+      }
+
+      if (eventType === 'Sex') {
+        const iconSize = 40
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function (f) {
+          // Remove all fill attributes from the SVG to ensure full override
+          f.selectAll('*').forEach(function(el) {
+            el.attr({ fill: null });
+          });
+          // Set fill for all paths/shapes in the SVG
+          f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
+            el.attr({ fill: playerColour[currentPlayer] || '#000' });
+          });
+          // Create a group for the icon
+          let g = svg.group();
+          g.append(f);
+          // Set the icon to the correct size and position
+          g.transform('');
+          g.attr({
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+          });
+          // Set the bounding box to the correct size
+          g.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
+          });
+          // Add hover behaviour as before
+          g.hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+              console.log(currentTimestamp, deathPosX, deathPosY)
+
+              if (pt.y >= 950) {
+                tipY -= 50
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+              interacteeIcon = svg.image(
+                `../../src/image/Characters/${interactee}.png`,
+                133 + tipX,
+                41 + tipY,
+                40,
+                40
+              )
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`,
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              interacteeNameElement = svg.text(
+                130 + tipX,
+                35 + 50 + 20 + tipY,
+                interactee
+              )
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                interactor
+              )
+
+              eventInfo = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY + 45,
+                eventDetails
+              )
+            },
+            () => {
+              border.remove()
+              interacteeText.remove()
+              interacteeIcon.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interacteeNameElement.remove()
+              interactorNameElement.remove()
+              eventInfo.remove()
+            }
+          );
+        });
+      }
+
+      if (eventType === 'Flirt') {
+        const iconSize = 40
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function (f) {
+          // Remove all fill attributes from the SVG to ensure full override
+          f.selectAll('*').forEach(function(el) {
+            el.attr({ fill: null });
+          });
+          // Set fill for all paths/shapes in the SVG
+          f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
+            el.attr({ fill: playerColour[currentPlayer] || '#000' });
+          });
+          // Create a group for the icon
+          let g = svg.group();
+          g.append(f);
+          // Set the icon to the correct size and position
+          g.transform('');
+          g.attr({
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+          });
+          // Set the bounding box to the correct size
+          g.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
+          });
+          // Add hover behaviour as before
+          g.hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+              console.log(currentTimestamp, deathPosX, deathPosY)
+
+              if (pt.y >= 950) {
+                tipY -= 50
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+              interacteeIcon = svg.image(
+                `../../src/image/Characters/${interactee}.png`,
+                133 + tipX,
+                41 + tipY,
+                40,
+                40
+              )
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`,
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              interacteeNameElement = svg.text(
+                130 + tipX,
+                35 + 50 + 20 + tipY,
+                interactee
+              )
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                interactor
+              )
+
+              eventInfo = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY + 45,
+                eventDetails
+              )
+            },
+            () => {
+              border.remove()
+              interacteeText.remove()
+              interacteeIcon.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interacteeNameElement.remove()
+              interactorNameElement.remove()
+              eventInfo.remove()
+            }
+          );
+        });
+      }
+
+
+
 
 
       lastTimestamp = data[i]['timestamp']
