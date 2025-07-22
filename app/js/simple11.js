@@ -30,9 +30,12 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
   eventTypeFilterDiv.addEventListener('change', () => {
     // Get checked event types
     const checkedTypes = Array.from(document.querySelectorAll('input[name="eventTypes"]:checked')).map(cb => cb.value)
+    console.log('Filter changed, checked types:', checkedTypes)
     // Redraw events with only checked types
     if (window._drawEventsFilter) {
       window._drawEventsFilter(checkedTypes)
+    } else {
+      console.warn('window._drawEventsFilter is not defined')
     }
   })
 })
