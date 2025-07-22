@@ -1692,16 +1692,26 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
         Snap.load(`../../src/image/Interaction_Events/Chat.svg`, function (f) {
-          // Find the first path or shape in the SVG and set its fill
-          let chatIcon = f.select('path') || f.select('svg > *');
-          if (chatIcon) {
-            chatIcon.attr({ fill: playerColour[currentPlayer] || '#000' });
-          }
+          // Remove all fill attributes from the SVG to ensure full override
+          f.selectAll('*').forEach(function(el) {
+            el.attr({ fill: null });
+          });
+          // Set fill for all paths/shapes in the SVG
+          f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
+            el.attr({ fill: playerColour[currentPlayer] || '#000' });
+          });
           // Create a group for the icon
           let g = svg.group();
           g.append(f);
-          // Position the group at the correct location
-          g.transform(`t${deathPosX - offset},${deathPosY - offset} s${iconSize/32},${iconSize/32}`);
+          // Set the icon to the correct size and position
+          g.transform('');
+          g.attr({
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+          });
+          // Set the bounding box to the correct size
+          g.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
+          });
           // Add hover behaviour as before
           g.hover(
             event => {
