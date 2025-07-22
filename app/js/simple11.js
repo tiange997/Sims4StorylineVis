@@ -6,11 +6,14 @@ import * as d3Fetch from 'd3-fetch'
 import Snap from 'snapsvg'
 import $ from 'jquery'
 
+let allEventData = [] // Store all event data globally for filtering
+
 // Step 1: Dynamically generate event type filter checkboxes based on event data
 const eventTypeFilterDiv = document.getElementById('eventTypeFilters')
 const eventTypeJsonPath = '../../data/json/Match11/Mock_Events_Data_1.json'
 
 d3Fetch.json(eventTypeJsonPath).then(data => {
+  allEventData = data // Store for filtering
   // Get unique event types
   const eventTypes = Array.from(new Set(data.map(ev => ev.eventType))).sort()
   // Generate checkboxes
@@ -21,6 +24,16 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
       <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
       <label for="${id}">${type}</label>
     `
+  })
+
+  // Add event listener for real-time filtering
+  eventTypeFilterDiv.addEventListener('change', () => {
+    // Get checked event types
+    const checkedTypes = Array.from(document.querySelectorAll('input[name="eventTypes"]:checked')).map(cb => cb.value)
+    // Redraw events with only checked types
+    if (window._drawEventsFilter) {
+      window._drawEventsFilter(checkedTypes)
+    }
   })
 })
 
@@ -184,6 +197,12 @@ async function main(fileName) {
     )
   })
 
+  // Provide a global function for filter UI to call
+  window._drawEventsFilter = function(filterTypes) {
+    drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, filterTypes)
+  }
+
+  // Initial draw (all types)
   await drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId)
 
   // await timelineX(graph)
@@ -991,15 +1010,24 @@ function locationBox(locationSet, useMode) {
   }
 }
 
-async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
-  await jsonReadTwo.then(function(result) {
+async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, filterTypes = null) {
+  // Remove previously drawn event icons/groups (if any)
+  // We'll use a class for all event icons for easy removal
+  svg.selectAll('.event-icon-group').forEach(function(g) { g.remove() })
+
+  // Use allEventData if available, otherwise fallback to jsonReadTwo
+  let dataPromise = allEventData.length ? Promise.resolve(allEventData) : jsonReadTwo
+
+  await dataPromise.then(function(result) {
     const data = result
     for (let i in data) {
+      let eventType = data[i]['eventType']
+      if (filterTypes && !filterTypes.includes(eventType)) continue; // Filter out unwanted types
+
       // let posX = data[i]['position']['x']
       // let posY = data[i]['position']['y']
       let interactee = data[i]['interactee']
       let interactor = data[i]['interactor']
-      let eventType = data[i]['eventType']
 
       let interacteeID = heroArray.indexOf(interactee) + 1 // +1 for real position
 
