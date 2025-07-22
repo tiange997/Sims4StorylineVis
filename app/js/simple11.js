@@ -48,12 +48,25 @@ let xOrigin = 350,
 
 // We have to hard-code this part as we manually define colours
 // Saving this for decorating circles
-let playerColour = {
+/*let playerColour = {
   Player1: '#ff0000',
   Player2: '#ba000d',
   Player3: '#ff94c2',
   Player4: '#FF7F00', // changed
   Player5: '#ffd149',
+}*/
+
+let playerColour = {
+  Player1: '#000080', // changed
+  Player2: '#00B8D1',
+  Player3: '#006400', // changed
+  Player4: '#5BB58A',
+  Player5: '#9B8BD6',
+  Player6: '#ff0000',
+  Player7: '#ba000d',
+  Player8: '#ff94c2',
+  Player9: '#FF7F00', // changed
+  Player10: '#ffd149',
 }
 
 // Save location info for later use
@@ -1293,7 +1306,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        console.log(eventDetails, deathPosX, deathPosY)
+        console.log(currentTimestamp, eventDetails, deathPosX, deathPosY)
 
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
@@ -1660,173 +1673,148 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
           )
       }
 
+      if (data[i]['eventType'] === 'Chat') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Interaction_Events/Chat.svg`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              console.log(currentTimestamp, deathPosX, deathPosY)
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
 
 
-      // building: if (data[i]['killType'] === 'BUILDING_KILL') {
-      //   const iconSize = 35
-      //   const offset = iconSize / 2
-      //   let playerIndex = data[i]['killerId']
-      //   let currentTimestamp = data[i]['timestamp']
-      //   let buildingType = data[i]['towerType']
-      //
-      //   if (data[i]['towerType'] == undefined) {
-      //     buildingType = data[i]['buildingType']
-      //   }
-      //
-      //   // let resultType = buildingType.replace('_', ' ')
-      //
-      //   let index = buildingType.indexOf('_')
-      //
-      //   console.log(0, index)
-      //   console.log(buildingType.slice(0, index))
-      //   let resultType = []
-      //   resultType.push(buildingType.slice(0, index))
-      //   console.log(index + 1, buildingType.length)
-      //   console.log(buildingType.slice(index + 1))
-      //   resultType.push(buildingType.slice(index + 1))
-      //
-      //   console.log(resultType)
-      //
-      //   let currentPlayer = 'Player' + String(playerIndex)
-      //
-      //   if (playerIndex === 0) {
-      //     break building
-      //   } // We need to ignore the case 0, later on we should ignore it when we collect the data
-      //   // turret destroyed => 0 means it either self-destructed (azir tower) or minions got it
-      //
-      //   // console.log('BUILDING KILLER: ' + currentPlayer)
-      //   let iconPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
-      //   let iconPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
-      //   // console.log(currentPlayer, posX, posY)
-      //
-      //   playerIndex = reverseId(playerIndex)
-      //   currentPlayer = 'Player' + String(playerIndex)
-      //
-      //   let borderColour = playerColour[currentPlayer]
-      //
-      //   playerIndex = reverseId(playerIndex)
-      //   currentPlayer = 'Player' + String(playerIndex)
-      //
-      //   // let mask, img
-      //
-      //   svg
-      //     .image(
-      //       `../../src/image/Turrets/${currentPlayer}.png`,
-      //       iconPosX - offset,
-      //       iconPosY - offset,
-      //       iconSize,
-      //       iconSize
-      //     )
-      //     .hover(
-      //       event => {
-      //         pt.x = event.clientX
-      //         pt.y = event.clientY
-      //
-      //         pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-      //
-      //         // const mapSize = 200
-      //
-      //         let tipX = pt.x
-      //         let tipY = pt.y
-      //
-      //         /*                  if (pt.y >= 850) {
-      //                                 // tipX -= 100
-      //                                 tipY -= 100
-      //                               }*/
-      //
-      //         if (pt.y >= 950) {
-      //           // tipX -= 100
-      //           tipY -= 50 // was 200 before
-      //         }
-      //
-      //         if (pt.x >= 5700) {
-      //           tipX -= 200
-      //         }
-      //
-      //         // let xOffset = (posX / 15000) * 200
-      //         // let yOffset = 200 - (posY / 15000) * 200
-      //
-      //         // svg.rect(tipX, tipY, 250, 310, 10, 10)
-      //         border = svg.rect(tipX, tipY, 250, 110, 10, 10).attr({
-      //           stroke: `Black`,
-      //           fill: 'rgba(255,255,255, 0.9)',
-      //           strokeWidth: '3px',
-      //         })
-      //
-      //         killerName =
-      //           participantsInfo[participantsInfo.indexOf(playerIndex) + 1]
-      //
-      //         console.log(killerName)
-      //
-      //         killerIcon = svg.image(
-      //           `../../src/image/Champions/${killerName}Square.png`,
-      //           38 + tipX,
-      //           40 + tipY - 3,
-      //           40,
-      //           40
-      //         )
-      //
-      //         killerBorder = svg.rect(35 + tipX, 37 + tipY - 3, 46, 46).attr({
-      //           fill: 'none',
-      //           stroke: `${borderColour}`,
-      //           'stroke-width': '3',
-      //           opacity: 0.7,
-      //         })
-      //
-      //         killer = svg.text(35 + tipX, 25 + tipY, 'KILLER: ')
-      //         // victim = svg.text(85 + tipX, 62 + tipY, resultType)
-      //
-      //         victim = svg
-      //           .text({ text: [resultType[0], resultType[1]] })
-      //           .selectAll('tspan')
-      //           .forEach(function(tspan, i) {
-      //             tspan.attr({ x: 120 + tipX, y: 52 + tipY + 25 * i })
-      //           })
-      //
-      //         killerNameElement = svg.text(
-      //           35 + tipX,
-      //           35 + 50 + 15 + tipY - 3,
-      //           killerName
-      //         )
-      //
-      //         /*mask = svg
-      //               .rect(tipX + 25, tipY + 100, mapSize, mapSize, 10, 10)
-      //               .attr({ fill: 'rgba(225, 225, 0)' })
-      //             img = svg.image(
-      //               `../../src/image/MiniMap.png`,
-      //               tipX + 25,
-      //               tipY + 90,
-      //               mapSize,
-      //               mapSize
-      //             )
-      //             img.attr({
-      //               mask: mask,
-      //             })
-      //             innerCircle = svg
-      //               .circle(tipX + 25 + xOffset, tipY + 100 + yOffset, 4)
-      //               .attr({ fill: 'none', stroke: `white`, strokeWidth: '3px' })
-      //             killing = svg
-      //               .circle(tipX + 25 + xOffset, tipY + 100 + yOffset, 5)
-      //               .attr({
-      //                 fill: 'none',
-      //                 stroke: `${borderColour}`,
-      //                 strokeWidth: '2px',
-      //               })*/
-      //       },
-      //       () => {
-      //         border.remove()
-      //         killer.remove()
-      //         killerIcon.remove()
-      //         victim.remove()
-      //         /*mask.remove()
-      //             img.remove()
-      //             innerCircle.remove()
-      //             killing.remove()*/
-      //         killerBorder.remove()
-      //         killerNameElement.remove()
-      //       }
-      //     )
-      // }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, calculateBorderLength(eventDetails, 50), 180, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+              interacteeIcon = svg.image(
+                `../../src/image/Characters/${interactee}.png`, // hardcoded for now
+                133 + tipX,
+                41 + tipY,
+                40,
+                40
+              )
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              interacteeNameElement = svg.text(
+                130 + tipX,
+                35 + 50 + 20 + tipY,
+                interactee
+              )
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                interactor
+              )
+
+              eventInfo = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY + 45,
+                eventDetails
+              )
+
+              /*mask = svg
+                    .rect(tipX + 25, tipY + 115, mapSize, mapSize, 10, 10)
+                    .attr({ fill: 'rgba(225, 225, 0)' })
+                  img = svg.image(
+                    `../../src/image/MiniMap.png`,
+                    tipX + 25,
+                    tipY + 115,
+                    mapSize,
+                    mapSize
+                  )
+                  img.attr({
+                    mask: mask,
+                  })
+                  innerCircle = svg
+                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 4)
+                    .attr({ fill: 'none', stroke: `white`, strokeWidth: '3px' })
+                  killing = svg
+                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 5)
+                    .attr({
+                      fill: 'none',
+                      stroke: `${playerColour[currentPlayer]}`,
+                      strokeWidth: '2px',
+                    })*/
+              // console.log(currentTimestamp, currentPlayer)
+            },
+            () => {
+              border.remove()
+              interacteeText.remove()
+              interacteeIcon.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              /*mask.remove()
+                  img.remove()
+                  killing.remove()
+                  innerCircle.remove()*/
+              // interactorBorder.remove()
+              // interacteeBorder.remove()
+              interacteeNameElement.remove()
+              interactorNameElement.remove()
+              eventInfo.remove()
+            }
+          )
+      }
+
 
       lastTimestamp = data[i]['timestamp']
     }
