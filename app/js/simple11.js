@@ -1690,34 +1690,34 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        // using snap svg to read Chat icon from the file, then change the fill value to the player colour before drawing it
-
-        svg
-          .image(
-            `../../src/image/Interaction_Events/Chat.svg`,
-            deathPosX - offset,
-            deathPosY - offset,
-            iconSize,
-            iconSize
-          ).hover(
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(`../../src/image/Interaction_Events/Chat.svg`, function (f) {
+          // Find the first path or shape in the SVG and set its fill
+          let chatIcon = f.select('path') || f.select('svg > *');
+          if (chatIcon) {
+            chatIcon.attr({ fill: playerColour[currentPlayer] || '#000' });
+          }
+          // Create a group for the icon
+          let g = svg.group();
+          g.append(f);
+          // Position the group at the correct location
+          g.transform(`t${deathPosX - offset},${deathPosY - offset} s${iconSize/32},${iconSize/32}`);
+          // Add hover behaviour as before
+          g.hover(
             event => {
               pt.x = event.clientX
               pt.y = event.clientY
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
-
               let tipX = pt.x
               let tipY = pt.y
 
               console.log(tipX, tipY)
-
               console.log(currentTimestamp, deathPosX, deathPosY)
 
               if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+                tipY -= 50
               }
 
               if (pt.x >= 5700) {
@@ -1726,9 +1726,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
 
               currentPlayer = 'Player' + String(playerIndex)
 
-
-
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
               border = svg.rect(tipX, tipY, calculateBorderLength(eventDetails, 50), 180, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
@@ -1739,7 +1736,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
               interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
 
               interacteeIcon = svg.image(
-                `../../src/image/Characters/${interactee}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactee}.png`,
                 133 + tipX,
                 41 + tipY,
                 40,
@@ -1747,7 +1744,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
               )
 
               interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactor}.png`,
                 38 + tipX,
                 40 + tipY,
                 40,
@@ -1771,31 +1768,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
                 35 + 50 + 20 + tipY + 45,
                 eventDetails
               )
-
-              /*mask = svg
-                    .rect(tipX + 25, tipY + 115, mapSize, mapSize, 10, 10)
-                    .attr({ fill: 'rgba(225, 225, 0)' })
-                  img = svg.image(
-                    `../../src/image/MiniMap.png`,
-                    tipX + 25,
-                    tipY + 115,
-                    mapSize,
-                    mapSize
-                  )
-                  img.attr({
-                    mask: mask,
-                  })
-                  innerCircle = svg
-                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 4)
-                    .attr({ fill: 'none', stroke: `white`, strokeWidth: '3px' })
-                  killing = svg
-                    .circle(tipX + 25 + xOffset, tipY + 115 + yOffset, 5)
-                    .attr({
-                      fill: 'none',
-                      stroke: `${playerColour[currentPlayer]}`,
-                      strokeWidth: '2px',
-                    })*/
-              // console.log(currentTimestamp, currentPlayer)
             },
             () => {
               border.remove()
@@ -1803,17 +1775,12 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
               interacteeIcon.remove()
               interactorText.remove()
               interactorIcon.remove()
-              /*mask.remove()
-                  img.remove()
-                  killing.remove()
-                  innerCircle.remove()*/
-              // interactorBorder.remove()
-              // interacteeBorder.remove()
               interacteeNameElement.remove()
               interactorNameElement.remove()
               eventInfo.remove()
             }
-          )
+          );
+        });
       }
 
 
