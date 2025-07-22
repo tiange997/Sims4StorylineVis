@@ -1698,10 +1698,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId) {
             iconSize,
             iconSize
           );
-        // Set the fill colour based on the storyline/player
-        if (playerColour && currentPlayer in playerColour) {
-          chatIcon.attr({ fill: playerColour[currentPlayer] });
-        }
+        console.log(currentPlayer, playerColour[currentPlayer])
+        chatIcon.attr({ fill: `${playerColour[currentPlayer]}` })
         chatIcon.hover(
             event => {
               pt.x = event.clientX
