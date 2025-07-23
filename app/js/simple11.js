@@ -1081,6 +1081,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1185,6 +1186,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1289,6 +1291,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1703,6 +1706,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1851,6 +1855,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -2007,7 +2012,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
           // Set the icon to the correct size and position
           g.transform('');
           g.attr({
-            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
+            class: 'event-icon-group'
           });
           // Set the bounding box to the correct size
           g.selectAll('svg').forEach(function(svgEl) {
