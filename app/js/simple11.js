@@ -1369,6 +1369,111 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
           )
       }
 
+      if (eventType === 'Swim') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // console.log(eventDetails, deathPosX, deathPosY)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        svg
+          .image(
+            `../../src/image/Events_General/${eventType}.svg`,
+            deathPosX - offset,
+            deathPosY - offset,
+            iconSize,
+            iconSize
+          )
+          .attr({ class: 'event-icon-group' })
+          .hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+              // const mapSize = 200
+
+              let tipX = pt.x
+              let tipY = pt.y
+
+              console.log(tipX, tipY)
+
+              // console.log(currentTimestamp, deathPosX, deathPosY)
+
+
+              if (pt.y >= 950) {
+                // tipX -= 100
+                tipY -= 50 // was 200 before
+              }
+
+              if (pt.x >= 5700) {
+                tipX -= 200
+              }
+
+              currentPlayer = 'Player' + String(playerIndex)
+
+              let length;
+
+              if (calculateBorderLength(eventDetails, 50)<250) {
+                length = 250;
+              } else {
+                length = calculateBorderLength(eventDetails, 50);
+              }
+
+              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              })
+
+              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
+
+              interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              )
+
+              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
+              //   fill: 'none',
+              //   stroke: `${playerColour[currentPlayer]}`,
+              //   'stroke-width': '3',
+              //   opacity: 0.7,
+              // })
+
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              )
+
+            },
+            () => {
+              border.remove()
+              interactorText.remove()
+              interactorIcon.remove()
+              interactorNameElement.remove()
+            }
+          )
+      }
+
       if (eventType === 'Purchasing') {
         const iconSize = 30
         const offset = iconSize / 2
@@ -1598,7 +1703,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
         svg
           .image(
-            `../../src/image/Events_General/Status.png`,
+            `../../src/image/Events_General/${eventType}.png`,
             deathPosX - offset,
             deathPosY - offset,
             iconSize,
