@@ -1487,8 +1487,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // console.log(eventDetails, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -1501,6 +1499,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1508,19 +1507,11 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
-
               let tipX = pt.x
               let tipY = pt.y
 
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
-
               if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+                tipY -= 50
               }
 
               if (pt.x >= 5700) {
@@ -1537,30 +1528,21 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
                 length = calculateBorderLength(eventDetails, 50);
               }
 
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
               border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
               interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
 
               interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactor}.png`,
                 38 + tipX,
                 40 + tipY,
                 40,
                 40
               )
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
 
               interactorNameElement = svg.text(
                 35 + tipX,
@@ -1591,8 +1573,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // console.log(eventDetails, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -1605,6 +1585,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1612,19 +1593,11 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
-
               let tipX = pt.x
               let tipY = pt.y
 
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
-
               if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+                tipY -= 50
               }
 
               if (pt.x >= 5700) {
@@ -1641,30 +1614,21 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
                 length = calculateBorderLength(eventDetails, 50);
               }
 
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
               border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
               interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
 
               interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactor}.png`,
                 38 + tipX,
                 40 + tipY,
                 40,
                 40
               )
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
 
               interactorNameElement = svg.text(
                 35 + tipX,
@@ -1695,8 +1659,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        console.log(currentTimestamp, eventDetails, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -1709,6 +1671,7 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
             iconSize,
             iconSize
           )
+          .attr({ class: 'event-icon-group' })
           .hover(
             event => {
               pt.x = event.clientX
@@ -1716,19 +1679,11 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
-
               let tipX = pt.x
               let tipY = pt.y
 
-              console.log(tipX, tipY)
-
-              console.log(currentTimestamp, deathPosX, deathPosY)
-
-
               if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+                tipY -= 50
               }
 
               if (pt.x >= 5700) {
@@ -1745,30 +1700,21 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
                 length = calculateBorderLength(eventDetails, 50);
               }
 
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
               border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
               interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor)
 
               interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactor}.png`,
                 38 + tipX,
                 40 + tipY,
                 40,
                 40
               )
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
 
               interactorNameElement = svg.text(
                 35 + tipX,
@@ -2226,8 +2172,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -2248,7 +2192,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
           // Set the icon to the correct size and position
           g.transform('');
           g.attr({
-            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
+            class: 'event-icon-group'
           });
           // Set the bounding box to the correct size
           g.selectAll('svg').forEach(function(svgEl) {
@@ -2264,9 +2209,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               let tipX = pt.x
               let tipY = pt.y
-
-              console.log(tipX, tipY)
-              console.log(currentTimestamp, deathPosX, deathPosY)
 
               if (pt.y >= 950) {
                 tipY -= 50
@@ -2356,8 +2298,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -2378,7 +2318,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
           // Set the icon to the correct size and position
           g.transform('');
           g.attr({
-            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
+            class: 'event-icon-group'
           });
           // Set the bounding box to the correct size
           g.selectAll('svg').forEach(function(svgEl) {
@@ -2394,9 +2335,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               let tipX = pt.x
               let tipY = pt.y
-
-              console.log(tipX, tipY)
-              console.log(currentTimestamp, deathPosX, deathPosY)
 
               if (pt.y >= 950) {
                 tipY -= 50
@@ -2486,8 +2424,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        console.log(currentTimestamp, eventType, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -2508,7 +2444,8 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
           // Set the icon to the correct size and position
           g.transform('');
           g.attr({
-            transform: `translate(${deathPosX - offset},${deathPosY - offset})`
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
+            class: 'event-icon-group'
           });
           // Set the bounding box to the correct size
           g.selectAll('svg').forEach(function(svgEl) {
@@ -2524,9 +2461,6 @@ async function drawEvents(graph, participantsInfo, nexusKiller, nexusKillerId, f
 
               let tipX = pt.x
               let tipY = pt.y
-
-              console.log(tipX, tipY)
-              console.log(currentTimestamp, deathPosX, deathPosY)
 
               if (pt.y >= 950) {
                 tipY -= 50
