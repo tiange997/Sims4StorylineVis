@@ -1106,12 +1106,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 strokeWidth: '3px',
               })
 
+              // Remove any existing wrapper before creating a new one
+              let oldWrapper = document.getElementById('relocation-tooltip-wrapper')
+              if (oldWrapper) {
+                let oldVideo = oldWrapper.querySelector('#relocation-tooltip-video')
+                if (oldVideo) oldVideo.pause()
+                oldWrapper.remove()
+              }
+
               // Add video element to tooltip, positioned relative to the border
               // Create a wrapper div absolutely positioned at the border
               let wrapper = document.createElement('div')
-              wrapper.style.position = 'absolute'
-              wrapper.style.left = tipX + 'px'
-              wrapper.style.top = tipY + 'px'
+              wrapper.style.position = 'fixed'
+              // Use getBoundingClientRect to get SVG's position on screen
+              let svgRect = mySvg.getBoundingClientRect()
+              // Add window scroll offset for correct placement
+              let absLeft = svgRect.left + tipX
+              let absTop = svgRect.top + tipY
+              wrapper.style.left = absLeft + 'px'
+              wrapper.style.top = absTop + 'px'
               wrapper.style.width = length + 'px'
               wrapper.style.height = '400px'
               wrapper.style.pointerEvents = 'none'
