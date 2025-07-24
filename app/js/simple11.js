@@ -1106,8 +1106,18 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 strokeWidth: '3px',
               })
 
-              // Add video element to tooltip
-              // Create a video DOM element and overlay it absolutely
+              // Add video element to tooltip, positioned relative to the border
+              // Create a wrapper div absolutely positioned at the border
+              let wrapper = document.createElement('div')
+              wrapper.style.position = 'absolute'
+              wrapper.style.left = tipX + 'px'
+              wrapper.style.top = tipY + 'px'
+              wrapper.style.width = length + 'px'
+              wrapper.style.height = '400px'
+              wrapper.style.pointerEvents = 'none'
+              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
+              wrapper.style.zIndex = 1000
+
               let video = document.createElement('video')
               video.src = '../../src/video/video.mp4'
               video.width = 250
@@ -1116,12 +1126,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.autoplay = true
               video.loop = true
               video.style.position = 'absolute'
-              video.style.left = (tipX + 60) + 'px'
-              video.style.top = (tipY + 140) + 'px'
-              video.style.zIndex = 1000
+              video.style.left = '60px'
+              video.style.top = '140px'
               video.style.background = 'black'
               video.setAttribute('id', 'relocation-tooltip-video')
-              document.body.appendChild(video)
+              video.style.pointerEvents = 'auto'
+
+              wrapper.appendChild(video)
+              document.body.appendChild(wrapper)
 
               interactorText = svg.text(
                 35 + tipX,
@@ -1148,11 +1160,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               interactorText.remove()
               interactorIcon.remove()
               interactorNameElement.remove()
-              // Remove the video element if it exists
-              let video = document.getElementById('relocation-tooltip-video')
-              if (video) {
-                video.pause()
-                video.remove()
+              // Remove the video wrapper if it exists
+              let wrapper = document.getElementById('relocation-tooltip-wrapper')
+              if (wrapper) {
+                let video = wrapper.querySelector('#relocation-tooltip-video')
+                if (video) {
+                  video.pause()
+                }
+                wrapper.remove()
               }
             }
           )
