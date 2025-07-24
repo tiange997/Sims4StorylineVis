@@ -1136,6 +1136,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.width = length + 'px'
               wrapper.style.height = '400px'
               wrapper.style.pointerEvents = 'none'
+              wrapper.style.overflow = 'hidden'
+              wrapper.style.scrollbarWidth = 'none'
+              wrapper.style.msOverflowStyle = 'none'
               wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
               wrapper.style.zIndex = 1000
 
