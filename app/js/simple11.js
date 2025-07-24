@@ -1149,6 +1149,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.controls = true
               video.autoplay = true
               video.loop = true
+              video.muted = true
               video.setAttribute('id', 'relocation-tooltip-video')
               video.style.pointerEvents = 'auto'
               video.style.background = 'black'
@@ -1161,6 +1162,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.addEventListener('loadedmetadata', function() {
                 // Seek to 1:00 when metadata is loaded
                 video.currentTime = 60
+                // Try to play after seeking
+                const playPromise = video.play()
+                if (playPromise !== undefined) {
+                  playPromise.catch(e => {
+                    // Autoplay might be blocked, but we set muted so it should work
+                    console.warn('Autoplay play() failed:', e)
+                  })
+                }
               })
               video.addEventListener('timeupdate', function() {
                 // If video passes 2:00, loop back to 1:00
