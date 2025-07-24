@@ -1151,21 +1151,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.background = 'black'
               video.style.position = 'absolute'
 
-              // Ensure the video is always fully inside the border
-              // Default position
-              // let videoLeft = 60
-              // let videoTop = 140
-              // // Adjust if video would overflow right
-              // if (videoLeft + 250 > length) {
-              //   videoLeft = Math.max(0, length - 250)
-              // }
-              // console.log(videoLeft, length)
-              // // Adjust if video would overflow bottom
-              // if (videoTop + 250 > 400) {
-              //   videoTop = Math.max(0, 400 - 250)
-              // }
-              video.style.left = '0%'
-              video.style.top = '40%'
+              video.style.left = '15%'
+              video.style.top = '30%'
 
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
