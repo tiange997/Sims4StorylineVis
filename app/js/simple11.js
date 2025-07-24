@@ -1116,8 +1116,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.autoplay = true
               video.loop = true
               video.style.position = 'absolute'
-              video.style.left = (tipX + 10) + 'px'
-              video.style.top = (tipY + 40) + 'px'
+              video.style.left = (tipX + 60) + 'px'
+              video.style.top = (tipY + 140) + 'px'
               video.style.zIndex = 1000
               video.style.background = 'black'
               video.setAttribute('id', 'relocation-tooltip-video')
@@ -1774,7 +1774,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           .image(
             `../../src/image/Interaction_Events/Hostility/Hostility_${playerIndex}.png`,
             deathPosX - offset,
-            deathPosY - offset,
+            deathPosY - offset -20,
             iconSize,
             iconSize
           )
