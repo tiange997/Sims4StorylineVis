@@ -1059,8 +1059,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // console.log(eventDetails, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
@@ -1081,18 +1079,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
-
               let tipX = pt.x
               let tipY = pt.y
 
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
               if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+                tipY -= 50
               }
 
               if (pt.x >= 5700) {
@@ -1109,14 +1100,29 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 length = calculateBorderLength(eventDetails, 50)
               }
 
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
               border = svg.rect(tipX, tipY, length, 400, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+              // Add video element to tooltip
+              // Create a video DOM element and overlay it absolutely
+              let video = document.createElement('video')
+              video.src = '../../src/video/video.mp4'
+              video.width = 250
+              video.height = 250
+              video.controls = true
+              video.autoplay = true
+              video.loop = true
+              video.style.position = 'absolute'
+              video.style.left = (tipX + 10) + 'px'
+              video.style.top = (tipY + 40) + 'px'
+              video.style.zIndex = 1000
+              video.style.background = 'black'
+              video.setAttribute('id', 'relocation-tooltip-video')
+              document.body.appendChild(video)
+
               interactorText = svg.text(
                 35 + tipX,
                 25 + tipY,
@@ -1124,19 +1130,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               )
 
               interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
+                `../../src/image/Characters/${interactor}.png`,
                 38 + tipX,
                 40 + tipY,
                 40,
                 40
               )
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
 
               interactorNameElement = svg.text(
                 35 + tipX,
@@ -1149,6 +1148,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               interactorText.remove()
               interactorIcon.remove()
               interactorNameElement.remove()
+              // Remove the video element if it exists
+              let video = document.getElementById('relocation-tooltip-video')
+              if (video) {
+                video.pause()
+                video.remove()
+              }
             }
           )
       }
