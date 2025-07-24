@@ -1031,11 +1031,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       let interactee = data[i]['interactee']
       let interactor = data[i]['interactor']
 
-      let interacteeID = heroArray.indexOf(interactee) + 1 // +1 for real position
-
       let border
-
-      // let mask, img
 
       let interacteeText, interactorText
 
@@ -1044,6 +1040,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       let eventInfo
 
       let interacteeNameElement, interactorNameElement
+
+      let positionText
+
+      let generalEvents = ['Relocation', 'Moving_In', 'Sleep', 'Swim', 'Purchasing', 'Reading', 'System_Sim_Status']
+      let interactionEvents = ['Hostility', 'Texting', 'Chat', 'Hug', 'Sex', 'Flirt']
 
       if (eventType === 'Relocation') {
         const iconSize = 30
@@ -1109,7 +1110,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+              border = svg.rect(tipX, tipY, length, 400, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1257,6 +1258,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               interactorNameElement.remove()
             }
           )
+
+        // TODO: get the current event's session and map to its position
+        // PlaceHolder for the new position
+        positionText = svg.text(
+          deathPosX - offset,
+          deathPosY + 2.5 * offset,
+          "New Position").attr({ class: 'event-icon-group' })
       }
 
       if (eventType === 'Sleep') {
