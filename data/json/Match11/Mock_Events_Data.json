@@ -1,0 +1,632 @@
+[
+  {
+    "timestamp": 0,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "SnowWhite and Stepmother are moved into a small house."
+  },
+  {
+    "timestamp": 1860,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow cooks scrambled eggs"
+  },
+  {
+    "timestamp": 2520,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother insults Snow while she was cooking"
+  },
+  {
+    "timestamp": 5640,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother Riled Up."
+  },
+  {
+    "timestamp": 6120,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow eats."
+  },
+  {
+    "timestamp": 6540,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother practices magic."
+  },
+  {
+    "timestamp": 9420,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow reads a romance book."
+  },
+  {
+    "timestamp": 14940,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother attempts to steal money from the SnowWhite."
+  },
+  {
+    "timestamp": 18900,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow cleans the plate."
+  },
+  {
+    "timestamp": 19080,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother assigned to the bed."
+  },
+  {
+    "timestamp": 20460,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "SnowWhite has a conversation with stepmother"
+  },
+  {
+    "timestamp": 26340,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow purchases Cannoli as to go."
+  },
+  {
+    "timestamp": 33360,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow has several conversations with J."
+  },
+  {
+    "timestamp": 38400,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow hugs J."
+  },
+  {
+    "timestamp": 39000,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow filrted with J."
+  },
+  {
+    "timestamp": 39240,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow learns that J is Non-commital."
+  },
+  {
+    "timestamp": 39360,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "J",
+    "interactorID": 3,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "J leaves the caf\u00e9."
+  },
+  {
+    "timestamp": 40380,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow returns home"
+  },
+  {
+    "timestamp": 40800,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother eats Cannoli."
+  },
+  {
+    "timestamp": 42780,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow reads romance book."
+  },
+  {
+    "timestamp": 44760,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow cleans the plate."
+  },
+  {
+    "timestamp": 45240,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow sends happy text to J"
+  },
+  {
+    "timestamp": 46080,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "J",
+    "interactorID": 3,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "J sends an invite to Snow."
+  },
+  {
+    "timestamp": 46080,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow returns to caf\u00e9."
+  },
+  {
+    "timestamp": 46320,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow purchases a Pain au Chocolat as to go."
+  },
+  {
+    "timestamp": 47700,
+    "interactee": "Justin",
+    "interacteeID": 4,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow has a conversation with Justion."
+  },
+  {
+    "timestamp": 51420,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow invites both J and Justin for a chat."
+  },
+  {
+    "timestamp": 54840,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow likes Justin better than J."
+  },
+  {
+    "timestamp": 55380,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow discovers Justin is married"
+  },
+  {
+    "timestamp": 59280,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "J",
+    "interactorID": 3,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "J leaves the caf\u00e9."
+  },
+  {
+    "timestamp": 63060,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow gets tired."
+  },
+  {
+    "timestamp": 63060,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow goes back to home."
+  },
+  {
+    "timestamp": 63900,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow sleeps on the sofa."
+  },
+  {
+    "timestamp": 64020,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother eats."
+  },
+  {
+    "timestamp": 69780,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother sleeps on her bed."
+  },
+  {
+    "timestamp": 70800,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow uses the toilet."
+  },
+  {
+    "timestamp": 76560,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow eats."
+  },
+  {
+    "timestamp": 76980,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow cleans plates."
+  },
+  {
+    "timestamp": 78240,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow exercises."
+  },
+  {
+    "timestamp": 79980,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow reads."
+  },
+  {
+    "timestamp": 82740,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow sleeps on the sofa."
+  },
+  {
+    "timestamp": 86580,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother kicks the bin"
+  },
+  {
+    "timestamp": 89100,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother talk with (magic) mirror"
+  },
+  {
+    "timestamp": 89820,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow sends energized text to J"
+  },
+  {
+    "timestamp": 90600,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "J",
+    "interactorID": 3,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "J sends an invite to Snow."
+  },
+  {
+    "timestamp": 90600,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow goes to the gym."
+  },
+  {
+    "timestamp": 92820,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow swims (with J)"
+  },
+  {
+    "timestamp": 93180,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow splashes to J"
+  },
+  {
+    "timestamp": 94560,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "J",
+    "interactorID": 3,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "J leaves the gym."
+  },
+  {
+    "timestamp": 94680,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow invites J to the current lot."
+  },
+  {
+    "timestamp": 97680,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow naps."
+  },
+  {
+    "timestamp": 106260,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow invites J to the current lot. [second time]"
+  },
+  {
+    "timestamp": 109560,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow swims."
+  },
+  {
+    "timestamp": 115440,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow goes to the park."
+  },
+  {
+    "timestamp": 115440,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow has several conversations with J."
+  },
+  {
+    "timestamp": 116460,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow flirt with J."
+  },
+  {
+    "timestamp": 118320,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow and J both have their first kiss"
+  },
+  {
+    "timestamp": 121560,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "Stepmother",
+    "interactorID": 2,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Stepmother talks to the mirror."
+  },
+  {
+    "timestamp": 122280,
+    "interactee": "J",
+    "interacteeID": 3,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow invites J for having baby"
+  },
+  {
+    "timestamp": 131580,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow successfully becomes pregnant with twins."
+  },
+  {
+    "timestamp": 134340,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow interupts her stepmother's mirror talk"
+  },
+  {
+    "timestamp": 134460,
+    "interactee": "Stepmother",
+    "interacteeID": 2,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow argues with stepmother"
+  },
+  {
+    "timestamp": 137940,
+    "interactee": "SnowWhite",
+    "interacteeID": 1,
+    "interactor": "SnowWhite",
+    "interactorID": 1,
+    "position": "{}",
+    "eventType": "NA",
+    "eventDetails": "Snow moves out of the house."
+  }
+]

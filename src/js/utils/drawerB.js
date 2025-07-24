@@ -239,8 +239,8 @@ export function drawStoryline(
           namePosition.push(character, segment[0][0], segment[0][1])
           pointOneXPos = segment[0][0]
           pointOneYPos = segment[0][1]
-          console.log('get first point:' + pointOneXPos, pointOneYPos)
-          console.log(segment)
+          // console.log('get first point:' + pointOneXPos, pointOneYPos)
+          // console.log(segment)
         }
     }
 
@@ -267,6 +267,8 @@ export function drawStoryline(
       const placeIndex = session[idNumber - 1][idx]
       const accessIndex = placeIndex - 1
 
+      console.log(segmentPath)
+
       drawLineTip(
         pt.x,
         pt.y,
@@ -286,7 +288,10 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
   const borderHeight = 85
   let playerName = playerInfo[idNumber * 2 - 1]
   let iconSize = 50
-  // console.log(playerInfo)
+  // console.log(playerInfo[5])
+
+  // console.log(playerName)
+  // console.log(idNumber)
 
   let borderLength = calculateBorderLength(playerName, iconSize)
   // console.log(borderLength)
@@ -306,7 +311,7 @@ function drawLineTip(tipX, tipY, mapSize, maskSize, playerInfo, idNumber) {
   })
 
   heroIcon = svg.image(
-    `../../src/image/Champions/${playerName}Square.png`,
+    `../../src/image/Characters/${playerName}.png`,
     borderLength / 2 - iconSize / 2 + tipX,
     10 + tipY,
     iconSize,
@@ -358,8 +363,8 @@ function generateBezierPath(points) {
   return pathStr
 }
 
-function calculateBorderLength(text, iconSize) {
-  if (text.length <= 1) {
+export function calculateBorderLength(text, iconSize) {
+  if (text.length < 1) {
     console.log('Invalid Name!')
   } else {
     // Length for one uppercase letter is 16
