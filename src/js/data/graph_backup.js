@@ -46,8 +46,6 @@ export class Graph {
     for (let row = 0; row < rows; row++) {
       let segments = []
       let segmentPaths = []
-      let segmentTimeIndices = [] // New: stores the col index (time interval) for each segment
-
       for (let col = 0; col < cols; col++) {
         let characterStatus = characterTable.value(row, col)
         if (characterStatus > 0) {
@@ -55,7 +53,6 @@ export class Graph {
           let positionId = positionTable.value(row, col)
           let segment = this._story._positions[positionId]
           segments.push(segment)
-          segmentTimeIndices.push(col) // Map this segment to the col (time interval)
           // storyline paths
           let pathId = pathTable.value(row, col)
           let path = this._story._paths[pathId]
@@ -73,12 +70,7 @@ export class Graph {
         }
       }
       if (segments.length > 0) {
-        // Log segments for this character
-        console.log('--- SEGMENTS FOR CHARACTER (row index):', row, '---')
-        console.log('Segments data structure:', segments)
         this._nodes.push(segments)
-        this._segmentTimeIndices = this._segmentTimeIndices || []
-        this._segmentTimeIndices.push(segmentTimeIndices)
       }
       if (segmentPaths.length > 0) {
         this._paths.push(segmentPaths)
@@ -158,7 +150,6 @@ export class Graph {
 
   /**
    * Get the x pos of the specified character at a given time.
-   * Now uses arc-length interpolation along the polyline of the segment for accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -166,106 +157,26 @@ export class Graph {
    * @return X
    */
   getCharacterX(storylineName, time) {
-    // Find the storyline index
     let storylineID = this.getStorylineIDByName(storylineName)
-    storylineID = Number(storylineID)
-
-    // Defensive: if storylineID is invalid, return -1
-    if (storylineID < 0) return -1
-
-    // Get the timeline (timeStamps) and the segments for this character
-    const timeStamps = this._story._timeStamps
-    const segments = this._nodes[storylineID]
-    const segmentTimeIndices = this._segmentTimeIndices[storylineID]
-
-    // Defensive: if no segments or timeStamps, return -1
-    if (!segments || !timeStamps || timeStamps.length < 2) return -1
-
-    // DIAGNOSTIC: Log which interval this time falls into
-    let segIdx = -1
-    // Special handling for time equal to the last timestamp: assign to last segment
-    if (time === timeStamps[timeStamps.length - 1]) {
-      segIdx = timeStamps.length - 2
-    } else {
-      for (let i = 0; i < timeStamps.length - 1; i++) {
-        if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
-          segIdx = i
-          break
-        }
-      }
-      // If not found, and time is before the first timestamp, assign to first segment
-      if (segIdx === -1 && time < timeStamps[0]) {
-        segIdx = 0
-      }
+    let retX = -1
+    for (let i = 0; i < this._nodes[Number(storylineID)].length; i++) {
+      let k = this.getPosID(storylineID, String(i), time)
+      if (Number(k) === -1) continue
+      if (Number(k) & 1) k--
+      let staX = this.getStoryNodeX(k, String(i), storylineID)
+      let endX = this.getStoryNodeX(
+        String(Number(k) + 1),
+        String(i),
+        storylineID
+      )
+      retX = (staX + endX) * 0.5
+      break
     }
-    // console.log(`[DIAGNOSE] getCharacterX: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
-
-    // Map global segIdx to the character's segment index using segmentTimeIndices
-    let charSegIdx = segmentTimeIndices.indexOf(segIdx)
-    if (charSegIdx === -1) {
-      // If not found, use the first segment if event is before first appearance, or last if after
-      if (segIdx < segmentTimeIndices[0]) {
-        charSegIdx = 0
-      } else if (segIdx > segmentTimeIndices[segmentTimeIndices.length - 1]) {
-        charSegIdx = segmentTimeIndices.length - 1
-      } else {
-        // fallback: use the closest available segment
-        charSegIdx = 0
-      }
-    }
-    let segment = segments[charSegIdx]
-
-    if (!segment || segment.length < 2) return -1
-
-    // Get the start and end times for this segment
-    const t0 = timeStamps[segIdx]
-    const t1 = timeStamps[segIdx + 1]
-
-    // Calculate the proportion of time between t0 and t1
-    let p
-    if (t1 === t0) {
-      p = 0
-    } else {
-      p = (time - t0) / (t1 - t0)
-      if (p < 0) p = 0
-      if (p > 1) p = 1
-    }
-
-    // Arc-length interpolate along the polyline of the segment
-    // 1. Compute total length of the polyline
-    let totalLength = 0
-    let segLengths = []
-    for (let i = 0; i < segment.length - 1; i++) {
-      const dx = segment[i + 1][0] - segment[i][0]
-      const dy = segment[i + 1][1] - segment[i][1]
-      const len = Math.sqrt(dx * dx + dy * dy)
-      segLengths.push(len)
-      totalLength += len
-    }
-
-    // 2. Find the target length along the polyline
-    const targetLength = totalLength * p
-
-    // 3. Walk along the polyline to find the correct segment and interpolate
-    let accLength = 0
-    for (let i = 0; i < segment.length - 1; i++) {
-      if (accLength + segLengths[i] >= targetLength) {
-        // Interpolate within this segment
-        const remain = targetLength - accLength
-        const localP = segLengths[i] === 0 ? 0 : remain / segLengths[i]
-        // Linear interpolate between segment[i] and segment[i+1]
-        const x = segment[i][0] + (segment[i + 1][0] - segment[i][0]) * localP
-        return x
-      }
-      accLength += segLengths[i]
-    }
-    // If we didn't find it (shouldn't happen), return last point's x
-    return segment[segment.length - 1][0]
+    return retX
   }
 
   /**
    * Get the y pos of the specified character at a given time.
-   * Now uses arc-length interpolation along the polyline of the segment for accurate event placement.
    *
    * @param {String} storylineName
    * @param {Number} time
@@ -273,101 +184,23 @@ export class Graph {
    * @return Y
    */
   getCharacterY(storylineName, time) {
-    // Find the storyline index
     let storylineID = this.getStorylineIDByName(storylineName)
-    storylineID = Number(storylineID)
-    const segmentTimeIndices = this._segmentTimeIndices[storylineID]
-
-    // Defensive: if storylineID is invalid, return -1
-    if (storylineID < 0 || storylineID >= this._nodes.length) return -1
-
-    // Get the timeline (timeStamps) and the segments for this character
-    const timeStamps = this._story._timeStamps
-    const segments = this._nodes[storylineID]
-
-    // Defensive: if no segments or timeStamps, return -1
-    if (!segments || !timeStamps || timeStamps.length < 2) return -1
-
-    // DIAGNOSTIC: Log which interval this time falls into
-    let segIdx = -1
-    // Special handling for time equal to the last timestamp: assign to last segment
-    if (time === timeStamps[timeStamps.length - 1]) {
-      segIdx = timeStamps.length - 2
-    } else {
-      for (let i = 0; i < timeStamps.length - 1; i++) {
-        if (time >= timeStamps[i] && time < timeStamps[i + 1]) {
-          segIdx = i
-          break
-        }
-      }
-      // If not found, and time is before the first timestamp, assign to first segment
-      if (segIdx === -1 && time < timeStamps[0]) {
-        segIdx = 0
-      }
+    let retY = -1
+    console.log(this._nodes)
+    for (let i = 0; i < this._nodes[Number(storylineID)].length; i++) {
+      let k = this.getPosID(storylineID, String(i), time)
+      if (Number(k) === -1) continue
+      if (Number(k) & 1) k--
+      let staY = this.getStoryNodeY(k, String(i), storylineID)
+      let endY = this.getStoryNodeY(
+        String(Number(k) + 1),
+        String(i),
+        storylineID
+      )
+      retY = (staY + endY) * 0.5
+      break
     }
-    // console.log(`[DIAGNOSE] getCharacterY: storyline=${storylineName}, time=${time}, segIdx=${segIdx}, interval=[${timeStamps[segIdx]}, ${timeStamps[segIdx+1]}]`);
-
-    // Map global segIdx to the character's segment index using segmentTimeIndices
-    let charSegIdx = segmentTimeIndices.indexOf(segIdx)
-    if (charSegIdx === -1) {
-      // If not found, use the first segment if event is before first appearance, or last if after
-      if (segIdx < segmentTimeIndices[0]) {
-        charSegIdx = 0
-      } else if (segIdx > segmentTimeIndices[segmentTimeIndices.length - 1]) {
-        charSegIdx = segmentTimeIndices.length - 1
-      } else {
-        // fallback: use the closest available segment
-        charSegIdx = 0
-      }
-    }
-    let segment = segments[charSegIdx]
-
-    if (!segment || segment.length < 2) return -1
-
-    // Get the start and end times for this segment
-    const t0 = timeStamps[segIdx]
-    const t1 = timeStamps[segIdx + 1]
-
-    // Calculate the proportion of time between t0 and t1
-    let p
-    if (t1 === t0) {
-      p = 0
-    } else {
-      p = (time - t0) / (t1 - t0)
-      if (p < 0) p = 0
-      if (p > 1) p = 1
-    }
-
-    // Arc-length interpolate along the polyline of the segment
-    // 1. Compute total length of the polyline
-    let totalLength = 0
-    let segLengths = []
-    for (let i = 0; i < segment.length - 1; i++) {
-      const dx = segment[i + 1][0] - segment[i][0]
-      const dy = segment[i + 1][1] - segment[i][1]
-      const len = Math.sqrt(dx * dx + dy * dy)
-      segLengths.push(len)
-      totalLength += len
-    }
-
-    // 2. Find the target length along the polyline
-    const targetLength = totalLength * p
-
-    // 3. Walk along the polyline to find the correct segment and interpolate
-    let accLength = 0
-    for (let i = 0; i < segment.length - 1; i++) {
-      if (accLength + segLengths[i] >= targetLength) {
-        // Interpolate within this segment
-        const remain = targetLength - accLength
-        const localP = segLengths[i] === 0 ? 0 : remain / segLengths[i]
-        // Linear interpolate between segment[i] and segment[i+1]
-        const y = segment[i][1] + (segment[i + 1][1] - segment[i][1]) * localP
-        return y
-      }
-      accLength += segLengths[i]
-    }
-    // If we didn't find it (shouldn't happen), return last point's y
-    return segment[segment.length - 1][1]
+    return retY
   }
 
   getPosID(storylineID, storySegmentID, time) {

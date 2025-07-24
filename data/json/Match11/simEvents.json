@@ -1,62 +1,22 @@
 [
   {
     "timestamp": 1860,
-    "killerID": 2,
-    "killerName": "Sett",
-    "victimID": 1,
-    "victimName": "Kayle",
-    "position": {
-      "x": 4129,
-      "y": 13930
-    },
-    "killType": "CHAMPION_KILL"
+    "interacteeID": 2,
+    "interactee": "Stepmother",
+    "interactorID": 1,
+    "interactor": "SnowWhite",
+    "position": {},
+    "eventType": "N/A",
+    "eventDetails": {}
   },
   {
-    "timestamp": 3000,
-    "killerID": 2,
-    "killerName": "Sett",
-    "victimID": 1,
-    "victimName": "Irelia",
-    "position": {
-      "x": 7414,
-      "y": 7633
-    },
-    "killType": "CHAMPION_KILL"
-  },
-  {
-    "timestamp": 5000,
-    "killerID": 2,
-    "killerName": "Sett",
-    "victimID": 1,
-    "victimName": "Irelia",
-    "position": {
-      "x": 7414,
-      "y": 7633
-    },
-    "killType": "CHAMPION_KILL"
-  },
-  {
-    "timestamp": 8000,
-    "killerID": 2,
-    "killerName": "Sett",
-    "victimID": 1,
-    "victimName": "Irelia",
-    "position": {
-      "x": 7414,
-      "y": 7633
-    },
-    "killType": "CHAMPION_KILL"
-  },
-  {
-    "timestamp": 35000,
-    "killerID": 2,
-    "killerName": "Sett",
-    "victimID": 1,
-    "victimName": "Irelia",
-    "position": {
-      "x": 7414,
-      "y": 7633
-    },
-    "killType": "CHAMPION_KILL"
+    "timestamp": 12800,
+    "interacteeID": 1,
+    "interactee": "Stepmother",
+    "interactorID": 2,
+    "interactor": "SnowWhite",
+    "position": {},
+    "eventType": "N/A",
+    "eventDetails": {}
   }
 ]
