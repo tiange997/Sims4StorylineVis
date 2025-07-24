@@ -1120,9 +1120,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.position = 'fixed'
               // Use getBoundingClientRect to get SVG's position on screen
               let svgRect = mySvg.getBoundingClientRect()
+              // Debug logs for position calculation
+              console.log('SVG bounding rect:', svgRect)
+              console.log('tipX, tipY:', tipX, tipY)
               // Add window scroll offset for correct placement
               let absLeft = svgRect.left + tipX
               let absTop = svgRect.top + tipY
+              console.log('Computed absLeft, absTop:', absLeft, absTop)
               wrapper.style.left = absLeft + 'px'
               wrapper.style.top = absTop + 'px'
               wrapper.style.width = length + 'px'
