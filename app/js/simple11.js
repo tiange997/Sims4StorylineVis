@@ -1115,7 +1115,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // Add video element to tooltip, positioned relative to the border
-              // Create a wrapper div absolutely positioned at the border
+              // Remove any existing wrapper before creating a new one
               let wrapper = document.createElement('div')
               wrapper.style.position = 'fixed'
               // Use getBoundingClientRect to get SVG's position on screen
@@ -1138,12 +1138,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.controls = true
               video.autoplay = true
               video.loop = true
-              video.style.position = 'absolute'
-              video.style.left = '60px'
-              video.style.top = '140px'
-              video.style.background = 'black'
               video.setAttribute('id', 'relocation-tooltip-video')
               video.style.pointerEvents = 'auto'
+              video.style.background = 'black'
+              video.style.position = 'absolute'
+
+              // Ensure the video is always fully inside the border
+              // Default position
+              let videoLeft = 60
+              let videoTop = 140
+              // Adjust if video would overflow right
+              if (videoLeft + 250 > length) {
+                videoLeft = Math.max(0, length - 250)
+              }
+              // Adjust if video would overflow bottom
+              if (videoTop + 250 > 400) {
+                videoTop = Math.max(0, 400 - 250)
+              }
+              video.style.left = videoLeft + 'px'
+              video.style.top = videoTop + 'px'
 
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
