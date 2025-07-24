@@ -1123,9 +1123,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               // Debug logs for position calculation
               console.log('SVG bounding rect:', svgRect)
               console.log('tipX, tipY:', tipX, tipY)
-              // Add window scroll offset for correct placement
-              let absLeft = svgRect.left + tipX
-              let absTop = svgRect.top + tipY
+              console.log('event.clientX, event.clientY:', event.clientX, event.clientY)
+              console.log('window.scrollX, window.scrollY:', window.scrollX, window.scrollY)
+              // Use event.clientX/Y for absolute positioning
+              let absLeft = event.clientX
+              let absTop = event.clientY
+              // Optionally, adjust for tooltip size if it would overflow the viewport
+              // (not implemented here, but can be added)
               console.log('Computed absLeft, absTop:', absLeft, absTop)
               wrapper.style.left = absLeft + 'px'
               wrapper.style.top = absTop + 'px'
