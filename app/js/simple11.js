@@ -1094,8 +1094,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               let length
 
-              if (calculateBorderLength(eventDetails, 50) < 250) {
-                length = 250
+              if (calculateBorderLength(eventDetails, 50) <= 300) {
+                length = 300
               } else {
                 length = calculateBorderLength(eventDetails, 50)
               }
