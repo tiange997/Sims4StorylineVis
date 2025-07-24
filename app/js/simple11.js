@@ -1157,6 +1157,18 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.left = '15%'
               video.style.top = '30%'
 
+              // Clip video to play only from 1:00 to 2:00
+              video.addEventListener('loadedmetadata', function() {
+                // Seek to 1:00 when metadata is loaded
+                video.currentTime = 60
+              })
+              video.addEventListener('timeupdate', function() {
+                // If video passes 2:00, loop back to 1:00
+                if (video.currentTime >= 120) {
+                  video.currentTime = 60
+                }
+              })
+
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
 
