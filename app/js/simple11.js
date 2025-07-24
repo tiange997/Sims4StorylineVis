@@ -1094,8 +1094,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               let length
 
-              if (calculateBorderLength(eventDetails, 50) <= 300) {
-                length = 300
+              if (calculateBorderLength(eventDetails, 50) <= 370) {
+                length = 380
               } else {
                 length = calculateBorderLength(eventDetails, 50)
               }
@@ -1145,18 +1145,19 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // Ensure the video is always fully inside the border
               // Default position
-              let videoLeft = 60
-              let videoTop = 140
-              // Adjust if video would overflow right
-              if (videoLeft + 250 > length) {
-                videoLeft = Math.max(0, length - 250)
-              }
-              // Adjust if video would overflow bottom
-              if (videoTop + 250 > 400) {
-                videoTop = Math.max(0, 400 - 250)
-              }
-              video.style.left = videoLeft + 'px'
-              video.style.top = videoTop + 'px'
+              // let videoLeft = 60
+              // let videoTop = 140
+              // // Adjust if video would overflow right
+              // if (videoLeft + 250 > length) {
+              //   videoLeft = Math.max(0, length - 250)
+              // }
+              // console.log(videoLeft, length)
+              // // Adjust if video would overflow bottom
+              // if (videoTop + 250 > 400) {
+              //   videoTop = Math.max(0, 400 - 250)
+              // }
+              video.style.left = '0%'
+              video.style.top = '40%'
 
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
