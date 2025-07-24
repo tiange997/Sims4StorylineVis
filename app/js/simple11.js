@@ -1043,8 +1043,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
       let positionText
 
-      let generalEvents = ['Relocation', 'Moving_In', 'Sleep', 'Swim', 'Purchasing', 'Reading', 'System_Sim_Status']
-      let interactionEvents = ['Hostility', 'Texting', 'Chat', 'Hug', 'Sex', 'Flirt']
+      let generalEvents = [
+        'Relocation',
+        'Moving_In',
+        'Sleep',
+        'Swim',
+        'Purchasing',
+        'Reading',
+        'System_Sim_Status',
+      ]
+      let interactionEvents = [
+        'Hostility',
+        'Texting',
+        'Chat',
+        'Hug',
+        'Sex',
+        'Flirt',
+      ]
 
       if (eventType === 'Relocation') {
         const iconSize = 30
@@ -1107,9 +1122,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               })
 
               // Remove any existing wrapper before creating a new one
-              let oldWrapper = document.getElementById('relocation-tooltip-wrapper')
+              let oldWrapper = document.getElementById(
+                'relocation-tooltip-wrapper'
+              )
               if (oldWrapper) {
-                let oldVideo = oldWrapper.querySelector('#relocation-tooltip-video')
+                let oldVideo = oldWrapper.querySelector(
+                  '#relocation-tooltip-video'
+                )
                 if (oldVideo) oldVideo.pause()
                 oldWrapper.remove()
               }
@@ -1120,17 +1139,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.position = 'fixed'
               // Use getBoundingClientRect to get SVG's position on screen
               let svgRect = mySvg.getBoundingClientRect()
-              // Debug logs for position calculation
-              console.log('SVG bounding rect:', svgRect)
-              console.log('tipX, tipY:', tipX, tipY)
-              console.log('event.clientX, event.clientY:', event.clientX, event.clientY)
-              console.log('window.scrollX, window.scrollY:', window.scrollX, window.scrollY)
               // Use event.clientX/Y for absolute positioning
               let absLeft = event.clientX
               let absTop = event.clientY
-              // Optionally, adjust for tooltip size if it would overflow the viewport
-              // (not implemented here, but can be added)
-              console.log('Computed absLeft, absTop:', absLeft, absTop)
               wrapper.style.left = absLeft + 'px'
               wrapper.style.top = absTop + 'px'
               wrapper.style.width = length + 'px'
@@ -1159,6 +1170,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.top = '30%'
 
               // Clip video to play only from 1:00 to 2:00
+              // this will be replaced by actual data with clip start and end times later
               video.addEventListener('loadedmetadata', function() {
                 // Seek to 1:00 when metadata is loaded
                 video.currentTime = 60
@@ -1207,7 +1219,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               interactorIcon.remove()
               interactorNameElement.remove()
               // Remove the video wrapper if it exists
-              let wrapper = document.getElementById('relocation-tooltip-wrapper')
+              let wrapper = document.getElementById(
+                'relocation-tooltip-wrapper'
+              )
               if (wrapper) {
                 let video = wrapper.querySelector('#relocation-tooltip-video')
                 if (video) {
@@ -1242,7 +1256,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           .image(
             `../../src/image/Events_General/${eventType}.png`,
             deathPosX - offset,
-            deathPosY - offset,
+            deathPosY - offset - 40,
             iconSize,
             iconSize
           )
@@ -1327,10 +1341,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
         // TODO: get the current event's session and map to its position
         // PlaceHolder for the new position
-        positionText = svg.text(
-          deathPosX - offset,
-          deathPosY + 2.5 * offset,
-          "New Position").attr({ class: 'event-icon-group' })
+        // positionText = svg.text(
+        //   deathPosX - offset,
+        //   deathPosY + 2.5 * offset,
+        //   "New Position").attr({ class: 'event-icon-group' })
       }
 
       if (eventType === 'Sleep') {
@@ -1835,7 +1849,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           .image(
             `../../src/image/Interaction_Events/Hostility/Hostility_${playerIndex}.png`,
             deathPosX - offset,
-            deathPosY - offset -20,
+            deathPosY - offset,
             iconSize,
             iconSize
           )
