@@ -1250,14 +1250,36 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         // Gradient definition
         // Remove any previous gradient with same id to avoid duplicates
         let gradId = `movingin-gradient-${playerIndex}`
-        let oldGrad = svg.select(`#${gradId}`)
-        if (oldGrad) {
-          oldGrad.remove()
+        // Remove any existing gradient with this id in <defs>
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
         }
-        let gradient = svg.gradient(
-          `L(0,0,1,0)#${playerColour[currentPlayer].replace('#','')}-#0000`
-        )
-        gradient.node.id = gradId
+        let oldGrad = defs.select(`#${gradId}`);
+        if (oldGrad) {
+          oldGrad.remove();
+        }
+        // Create a proper SVG linearGradient element
+        let gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        gradient.setAttribute('id', gradId);
+        gradient.setAttribute('x1', '0%');
+        gradient.setAttribute('y1', '0%');
+        gradient.setAttribute('x2', '100%');
+        gradient.setAttribute('y2', '0%');
+        // Start colour stop
+        let stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%');
+        stop1.setAttribute('stop-color', playerColour[currentPlayer]);
+        stop1.setAttribute('stop-opacity', '1');
+        // End transparent stop
+        let stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '100%');
+        stop2.setAttribute('stop-color', playerColour[currentPlayer]);
+        stop2.setAttribute('stop-opacity', '0');
+        gradient.appendChild(stop1);
+        gradient.appendChild(stop2);
+        defs.node.appendChild(gradient);
 
         // Draw the rectangle with gradient fill
         let rect = svg
