@@ -1287,7 +1287,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             deathPosX - rectWidth / 2,
             deathPosY - rectHeight / 2,
             rectWidth,
-            rectHeight
+            rectHeight,
+            8, // rx for rounded corners
+            8  // ry for rounded corners
           )
           .attr({
             fill: `url(#${gradId})`,
