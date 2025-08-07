@@ -1285,7 +1285,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let rect = svg
           .rect(
             deathPosX - rectWidth / 2,
-            deathPosY - rectHeight / 2 - 40,
+            deathPosY - rectHeight / 2,
             rectWidth,
             rectHeight
           )
