@@ -1291,9 +1291,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
           .attr({
             fill: `url(#${gradId})`,
-            class: 'event-icon-group',
-            stroke: 'black',
-            'stroke-width': 1,
+            class: 'event-icon-group'
           })
 
         rect.hover(
