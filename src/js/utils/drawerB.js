@@ -169,6 +169,41 @@ export function drawStoryline(
   // console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
   // console.log('Storyline array:', storyline)
 
+  // --- BEGIN: Add profile pic at start and end of storyline ---
+
+  // Find the first point of the first segment
+  let firstPoint = null
+  if (storyline.length > 0 && storyline[0].length > 0) {
+    firstPoint = storyline[0][0]
+    // Draw profile image at start
+    svg.image(
+      'src/image/Characters/J.png',
+      firstPoint[0] - 25,
+      firstPoint[1] - 25,
+      50,
+      50
+    )
+  }
+
+  // Find the last point of the last segment
+  let lastPoint = null
+  if (storyline.length > 0) {
+    let lastSegment = storyline[storyline.length - 1]
+    if (lastSegment.length > 0) {
+      lastPoint = lastSegment[lastSegment.length - 1]
+      // Draw profile image at end
+      svg.image(
+        'src/image/Characters/J.png',
+        lastPoint[0] - 25,
+        lastPoint[1] - 25,
+        50,
+        50
+      )
+    }
+  }
+
+  // --- END: Add profile pic at start and end of storyline ---
+
   storyline.forEach((segment, idx) => {
     // console.log(character)
     // console.log(segment)
