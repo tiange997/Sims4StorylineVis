@@ -1234,8 +1234,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       }
 
       if (eventType === 'Moving_In') {
-        const iconSize = 30
-        const offset = iconSize / 2
+        // Rectangle size
+        const rectWidth = 30
+        const rectHeight = 70
 
         let playerIndex = data[i]['interactorID']
         let currentTimestamp = data[i]['timestamp']
@@ -1246,105 +1247,94 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // console.log(eventDetails, deathPosX, deathPosY)
+        // Gradient definition
+        // Remove any previous gradient with same id to avoid duplicates
+        let gradId = `movingin-gradient-${playerIndex}`
+        let oldGrad = svg.select(`#${gradId}`)
+        if (oldGrad) {
+          oldGrad.remove()
+        }
+        let gradient = svg.gradient(
+          `L(0,0,1,0)#${playerColour[currentPlayer].replace('#','')}-#0000`
+        )
+        gradient.node.id = gradId
 
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
-
-        svg
-          .image(
-            `../../src/image/Events_General/${eventType}.png`,
-            deathPosX - offset,
-            deathPosY - offset - 40,
-            iconSize,
-            iconSize
+        // Draw the rectangle with gradient fill
+        let rect = svg
+          .rect(
+            deathPosX - rectWidth / 2,
+            deathPosY - rectHeight / 2 - 40,
+            rectWidth,
+            rectHeight
           )
-          .attr({ class: 'event-icon-group' })
-          .hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
+          .attr({
+            fill: `url(#${gradId})`,
+            class: 'event-icon-group',
+            stroke: 'black',
+            'stroke-width': 1,
+          })
 
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+        rect.hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
 
-              // const mapSize = 200
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              let tipX = pt.x
-              let tipY = pt.y
+            let tipX = pt.x
+            let tipY = pt.y
 
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
-              if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
-              }
-
-              if (pt.x >= 5700) {
-                tipX -= 200
-              }
-
-              currentPlayer = 'Player' + String(playerIndex)
-
-              let length
-
-              if (calculateBorderLength(eventDetails, 50) < 250) {
-                length = 250
-              } else {
-                length = calculateBorderLength(eventDetails, 50)
-              }
-
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              })
-
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
-              interactorText = svg.text(
-                35 + tipX,
-                25 + tipY,
-                'Interactor: ' + interactor
-              )
-
-              interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
-                38 + tipX,
-                40 + tipY,
-                40,
-                40
-              )
-
-              // interactorBorder = svg.rect(130 + tipX, 37 + tipY, 46, 46).attr({
-              //   fill: 'none',
-              //   stroke: `${playerColour[currentPlayer]}`,
-              //   'stroke-width': '3',
-              //   opacity: 0.7,
-              // })
-
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              )
-            },
-            () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
+            if (pt.y >= 950) {
+              tipY -= 50
             }
-          )
 
-        // TODO: get the current event's session and map to its position
-        // PlaceHolder for the new position
-        // positionText = svg.text(
-        //   deathPosX - offset,
-        //   deathPosY + 2.5 * offset,
-        //   "New Position").attr({ class: 'event-icon-group' })
+            if (pt.x >= 5700) {
+              tipX -= 200
+            }
+
+            currentPlayer = 'Player' + String(playerIndex)
+
+            let length
+
+            if (calculateBorderLength(eventDetails, 50) < 250) {
+              length = 250
+            } else {
+              length = calculateBorderLength(eventDetails, 50)
+            }
+
+            border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+              stroke: 'black',
+              fill: 'rgba(255,255,255, 0.9)',
+              strokeWidth: '3px',
+            })
+
+            interactorText = svg.text(
+              35 + tipX,
+              25 + tipY,
+              'Interactor: ' + interactor
+            )
+
+            interactorIcon = svg.image(
+              `../../src/image/Characters/${interactor}.png`,
+              38 + tipX,
+              40 + tipY,
+              40,
+              40
+            )
+
+            interactorNameElement = svg.text(
+              35 + tipX,
+              35 + 50 + 20 + tipY,
+              eventDetails
+            )
+          },
+          () => {
+            border.remove()
+            interactorText.remove()
+            interactorIcon.remove()
+            interactorNameElement.remove()
+          }
+        )
       }
 
       if (eventType === 'Sleep') {
