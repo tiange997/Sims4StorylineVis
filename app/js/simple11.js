@@ -1233,6 +1233,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
       }
 
+      // this is not general event anymore, as it is colour coded
       if (eventType === 'Moving_In') {
         // Rectangle size
         const rectWidth = 30
