@@ -1029,52 +1029,56 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     const data = result
 
     // --- Draw dotted lines for paired Mock events ---
-    // Find all pairs of Mock events with reversed interactor/interactee and same timestamp
-    let mockEvents = []
-    for (let i = 0; i < data.length; i++) {
-      if (data[i]['eventType'] === 'Mock') {
-        mockEvents.push({
-          idx: i,
-          interactor: data[i]['interactor'],
-          interactee: data[i]['interactee'],
-          timestamp: data[i]['timestamp'],
-          interactorID: data[i]['interactorID'],
-          interacteeID: data[i]['interacteeID'],
-        })
+    // Only draw if 'Mock' is in filterTypes (or if filterTypes is null/undefined)
+    let showMockLines = !filterTypes || filterTypes.includes('Mock')
+    if (showMockLines) {
+      // Find all pairs of Mock events with reversed interactor/interactee and same timestamp
+      let mockEvents = []
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]['eventType'] === 'Mock') {
+          mockEvents.push({
+            idx: i,
+            interactor: data[i]['interactor'],
+            interactee: data[i]['interactee'],
+            timestamp: data[i]['timestamp'],
+            interactorID: data[i]['interactorID'],
+            interacteeID: data[i]['interacteeID'],
+          })
+        }
       }
-    }
-    // Keep track of which pairs have been connected
-    let paired = new Set()
-    for (let i = 0; i < mockEvents.length; i++) {
-      if (paired.has(i)) continue
-      for (let j = i + 1; j < mockEvents.length; j++) {
-        if (paired.has(j)) continue
-        if (
-          mockEvents[i].timestamp === mockEvents[j].timestamp &&
-          mockEvents[i].interactor === mockEvents[j].interactee &&
-          mockEvents[i].interactee === mockEvents[j].interactor
-        ) {
-          // Draw a dotted line between the two events
-          let playerIndexA = mockEvents[i].interactorID
-          let playerIndexB = mockEvents[j].interactorID
-          let currentTimestamp = mockEvents[i].timestamp
-          let currentPlayerA = 'Player' + String(playerIndexA)
-          let currentPlayerB = 'Player' + String(playerIndexB)
-          let posAX = graph.getCharacterX(currentPlayerA, currentTimestamp)
-          let posAY = graph.getCharacterY(currentPlayerA, currentTimestamp)
-          let posBX = graph.getCharacterX(currentPlayerB, currentTimestamp)
-          let posBY = graph.getCharacterY(currentPlayerB, currentTimestamp)
-          svg
-            .line(posAX, posAY, posBX, posBY)
-            .attr({
-              stroke: '#222',
-              'stroke-width': 2,
-              'stroke-dasharray': '6,6',
-              class: 'mock-event-dotted-line'
-            })
-          paired.add(i)
-          paired.add(j)
-          break
+      // Keep track of which pairs have been connected
+      let paired = new Set()
+      for (let i = 0; i < mockEvents.length; i++) {
+        if (paired.has(i)) continue
+        for (let j = i + 1; j < mockEvents.length; j++) {
+          if (paired.has(j)) continue
+          if (
+            mockEvents[i].timestamp === mockEvents[j].timestamp &&
+            mockEvents[i].interactor === mockEvents[j].interactee &&
+            mockEvents[i].interactee === mockEvents[j].interactor
+          ) {
+            // Draw a dotted line between the two events
+            let playerIndexA = mockEvents[i].interactorID
+            let playerIndexB = mockEvents[j].interactorID
+            let currentTimestamp = mockEvents[i].timestamp
+            let currentPlayerA = 'Player' + String(playerIndexA)
+            let currentPlayerB = 'Player' + String(playerIndexB)
+            let posAX = graph.getCharacterX(currentPlayerA, currentTimestamp)
+            let posAY = graph.getCharacterY(currentPlayerA, currentTimestamp)
+            let posBX = graph.getCharacterX(currentPlayerB, currentTimestamp)
+            let posBY = graph.getCharacterY(currentPlayerB, currentTimestamp)
+            svg
+              .line(posAX, posAY, posBX, posBY)
+              .attr({
+                stroke: '#222',
+                'stroke-width': 2,
+                'stroke-dasharray': '6,6',
+                class: 'mock-event-dotted-line'
+              })
+            paired.add(i)
+            paired.add(j)
+            break
+          }
         }
       }
     }
