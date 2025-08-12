@@ -1374,41 +1374,40 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // Gradient definition
-        // Remove any previous gradient with same id to avoid duplicates
-        let gradId = `movingin-gradient-${playerIndex}`
-        // Remove any existing gradient with this id in <defs>
+        // Pattern definition for black stripes
+        let patternId = 'mock-stripes-pattern'
         let defs = svg.select('defs');
         if (!defs) {
           defs = svg.paper.el('defs');
           svg.append(defs);
         }
-        let oldGrad = defs.select(`#${gradId}`);
-        if (oldGrad) {
-          oldGrad.remove();
+        // Remove any existing pattern with this id in <defs>
+        let oldPattern = defs.select(`#${patternId}`);
+        if (oldPattern) {
+          oldPattern.remove();
         }
-        // Create a proper SVG linearGradient element
-        let gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-        gradient.setAttribute('id', gradId);
-        gradient.setAttribute('x1', '0%');
-        gradient.setAttribute('y1', '0%');
-        gradient.setAttribute('x2', '100%');
-        gradient.setAttribute('y2', '0%');
-        // Start colour stop
-        let stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop1.setAttribute('offset', '0%');
-        stop1.setAttribute('stop-color', playerColour[currentPlayer]);
-        stop1.setAttribute('stop-opacity', '0.7');
-        // End transparent stop
-        let stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop2.setAttribute('offset', '100%');
-        stop2.setAttribute('stop-color', playerColour[currentPlayer]);
-        stop2.setAttribute('stop-opacity', '0');
-        gradient.appendChild(stop1);
-        gradient.appendChild(stop2);
-        defs.node.appendChild(gradient);
+        // Create a proper SVG pattern element
+        let pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+        pattern.setAttribute('id', patternId);
+        pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+        pattern.setAttribute('width', '8');
+        pattern.setAttribute('height', '8');
+        // Add stripes (diagonal lines)
+        let stripe1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        stripe1.setAttribute('x', '0');
+        stripe1.setAttribute('y', '0');
+        stripe1.setAttribute('width', '8');
+        stripe1.setAttribute('height', '8');
+        stripe1.setAttribute('fill', 'white');
+        pattern.appendChild(stripe1);
+        let line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', 'M0,0 l8,8 M-2,2 l4,4 M6,-2 l4,4');
+        line.setAttribute('stroke', 'black');
+        line.setAttribute('stroke-width', '2');
+        pattern.appendChild(line);
+        defs.node.appendChild(pattern);
 
-        // Draw the rectangle with gradient fill
+        // Draw the rectangle with pattern fill
         let rect = svg
           .rect(
             deathPosX - rectWidth / 2,
@@ -1419,7 +1418,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             8  // ry for rounded corners
           )
           .attr({
-            fill: `url(#${gradId})`,
+            fill: `url(#${patternId})`,
             class: 'event-icon-group'
           })
 
