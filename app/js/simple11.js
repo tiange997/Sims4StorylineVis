@@ -1401,7 +1401,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         stripe1.setAttribute('fill', 'white');
         pattern.appendChild(stripe1);
         let line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        line.setAttribute('d', 'M0,0 l8,8 M-2,2 l4,4 M6,-2 l4,4');
+        line.setAttribute('d', 'M0,0 l10,10');
         line.setAttribute('stroke', 'black');
         line.setAttribute('stroke-width', '2');
         pattern.appendChild(line);
