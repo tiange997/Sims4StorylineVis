@@ -11,7 +11,7 @@ import $ from 'jquery'
 
 let allEventData = [] // Store all event data globally for filtering
 
-// Step 1: Dynamically generate event type filter checkboxes based on event data
+// Dynamically generate event type filter checkboxes based on event data
 const eventTypeFilterDiv = document.getElementById('eventTypeFilters')
 const eventTypeJsonPath = '../../data/json/Match11/Mock_Events_Data_1.json'
 
@@ -1272,7 +1272,133 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
         stop1.setAttribute('offset', '0%');
         stop1.setAttribute('stop-color', playerColour[currentPlayer]);
-        stop1.setAttribute('stop-opacity', '1');
+        stop1.setAttribute('stop-opacity', '0.7');
+        // End transparent stop
+        let stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '100%');
+        stop2.setAttribute('stop-color', playerColour[currentPlayer]);
+        stop2.setAttribute('stop-opacity', '0');
+        gradient.appendChild(stop1);
+        gradient.appendChild(stop2);
+        defs.node.appendChild(gradient);
+
+        // Draw the rectangle with gradient fill
+        let rect = svg
+          .rect(
+            deathPosX - rectWidth / 2,
+            deathPosY - rectHeight / 2,
+            rectWidth,
+            rectHeight,
+            8, // rx for rounded corners
+            8  // ry for rounded corners
+          )
+          .attr({
+            fill: `url(#${gradId})`,
+            class: 'event-icon-group'
+          })
+
+        rect.hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+            let tipX = pt.x
+            let tipY = pt.y
+
+            if (pt.y >= 950) {
+              tipY -= 50
+            }
+
+            if (pt.x >= 5700) {
+              tipX -= 200
+            }
+
+            currentPlayer = 'Player' + String(playerIndex)
+
+            let length
+
+            if (calculateBorderLength(eventDetails, 50) < 250) {
+              length = 250
+            } else {
+              length = calculateBorderLength(eventDetails, 50)
+            }
+
+            border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+              stroke: 'black',
+              fill: 'rgba(255,255,255, 0.9)',
+              strokeWidth: '3px',
+            })
+
+            interactorText = svg.text(
+              35 + tipX,
+              25 + tipY,
+              'Interactor: ' + interactor
+            )
+
+            interactorIcon = svg.image(
+              `../../src/image/Characters/${interactor}.png`,
+              38 + tipX,
+              40 + tipY,
+              40,
+              40
+            )
+
+            interactorNameElement = svg.text(
+              35 + tipX,
+              35 + 50 + 20 + tipY,
+              eventDetails
+            )
+          },
+          () => {
+            border.remove()
+            interactorText.remove()
+            interactorIcon.remove()
+            interactorNameElement.remove()
+          }
+        )
+      }
+
+      if (eventType === 'Mock') {
+        // Rectangle size
+        const rectWidth = 30
+        const rectHeight = 70
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // Gradient definition
+        // Remove any previous gradient with same id to avoid duplicates
+        let gradId = `movingin-gradient-${playerIndex}`
+        // Remove any existing gradient with this id in <defs>
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
+        }
+        let oldGrad = defs.select(`#${gradId}`);
+        if (oldGrad) {
+          oldGrad.remove();
+        }
+        // Create a proper SVG linearGradient element
+        let gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        gradient.setAttribute('id', gradId);
+        gradient.setAttribute('x1', '0%');
+        gradient.setAttribute('y1', '0%');
+        gradient.setAttribute('x2', '100%');
+        gradient.setAttribute('y2', '0%');
+        // Start colour stop
+        let stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%');
+        stop1.setAttribute('stop-color', playerColour[currentPlayer]);
+        stop1.setAttribute('stop-opacity', '0.7');
         // End transparent stop
         let stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
         stop2.setAttribute('offset', '100%');
