@@ -1015,6 +1015,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     g.remove()
   })
 
+  // Remove previously drawn mock event lines (if any)
+  svg.selectAll('.mock-event-dotted-line').forEach(function(g) {
+    g.remove()
+  })
+
   // Use allEventData if available, otherwise fallback to jsonReadTwo
   let dataPromise = allEventData.length
     ? Promise.resolve(allEventData)
@@ -1022,6 +1027,59 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
   await dataPromise.then(function(result) {
     const data = result
+
+    // --- Draw dotted lines for paired Mock events ---
+    // Find all pairs of Mock events with reversed interactor/interactee and same timestamp
+    let mockEvents = []
+    for (let i = 0; i < data.length; i++) {
+      if (data[i]['eventType'] === 'Mock') {
+        mockEvents.push({
+          idx: i,
+          interactor: data[i]['interactor'],
+          interactee: data[i]['interactee'],
+          timestamp: data[i]['timestamp'],
+          interactorID: data[i]['interactorID'],
+          interacteeID: data[i]['interacteeID'],
+        })
+      }
+    }
+    // Keep track of which pairs have been connected
+    let paired = new Set()
+    for (let i = 0; i < mockEvents.length; i++) {
+      if (paired.has(i)) continue
+      for (let j = i + 1; j < mockEvents.length; j++) {
+        if (paired.has(j)) continue
+        if (
+          mockEvents[i].timestamp === mockEvents[j].timestamp &&
+          mockEvents[i].interactor === mockEvents[j].interactee &&
+          mockEvents[i].interactee === mockEvents[j].interactor
+        ) {
+          // Draw a dotted line between the two events
+          let playerIndexA = mockEvents[i].interactorID
+          let playerIndexB = mockEvents[j].interactorID
+          let currentTimestamp = mockEvents[i].timestamp
+          let currentPlayerA = 'Player' + String(playerIndexA)
+          let currentPlayerB = 'Player' + String(playerIndexB)
+          let posAX = graph.getCharacterX(currentPlayerA, currentTimestamp)
+          let posAY = graph.getCharacterY(currentPlayerA, currentTimestamp)
+          let posBX = graph.getCharacterX(currentPlayerB, currentTimestamp)
+          let posBY = graph.getCharacterY(currentPlayerB, currentTimestamp)
+          svg
+            .line(posAX, posAY, posBX, posBY)
+            .attr({
+              stroke: '#222',
+              'stroke-width': 2,
+              'stroke-dasharray': '6,6',
+              class: 'mock-event-dotted-line'
+            })
+          paired.add(i)
+          paired.add(j)
+          break
+        }
+      }
+    }
+    // --- End dotted lines for paired Mock events ---
+
     for (let i in data) {
       let eventType = data[i]['eventType']
       if (filterTypes && !filterTypes.includes(eventType)) continue // Filter out unwanted types
