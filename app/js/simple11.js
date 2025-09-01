@@ -1207,9 +1207,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               let absLeft = event.clientX
               let absTop = event.clientY
               wrapper.style.left = absLeft + 'px'
-              wrapper.style.top = absTop + 'px'
-              wrapper.style.width = length + 'px'
-              wrapper.style.height = '400px'
+              wrapper.style.top = '100px'
+              wrapper.style.width =  '300px'
+              wrapper.style.height = '300px'
               wrapper.style.pointerEvents = 'none'
               wrapper.style.overflow = 'hidden'
               wrapper.style.scrollbarWidth = 'none'
@@ -1230,8 +1230,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.background = 'black'
               video.style.position = 'absolute'
 
-              video.style.left = '15%'
-              video.style.top = '30%'
+              // video.style.left = '2%'
+              // video.style.top = '15%'
 
               // Clip video to play only from 1:00 to 2:00
               // this will be replaced by actual data with clip start and end times later
@@ -1285,22 +1285,22 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               })
             },
             () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
-              interactorBorder.remove()
-              // Remove the video wrapper if it exists
-              let wrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (wrapper) {
-                let video = wrapper.querySelector('#relocation-tooltip-video')
-                if (video) {
-                  video.pause()
-                }
-                wrapper.remove()
-              }
+              // border.remove()
+              // interactorText.remove()
+              // interactorIcon.remove()
+              // interactorNameElement.remove()
+              // interactorBorder.remove()
+              // // Remove the video wrapper if it exists
+              // let wrapper = document.getElementById(
+              //   'relocation-tooltip-wrapper'
+              // )
+              // if (wrapper) {
+              //   let video = wrapper.querySelector('#relocation-tooltip-video')
+              //   if (video) {
+              //     video.pause()
+              //   }
+              //   wrapper.remove()
+              // }
             }
           )
       }
