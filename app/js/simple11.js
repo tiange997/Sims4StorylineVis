@@ -1197,30 +1197,55 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 oldWrapper.remove()
               }
 
-              // Add video element to tooltip, positioned relative to the border
+              // Add video element to tooltip, positioned and scaled to match SVG border
               // Remove any existing wrapper before creating a new one
               let wrapper = document.createElement('div')
               wrapper.style.position = 'fixed'
-              // Use getBoundingClientRect to get SVG's position on screen
-              let svgRect = mySvg.getBoundingClientRect()
-              // Use event.clientX/Y for absolute positioning
-              let absLeft = event.clientX
-              let absTop = event.clientY
-              wrapper.style.left = absLeft + 'px'
-              wrapper.style.top = '100px'
-              wrapper.style.width =  '300px'
-              wrapper.style.height = '300px'
+              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
+              wrapper.style.zIndex = 1000
               wrapper.style.pointerEvents = 'none'
               wrapper.style.overflow = 'hidden'
               wrapper.style.scrollbarWidth = 'none'
               wrapper.style.msOverflowStyle = 'none'
-              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
-              wrapper.style.zIndex = 1000
+
+              // Get the SVG border's bounding box in SVG coordinates
+              let borderBBox = border.node.getBBox()
+              // Convert SVG coordinates to screen coordinates
+              let ctm = mySvg.getScreenCTM()
+              // Top-left corner
+              let svgX = borderBBox.x
+              let svgY = borderBBox.y
+              let svgW = borderBBox.width
+              let svgH = borderBBox.height
+              // Transform to screen coordinates
+              let topLeft = mySvg.createSVGPoint()
+              topLeft.x = svgX
+              topLeft.y = svgY
+              topLeft = topLeft.matrixTransform(ctm)
+              // Bottom-right corner
+              let bottomRight = mySvg.createSVGPoint()
+              bottomRight.x = svgX + svgW
+              bottomRight.y = svgY + svgH
+              bottomRight = bottomRight.matrixTransform(ctm)
+              // Calculate width/height in screen space
+              let screenW = bottomRight.x - topLeft.x
+              let screenH = bottomRight.y - topLeft.y
+              // Set wrapper position and size
+              wrapper.style.left = `${topLeft.x}px`
+              wrapper.style.top = `${topLeft.y}px`
+              wrapper.style.width = `${screenW}px`
+              wrapper.style.height = `${screenH}px`
+
+              // Calculate video size and position (2% padding on each side)
+              let videoW = screenW * 0.96
+              let videoH = screenH * 0.96
+              let videoLeft = screenW * 0.02
+              let videoTop = screenH * 0.02
 
               let video = document.createElement('video')
               video.src = '../../src/video/video.mp4'
-              video.width = 250
-              video.height = 250
+              video.width = videoW
+              video.height = videoH
               video.controls = true
               video.autoplay = true
               video.loop = true
@@ -1229,26 +1254,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.pointerEvents = 'auto'
               video.style.background = 'black'
               video.style.position = 'absolute'
-
-              // video.style.left = '2%'
-              // video.style.top = '15%'
+              video.style.left = `${videoLeft}px`
+              video.style.top = `${videoTop}px`
+              video.style.width = `${videoW}px`
+              video.style.height = `${videoH}px`
+              video.style.borderRadius = '8px'
 
               // Clip video to play only from 1:00 to 2:00
-              // this will be replaced by actual data with clip start and end times later
               video.addEventListener('loadedmetadata', function() {
-                // Seek to 1:00 when metadata is loaded
                 video.currentTime = 60
-                // Try to play after seeking
                 const playPromise = video.play()
                 if (playPromise !== undefined) {
                   playPromise.catch(e => {
-                    // Autoplay might be blocked, but we set muted so it should work
                     console.warn('Autoplay play() failed:', e)
                   })
                 }
               })
               video.addEventListener('timeupdate', function() {
-                // If video passes 2:00, loop back to 1:00
                 if (video.currentTime >= 120) {
                   video.currentTime = 60
                 }
