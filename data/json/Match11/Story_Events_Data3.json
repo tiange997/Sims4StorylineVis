@@ -52,7 +52,8 @@
         "position": "Outside of House",
         "eventType": "Mock",
         "eventDetails": "Ava Landry and Lila Landry both getting into their first fight ever!",
-        "originalTime": "00:04:30.000"
+        "originalTime": "00:04:30.000",
+        "groupID": "mock-800"
     },
     {
         "timestamp": 800,
@@ -63,7 +64,8 @@
         "position": "Outside of House",
         "eventType": "Mock",
         "eventDetails": "Ava Landry and Lila Landry both getting into their first fight ever!",
-        "originalTime": "00:04:30.000"
+        "originalTime": "00:04:30.000",
+        "groupID": "mock-800"
     },
     {
         "timestamp": 2100,
