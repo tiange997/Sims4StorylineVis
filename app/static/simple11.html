@@ -43,6 +43,7 @@
         </h2>
       </div>
       <svg id="mySvg" class="mySvg" height="100vh"></svg>
+      <button id="resetZoomBtn" style="position: absolute; top: 10px; right: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Reset Zoom</button>
     </div>
     <div id="eventTypeFilters">
       <!-- Event type checkboxes will be dynamically generated here -->
@@ -53,6 +54,10 @@
       scrollContainer.addEventListener('wheel', evt => {
         evt.preventDefault()
         scrollContainer.scrollLeft += evt.deltaY
+      })
+      // Reset Zoom button logic
+      document.getElementById('resetZoomBtn').addEventListener('click', function() {
+        if (window.resetZoom) window.resetZoom()
       })
     </script>
   </body>

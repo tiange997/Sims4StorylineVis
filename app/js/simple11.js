@@ -102,6 +102,158 @@ let pt = mySvg.createSVGPoint()
 const svg = Snap('#mySvg')
 svg.attr({ viewBox: '0 0 14000 1200' })
 
+// --- Zoom and Pan Logic ---
+let viewBox = { x: 0, y: 0, w: 14000, h: 1200 }
+let minZoom = 0.1
+let maxZoom = 10
+let zoomStep = 1.1
+let lastTouchDist = null
+let isPanning = false
+let panStart = { x: 0, y: 0 }
+let panViewBoxStart = { x: 0, y: 0 }
+
+function setViewBox(x, y, w, h) {
+  viewBox.x = x
+  viewBox.y = y
+  viewBox.w = w
+  viewBox.h = h
+  svg.attr({ viewBox: `${x} ${y} ${w} ${h}` })
+}
+
+function zoomAt(cx, cy, scale) {
+  // cx, cy: client coordinates
+  // scale: zoom factor (>1 zoom in, <1 zoom out)
+  // Convert client to SVG coordinates
+  let pt = mySvg.createSVGPoint()
+  pt.x = cx
+  pt.y = cy
+  let svgPt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+  // Calculate new viewBox
+  let newW = viewBox.w / scale
+  let newH = viewBox.h / scale
+  // Clamp zoom
+  let zoomLevel = 14000 / newW
+  if (zoomLevel < minZoom) {
+    newW = 14000 / minZoom
+    newH = 1200 / minZoom
+  }
+  if (zoomLevel > maxZoom) {
+    newW = 14000 / maxZoom
+    newH = 1200 / maxZoom
+  }
+  // Keep svgPt at same position in new viewBox
+  let newX = svgPt.x - ((svgPt.x - viewBox.x) / viewBox.w) * newW
+  let newY = svgPt.y - ((svgPt.y - viewBox.y) / viewBox.h) * newH
+  setViewBox(newX, newY, newW, newH)
+}
+
+function resetZoom() {
+  setViewBox(0, 0, 14000, 1200)
+}
+
+// Mouse wheel and touchpad pinch zoom
+mySvg.addEventListener('wheel', function(e) {
+  // Only zoom if ctrlKey (touchpad pinch) or if not horizontal scroll
+  if (e.ctrlKey || Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    e.preventDefault()
+    let scale = e.deltaY < 0 ? zoomStep : 1 / zoomStep
+    zoomAt(e.clientX, e.clientY, scale)
+  }
+}, { passive: false })
+
+// Touch pinch zoom
+mySvg.addEventListener('touchstart', function(e) {
+  if (e.touches.length === 2) {
+    lastTouchDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    )
+  } else if (e.touches.length === 1) {
+    isPanning = true
+    panStart.x = e.touches[0].clientX
+    panStart.y = e.touches[0].clientY
+    panViewBoxStart.x = viewBox.x
+    panViewBoxStart.y = viewBox.y
+  }
+})
+
+mySvg.addEventListener('touchmove', function(e) {
+  if (e.touches.length === 2) {
+    e.preventDefault()
+    let newDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    )
+    if (lastTouchDist) {
+      let scale = newDist / lastTouchDist
+      zoomAt(
+        (e.touches[0].clientX + e.touches[1].clientX) / 2,
+        (e.touches[0].clientY + e.touches[1].clientY) / 2,
+        scale
+      )
+    }
+    lastTouchDist = newDist
+  } else if (e.touches.length === 1 && isPanning) {
+    e.preventDefault()
+    let dx = e.touches[0].clientX - panStart.x
+    let dy = e.touches[0].clientY - panStart.y
+    let scaleX = viewBox.w / mySvg.clientWidth
+    let scaleY = viewBox.h / mySvg.clientHeight
+    setViewBox(
+      panViewBoxStart.x - dx * scaleX,
+      panViewBoxStart.y - dy * scaleY,
+      viewBox.w,
+      viewBox.h
+    )
+  }
+}, { passive: false })
+
+mySvg.addEventListener('touchend', function(e) {
+  if (e.touches.length < 2) {
+    lastTouchDist = null
+  }
+  if (e.touches.length === 0) {
+    isPanning = false
+  }
+})
+
+// Mouse drag pan
+let isMousePanning = false
+let mousePanStart = { x: 0, y: 0 }
+let mousePanViewBoxStart = { x: 0, y: 0 }
+mySvg.addEventListener('mousedown', function(e) {
+  if (e.button === 1 || (e.button === 0 && e.ctrlKey)) {
+    isMousePanning = true
+    mousePanStart.x = e.clientX
+    mousePanStart.y = e.clientY
+    mousePanViewBoxStart.x = viewBox.x
+    mousePanViewBoxStart.y = viewBox.y
+    e.preventDefault()
+  }
+})
+window.addEventListener('mousemove', function(e) {
+  if (isMousePanning) {
+    let dx = e.clientX - mousePanStart.x
+    let dy = e.clientY - mousePanStart.y
+    let scaleX = viewBox.w / mySvg.clientWidth
+    let scaleY = viewBox.h / mySvg.clientHeight
+    setViewBox(
+      mousePanViewBoxStart.x - dx * scaleX,
+      mousePanViewBoxStart.y - dy * scaleY,
+      viewBox.w,
+      viewBox.h
+    )
+  }
+})
+window.addEventListener('mouseup', function(e) {
+  if (isMousePanning) {
+    isMousePanning = false
+  }
+})
+
+// Expose resetZoom for button
+window.resetZoom = resetZoom
+
 let heroArray = []
 
 async function main(fileName) {
