@@ -217,17 +217,19 @@ mySvg.addEventListener('touchend', function(e) {
   }
 })
 
-// Mouse drag pan
+/* --- Mouse drag pan with hand/cursor toggle --- */
 let isMousePanning = false
 let mousePanStart = { x: 0, y: 0 }
 let mousePanViewBoxStart = { x: 0, y: 0 }
 mySvg.addEventListener('mousedown', function(e) {
-  if (e.button === 1 || (e.button === 0 && e.ctrlKey)) {
+  // Only allow pan if hand mode is ON
+  if (window._panMode && e.button === 0) {
     isMousePanning = true
     mousePanStart.x = e.clientX
     mousePanStart.y = e.clientY
     mousePanViewBoxStart.x = viewBox.x
     mousePanViewBoxStart.y = viewBox.y
+    mySvg.style.cursor = 'grabbing'
     e.preventDefault()
   }
 })
@@ -248,6 +250,12 @@ window.addEventListener('mousemove', function(e) {
 window.addEventListener('mouseup', function(e) {
   if (isMousePanning) {
     isMousePanning = false
+    // Restore hand cursor if still in hand mode
+    if (window._panMode) {
+      mySvg.style.cursor = 'grab'
+    } else {
+      mySvg.style.cursor = 'default'
+    }
   }
 })
 

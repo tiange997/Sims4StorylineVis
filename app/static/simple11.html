@@ -44,6 +44,7 @@
       </div>
       <svg id="mySvg" class="mySvg" height="100vh"></svg>
       <button id="resetZoomBtn" style="position: absolute; top: 10px; right: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Reset Zoom</button>
+      <button id="panModeBtn" style="position: absolute; top: 10px; right: 160px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Hand: Off</button>
     </div>
     <div id="eventTypeFilters">
       <!-- Event type checkboxes will be dynamically generated here -->
@@ -59,6 +60,25 @@
       document.getElementById('resetZoomBtn').addEventListener('click', function() {
         if (window.resetZoom) window.resetZoom()
       })
+
+      // Pan mode toggle logic
+      window._panMode = false
+      const panBtn = document.getElementById('panModeBtn')
+      const svgElem = document.getElementById('mySvg')
+      function updatePanCursor() {
+        if (window._panMode) {
+          svgElem.style.cursor = 'grab'
+          panBtn.textContent = 'Hand: On'
+        } else {
+          svgElem.style.cursor = 'default'
+          panBtn.textContent = 'Hand: Off'
+        }
+      }
+      panBtn.addEventListener('click', function() {
+        window._panMode = !window._panMode
+        updatePanCursor()
+      })
+      updatePanCursor()
     </script>
   </body>
 </html>
