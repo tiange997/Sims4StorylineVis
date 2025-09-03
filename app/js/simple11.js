@@ -259,8 +259,15 @@ window.addEventListener('mouseup', function(e) {
   }
 })
 
-// Expose resetZoom for button
+/* --- Expose zoom and reset for buttons --- */
 window.resetZoom = resetZoom
+window.zoomByButton = function(scale) {
+  // Zoom at centre of SVG viewport
+  const rect = mySvg.getBoundingClientRect()
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top + rect.height / 2
+  zoomAt(cx, cy, scale)
+}
 
 let heroArray = []
 
