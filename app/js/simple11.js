@@ -1710,6 +1710,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   40
                 )
 
+                // Add coloured borders for interactor and interactee (like Relocation)
+                let interactorBorder = svg.rect(38 + tipX, 40 + tipY, 40, 40).attr({
+                  fill: 'none',
+                  stroke: playerColour[currentPlayer] || '#000',
+                  'stroke-width': '3',
+                  opacity: 0.7,
+                })
+                // Try to get interactee player colour
+                let interacteePlayerIndex = data[i]['interacteeID']
+                let interacteePlayer = 'Player' + String(interacteePlayerIndex)
+                let interacteeBorder = svg.rect(133 + tipX, 41 + tipY, 40, 40).attr({
+                  fill: 'none',
+                  stroke: playerColour[interacteePlayer] || '#000',
+                  'stroke-width': '3',
+                  opacity: 0.7,
+                })
+
                 interacteeNameElement = svg.text(
                   130 + tipX,
                   35 + 50 + 20 + tipY,
@@ -1734,6 +1751,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 interacteeIcon.remove()
                 interactorText.remove()
                 interactorIcon.remove()
+                // Remove the new borders if present
+                let allRects = svg.selectAll('rect')
+                if (allRects && allRects.length) {
+                  // Remove only the last two (the borders we just added)
+                  allRects[allRects.length - 1].remove()
+                  allRects[allRects.length - 2].remove()
+                }
                 interacteeNameElement.remove()
                 interactorNameElement.remove()
                 eventInfo.remove()
