@@ -271,32 +271,6 @@ window.zoomByButton = function(scale) {
 
 let heroArray = []
 
-// Utility: break a string into lines so that each line's width (in px) does not exceed maxWidthPx
-// Uses Snap.svg's text measurement for accuracy
-function wrapSvgText(text, maxWidthPx, fontSize = 20, fontFamily = 'Lato, sans-serif') {
-  // Create a temporary SVG text element for measuring
-  let temp = Snap(document.createElementNS('http://www.w3.org/2000/svg', 'text'));
-  temp.attr({ 'font-size': fontSize, 'font-family': fontFamily, opacity: 0, visibility: 'hidden' });
-  svg.append(temp);
-
-  let words = text.split(' ');
-  let lines = [];
-  let currentLine = '';
-  for (let i = 0; i < words.length; i++) {
-    let testLine = currentLine ? currentLine + ' ' + words[i] : words[i];
-    temp.node.textContent = testLine;
-    let width = temp.node.getComputedTextLength();
-    if (width > maxWidthPx && currentLine) {
-      lines.push(currentLine);
-      currentLine = words[i];
-    } else {
-      currentLine = testLine;
-    }
-  }
-  if (currentLine) lines.push(currentLine);
-  temp.remove();
-  return lines;
-}
 
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
@@ -1487,18 +1461,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 40
               )
 
-              // Draw eventDetails with line wrapping
-              let wrappedLines = wrapSvgText(eventDetails, 800, 20)
-              interactorNameElement = svg.group();
-              wrappedLines.forEach((line, idx) => {
-                interactorNameElement.add(
-                  svg.text(
-                    35 + tipX,
-                    35 + 50 + 20 + tipY + idx * 24,
-                    line
-                  )
-                );
-              });
+              // Draw eventDetails as a single line
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              );
 
               interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
                 fill: 'none',
@@ -1748,18 +1716,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               40
             )
 
-            // Draw eventDetails with line wrapping
-            let wrappedLines = wrapSvgText(eventDetails, 800, 20)
-            interactorNameElement = svg.group();
-            wrappedLines.forEach((line, idx) => {
-              interactorNameElement.add(
-                svg.text(
-                  35 + tipX,
-                  35 + 50 + 20 + tipY + idx * 24,
-                  line
-                )
-              );
-            });
+            // Draw eventDetails as a single line
+            interactorNameElement = svg.text(
+              35 + tipX,
+              35 + 50 + 20 + tipY,
+              eventDetails
+            );
 
             interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
               fill: 'none',
@@ -1871,18 +1833,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 40,
                 40
               )
-              // Draw eventDetails with line wrapping
-              let wrappedLines = wrapSvgText(eventDetails, 800, 20)
-              interactorNameElement = svg.group();
-              wrappedLines.forEach((line, idx) => {
-                interactorNameElement.add(
-                  svg.text(
-                    35 + tipX,
-                    35 + 50 + 20 + tipY + idx * 24,
-                    line
-                  )
-                );
-              });
+              // Draw eventDetails as a single line
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              );
               // Set border color to match storyline color for this character
               let storylineColor = playerColour[allPlayers[k]] || '#222';
               interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
@@ -2211,18 +2167,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
 
-              // Draw eventDetails with line wrapping
-              let wrappedLines = wrapSvgText(eventDetails, 800, 20)
-              interactorNameElement = svg.group();
-              wrappedLines.forEach((line, idx) => {
-                interactorNameElement.add(
-                  svg.text(
-                    35 + tipX,
-                    35 + 50 + 20 + tipY + idx * 24,
-                    line
-                  )
-                );
-              });
+              // Draw eventDetails as a single line
+              interactorNameElement = svg.text(
+                35 + tipX,
+                35 + 50 + 20 + tipY,
+                eventDetails
+              );
             },
             () => {
               border.remove()
