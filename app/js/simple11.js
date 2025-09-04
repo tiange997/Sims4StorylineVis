@@ -1608,6 +1608,141 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
       }
 
+      if (eventType === 'Chat') {
+        const iconSize = 30
+        const offset = iconSize / 2
+
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+
+        let eventDetails = data[i]['eventDetails']
+
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+
+        // Player Icon
+        let indexHolder = currentPlayer.match(/\d/g)
+        indexHolder = indexHolder.join('')
+
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(
+          `../../src/image/Interaction_Events/${eventType}.svg`,
+          function(f) {
+            // Remove all fill attributes from the SVG to ensure full override
+            f.selectAll('*').forEach(function(el) {
+              el.attr({ fill: null })
+            })
+            // Set fill for all paths/shapes in the SVG
+            f.selectAll(
+              'path, rect, circle, ellipse, polygon, polyline'
+            ).forEach(function(el) {
+              el.attr({ fill: playerColour[currentPlayer] || '#000' })
+            })
+            // Create a group for the icon
+            let g = svg.group()
+            g.append(f)
+            // Set the icon to the correct size and position
+            g.transform('')
+            g.attr({
+              transform: `translate(${deathPosX - offset},${deathPosY -
+              offset})`,
+              class: 'event-icon-group',
+            })
+            // Set the bounding box to the correct size
+            g.selectAll('svg').forEach(function(svgEl) {
+              svgEl.attr({ width: iconSize, height: iconSize })
+            })
+            // Add hover behaviour as before
+            g.hover(
+              event => {
+                pt.x = event.clientX
+                pt.y = event.clientY
+
+                pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+
+                let tipX = pt.x
+                let tipY = pt.y
+
+                console.log(tipX, tipY)
+                console.log(currentTimestamp, deathPosX, deathPosY)
+
+                if (pt.y >= 950) {
+                  tipY -= 50
+                }
+
+                if (pt.x >= 5700) {
+                  tipX -= 200
+                }
+
+                currentPlayer = 'Player' + String(playerIndex)
+
+                let length
+
+                if (calculateBorderLength(eventDetails, 50) < 250) {
+                  length = 250
+                } else {
+                  length = calculateBorderLength(eventDetails, 50)
+                }
+
+                border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                  stroke: 'black',
+                  fill: 'rgba(255,255,255, 0.9)',
+                  strokeWidth: '3px',
+                })
+
+                interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+                interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+                interacteeIcon = svg.image(
+                  `../../src/image/Characters/${interactee}.png`,
+                  133 + tipX,
+                  41 + tipY,
+                  40,
+                  40
+                )
+
+                interactorIcon = svg.image(
+                  `../../src/image/Characters/${interactor}.png`,
+                  38 + tipX,
+                  40 + tipY,
+                  40,
+                  40
+                )
+
+                interacteeNameElement = svg.text(
+                  130 + tipX,
+                  35 + 50 + 20 + tipY,
+                  interactee
+                )
+
+                interactorNameElement = svg.text(
+                  35 + tipX,
+                  35 + 50 + 20 + tipY,
+                  interactor
+                )
+
+                eventInfo = svg.text(
+                  35 + tipX,
+                  35 + 50 + 20 + tipY + 45,
+                  eventDetails
+                )
+              },
+              () => {
+                border.remove()
+                interacteeText.remove()
+                interacteeIcon.remove()
+                interactorText.remove()
+                interactorIcon.remove()
+                interacteeNameElement.remove()
+                interactorNameElement.remove()
+                eventInfo.remove()
+              }
+            )
+          }
+        )
+      }
+
       // draw rectangle with gradient fill for Moving_In event
       if (eventType === 'Moving_In') {
         // Rectangle size
