@@ -1524,7 +1524,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             iconSize,
             iconSize
           )
-          .attr({ class: 'event-icon-group' })
+          .attr({
+            class: 'event-icon-group',
+            stroke: `${playerColour[currentPlayer]}`,
+            'stroke-width': 4
+          })
           .hover(
             event => {
               pt.x = event.clientX
