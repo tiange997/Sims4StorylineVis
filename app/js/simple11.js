@@ -1831,9 +1831,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 let tipX = pt.x
                 let tipY = pt.y
 
-                console.log(tipX, tipY)
-                console.log(currentTimestamp, deathPosX, deathPosY)
-
                 if (pt.y >= 950) {
                   tipY -= 50
                 }
@@ -1930,6 +1927,123 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 eventInfo.remove()
               }
             )
+
+            // Add click behaviour for modal video overlay
+            g.click(function(event) {
+              // Remove any existing overlay
+              let oldOverlay = document.getElementById('choice-modal-overlay')
+              if (oldOverlay) {
+                let oldVideo = oldOverlay.querySelector('#choice-modal-video')
+                if (oldVideo) oldVideo.pause()
+                oldOverlay.remove()
+              }
+
+              // Create overlay
+              let overlay = document.createElement('div')
+              overlay.setAttribute('id', 'choice-modal-overlay')
+              overlay.style.position = 'fixed'
+              overlay.style.left = '0'
+              overlay.style.top = '0'
+              overlay.style.width = '100vw'
+              overlay.style.height = '100vh'
+              overlay.style.background = 'rgba(80,80,80,0.7)'
+              overlay.style.zIndex = 2000
+              overlay.style.display = 'flex'
+              overlay.style.alignItems = 'center'
+              overlay.style.justifyContent = 'center'
+
+              // Modal content container
+              let modal = document.createElement('div')
+              modal.style.position = 'relative'
+              modal.style.background = 'rgba(255,255,255,0.95)'
+              modal.style.borderRadius = '16px'
+              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
+              modal.style.padding = '32px 32px 24px 32px'
+              modal.style.display = 'flex'
+              modal.style.flexDirection = 'column'
+              modal.style.alignItems = 'center'
+              modal.style.minWidth = '480px'
+              modal.style.minHeight = '320px'
+              modal.style.maxWidth = '90vw'
+              modal.style.maxHeight = '80vh'
+
+              // Close button
+              let closeBtn = document.createElement('button')
+              closeBtn.innerText = '×'
+              closeBtn.style.position = 'absolute'
+              closeBtn.style.top = '12px'
+              closeBtn.style.right = '18px'
+              closeBtn.style.fontSize = '2.2rem'
+              closeBtn.style.background = 'transparent'
+              closeBtn.style.border = 'none'
+              closeBtn.style.cursor = 'pointer'
+              closeBtn.style.color = '#333'
+              closeBtn.style.zIndex = 10
+              closeBtn.setAttribute('aria-label', 'Close')
+              closeBtn.addEventListener('click', function() {
+                let overlay = document.getElementById('choice-modal-overlay')
+                if (overlay) {
+                  let video = overlay.querySelector('#choice-modal-video')
+                  if (video) video.pause()
+                  overlay.remove()
+                }
+              })
+
+              // Video element
+              let video = document.createElement('video')
+              video.src = '../../src/video/sims4.mp4'
+              video.controls = true
+              video.autoplay = true
+              video.loop = true
+              video.muted = true
+              video.setAttribute('id', 'choice-modal-video')
+              video.style.pointerEvents = 'auto'
+              video.style.background = 'black'
+              video.style.borderRadius = '8px'
+              video.style.width = '420px'
+              video.style.height = '240px'
+              video.style.margin = '32px 0 0 0'
+              video.style.maxWidth = '80vw'
+              video.style.maxHeight = '50vh'
+
+              // Clip video to play only within the calculated range and loop
+              const videoRange = getVideoClipRangeFromEvent(data[i], 5)
+              video.addEventListener('loadedmetadata', function() {
+                // Clamp end to video duration if needed
+                const end = Math.min(videoRange.end, video.duration)
+                video.currentTime = videoRange.start
+                video._clipStart = videoRange.start
+                video._clipEnd = end
+                const playPromise = video.play()
+                if (playPromise !== undefined) {
+                  playPromise.catch(e => {
+                    console.warn('Autoplay play() failed:', e)
+                  })
+                }
+              })
+              video.addEventListener('timeupdate', function() {
+                // Loop only within the clip range
+                if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
+                  video.currentTime = video._clipStart
+                  video.play()
+                }
+              })
+
+              // Add close on clicking outside modal
+              overlay.addEventListener('mousedown', function(e) {
+                if (e.target === overlay) {
+                  let video = overlay.querySelector('#choice-modal-video')
+                  if (video) video.pause()
+                  overlay.remove()
+                }
+              })
+
+              // Add content to modal
+              modal.appendChild(closeBtn)
+              modal.appendChild(video)
+              overlay.appendChild(modal)
+              document.body.appendChild(overlay)
+            })
           }
         )
       }
