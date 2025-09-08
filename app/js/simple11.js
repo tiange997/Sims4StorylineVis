@@ -1340,7 +1340,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 length = calculateBorderLength(eventDetails, 50)
               }
 
-              border = svg.rect(tipX, tipY, length, 400, 10, 10).attr({
+              // Limit tooltip width to 600px max
+              let tooltipWidth = Math.min(length, 600)
+              border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1462,11 +1464,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               )
 
               // Draw eventDetails as a single line
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              );
+              // Use foreignObject for word-wrapping eventDetails
+              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+              foreign.setAttribute('x', 35 + tipX)
+              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+              foreign.setAttribute('width', 530) // 600 - 2*35 margin
+              foreign.setAttribute('height', 320)
+              let div = document.createElement('div')
+              div.style.maxWidth = '530px'
+              div.style.wordBreak = 'break-word'
+              div.style.whiteSpace = 'pre-wrap'
+              div.style.fontSize = '18px'
+              div.style.fontFamily = 'inherit'
+              div.style.color = '#222'
+              div.textContent = eventDetails
+              foreign.appendChild(div)
+              mySvg.appendChild(foreign)
+              interactorNameElement = {
+                remove: () => foreign.remove()
+              }
 
               interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
                 fill: 'none',
@@ -1565,7 +1581,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+              // Limit tooltip width to 600px max
+              let tooltipWidth = Math.min(length, 600)
+              border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1593,11 +1611,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               //   opacity: 0.7,
               // })
 
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              )
+              // Use foreignObject for word-wrapping eventDetails
+              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+              foreign.setAttribute('x', 35 + tipX)
+              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+              foreign.setAttribute('width', 530)
+              foreign.setAttribute('height', 60)
+              let div = document.createElement('div')
+              div.style.maxWidth = '530px'
+              div.style.wordBreak = 'break-word'
+              div.style.whiteSpace = 'pre-wrap'
+              div.style.fontSize = '18px'
+              div.style.fontFamily = 'inherit'
+              div.style.color = '#222'
+              div.textContent = eventDetails
+              foreign.appendChild(div)
+              mySvg.appendChild(foreign)
+              interactorNameElement = {
+                remove: () => foreign.remove()
+              }
             },
             () => {
               border.remove()
@@ -1691,7 +1723,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   length = calculateBorderLength(eventDetails, 50)
                 }
 
-                border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                // Limit tooltip width to 600px max
+                let tooltipWidth = Math.min(length, 600)
+                border = svg.rect(tipX, tipY, tooltipWidth, 180, 10, 10).attr({
                   stroke: 'black',
                   fill: 'rgba(255,255,255, 0.9)',
                   strokeWidth: '3px',
@@ -1745,11 +1779,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactor
                 )
 
-                eventInfo = svg.text(
-                  35 + tipX,
-                  35 + 50 + 20 + tipY + 45,
-                  eventDetails
-                )
+                // Use foreignObject for word-wrapping eventDetails
+                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                foreign.setAttribute('x', 35 + tipX)
+                foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
+                foreign.setAttribute('width', 530)
+                foreign.setAttribute('height', 60)
+                let div = document.createElement('div')
+                div.style.maxWidth = '530px'
+                div.style.wordBreak = 'break-word'
+                div.style.whiteSpace = 'pre-wrap'
+                div.style.fontSize = '18px'
+                div.style.fontFamily = 'inherit'
+                div.style.color = '#222'
+                div.textContent = eventDetails
+                foreign.appendChild(div)
+                mySvg.appendChild(foreign)
+                eventInfo = {
+                  remove: () => foreign.remove()
+                }
               },
               () => {
                 border.remove()
@@ -2142,7 +2190,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               length = calculateBorderLength(eventDetails, 50)
             }
 
-            border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+            // Limit tooltip width to 600px max
+            let tooltipWidth = Math.min(length, 600)
+            border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
               stroke: 'black',
               fill: 'rgba(255,255,255, 0.9)',
               strokeWidth: '3px',
@@ -2262,7 +2312,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               if (pt.y >= 950) tipY -= 50
               if (pt.x >= 5700) tipX -= 200
               let length = calculateBorderLength(eventDetails, 50) < 250 ? 250 : calculateBorderLength(eventDetails, 50)
-              border = svg.rect(tipX, tipY, length, 400, 10, 10).attr({
+              // Limit tooltip width to 600px max
+              let tooltipWidth = Math.min(length, 600)
+              border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -2280,11 +2332,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 40
               )
               // Draw eventDetails as a single line
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              );
+              // Use foreignObject for word-wrapping eventDetails
+              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+              foreign.setAttribute('x', 35 + tipX)
+              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+              foreign.setAttribute('width', 530)
+              foreign.setAttribute('height', 320)
+              let div = document.createElement('div')
+              div.style.maxWidth = '530px'
+              div.style.wordBreak = 'break-word'
+              div.style.whiteSpace = 'pre-wrap'
+              div.style.fontSize = '18px'
+              div.style.fontFamily = 'inherit'
+              div.style.color = '#222'
+              div.textContent = eventDetails
+              foreign.appendChild(div)
+              mySvg.appendChild(foreign)
+              interactorNameElement = {
+                remove: () => foreign.remove()
+              }
               // Set border color to match storyline color for this character
               let storylineColor = playerColour[allPlayers[k]] || '#222';
               interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
@@ -2484,7 +2550,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, length, 400, 10, 10).attr({
+              // Limit tooltip width to 600px max
+              let tooltipWidth = Math.min(length, 600)
+              border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -2614,11 +2682,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               document.body.appendChild(wrapper)
 
               // Draw eventDetails as a single line
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              );
+              // Use foreignObject for word-wrapping eventDetails
+              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+              foreign.setAttribute('x', 35 + tipX)
+              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+              foreign.setAttribute('width', 530)
+              foreign.setAttribute('height', 320)
+              let div = document.createElement('div')
+              div.style.maxWidth = '530px'
+              div.style.wordBreak = 'break-word'
+              div.style.whiteSpace = 'pre-wrap'
+              div.style.fontSize = '18px'
+              div.style.fontFamily = 'inherit'
+              div.style.color = '#222'
+              div.textContent = eventDetails
+              foreign.appendChild(div)
+              mySvg.appendChild(foreign)
+              interactorNameElement = {
+                remove: () => foreign.remove()
+              }
             },
             () => {
               border.remove()
@@ -2706,7 +2788,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              border = svg.rect(tipX, tipY, length, 125, 10, 10).attr({
+              // Limit tooltip width to 600px max
+              let tooltipWidth = Math.min(length, 600)
+              border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -2734,11 +2818,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 opacity: 0.7,
               })
 
-              interactorNameElement = svg.text(
-                35 + tipX,
-                35 + 50 + 20 + tipY,
-                eventDetails
-              )
+              // Use foreignObject for word-wrapping eventDetails
+              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+              foreign.setAttribute('x', 35 + tipX)
+              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+              foreign.setAttribute('width', 530)
+              foreign.setAttribute('height', 60)
+              let div = document.createElement('div')
+              div.style.maxWidth = '530px'
+              div.style.wordBreak = 'break-word'
+              div.style.whiteSpace = 'pre-wrap'
+              div.style.fontSize = '18px'
+              div.style.fontFamily = 'inherit'
+              div.style.color = '#222'
+              div.textContent = eventDetails
+              foreign.appendChild(div)
+              mySvg.appendChild(foreign)
+              interactorNameElement = {
+                remove: () => foreign.remove()
+              }
             },
             () => {
               border.remove()
