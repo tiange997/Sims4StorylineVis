@@ -1340,9 +1340,22 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 length = calculateBorderLength(eventDetails, 50)
               }
 
+              // --- Calculate dynamic tooltip height based on all elements ---
+              // Padding
+              const padding = 0.02
+              // Heights of elements
+              const textHeight = 28 // "Interactor" text
+              const iconHeight = 40 // icon
+              const iconMargin = 15 // margin between text and icon
+              const borderMargin = 20 // margin between icon and border
+              const detailsHeight = 60 // eventDetails (foreignObject)
+              const videoHeight = 180 // video (approx, will be scaled)
+              // Calculate total height
+              let tooltipContentHeight = textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin + videoHeight
+              let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
               // Limit tooltip width to 600px max
               let tooltipWidth = Math.min(length, 600)
-              border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
+              border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
@@ -1361,7 +1374,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
 
               // Add video element to tooltip, positioned and scaled to match SVG border
-              // Remove any existing wrapper before creating a new one
               let wrapper = document.createElement('div')
               wrapper.style.position = 'fixed'
               wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
@@ -1401,9 +1413,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // Calculate video size and position (2% padding on each side)
               let videoW = screenW * 0.96
-              let videoH = screenH * 0.96
-              let videoLeft = screenW * 0.2
-              let videoTop = screenH * 0.35
+              let videoH = videoHeight * (screenH / tooltipHeight) * 0.96
+              let videoLeft = screenW * 0.02
+              // Place video below text+icon+details, with 2% padding
+              let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
 
               let video = document.createElement('video')
               video.src = '../../src/video/sims4.mp4'
@@ -1419,8 +1432,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.position = 'absolute'
               video.style.left = `${videoLeft}px`
               video.style.top = `${videoTop}px`
-              video.style.width = `${videoW*0.6}px`
-              video.style.height = `${videoH*0.6}px`
+              video.style.width = `${videoW}px`
+              video.style.height = `${videoH}px`
               video.style.borderRadius = '8px'
 
               // Clip video to play only within the calculated range and loop
@@ -1449,6 +1462,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.appendChild(video)
               document.body.appendChild(wrapper)
 
+              // Place text, icon, and eventDetails above the video
               interactorText = svg.text(
                 35 + tipX,
                 25 + tipY,
