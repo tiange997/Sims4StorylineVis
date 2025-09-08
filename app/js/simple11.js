@@ -1958,14 +1958,17 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               modal.style.background = 'rgba(255,255,255,0.95)'
               modal.style.borderRadius = '16px'
               modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
-              modal.style.padding = '32px 32px 24px 32px'
+              modal.style.padding = '0'
               modal.style.display = 'flex'
               modal.style.flexDirection = 'column'
               modal.style.alignItems = 'center'
-              modal.style.minWidth = '480px'
-              modal.style.minHeight = '320px'
+              modal.style.justifyContent = 'center'
+              modal.style.width = '90vw'
+              modal.style.height = '80vh'
               modal.style.maxWidth = '90vw'
               modal.style.maxHeight = '80vh'
+              modal.style.minWidth = '320px'
+              modal.style.minHeight = '180px'
 
               // Close button
               let closeBtn = document.createElement('button')
@@ -1999,12 +2002,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.setAttribute('id', 'choice-modal-video')
               video.style.pointerEvents = 'auto'
               video.style.background = 'black'
-              video.style.borderRadius = '8px'
-              video.style.width = '420px'
-              video.style.height = '240px'
-              video.style.margin = '32px 0 0 0'
-              video.style.maxWidth = '80vw'
-              video.style.maxHeight = '50vh'
+              video.style.borderRadius = '12px'
+              video.style.width = '100%'
+              video.style.height = '100%'
+              video.style.margin = '0'
+              video.style.objectFit = 'contain'
 
               // Clip video to play only within the calculated range and loop
               const videoRange = getVideoClipRangeFromEvent(data[i], 5)
