@@ -1037,15 +1037,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
                 currentPlayer = 'Player' + String(playerIndex)
 
+                // --- Consistent tooltip width and word-wrapping for Choice event ---
                 let length
-
                 if (calculateBorderLength(eventDetails, 50) < 250) {
                   length = 250
                 } else {
                   length = calculateBorderLength(eventDetails, 50)
                 }
-
-                border = svg.rect(tipX, tipY, length, 180, 10, 10).attr({
+                // Limit tooltip width to 600px max
+                let tooltipWidth = Math.min(length, 600)
+                border = svg.rect(tipX, tipY, tooltipWidth, 180, 10, 10).attr({
                   stroke: 'black',
                   fill: 'rgba(255,255,255, 0.9)',
                   strokeWidth: '3px',
@@ -1099,11 +1100,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactor
                 )
 
-                eventInfo = svg.text(
-                  35 + tipX,
-                  35 + 50 + 20 + tipY + 45,
-                  eventDetails
-                )
+                // Use foreignObject for word-wrapping eventDetails (like other events)
+                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                foreign.setAttribute('x', 35 + tipX)
+                foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
+                foreign.setAttribute('width', 530)
+                foreign.setAttribute('height', 60)
+                let div = document.createElement('div')
+                div.style.maxWidth = '530px'
+                div.style.wordBreak = 'break-word'
+                div.style.whiteSpace = 'pre-wrap'
+                div.style.fontSize = '18px'
+                div.style.fontFamily = 'inherit'
+                div.style.color = '#222'
+                div.textContent = eventDetails
+                foreign.appendChild(div)
+                mySvg.appendChild(foreign)
+                eventInfo = {
+                  remove: () => foreign.remove()
+                }
               },
               () => {
                 // --- Remove glow filter on mouseleave ---
