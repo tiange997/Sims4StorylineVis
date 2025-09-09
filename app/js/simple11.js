@@ -1595,28 +1595,21 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 opacity: 0.7,
               })
 
-              // --- Add mouseenter/mouseleave to tooltipWrapper to prevent blinking ---
-              wrapper.addEventListener('mouseenter', () => {
-                tooltipActive = true;
-                if (tooltipRemoveTimeout) {
-                  clearTimeout(tooltipRemoveTimeout);
-                  tooltipRemoveTimeout = null;
-                }
-              });
-              wrapper.addEventListener('mouseleave', () => {
-                tooltipActive = false;
-                if (tooltipRemoveTimeout) clearTimeout(tooltipRemoveTimeout);
-                tooltipRemoveTimeout = setTimeout(() => {
-                  if (!tooltipActive) removeTooltip();
-                }, 80);
-              });
+              // Remove tooltip on mouseleave (standard behaviour)
             },
             () => {
-              tooltipActive = false;
-              if (tooltipRemoveTimeout) clearTimeout(tooltipRemoveTimeout);
-              tooltipRemoveTimeout = setTimeout(() => {
-                if (!tooltipActive) removeTooltip();
-              }, 80);
+              // Remove the tooltip and video wrapper immediately on mouseleave
+              if (border) border.remove();
+              if (interactorText) interactorText.remove();
+              if (interactorIcon) interactorIcon.remove();
+              if (interactorNameElement) interactorNameElement.remove();
+              if (interactorBorder) interactorBorder.remove();
+              let wrapper = document.getElementById('relocation-tooltip-wrapper');
+              if (wrapper) {
+                let video = wrapper.querySelector('#relocation-tooltip-video');
+                if (video) video.pause();
+                wrapper.remove();
+              }
             }
           )
           allRects.push(rect)
