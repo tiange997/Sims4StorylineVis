@@ -1923,7 +1923,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
       }
 
-      // different size for letter icon, no video in tooltip
+      // different style for letter icon: glow on hover, modal "letter" on click
       if (eventType === 'Letter')
       {
         const iconSize = 40
@@ -1938,9 +1938,36 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
+        // --- Add SVG filter for glow effect if not already present ---
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
+        }
+        let glowFilterId = 'letter-glow-filter';
+        let existingGlow = defs.select(`#${glowFilterId}`);
+        if (!existingGlow) {
+          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+          filter.setAttribute('id', glowFilterId);
+          filter.setAttribute('x', '-40%');
+          filter.setAttribute('y', '-40%');
+          filter.setAttribute('width', '180%');
+          filter.setAttribute('height', '180%');
+          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+          feGaussian.setAttribute('in', 'SourceGraphic');
+          feGaussian.setAttribute('stdDeviation', '4');
+          feGaussian.setAttribute('result', 'blur');
+          filter.appendChild(feGaussian);
+          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode1.setAttribute('in', 'blur');
+          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode2.setAttribute('in', 'SourceGraphic');
+          feMerge.appendChild(feMergeNode1);
+          feMerge.appendChild(feMergeNode2);
+          filter.appendChild(feMerge);
+          defs.node.appendChild(filter);
+        }
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
         Snap.load(
@@ -1972,130 +1999,144 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.selectAll('svg').forEach(function(svgEl) {
               svgEl.attr({ width: iconSize, height: iconSize })
             })
-            // Add hover behaviour as before
+            // Add glow on hover, remove on mouseleave
             g.hover(
-              event => {
-                pt.x = event.clientX
-                pt.y = event.clientY
-
-                pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-                // Offset tooltip so it does not appear under the cursor
-                let tipX = pt.x + 20
-                let tipY = pt.y + 20
-
-                if (tipY >= 950) {
-                  tipY -= 70
-                }
-
-                if (tipX >= 5700) {
-                  tipX -= 220
-                }
-
-                currentPlayer = 'Player' + String(playerIndex)
-
-                let length
-
-                if (calculateBorderLength(eventDetails, 50) < 250) {
-                  length = 250
-                } else {
-                  length = calculateBorderLength(eventDetails, 50)
-                }
-
-                // Limit tooltip width to 600px max
-                let tooltipWidth = Math.min(length, 600)
-                border = svg.rect(tipX, tipY, tooltipWidth, 180, 10, 10).attr({
-                  stroke: 'black',
-                  fill: 'rgba(255,255,255, 0.9)',
-                  strokeWidth: '3px',
-                })
-
-                interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
-                interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
-
-                interacteeIcon = svg.image(
-                  `../../src/image/Characters/${interactee}.png`,
-                  133 + tipX,
-                  41 + tipY,
-                  40,
-                  40
-                )
-
-                interactorIcon = svg.image(
-                  `../../src/image/Characters/${interactor}.png`,
-                  38 + tipX,
-                  40 + tipY,
-                  40,
-                  40
-                )
-
-                // Add coloured borders for interactor and interactee (like Relocation)
-                let interactorBorder = svg.rect(38 + tipX, 40 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[currentPlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
-                // Try to get interactee player colour
-                let interacteePlayerIndex = data[i]['interacteeID']
-                let interacteePlayer = 'Player' + String(interacteePlayerIndex)
-                let interacteeBorder = svg.rect(133 + tipX, 41 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[interacteePlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
-
-                interacteeNameElement = svg.text(
-                  130 + tipX,
-                  35 + 50 + 20 + tipY,
-                  interactee
-                )
-
-                interactorNameElement = svg.text(
-                  35 + tipX,
-                  35 + 50 + 20 + tipY,
-                  interactor
-                )
-
-                // Use foreignObject for word-wrapping eventDetails
-                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
-                foreign.setAttribute('x', 35 + tipX)
-                foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
-                foreign.setAttribute('width', 530)
-                foreign.setAttribute('height', 60)
-                let div = document.createElement('div')
-                div.style.maxWidth = '530px'
-                div.style.wordBreak = 'break-word'
-                div.style.whiteSpace = 'pre-wrap'
-                div.style.fontSize = '18px'
-                div.style.fontFamily = 'inherit'
-                div.style.color = '#222'
-                div.textContent = eventDetails
-                foreign.appendChild(div)
-                mySvg.appendChild(foreign)
-                eventInfo = {
-                  remove: () => foreign.remove()
-                }
+              () => {
+                g.attr({ filter: `url(#${glowFilterId})` });
               },
               () => {
-                border.remove()
-                interacteeText.remove()
-                interacteeIcon.remove()
-                interactorText.remove()
-                interactorIcon.remove()
-                // Remove the new borders if present
-                let allRects = svg.selectAll('rect')
-                if (allRects && allRects.length) {
-                  // Remove only the last two (the borders we just added)
-                  allRects[allRects.length - 1].remove()
-                  allRects[allRects.length - 2].remove()
-                }
-                interacteeNameElement.remove()
-                interactorNameElement.remove()
-                eventInfo.remove()
+                g.attr({ filter: null });
               }
             )
+            // On click, show modal "letter" layout
+            g.click(function(event) {
+              // Remove any existing overlay
+              let oldOverlay = document.getElementById('letter-modal-overlay')
+              if (oldOverlay) {
+                oldOverlay.remove()
+              }
+
+              // Create overlay
+              let overlay = document.createElement('div')
+              overlay.setAttribute('id', 'letter-modal-overlay')
+              overlay.style.position = 'fixed'
+              overlay.style.left = '0'
+              overlay.style.top = '0'
+              overlay.style.width = '100vw'
+              overlay.style.height = '100vh'
+              overlay.style.background = 'rgba(80,80,80,0.7)'
+              overlay.style.zIndex = 2000
+              overlay.style.display = 'flex'
+              overlay.style.alignItems = 'center'
+              overlay.style.justifyContent = 'center'
+
+              // Modal content container styled as a letter
+              let modal = document.createElement('div')
+              modal.style.position = 'relative'
+              modal.style.background = 'linear-gradient(135deg, #fffbe6 90%, #f7ecd0 100%)'
+              modal.style.borderRadius = '18px'
+              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.18)'
+              modal.style.padding = '48px 36px 36px 36px'
+              modal.style.display = 'flex'
+              modal.style.flexDirection = 'column'
+              modal.style.alignItems = 'center'
+              modal.style.justifyContent = 'flex-start'
+              modal.style.width = 'min(90vw, 520px)'
+              modal.style.maxWidth = '95vw'
+              modal.style.minWidth = '320px'
+              modal.style.minHeight = '220px'
+              modal.style.border = '2px solid #e2c48d'
+              modal.style.fontFamily = '"Georgia", "Times New Roman", serif'
+              modal.style.position = 'relative'
+              modal.style.overflow = 'visible'
+
+              // Add a "fold" effect at the top
+              let fold = document.createElement('div')
+              fold.style.position = 'absolute'
+              fold.style.top = '0'
+              fold.style.left = '0'
+              fold.style.width = '100%'
+              fold.style.height = '32px'
+              fold.style.background = 'linear-gradient(180deg, #f7ecd0 60%, #fffbe6 100%)'
+              fold.style.borderTopLeftRadius = '18px'
+              fold.style.borderTopRightRadius = '18px'
+              fold.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)'
+              fold.style.zIndex = 1
+              modal.appendChild(fold)
+
+              // "Dear ..." heading
+              let heading = document.createElement('div')
+              heading.innerText = 'Letter'
+              heading.style.fontWeight = 'bold'
+              heading.style.fontSize = '2.1rem'
+              heading.style.letterSpacing = '0.08em'
+              heading.style.marginBottom = '18px'
+              heading.style.marginTop = '18px'
+              heading.style.color = '#b08d57'
+              heading.style.textShadow = '0 1px 0 #fffbe6'
+              heading.style.zIndex = 2
+              modal.appendChild(heading)
+
+              // Letter content
+              let letterContent = document.createElement('div')
+              letterContent.innerText = eventDetails
+              letterContent.style.fontSize = '1.25rem'
+              letterContent.style.lineHeight = '1.7'
+              letterContent.style.color = '#5a4a2c'
+              letterContent.style.background = 'rgba(255,255,255,0.7)'
+              letterContent.style.padding = '18px 16px'
+              letterContent.style.borderRadius = '10px'
+              letterContent.style.boxShadow = '0 1px 4px rgba(200,180,120,0.08)'
+              letterContent.style.marginBottom = '24px'
+              letterContent.style.marginTop = '0'
+              letterContent.style.whiteSpace = 'pre-wrap'
+              letterContent.style.wordBreak = 'break-word'
+              letterContent.style.zIndex = 2
+              modal.appendChild(letterContent)
+
+              // "Signature" (Interactor)
+              let signature = document.createElement('div')
+              signature.innerText = `From: ${data[i]['interactor']}`
+              signature.style.fontFamily = '"Brush Script MT", cursive, serif'
+              signature.style.fontSize = '1.3rem'
+              signature.style.color = '#b08d57'
+              signature.style.alignSelf = 'flex-end'
+              signature.style.marginTop = '12px'
+              signature.style.marginRight = '12px'
+              signature.style.zIndex = 2
+              modal.appendChild(signature)
+
+              // Close button
+              let closeBtn = document.createElement('button')
+              closeBtn.innerText = '×'
+              closeBtn.style.position = 'absolute'
+              closeBtn.style.top = '12px'
+              closeBtn.style.right = '18px'
+              closeBtn.style.fontSize = '2.2rem'
+              closeBtn.style.background = 'transparent'
+              closeBtn.style.border = 'none'
+              closeBtn.style.cursor = 'pointer'
+              closeBtn.style.color = '#b08d57'
+              closeBtn.style.zIndex = 10
+              closeBtn.setAttribute('aria-label', 'Close')
+              closeBtn.addEventListener('click', function() {
+                let overlay = document.getElementById('letter-modal-overlay')
+                if (overlay) {
+                  overlay.remove()
+                }
+              })
+              modal.appendChild(closeBtn)
+
+              // Add close on clicking outside modal
+              overlay.addEventListener('mousedown', function(e) {
+                if (e.target === overlay) {
+                  overlay.remove()
+                }
+              })
+
+              overlay.appendChild(modal)
+              document.body.appendChild(overlay)
+            })
           }
         )
       }
