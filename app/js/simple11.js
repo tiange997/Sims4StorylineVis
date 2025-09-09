@@ -518,15 +518,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              let tipX = pt.x
-              let tipY = pt.y
+              // Offset tooltip so it does not appear under the cursor
+              let tipX = pt.x + 20
+              let tipY = pt.y + 20
 
-              if (pt.y >= 950) {
-                tipY -= 50
+              if (tipY >= 950) {
+                tipY -= 70
               }
 
-              if (pt.x >= 5700) {
-                tipX -= 200
+              if (tipX >= 5700) {
+                tipX -= 220
               }
 
               currentPlayer = 'Player' + String(playerIndex)
@@ -786,18 +787,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
                 pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-                let tipX = pt.x
-                let tipY = pt.y
+                // Offset tooltip so it does not appear under the cursor
+                let tipX = pt.x + 20
+                let tipY = pt.y + 20
 
-                console.log(tipX, tipY)
-                console.log(currentTimestamp, deathPosX, deathPosY)
-
-                if (pt.y >= 950) {
-                  tipY -= 50
+                if (tipY >= 950) {
+                  tipY -= 70
                 }
 
-                if (pt.x >= 5700) {
-                  tipX -= 200
+                if (tipX >= 5700) {
+                  tipX -= 220
                 }
 
                 currentPlayer = 'Player' + String(playerIndex)
@@ -963,15 +962,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
                 pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-                let tipX = pt.x
-                let tipY = pt.y
+                // Offset tooltip so it does not appear under the cursor
+                let tipX = pt.x + 20
+                let tipY = pt.y + 20
 
-                if (pt.y >= 950) {
-                  tipY -= 50
+                if (tipY >= 950) {
+                  tipY -= 70
                 }
 
-                if (pt.x >= 5700) {
-                  tipX -= 200
+                if (tipX >= 5700) {
+                  tipX -= 220
                 }
 
                 currentPlayer = 'Player' + String(playerIndex)
@@ -1256,15 +1256,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
             pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-            let tipX = pt.x
-            let tipY = pt.y
+            // Offset tooltip so it does not appear under the cursor
+            let tipX = pt.x + 20
+            let tipY = pt.y + 20
 
-            if (pt.y >= 950) {
-              tipY -= 50
+            if (tipY >= 950) {
+              tipY -= 70
             }
 
-            if (pt.x >= 5700) {
-              tipX -= 200
+            if (tipX >= 5700) {
+              tipX -= 220
             }
 
             currentPlayer = 'Player' + String(playerIndex)
