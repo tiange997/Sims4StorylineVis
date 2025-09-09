@@ -2066,7 +2066,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // "Last Will Letter" heading
               let heading = document.createElement('div')
-              heading.innerText = 'Last Will Letter'
+              heading.innerText = 'THE LAST WILL AND TESTAMENT OF THE FAMILY'+"'"+'S ESTATE'
               heading.style.fontWeight = 'bold'
               heading.style.fontSize = '2.1rem'
               heading.style.letterSpacing = '0.08em'
