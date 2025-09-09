@@ -18,9 +18,31 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
   allEventData = data // Store for filtering
   // Get unique event types
   const eventTypes = Array.from(new Set(data.map(ev => ev.eventType))).sort()
-  // Generate checkboxes with legend icons
-  // <label>Show Event Types:</label><br>
+  // Generate checkboxes with legend icons using a CSS grid layout
   eventTypeFilterDiv.innerHTML = ''
+  // Add a style block for the grid if not already present
+  if (!document.getElementById('eventTypeFilterGridStyle')) {
+    const style = document.createElement('style')
+    style.id = 'eventTypeFilterGridStyle'
+    style.innerHTML = `
+      #eventTypeFilters {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px 16px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .event-type-filter-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 0;
+        min-width: 0;
+        white-space: nowrap;
+      }
+    `
+    document.head.appendChild(style)
+  }
   eventTypes.forEach((type, idx) => {
     const id = `eventType_${idx}`
     // Determine icon path
@@ -42,10 +64,11 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
       iconPath = `../../src/image/Interaction_Events/${type}.svg`
     }
     eventTypeFilterDiv.innerHTML += `
-      <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
-      <img src="${iconPath}" alt="${type}" style="width:20px;height:20px;vertical-align:middle;margin-right:4px;object-fit:contain;">
-      <label for="${id}">${type}</label>
-      <br>
+      <label class="event-type-filter-item" for="${id}">
+        <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
+        <img src="${iconPath}" alt="${type}" style="width:20px;height:20px;vertical-align:middle;object-fit:contain;">
+        <span>${type}</span>
+      </label>
     `
   })
   // Add event listener for real-time filtering
