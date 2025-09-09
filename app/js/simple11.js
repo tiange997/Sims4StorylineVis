@@ -1628,22 +1628,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              // const mapSize = 200
+              // Offset tooltip so it does not appear under the cursor
+              let tipX = pt.x + 20
+              let tipY = pt.y + 20
 
-              let tipX = pt.x
-              let tipY = pt.y
-
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
-              if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
+              if (tipY >= 950) {
+                tipY -= 70
               }
 
-              if (pt.x >= 5700) {
-                tipX -= 200
+              if (tipX >= 5700) {
+                tipX -= 220
               }
 
               currentPlayer = 'Player' + String(playerIndex)
