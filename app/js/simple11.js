@@ -2075,6 +2075,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               heading.style.color = '#b08d57'
               heading.style.textShadow = '0 1px 0 #fffbe6'
               heading.style.zIndex = 2
+              heading.style.width = '100%'
+              heading.style.textAlign = 'center'
+              heading.style.display = 'block'
               modal.appendChild(heading)
 
               // Letter content (immediately after title)
@@ -2092,6 +2095,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               letterContent.style.whiteSpace = 'pre-wrap'
               letterContent.style.wordBreak = 'break-word'
               letterContent.style.zIndex = 2
+              letterContent.style.width = '100%'
+              letterContent.style.display = 'block'
               modal.appendChild(letterContent)
 
               // Close button
