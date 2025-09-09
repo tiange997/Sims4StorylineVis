@@ -953,6 +953,37 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
+        // --- Add SVG filter for glow effect if not already present ---
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
+        }
+        let glowFilterId = 'choice-glow-filter';
+        let existingGlow = defs.select(`#${glowFilterId}`);
+        if (!existingGlow) {
+          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+          filter.setAttribute('id', glowFilterId);
+          filter.setAttribute('x', '-40%');
+          filter.setAttribute('y', '-40%');
+          filter.setAttribute('width', '180%');
+          filter.setAttribute('height', '180%');
+          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+          feGaussian.setAttribute('in', 'SourceGraphic');
+          feGaussian.setAttribute('stdDeviation', '4');
+          feGaussian.setAttribute('result', 'blur');
+          filter.appendChild(feGaussian);
+          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode1.setAttribute('in', 'blur');
+          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode2.setAttribute('in', 'SourceGraphic');
+          feMerge.appendChild(feMergeNode1);
+          feMerge.appendChild(feMergeNode2);
+          filter.appendChild(feMerge);
+          defs.node.appendChild(filter);
+        }
+
         // Use Snap.svg to load the SVG, set fill, then place at correct position
         Snap.load(
           `../../src/image/Interaction_Events/${eventType}.svg`,
@@ -981,9 +1012,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.selectAll('svg').forEach(function(svgEl) {
               svgEl.attr({ width: iconSize, height: iconSize })
             })
-            // Add hover behaviour as before
+            // Add hover behaviour as before, with glow effect
             g.hover(
               event => {
+                // --- Add glow filter on hover ---
+                g.attr({ filter: `url(#${glowFilterId})` });
+
                 pt.x = event.clientX
                 pt.y = event.clientY
 
@@ -1072,6 +1106,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 )
               },
               () => {
+                // --- Remove glow filter on mouseleave ---
+                g.attr({ filter: null });
+
                 border.remove()
                 interacteeText.remove()
                 interacteeIcon.remove()
