@@ -1046,15 +1046,27 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 }
                 // Limit tooltip width to 600px max
                 let tooltipWidth = Math.min(length, 600)
-                // Calculate tooltip height like other events
+                // Calculate tooltip height considering all elements (like other events)
                 const padding = 0.02
-                const textHeight = 28 // "Interactor" text
+                const labelHeight = 28 // "Interactor:" and "Interactee:" text
                 const iconHeight = 40 // icon
                 const iconMargin = 15 // margin between text and icon
                 const borderMargin = 20 // margin between icon and border
+                const nameHeight = 28 // interactee/interactor name text
+                const nameMargin = 10 // margin between icon and name
                 const detailsHeight = 60 // eventDetails (foreignObject)
-                // No video for Choice, so omit videoHeight
-                let tooltipContentHeight = textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin
+                // Total: 2 label lines, 2 icons, 2 name lines, margins, details
+                let tooltipContentHeight =
+                  // Top labels
+                  labelHeight +
+                  // Icon row
+                  iconMargin + iconHeight +
+                  // Name row
+                  nameMargin + nameHeight +
+                  // Details row
+                  borderMargin + detailsHeight +
+                  // Bottom margin
+                  borderMargin;
                 let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
                 border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
                   stroke: 'black',
