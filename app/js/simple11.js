@@ -27,7 +27,7 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
     let iconPath = ''
     // List of event types that use Events_General (png/svg)
     const generalTypes = [
-      'Relocation', 'System_Sim_Status', 'Sleep', 'Sell', 'Death', 'Letter', 'Moving_In', 'Choice', 'Purchasing', 'Reading', 'Swim'
+      'Relocation', 'System_Sim_Status', 'Sleep', 'Sell', 'Death', 'Letter', 'Moving_In', 'Choice'
     ]
     // List of event types that use Events_General PNG
     const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In']
@@ -731,7 +731,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         eventType === 'Photo_Taking' || eventType === 'Playing_Chess' ||
         eventType === 'Cooking' || eventType === 'Eating'||
         eventType === 'Social_Invite' || eventType === 'Listening_Music' ||
-        eventType === 'Dancing' || eventType === 'Sleep' || eventType === 'Sell')
+        eventType === 'Dancing' || eventType === 'Sleep' || eventType === 'Sell'||
+        eventType === 'Letter' || eventType === 'Contact')
       {
         const iconSize = 30
         const offset = iconSize / 2
@@ -762,7 +763,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               'path, rect, circle, ellipse, polygon, polyline'
             ).forEach(function(el) {
               el.attr({ fill: playerColour[currentPlayer] || '#000' ,
-              opacity: 0.8, stoke: '#000'
+                "fill-opacity": 0.7, stoke: '#000', "stroke-opacity": 1.0
               })
             })
             // Create a group for the icon
@@ -1824,7 +1825,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
       // different size for letter icon, no video in tooltip
       if (eventType === 'Letter') {
-        const iconSize = 45
+        const iconSize = 30
         const offset = iconSize / 2
 
         let playerIndex = data[i]['interactorID']
