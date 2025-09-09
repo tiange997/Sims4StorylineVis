@@ -637,11 +637,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.width = `${screenW}px`
               wrapper.style.height = `${screenH}px`
 
-              // Use a fixed small size for the video, matching a 16:9 aspect ratio (e.g. 160x90)
-              let videoW = 160
-              let videoH = 90
-              // Place video below text+icon+details, with 2% padding
-              let videoLeft = screenW * 0.02
+              // Double the video size and centre it horizontally in the tooltip
+              let videoW = 320
+              let videoH = 180
+              // Calculate horizontal centre (with respect to left/right padding)
+              let videoLeft = (screenW - videoW) / 2
               let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
 
               let video = document.createElement('video')
@@ -1575,10 +1575,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.height = `${screenH}px`
 
               // Use a fixed small size for the video, matching a 16:9 aspect ratio (e.g. 160x90)
-              let videoW = 160
-              let videoH = 90
-              // Place video below text+icon+details, with 2% padding
-              let videoLeft = screenW * 0.02
+              let videoW = 320
+              let videoH = 180
+              // Centre horizontally in the tooltip
+              let videoLeft = (screenW - videoW) / 2
               let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
 
               let video = document.createElement('video')
