@@ -1208,16 +1208,23 @@ function getVideoClipRangeFromEvent(eventObj, rangeSec = 5) {
 }
 
 async function drawEvents(graph, participantsInfo, filterTypes = null) {
-  // Remove previously drawn event icons/groups (if any)
-  // We'll use a class for all event icons for easy removal
-  svg.selectAll('.event-icon-group').forEach(function(g) {
-    g.remove()
-  })
+  // --- Improved: Use a dedicated SVG group for all event icons/lines ---
+  // Create or select a single group for all event elements
+  let eventsGroup = svg.select('#events-group')
+  if (!eventsGroup) {
+    eventsGroup = svg.group().attr({ id: 'events-group' })
+    // Ensure it's on top
+    svg.append(eventsGroup)
+  } else {
+    // Remove all children (icons, lines, etc)
+    while (eventsGroup.node.firstChild) {
+      eventsGroup.node.removeChild(eventsGroup.node.firstChild)
+    }
+  }
 
-  // Remove previously drawn mock event lines (if any)
-  svg.selectAll('.mock-event-dotted-line').forEach(function(g) {
-    g.remove()
-  })
+  // Remove any old event-icon-group and mock-event-dotted-line elements outside the group (legacy)
+  svg.selectAll('.event-icon-group').forEach(function(g) { g.remove() })
+  svg.selectAll('.mock-event-dotted-line').forEach(function(g) { g.remove() })
 
   // Use allEventData if available, otherwise fallback to jsonReadTwo
   let dataPromise = allEventData.length
@@ -1261,7 +1268,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         points.sort((a, b) => a[1] - b[1])
         // Draw vertical dotted line connecting all points
         for (let j = 0; j < points.length - 1; j++) {
-          svg.line(points[j][0], points[j][1], points[j+1][0], points[j+1][1])
+          // Draw lines inside the eventsGroup
+          eventsGroup.line(points[j][0], points[j][1], points[j+1][0], points[j+1][1])
             .attr({
               stroke: '#222',
               'stroke-width': 2,
@@ -1312,7 +1320,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        svg
+        eventsGroup
           .image(
             `../../src/image/Events_General/${eventType}.png`,
             deathPosX - offset,
@@ -1573,7 +1581,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               el.attr({ fill: playerColour[currentPlayer] || '#000' })
             })
             // Create a group for the icon
-            let g = svg.group()
+            let g = eventsGroup.group()
             g.append(f)
             // Set the icon to the correct size and position
             g.transform('')
@@ -1750,7 +1758,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               el.attr({ fill: playerColour[currentPlayer] || '#000' })
             })
             // Create a group for the icon
-            let g = svg.group()
+            let g = eventsGroup.group()
             g.append(f)
             // Set the icon to the correct size and position
             g.transform('')
@@ -2043,7 +2051,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         defs.node.appendChild(gradient);
 
         // Draw the rectangle with gradient fill
-        let rect = svg
+        let rect = eventsGroup
           .rect(
             deathPosX - rectWidth / 2,
             deathPosY - rectHeight / 2,
@@ -2183,7 +2191,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           pattern.appendChild(line);
           defs.node.appendChild(pattern);
           // Draw the rectangle with pattern fill
-          let rect = svg
+          let rect = eventsGroup
             .rect(
               posX - rectWidth / 2,
               posY - rectHeight / 2,
@@ -2419,7 +2427,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        svg
+        eventsGroup
           .image(
             `../../src/image/Events_General/${eventType}.svg`,
             deathPosX - offset,
@@ -2655,7 +2663,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        svg
+        eventsGroup
           .image(
             `../../src/image/Events_General/${eventType}.svg`,
             deathPosX - offset,
