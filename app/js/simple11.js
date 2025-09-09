@@ -1594,24 +1594,29 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 'stroke-width': '3',
                 opacity: 0.7,
               })
+
+              // --- Add mouseenter/mouseleave to tooltipWrapper to prevent blinking ---
+              wrapper.addEventListener('mouseenter', () => {
+                tooltipActive = true;
+                if (tooltipRemoveTimeout) {
+                  clearTimeout(tooltipRemoveTimeout);
+                  tooltipRemoveTimeout = null;
+                }
+              });
+              wrapper.addEventListener('mouseleave', () => {
+                tooltipActive = false;
+                if (tooltipRemoveTimeout) clearTimeout(tooltipRemoveTimeout);
+                tooltipRemoveTimeout = setTimeout(() => {
+                  if (!tooltipActive) removeTooltip();
+                }, 80);
+              });
             },
             () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
-              interactorBorder.remove()
-              // Remove the video wrapper if it exists
-              let wrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (wrapper) {
-                let video = wrapper.querySelector('#relocation-tooltip-video')
-                if (video) {
-                  video.pause()
-                }
-                wrapper.remove()
-              }
+              tooltipActive = false;
+              if (tooltipRemoveTimeout) clearTimeout(tooltipRemoveTimeout);
+              tooltipRemoveTimeout = setTimeout(() => {
+                if (!tooltipActive) removeTooltip();
+              }, 80);
             }
           )
           allRects.push(rect)
@@ -1934,8 +1939,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 38 + tipX,
                 40 + tipY,
                 40,
-                40
-              )
+                40              )
 
               interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
                 fill: 'none',
