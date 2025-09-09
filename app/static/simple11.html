@@ -32,8 +32,8 @@
     </style>
   </head>
 
-  <body>
-    <div id="container">
+  <body style="height: 100vh; display: flex; flex-direction: column; min-height: 100vh; background: #f7f8fa;">
+    <div id="container" style="flex: 0 0 70vh; min-height: 0; position: relative; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-radius: 0 0 18px 18px; overflow: hidden;">
       <div id="tip" style="padding-top: 20%">
         <img
           src="src/image/Spinner.gif"
@@ -49,9 +49,51 @@
       <button id="zoomOutBtn" style="position: absolute; top: 10px; right: 320px; z-index: 1001; font-size: 18px; padding: 6px 16px;">-</button>
       <button id="panModeBtn" style="position: absolute; top: 10px; right: 160px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Hand: Off</button>
     </div>
-    <div id="eventTypeFilters">
-      <!-- Event type checkboxes will be dynamically generated here -->
+    <div id="filterPanel" style="flex: 1 1 0; min-height: 0; background: #fff; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); border-radius: 18px 18px 0 0; margin-top: 8px; padding: 32px 32px 16px 32px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 30vh; overflow-y: auto;">
+      <h3 style="margin-bottom: 18px; color: #2d3a4b; font-weight: 700; letter-spacing: 0.5px;">Filter Events</h3>
+      <div id="eventTypeFilters" style="width: 100%; max-width: 900px; display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; align-items: flex-start;">
+        <!-- Event type checkboxes and buttons will be dynamically generated here by JS -->
+      </div>
     </div>
+    <style>
+      #filterPanel label {
+        background: #f0f4f8;
+        border-radius: 8px;
+        padding: 8px 16px;
+        margin: 0 8px 8px 0;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        transition: background 0.2s;
+      }
+      #filterPanel label:hover {
+        background: #e3eaf2;
+      }
+      #filterPanel input[type="checkbox"] {
+        margin-right: 8px;
+        accent-color: #3b82f6;
+      }
+      #filterPanel button {
+        background: #3b82f6;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 20px;
+        font-size: 16px;
+        margin: 0 8px 8px 0;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        transition: background 0.2s;
+      }
+      #filterPanel button:hover {
+        background: #2563eb;
+      }
+      @media (max-width: 900px) {
+        #filterPanel { padding: 18px 6px 8px 6px; }
+        #eventTypeFilters { max-width: 100%; }
+      }
+    </style>
     <script>
       document.addEventListener('contextmenu', event => event.preventDefault())
       // Disabled mouse scroll panning to avoid conflict with zooming logic
@@ -91,6 +133,40 @@
       document.getElementById('zoomOutBtn').addEventListener('click', function() {
         if (window.zoomByButton) window.zoomByButton(1/1.1)
       })
+
+      // Wait for the checkboxes to be rendered, then add the buttons if not present
+      function addEventTypeButtonsIfMissing() {
+        const filterDiv = document.getElementById('eventTypeFilters');
+        if (!filterDiv) return;
+        // Only add if not already present
+        if (!document.getElementById('selectAllEventsBtn')) {
+          const btnDiv = document.createElement('div');
+          btnDiv.style.marginTop = '16px';
+          btnDiv.style.textAlign = 'center';
+          btnDiv.innerHTML = `
+            <button id="selectAllEventsBtn" style="margin:8px 8px 0 0; padding:6px 16px; font-size:16px;">Select All Events</button>
+            <button id="deselectAllEventsBtn" style="margin:8px 0 0 0; padding:6px 16px; font-size:16px;">Deselect All Events</button>
+          `;
+          filterDiv.appendChild(btnDiv);
+          document.getElementById('selectAllEventsBtn').onclick = function() {
+            document.querySelectorAll('input[name="eventTypes"]').forEach(cb => {
+              cb.checked = true;
+            });
+            filterDiv.dispatchEvent(new Event('change'));
+          };
+          document.getElementById('deselectAllEventsBtn').onclick = function() {
+            document.querySelectorAll('input[name="eventTypes"]').forEach(cb => {
+              cb.checked = false;
+            });
+            filterDiv.dispatchEvent(new Event('change'));
+          };
+        }
+      }
+      // Observe changes to the filter div and always add the buttons if missing
+      const observer = new MutationObserver(addEventTypeButtonsIfMissing);
+      observer.observe(document.getElementById('eventTypeFilters'), { childList: true, subtree: true });
+      // Also try to add on page load
+      addEventTypeButtonsIfMissing();
     </script>
   </body>
 </html>
