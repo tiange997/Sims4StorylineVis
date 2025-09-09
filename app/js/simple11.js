@@ -637,11 +637,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.width = `${screenW}px`
               wrapper.style.height = `${screenH}px`
 
-              // Calculate video size and position (2% padding on each side)
-              let videoW = screenW * 0.96
-              let videoH = videoHeight * (screenH / tooltipHeight) * 0.96
-              let videoLeft = screenW * 0.02
+              // Use a fixed small size for the video, matching a 16:9 aspect ratio (e.g. 160x90)
+              let videoW = 160
+              let videoH = 90
               // Place video below text+icon+details, with 2% padding
+              let videoLeft = screenW * 0.02
               let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
 
               let video = document.createElement('video')
@@ -661,6 +661,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.width = `${videoW}px`
               video.style.height = `${videoH}px`
               video.style.borderRadius = '8px'
+              video.style.objectFit = 'cover'
 
               // Clip video to play only within the calculated range and loop
               const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
@@ -1573,11 +1574,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               wrapper.style.width = `${screenW}px`
               wrapper.style.height = `${screenH}px`
 
-              // Calculate video size and position (2% padding on each side)
-              let videoW = screenW * 0.96
-              let videoH = videoHeight * (screenH / tooltipHeight) * 0.96
-              let videoLeft = screenW * 0.02
+              // Use a fixed small size for the video, matching a 16:9 aspect ratio (e.g. 160x90)
+              let videoW = 160
+              let videoH = 90
               // Place video below text+icon+details, with 2% padding
+              let videoLeft = screenW * 0.02
               let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
 
               let video = document.createElement('video')
@@ -1597,6 +1598,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.style.width = `${videoW}px`
               video.style.height = `${videoH}px`
               video.style.borderRadius = '8px'
+              video.style.objectFit = 'cover'
 
               // Clip video to play only within the calculated range and loop
               const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
