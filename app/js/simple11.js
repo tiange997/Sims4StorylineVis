@@ -1037,7 +1037,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
                 currentPlayer = 'Player' + String(playerIndex)
 
-                // --- Consistent tooltip width and word-wrapping for Choice event ---
+                // --- Consistent tooltip width, height, and word-wrapping for Choice event ---
                 let length
                 if (calculateBorderLength(eventDetails, 50) < 250) {
                   length = 250
@@ -1046,7 +1046,17 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 }
                 // Limit tooltip width to 600px max
                 let tooltipWidth = Math.min(length, 600)
-                border = svg.rect(tipX, tipY, tooltipWidth, 180, 10, 10).attr({
+                // Calculate tooltip height like other events
+                const padding = 0.02
+                const textHeight = 28 // "Interactor" text
+                const iconHeight = 40 // icon
+                const iconMargin = 15 // margin between text and icon
+                const borderMargin = 20 // margin between icon and border
+                const detailsHeight = 60 // eventDetails (foreignObject)
+                // No video for Choice, so omit videoHeight
+                let tooltipContentHeight = textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin
+                let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
+                border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
                   stroke: 'black',
                   fill: 'rgba(255,255,255, 0.9)',
                   strokeWidth: '3px',
