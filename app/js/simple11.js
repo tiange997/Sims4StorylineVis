@@ -40,6 +40,9 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
         min-width: 0;
         white-space: nowrap;
       }
+      .event-type-filter-item img {
+        filter: grayscale(1) brightness(1.1) contrast(1.1);
+      }
     `
     document.head.appendChild(style)
   }
