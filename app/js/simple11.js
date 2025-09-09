@@ -2066,7 +2066,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // "Dear ..." heading
               let heading = document.createElement('div')
-              heading.innerText = 'Last Will Letter'
+              heading.innerText = 'Letter'
               heading.style.fontWeight = 'bold'
               heading.style.fontSize = '2.1rem'
               heading.style.letterSpacing = '0.08em'
@@ -2093,6 +2093,18 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               letterContent.style.wordBreak = 'break-word'
               letterContent.style.zIndex = 2
               modal.appendChild(letterContent)
+
+              // "Signature" (Interactor)
+              let signature = document.createElement('div')
+              signature.innerText = `From: ${data[i]['interactor']}`
+              signature.style.fontFamily = '"Brush Script MT", cursive, serif'
+              signature.style.fontSize = '1.3rem'
+              signature.style.color = '#b08d57'
+              signature.style.alignSelf = 'flex-end'
+              signature.style.marginTop = '12px'
+              signature.style.marginRight = '12px'
+              signature.style.zIndex = 2
+              modal.appendChild(signature)
 
               // Close button
               let closeBtn = document.createElement('button')
