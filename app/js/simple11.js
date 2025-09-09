@@ -1924,8 +1924,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       }
 
       // different size for letter icon, no video in tooltip
-      if (eventType === 'Letter') {
-        const iconSize = 30
+      if (eventType === 'Letter')
+      {
+        const iconSize = 40
         const offset = iconSize / 2
 
         let playerIndex = data[i]['interactorID']
@@ -1937,114 +1938,166 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // console.log(eventDetails, deathPosX, deathPosY)
-
         // Player Icon
         let indexHolder = currentPlayer.match(/\d/g)
         indexHolder = indexHolder.join('')
 
-        eventsGroup
-          .image(
-            `../../src/image/Events_General/${eventType}.svg`,
-            deathPosX - offset,
-            deathPosY - offset,
-            iconSize,
-            iconSize
-          )
-          .attr({ class: 'event-icon-group' })
-          .hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
-
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-              // const mapSize = 200
-
-              let tipX = pt.x
-              let tipY = pt.y
-
-              console.log(tipX, tipY)
-
-              // console.log(currentTimestamp, deathPosX, deathPosY)
-
-              if (pt.y >= 950) {
-                // tipX -= 100
-                tipY -= 50 // was 200 before
-              }
-
-              if (pt.x >= 5700) {
-                tipX -= 200
-              }
-
-              currentPlayer = 'Player' + String(playerIndex)
-
-              let length
-
-              if (calculateBorderLength(eventDetails, 50) < 250) {
-                length = 250
-              } else {
-                length = calculateBorderLength(eventDetails, 50)
-              }
-
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              // Limit tooltip width to 600px max
-              let tooltipWidth = Math.min(length, 600)
-              border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
+        // Use Snap.svg to load the SVG, set fill, then place at correct position
+        Snap.load(
+          `../../src/image/Interaction_Events/${eventType}.svg`,
+          function(f) {
+            // Remove all fill attributes from the SVG to ensure full override
+            f.selectAll('*').forEach(function(el) {
+              el.attr({ fill: null })
+            })
+            // Set fill for all paths/shapes in the SVG
+            f.selectAll(
+              'path, rect, circle, ellipse, polygon, polyline'
+            ).forEach(function(el) {
+              el.attr({ fill: playerColour[currentPlayer] || '#000' ,
+                "fill-opacity": 0.7, stoke: '#000', "stroke-opacity": 1.0
               })
+            })
+            // Create a group for the icon
+            let g = eventsGroup.group()
+            g.append(f)
+            // Set the icon to the correct size and position
+            g.transform('')
+            g.attr({
+              transform: `translate(${deathPosX - offset},${deathPosY -
+              offset})`,
+              class: 'event-icon-group',
+            })
+            // Set the bounding box to the correct size
+            g.selectAll('svg').forEach(function(svgEl) {
+              svgEl.attr({ width: iconSize, height: iconSize })
+            })
+            // Add hover behaviour as before
+            g.hover(
+              event => {
+                pt.x = event.clientX
+                pt.y = event.clientY
 
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
-              interactorText = svg.text(
-                35 + tipX,
-                25 + tipY,
-                'Interactor: ' + interactor
-              )
+                pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
 
-              interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`, // hardcoded for now
-                38 + tipX,
-                40 + tipY,
-                40,
-                40              )
+                // Offset tooltip so it does not appear under the cursor
+                let tipX = pt.x + 20
+                let tipY = pt.y + 20
 
-              interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-                fill: 'none',
-                stroke: `${playerColour[currentPlayer]}`,
-                'stroke-width': '3',
-                opacity: 0.7,
-              })
+                if (tipY >= 950) {
+                  tipY -= 70
+                }
 
-              // Use foreignObject for word-wrapping eventDetails
-              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
-              foreign.setAttribute('x', 35 + tipX)
-              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
-              foreign.setAttribute('width', 530)
-              foreign.setAttribute('height', 60)
-              let div = document.createElement('div')
-              div.style.maxWidth = '530px'
-              div.style.wordBreak = 'break-word'
-              div.style.whiteSpace = 'pre-wrap'
-              div.style.fontSize = '18px'
-              div.style.fontFamily = 'inherit'
-              div.style.color = '#222'
-              div.textContent = eventDetails
-              foreign.appendChild(div)
-              mySvg.appendChild(foreign)
-              interactorNameElement = {
-                remove: () => foreign.remove()
+                if (tipX >= 5700) {
+                  tipX -= 220
+                }
+
+                currentPlayer = 'Player' + String(playerIndex)
+
+                let length
+
+                if (calculateBorderLength(eventDetails, 50) < 250) {
+                  length = 250
+                } else {
+                  length = calculateBorderLength(eventDetails, 50)
+                }
+
+                // Limit tooltip width to 600px max
+                let tooltipWidth = Math.min(length, 600)
+                border = svg.rect(tipX, tipY, tooltipWidth, 180, 10, 10).attr({
+                  stroke: 'black',
+                  fill: 'rgba(255,255,255, 0.9)',
+                  strokeWidth: '3px',
+                })
+
+                interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+                interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
+
+                interacteeIcon = svg.image(
+                  `../../src/image/Characters/${interactee}.png`,
+                  133 + tipX,
+                  41 + tipY,
+                  40,
+                  40
+                )
+
+                interactorIcon = svg.image(
+                  `../../src/image/Characters/${interactor}.png`,
+                  38 + tipX,
+                  40 + tipY,
+                  40,
+                  40
+                )
+
+                // Add coloured borders for interactor and interactee (like Relocation)
+                let interactorBorder = svg.rect(38 + tipX, 40 + tipY, 40, 40).attr({
+                  fill: 'none',
+                  stroke: playerColour[currentPlayer] || '#000',
+                  'stroke-width': '3',
+                  opacity: 0.7,
+                })
+                // Try to get interactee player colour
+                let interacteePlayerIndex = data[i]['interacteeID']
+                let interacteePlayer = 'Player' + String(interacteePlayerIndex)
+                let interacteeBorder = svg.rect(133 + tipX, 41 + tipY, 40, 40).attr({
+                  fill: 'none',
+                  stroke: playerColour[interacteePlayer] || '#000',
+                  'stroke-width': '3',
+                  opacity: 0.7,
+                })
+
+                interacteeNameElement = svg.text(
+                  130 + tipX,
+                  35 + 50 + 20 + tipY,
+                  interactee
+                )
+
+                interactorNameElement = svg.text(
+                  35 + tipX,
+                  35 + 50 + 20 + tipY,
+                  interactor
+                )
+
+                // Use foreignObject for word-wrapping eventDetails
+                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                foreign.setAttribute('x', 35 + tipX)
+                foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
+                foreign.setAttribute('width', 530)
+                foreign.setAttribute('height', 60)
+                let div = document.createElement('div')
+                div.style.maxWidth = '530px'
+                div.style.wordBreak = 'break-word'
+                div.style.whiteSpace = 'pre-wrap'
+                div.style.fontSize = '18px'
+                div.style.fontFamily = 'inherit'
+                div.style.color = '#222'
+                div.textContent = eventDetails
+                foreign.appendChild(div)
+                mySvg.appendChild(foreign)
+                eventInfo = {
+                  remove: () => foreign.remove()
+                }
+              },
+              () => {
+                border.remove()
+                interacteeText.remove()
+                interacteeIcon.remove()
+                interactorText.remove()
+                interactorIcon.remove()
+                // Remove the new borders if present
+                let allRects = svg.selectAll('rect')
+                if (allRects && allRects.length) {
+                  // Remove only the last two (the borders we just added)
+                  allRects[allRects.length - 1].remove()
+                  allRects[allRects.length - 2].remove()
+                }
+                interacteeNameElement.remove()
+                interactorNameElement.remove()
+                eventInfo.remove()
               }
-            },
-            () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
-              interactorBorder.remove()
-            }
-          )
+            )
+          }
+        )
       }
 
       lastTimestamp = data[i]['timestamp']
