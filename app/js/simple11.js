@@ -27,10 +27,10 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
     let iconPath = ''
     // List of event types that use Events_General (png/svg)
     const generalTypes = [
-      'Relocation', 'System_Sim_Status', 'Sleep', 'Sell', 'Death', 'Letter', 'Moving_In', 'Choice'
+      'Relocation', 'System_Sim_Status', 'Sleep', 'Death', 'Letter', 'Moving_In', 'Choice'
     ]
     // List of event types that use Events_General PNG
-    const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In']
+    const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In', 'Sell', 'Mock']
     if (generalTypes.includes(type)) {
       if (pngTypes.includes(type)) {
         iconPath = `../../src/image/Events_General/${type}.png`
