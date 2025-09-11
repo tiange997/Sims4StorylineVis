@@ -1448,36 +1448,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         for (let k = 0; k < allPlayers.length; k++) {
           let posX = graph.getCharacterX(allPlayers[k], currentTimestamp)
           let posY = graph.getCharacterY(allPlayers[k], currentTimestamp)
-          // Pattern definition for black stripes
-          let patternId = 'mock-stripes-pattern'
-          let defs = svg.select('defs');
-          if (!defs) {
-            defs = svg.paper.el('defs');
-            svg.append(defs);
-          }
-          let oldPattern = defs.select(`#${patternId}`);
-          if (oldPattern) {
-            oldPattern.remove();
-          }
-          let pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
-          pattern.setAttribute('id', patternId);
-          pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-          pattern.setAttribute('width', '8');
-          pattern.setAttribute('height', '8');
-          let stripe1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-          stripe1.setAttribute('x', '0');
-          stripe1.setAttribute('y', '0');
-          stripe1.setAttribute('width', '8');
-          stripe1.setAttribute('height', '8');
-          stripe1.setAttribute('fill', 'white');
-          pattern.appendChild(stripe1);
-          let line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          line.setAttribute('d', 'M0,0 l10,10');
-          line.setAttribute('stroke', 'black');
-          line.setAttribute('stroke-width', '2');
-          pattern.appendChild(line);
-          defs.node.appendChild(pattern);
-          // Draw the rectangle with pattern fill
+          // Draw the rectangle with solid player colour fill
           let rect = eventsGroup
             .rect(
               posX - rectWidth / 2,
@@ -1488,7 +1459,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               8  // ry for rounded corners
             )
             .attr({
-              fill: `url(#${patternId})`,
+              fill: playerColour[allPlayers[k]] || '#222',
               class: 'event-icon-group'
             })
           // Add hover for each rectangle
