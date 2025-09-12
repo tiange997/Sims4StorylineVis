@@ -191,18 +191,11 @@ let lastTimestamp = null
 let xOrigin = 350,
   yOrigin = 60
 
-
 let playerColour = {
-  Player1: '#000080', // changed
-  Player2: '#00B8D1',
-  Player3: '#006400', // changed
-  Player4: '#5BB58A',
-  Player5: '#9B8BD6',
-  Player6: '#ff0000',
-  Player7: '#ba000d',
-  Player8: '#ff94c2',
-  Player9: '#FF7F00', // changed
-  Player10: '#ffd149',
+  Player1: '#00B8D1',
+  Player2: '#ff0000',
+  Player3: '#9B8BD6',
+  Player4: '#ffd149',
 }
 
 // Save location info for later use
@@ -383,6 +376,22 @@ window.zoomByButton = function(scale) {
 }
 
 
+// --- Utility: Find player to cross based on Death event in Story_Events_DataFull.json ---
+let playerWithDeathEvent = null;
+let interactorNameWithDeath = null;
+try {
+  const eventsData = require('../../data/json/Match11/Story_Events_DataFull.json');
+  // Find the first Death event
+  const deathEvent = Array.isArray(eventsData) ? eventsData.find(ev => ev.eventType === 'Death') : null;
+  if (deathEvent && deathEvent.interactor) {
+    interactorNameWithDeath = deathEvent.interactor;
+    // Map interactor name to PlayerX
+    // We'll build a name->PlayerX map from participantsInfo after it's loaded
+  }
+} catch (e) {
+  interactorNameWithDeath = null;
+}
+
 async function main(fileName) {
   const iStorylineInstance = new iStoryline()
   const fileUrl = `../../data/${fileName.split('.')[1]}/${fileName}`
@@ -401,6 +410,16 @@ async function main(fileName) {
   for (const element of participantsInfoData) {
     participantsInfo.push(element['participantId'], element['championName'])
   }
+
+  // Build name->PlayerX map
+  let nameToPlayer = {};
+  for (let i = 0; i < participantsInfo.length; i += 2) {
+    const pid = participantsInfo[i];
+    const name = participantsInfo[i+1];
+    nameToPlayer[name] = 'Player' + pid;
+  }
+  // Set playerWithDeathEvent for use in drawStoryline
+  window.playerWithDeathEvent = nameToPlayer[interactorNameWithDeath] || null;
 
   // Scale to window size
   const containerDom = document.getElementById('mySvg')
@@ -459,6 +478,32 @@ async function main(fileName) {
 
   // Initial draw (all types)
   await drawEvents(graph, participantsInfo)
+
+  // --- Draw a cross at the last icon of the character who died ---
+  // Find the Death event interactor name (already extracted above as interactorNameWithDeath)
+  if (interactorNameWithDeath && nameToPlayer[interactorNameWithDeath]) {
+    const playerId = nameToPlayer[interactorNameWithDeath];
+    // Find the storyline index for this player
+    const idx = graph.characters.findIndex(c => c === playerId);
+    if (idx !== -1) {
+      const storyline = graph.storylines[idx];
+      // Only draw if storyline has more than 1 point (not at the first icon)
+      if (storyline.length > 1) {
+        // Get the last point (end of storyline)
+        const lastPoint = storyline[storyline.length - 1];
+        // Get the position
+        const x = lastPoint.x;
+        const y = lastPoint.y;
+        // Draw a cross (X) at this position, sized to icon
+        const crossSize = 44; // slightly larger than icon
+        const crossStroke = 6;
+        svg.line(x - crossSize/2, y - crossSize/2, x + crossSize/2, y + crossSize/2)
+          .attr({ stroke: playerColour[playerId] || '#000', 'stroke-width': crossStroke, 'stroke-linecap': 'round', opacity: 0.95 });
+        svg.line(x - crossSize/2, y + crossSize/2, x + crossSize/2, y - crossSize/2)
+          .attr({ stroke: playerColour[playerId] || '#000', 'stroke-width': crossStroke, 'stroke-linecap': 'round', opacity: 0.95 });
+      }
+    }
+  }
 
   // await timelineX(graph)
 
@@ -591,7 +636,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       let interacteeNameElement, interactorNameElement
 
       // General visualizations with icons and tooltips + video
-      if (eventType === 'Relocation' || eventType === 'System_Sim_Status') {
+      // deleted eventType === 'Relocation'
+      if (eventType === 'System_Sim_Status') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1203,7 +1249,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactor
                 )
 
-                // Use foreignObject for word-wrapping eventDetails (like other events)
+                // Use foreignObject for word-wrapping eventDetails
                 let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
                 foreign.setAttribute('x', 35 + tipX)
                 foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
@@ -2189,3 +2235,4 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     }
   })
 }
+
