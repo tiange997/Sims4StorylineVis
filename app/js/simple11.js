@@ -567,6 +567,17 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
   await dataPromise.then(function(result) {
     const data = result
 
+    /*
+      --- Logic for drawing dotted lines in a 'Mock' event ---
+
+      For each event of type 'Mock', the code:
+      1. Collects all participants: the interactor and all interactees (IDs).
+      2. For each participant, it calculates their (x, y) position on the graph at the event's timestamp.
+      3. It sorts these points by their vertical (y) position.
+      4. It then draws a vertical dotted line (using short segments) connecting each consecutive pair of these points, so all participants in the Mock event are visually linked by a vertical dotted line at the event's time.
+
+      This is done for every 'Mock' event in the data, and only if the filter allows 'Mock' events to be shown.
+    */
     // --- Draw dotted lines for paired Mock events ---
     // Only draw if 'Mock' is in filterTypes (or if filterTypes is null/undefined)
     let showMockLines = !filterTypes || filterTypes.includes('Mock')
