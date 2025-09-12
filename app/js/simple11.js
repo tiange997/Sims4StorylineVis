@@ -3,7 +3,7 @@ import {
   drawStoryline,
 } from '../../src/js/utils/drawerB'
 
-/* --- Add export SVG to PNG button --- */
+ // --- Add export SVG to PNG button ---
 (function addExportButton() {
   // Create button
   const btn = document.createElement('button');
