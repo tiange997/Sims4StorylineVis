@@ -540,15 +540,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
         }
       } else if (events.length === 1) {
-        // Single move: draw a white circle with player-coloured stroke, with full tooltip
+        // Single move: draw a mint circle with black stroke, with full tooltip and a coloured line below
         let ev = events[0]
         let playerId = 'Player' + String(ev.interactorID)
         let x = graph.getCharacterX(playerId, ev.timestamp)
+        // Mint colour: #98ffec
         let circle = svg.circle(x, svgBottomY, 18)
           .attr({
-            fill: '#fff',
-            stroke: `${playerColour[playerId]}`,
+            fill: '#98ffec',
+            stroke: '#000',
             'stroke-width': 3,
+            class: 'event-icon-group'
+          })
+        // Draw a short line at the bottom of the circle in the player's colour
+        svg.line(x, svgBottomY + 18, x, svgBottomY + 28)
+          .attr({
+            stroke: `${playerColour[playerId]}`,
+            'stroke-width': 4,
             class: 'event-icon-group'
           })
         // Tooltip as per current Moving_In event
