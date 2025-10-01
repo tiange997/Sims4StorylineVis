@@ -552,8 +552,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             'stroke-width': 3,
             class: 'event-icon-group'
           })
-        // Draw a short line at the bottom of the circle in the player's colour
-        svg.line(x, svgBottomY + 18, x, svgBottomY + 28)
+        // Draw a short horizontal line at the bottom of the circle in the player's colour
+        svg.line(x - 10, svgBottomY + 23, x + 10, svgBottomY + 23)
           .attr({
             stroke: `${playerColour[playerId]}`,
             'stroke-width': 4,
