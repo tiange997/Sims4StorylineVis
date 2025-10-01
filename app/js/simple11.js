@@ -488,6 +488,146 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
   await dataPromise.then(function(result) {
     const data = result
 
+    // --- New: Visualize Moving_In events at the bottom with circles ---
+    // 1. Collect all Moving_In events
+    let movingInEvents = data.filter(ev => ev.eventType === 'Moving_In')
+    // 2. Group by timestamp
+    let movingInByTimestamp = {}
+    for (let ev of movingInEvents) {
+      let ts = ev.timestamp
+      if (!movingInByTimestamp[ts]) movingInByTimestamp[ts] = []
+      movingInByTimestamp[ts].push(ev)
+    }
+    // 3. For each group, draw circles at the bottom
+    const svgBottomY = 1180 // svg height - margin (viewBox is 1200)
+    Object.entries(movingInByTimestamp).forEach(([ts, events]) => {
+      if (events.length > 1) {
+        // Multiple moves at this timestamp: draw a white circle for each, with same tooltip
+        for (let ev of events) {
+          let playerId = 'Player' + String(ev.interactorID)
+          let x = graph.getCharacterX(playerId, ev.timestamp)
+          let circle = svg.circle(x, svgBottomY, 18)
+            .attr({
+              fill: '#fff',
+              stroke: '#000',
+              'stroke-width': 3,
+              class: 'event-icon-group'
+            })
+          circle.hover(
+            event => {
+              pt.x = event.clientX
+              pt.y = event.clientY
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+              let tipX = pt.x + 20
+              let tipY = pt.y - 40
+              // Tooltip: "multiple moves"
+              let border = svg.rect(tipX, tipY, 180, 48, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.97)',
+                strokeWidth: '3px',
+              })
+              let text = svg.text(tipX + 18, tipY + 30, 'multiple moves')
+                .attr({ 'font-size': 22, 'font-family': 'inherit', fill: '#222' })
+              circle.data('tooltip-border', border)
+              circle.data('tooltip-text', text)
+            },
+            () => {
+              let border = circle.data('tooltip-border')
+              let text = circle.data('tooltip-text')
+              if (border) border.remove()
+              if (text) text.remove()
+            }
+          )
+        }
+      } else if (events.length === 1) {
+        // Single move: draw a yellow circle, with full tooltip
+        let ev = events[0]
+        let playerId = 'Player' + String(ev.interactorID)
+        let x = graph.getCharacterX(playerId, ev.timestamp)
+        let circle = svg.circle(x, svgBottomY, 18)
+          .attr({
+            fill: '#ffe066',
+            stroke: '#000',
+            'stroke-width': 3,
+            class: 'event-icon-group'
+          })
+        // Tooltip as per current Moving_In event
+        circle.hover(
+          event => {
+            pt.x = event.clientX
+            pt.y = event.clientY
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+            let tipX = pt.x + 20
+            let tipY = pt.y - 40
+
+            let eventDetails = ev.eventDetails
+            let interactor = ev.interactor
+            let playerIndex = ev.interactorID
+            let currentPlayer = 'Player' + String(playerIndex)
+
+            let length
+            if (calculateBorderLength(eventDetails, 50) < 250) {
+              length = 250
+            } else {
+              length = calculateBorderLength(eventDetails, 50)
+            }
+            // Limit tooltip width to 600px max
+            let tooltipWidth = Math.min(length, 600)
+            let border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
+              stroke: 'black',
+              fill: 'rgba(255,255,255, 0.9)',
+              strokeWidth: '3px',
+            })
+
+            let interactorText = svg.text(
+              35 + tipX,
+              25 + tipY,
+              'Interactor: ' + interactor
+            )
+
+            let interactorIcon = svg.image(
+              `../../src/image/Characters/${interactor}.png`,
+              38 + tipX,
+              40 + tipY,
+              40,
+              40
+            )
+
+            let interactorNameElement = svg.text(
+              35 + tipX,
+              35 + 50 + 20 + tipY,
+              eventDetails
+            );
+
+            let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
+              fill: 'none',
+              stroke: `${playerColour[currentPlayer]}`,
+              'stroke-width': '3',
+              opacity: 0.7,
+            })
+
+            circle.data('tooltip-border', border)
+            circle.data('tooltip-text', interactorText)
+            circle.data('tooltip-icon', interactorIcon)
+            circle.data('tooltip-name', interactorNameElement)
+            circle.data('tooltip-border2', interactorBorder)
+          },
+          () => {
+            let border = circle.data('tooltip-border')
+            let interactorText = circle.data('tooltip-text')
+            let interactorIcon = circle.data('tooltip-icon')
+            let interactorNameElement = circle.data('tooltip-name')
+            let interactorBorder = circle.data('tooltip-border2')
+            if (border) border.remove()
+            if (interactorText) interactorText.remove()
+            if (interactorIcon) interactorIcon.remove()
+            if (interactorNameElement) interactorNameElement.remove()
+            if (interactorBorder) interactorBorder.remove()
+          }
+        )
+      }
+    })
+
     /*
       --- Logic for drawing dotted lines in a 'Mock' event ---
 
