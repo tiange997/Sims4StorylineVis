@@ -540,14 +540,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           )
         }
       } else if (events.length === 1) {
-        // Single move: draw a yellow circle, with full tooltip
+        // Single move: draw a white circle with player-coloured stroke, with full tooltip
         let ev = events[0]
         let playerId = 'Player' + String(ev.interactorID)
         let x = graph.getCharacterX(playerId, ev.timestamp)
         let circle = svg.circle(x, svgBottomY, 18)
           .attr({
-            fill: '#ffe066',
-            stroke: '#000',
+            fill: '#fff',
+            stroke: `${playerColour[playerId]}`,
             'stroke-width': 3,
             class: 'event-icon-group'
           })
