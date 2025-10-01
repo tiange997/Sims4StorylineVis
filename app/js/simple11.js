@@ -502,17 +502,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     const svgBottomY = 1180 // svg height - margin (viewBox is 1200)
     Object.entries(movingInByTimestamp).forEach(([ts, events]) => {
       if (events.length > 1) {
-        // Multiple moves at this timestamp: draw a white circle for each, with same tooltip
-        for (let ev of events) {
-          let playerId = 'Player' + String(ev.interactorID)
-          let x = graph.getCharacterX(playerId, ev.timestamp)
-          let circle = svg.circle(x, svgBottomY, 18)
+        // Multiple moves at this timestamp: draw a circle for each, aligned vertically, with player-coloured stroke
+        // Calculate vertical alignment: centre the stack on svgBottomY
+        const circleSpacing = 42; // vertical space between circles
+        const totalHeight = (events.length - 1) * circleSpacing;
+        for (let i = 0; i < events.length; i++) {
+          let ev = events[i];
+          let playerId = 'Player' + String(ev.interactorID);
+          let x = graph.getCharacterX(playerId, ev.timestamp);
+          // Vertically align: first circle is at svgBottomY - totalHeight/2, then add i*spacing
+          let y = svgBottomY - totalHeight / 2 + i * circleSpacing;
+          let circle = svg.circle(x, y, 18)
             .attr({
               fill: '#fff',
-              stroke: '#000',
+              stroke: `${playerColour[playerId]}`,
               'stroke-width': 3,
               class: 'event-icon-group'
-            })
+            });
           circle.hover(
             event => {
               pt.x = event.clientX
