@@ -502,7 +502,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     // --- Draw dotted lines for paired Mock events ---
     // Only draw if 'Mock' is in filterTypes (or if filterTypes is null/undefined)
     let showMockLines = !filterTypes || filterTypes.includes('Mock')
-    // --- New logic: group-based vertical dotted line for each Mock event ---
+    // --- Refactored: collect Mock event line data for later drawing ---
+    let mockLineGroups = []
     if (showMockLines) {
       let mockEvents = []
       for (let i = 0; i < data.length; i++) {
@@ -531,20 +532,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         ])
         // Sort by y (vertical) position
         points.sort((a, b) => a[1] - b[1])
-        // Draw vertical dotted line connecting all points
-        for (let j = 0; j < points.length - 1; j++) {
-          // Draw lines inside the eventsGroup
-          eventsGroup.line(points[j][0], points[j][1], points[j+1][0], points[j+1][1])
-            .attr({
-              stroke: '#222',
-              'stroke-width': 2,
-              'stroke-dasharray': '6,6',
-              class: 'mock-event-dotted-line'
-            })
-        }
+        // Store for later drawing (after rectangles)
+        mockLineGroups.push(points)
       }
     }
-    // --- End new group-based dotted line logic ---
+    // --- End refactored group-based dotted line logic ---
 
     for (let i in data) {
       let eventType = data[i]['eventType']
@@ -2164,6 +2156,21 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       }
 
       lastTimestamp = data[i]['timestamp']
+    }
+
+    // --- Draw Mock event dotted lines on top of rectangles ---
+    if (showMockLines && mockLineGroups.length > 0) {
+      for (let group of mockLineGroups) {
+        for (let j = 0; j < group.length - 1; j++) {
+          eventsGroup.line(group[j][0], group[j][1], group[j+1][0], group[j+1][1])
+            .attr({
+              stroke: '#222',
+              'stroke-width': 2,
+              'stroke-dasharray': '6,6',
+              class: 'mock-event-dotted-line'
+            })
+        }
+      }
     }
   })
 }
