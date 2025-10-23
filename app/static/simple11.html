@@ -48,6 +48,19 @@
       <button id="zoomInBtn" style="position: absolute; top: 10px; right: 270px; z-index: 1001; font-size: 18px; padding: 6px 16px;">+</button>
       <button id="zoomOutBtn" style="position: absolute; top: 10px; right: 320px; z-index: 1001; font-size: 18px; padding: 6px 16px;">-</button>
       <button id="panModeBtn" style="position: absolute; top: 10px; right: 160px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Hand: Off</button>
+      <button id="showSynopsisBtn" style="position: absolute; top: 10px; left: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Story</button>
+    </div>
+    <!-- Story Synopsis Modal -->
+    <div id="storySynopsisModal" style="display: block; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(30,32,40,0.32); z-index: 3000; align-items: center; justify-content: center;">
+      <div style="background: #fff; border-radius: 16px; max-width: 600px; width: 90vw; margin: 8vh auto 0 auto; box-shadow: 0 8px 32px rgba(0,0,0,0.18); padding: 32px 28px 24px 28px; position: relative;">
+        <button id="closeSynopsisBtn" style="position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 28px; color: #888; cursor: pointer; z-index: 1;">×</button>
+        <h2 style="margin-top: 0; margin-bottom: 18px; text-align: center; color: #2d3a4b;">Story Synopsis</h2>
+        <div style="font-size: 18px; color: #2d3a4b; line-height: 1.6; text-align: left;">
+          <p>
+            <em>This is a placeholder for the story synopsis. Here you can provide a summary of the Sims 4 challenge, its background, and any other information you want users to see before interacting with the visualisation.</em>
+          </p>
+        </div>
+      </div>
     </div>
     <div id="filterPanel" style="position: fixed; left: 0; right: 0; bottom: 0; width: 100vw; min-width: 0; min-height: 0; height: 30vh; background: #fff; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); border-radius: 18px 18px 0 0; margin-top: 0; padding: 32px 4vw 16px 4vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; z-index: 2000;">
       <h3 style="margin-bottom: 18px; color: #2d3a4b; font-weight: 700; letter-spacing: 0.5px;">Filter Events</h3>
@@ -128,6 +141,21 @@
       document.getElementById('resetZoomBtn').addEventListener('click', function() {
         if (window.resetZoom) window.resetZoom()
       })
+
+      // Story Synopsis Modal logic
+      const storyModal = document.getElementById('storySynopsisModal');
+      const closeSynopsisBtn = document.getElementById('closeSynopsisBtn');
+      const showSynopsisBtn = document.getElementById('showSynopsisBtn');
+      function showStoryModal() {
+        storyModal.style.display = 'flex';
+      }
+      function hideStoryModal() {
+        storyModal.style.display = 'none';
+      }
+      closeSynopsisBtn.addEventListener('click', hideStoryModal);
+      showSynopsisBtn.addEventListener('click', showStoryModal);
+      // Show on load
+      showStoryModal();
 
       // Pan mode toggle logic
       window._panMode = false
