@@ -1568,7 +1568,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 r.transform(`s1.5,1.5,${cx},${cy}`);
               }
 
-              // Tooltip logic (same as before, but only show one tooltip per group)
+              // Tooltip logic (show all participants for all rectangles in the group)
               pt.x = event.clientX
               pt.y = event.clientY
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
@@ -1577,44 +1577,60 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               if (pt.y >= 950) tipY -= 50
               if (pt.x >= 5700) tipX -= 200
 
-              // --- Relocation-style tooltip layout for Mock event ---
+              // --- Tooltip layout for Family Interaction event ---
               let length = calculateBorderLength(eventDetails, 50) <= 370 ? 380 : calculateBorderLength(eventDetails, 50)
               // Limit tooltip width to 600px max
               let tooltipWidth = Math.min(length, 600)
-              let tooltipHeight = 180; // Remove video height from tooltip
+              let tooltipHeight = 180;
               border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
 
-              // Place text, icon, and eventDetails above the video
+              // Show all participants' names in a single line
               interactorText = svg.text(
                 35 + tipX,
                 25 + tipY,
-                'Character Involved: ' + allNames[k]
+                'Character Involved: ' + allNames.join(', ')
               )
 
-              interactorIcon = svg.image(
-                `../../src/image/Characters/${allNames[k]}.png`,
-                38 + tipX,
-                40 + tipY,
-                40,
-                40
-              )
-
-              videoIcon = svg.image(`../../src/image/video.png`,
-                tipX + tooltipWidth - 38,
-                tipY + 12,
-                24,
-                24);
+              // Show all participant icons in a row, with colour-coded borders
+              let iconSize = 40;
+              let iconSpacing = 10;
+              let iconStartX = 38 + tipX;
+              let iconY = 40 + tipY;
+              let iconBorders = [];
+              let iconElements = [];
+              for (let p = 0; p < allNames.length; p++) {
+                let px = iconStartX + p * (iconSize + iconSpacing);
+                let playerName = allNames[p];
+                let playerId = allPlayers[p];
+                // Icon
+                let icon = svg.image(
+                  `../../src/image/Characters/${playerName}.png`,
+                  px,
+                  iconY,
+                  iconSize,
+                  iconSize
+                );
+                iconElements.push(icon);
+                // Border
+                let borderRect = svg.rect(px, iconY, iconSize, iconSize).attr({
+                  fill: 'none',
+                  stroke: playerColour[playerId] || '#222',
+                  'stroke-width': '3',
+                  opacity: 0.7,
+                });
+                iconBorders.push(borderRect);
+              }
 
               // Draw eventDetails as a single line
               // Use foreignObject for word-wrapping eventDetails
               let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
               foreign.setAttribute('x', 35 + tipX)
               foreign.setAttribute('y', 35 + 50 + 20 + tipY)
-              foreign.setAttribute('width', 530) // 600 - 2*35 margin
+              foreign.setAttribute('width', 530)
               foreign.setAttribute('height', 80)
               let div = document.createElement('div')
               div.style.maxWidth = '530px'
@@ -1629,24 +1645,19 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               interactorNameElement = {
                 remove: () => foreign.remove()
               }
-
-              // Set border color to match storyline color for this character
-              let storylineColor = playerColour[allPlayers[k]] || '#222';
-              interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-                fill: 'none',
-                stroke: storylineColor,
-                'stroke-width': '3',
-                opacity: 0.7,
-              })
             },
             () => {
               // Remove the tooltip immediately on mouseleave
               if (border) border.remove();
               if (interactorText) interactorText.remove();
-              if (interactorIcon) interactorIcon.remove();
               if (interactorNameElement) interactorNameElement.remove();
-              if (interactorBorder) interactorBorder.remove();
-              if (videoIcon) videoIcon.remove();
+              // Remove all icon elements and borders
+              if (typeof iconElements !== 'undefined') {
+                iconElements.forEach(el => el && el.remove());
+              }
+              if (typeof iconBorders !== 'undefined') {
+                iconBorders.forEach(el => el && el.remove());
+              }
               // Remove glow and restore transform for all rectangles in the group
               rectGroup.attr({ filter: null });
               for (let m = 0; m < allRects.length; m++) {
