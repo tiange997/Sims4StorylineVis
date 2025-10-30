@@ -1495,11 +1495,47 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let allNames = [data[i]['interactor'], ...interacteeNameArr]
         let allPlayers = allIDs.map(id => 'Player' + String(id))
         let allRects = []
+
+        // --- Add SVG filter for glow effect if not already present ---
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
+        }
+        let glowFilterId = 'family-interaction-glow-filter';
+        let existingGlow = defs.select(`#${glowFilterId}`);
+        if (!existingGlow) {
+          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+          filter.setAttribute('id', glowFilterId);
+          filter.setAttribute('x', '-40%');
+          filter.setAttribute('y', '-40%');
+          filter.setAttribute('width', '180%');
+          filter.setAttribute('height', '180%');
+          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+          feGaussian.setAttribute('in', 'SourceGraphic');
+          feGaussian.setAttribute('stdDeviation', '4');
+          feGaussian.setAttribute('result', 'blur');
+          filter.appendChild(feGaussian);
+          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode1.setAttribute('in', 'blur');
+          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode2.setAttribute('in', 'SourceGraphic');
+          feMerge.appendChild(feMergeNode1);
+          feMerge.appendChild(feMergeNode2);
+          filter.appendChild(feMerge);
+          defs.node.appendChild(filter);
+        }
+
+        // Create a Snap group for all rectangles in this event
+        let rectGroup = eventsGroup.group();
+        rectGroup.attr({ class: 'family-interaction-rect-group' });
+
         for (let k = 0; k < allPlayers.length; k++) {
           let posX = graph.getCharacterX(allPlayers[k], currentTimestamp)
           let posY = graph.getCharacterY(allPlayers[k], currentTimestamp)
           // Draw the rectangle with solid player colour fill
-          let rect = eventsGroup
+          let rect = rectGroup
             .rect(
               posX - rectWidth / 2,
               posY - rectHeight / 2,
@@ -1512,9 +1548,27 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               fill: playerColour[allPlayers[k]] || '#222',
               class: 'event-icon-group'
             })
-          // Add hover for each rectangle
+          allRects.push(rect)
+        }
+
+        // Add hover for each rectangle, but effect applies to the whole group
+        // We'll use the first rectangle as the "main" for tooltip logic
+        for (let k = 0; k < allRects.length; k++) {
+          let rect = allRects[k];
           rect.hover(
             event => {
+              // --- Glow and scale effect for all rectangles in the group ---
+              rectGroup.attr({ filter: `url(#${glowFilterId})` });
+              // Scale about each rectangle's centre
+              for (let m = 0; m < allRects.length; m++) {
+                let r = allRects[m];
+                let bbox = r.getBBox();
+                let cx = bbox.x + bbox.width / 2;
+                let cy = bbox.y + bbox.height / 2;
+                r.transform(`s1.5,1.5,${cx},${cy}`);
+              }
+
+              // Tooltip logic (same as before, but only show one tooltip per group)
               pt.x = event.clientX
               pt.y = event.clientY
               pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
@@ -1691,8 +1745,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 'stroke-width': '3',
                 opacity: 0.7,
               })
-
-              // Remove tooltip on mouseleave (standard behaviour)
             },
             () => {
               // Remove the tooltip and video wrapper immediately on mouseleave
@@ -1707,9 +1759,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 if (video) video.pause();
                 wrapper.remove();
               }
+              // Remove glow and restore transform for all rectangles in the group
+              rectGroup.attr({ filter: null });
+              for (let m = 0; m < allRects.length; m++) {
+                allRects[m].transform('');
+              }
             }
           )
-          allRects.push(rect)
         }
         // No need to draw lines here; handled above for all participants
       }
