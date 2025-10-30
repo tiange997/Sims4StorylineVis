@@ -1117,60 +1117,26 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let glowFilterId = 'choice-glow-filter';
         let existingGlow = defs.select(`#${glowFilterId}`);
         if (!existingGlow) {
-          // Remove any old filter with this id
-          let old = document.getElementById(glowFilterId);
-          if (old) old.remove();
           let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
           filter.setAttribute('id', glowFilterId);
-          filter.setAttribute('x', '-60%');
-          filter.setAttribute('y', '-60%');
-          filter.setAttribute('width', '220%');
-          filter.setAttribute('height', '220%');
-          // Coloured glow: feFlood + feComposite + feGaussianBlur
-          let feFlood = document.createElementNS('http://www.w3.org/2000/svg', 'feFlood');
-          feFlood.setAttribute('flood-color', '#fff'); // will be set dynamically
-          feFlood.setAttribute('flood-opacity', '1');
-          feFlood.setAttribute('result', 'flood');
-          let feComposite = document.createElementNS('http://www.w3.org/2000/svg', 'feComposite');
-          feComposite.setAttribute('in', 'flood');
-          feComposite.setAttribute('in2', 'SourceAlpha');
-          feComposite.setAttribute('operator', 'in');
-          feComposite.setAttribute('result', 'mask');
+          filter.setAttribute('x', '-40%');
+          filter.setAttribute('y', '-40%');
+          filter.setAttribute('width', '180%');
+          filter.setAttribute('height', '180%');
           let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
-          feGaussian.setAttribute('in', 'mask');
-          feGaussian.setAttribute('stdDeviation', '18');
-          feGaussian.setAttribute('result', 'colouredBlur');
+          feGaussian.setAttribute('in', 'SourceGraphic');
+          feGaussian.setAttribute('stdDeviation', '4');
+          feGaussian.setAttribute('result', 'blur');
+          filter.appendChild(feGaussian);
           let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
           let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode1.setAttribute('in', 'colouredBlur');
+          feMergeNode1.setAttribute('in', 'blur');
           let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
           feMergeNode2.setAttribute('in', 'SourceGraphic');
           feMerge.appendChild(feMergeNode1);
           feMerge.appendChild(feMergeNode2);
-          filter.appendChild(feFlood);
-          filter.appendChild(feComposite);
-          filter.appendChild(feGaussian);
           filter.appendChild(feMerge);
           defs.node.appendChild(filter);
-        }
-        // Add CSS for pulsing effect if not already present
-        if (!document.getElementById('choice-glow-pulse-style')) {
-          const style = document.createElement('style');
-          style.id = 'choice-glow-pulse-style';
-          style.innerHTML = `
-            @keyframes choice-glow-pulse {
-              0% { filter: none; opacity: 1; }
-              30% { filter: none; opacity: 1; }
-              50% { filter: drop-shadow(0 0 32px #fff) drop-shadow(0 0 64px #fff); opacity: 0.7; }
-              70% { filter: none; opacity: 1; }
-              100% { filter: none; opacity: 1; }
-            }
-            .choice-glow-pulse {
-              animation: choice-glow-pulse 1.1s cubic-bezier(.4,0,.6,1) infinite;
-              will-change: filter, opacity;
-            }
-          `;
-          document.head.appendChild(style);
         }
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
@@ -1204,20 +1170,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             // Add hover behaviour as before, with glow effect
             g.hover(
               event => {
-                // --- Add strong coloured glow filter and pulsing effect on hover ---
-                // Set the filter's feFlood colour to match the player colour
-                let filterElem = document.getElementById('choice-glow-filter');
-                if (filterElem) {
-                  let feFlood = filterElem.querySelector('feFlood');
-                  if (feFlood) {
-                    feFlood.setAttribute('flood-color', playerColour[currentPlayer] || '#ff0');
-                  }
-                }
+                // --- Add glow filter on hover ---
                 g.attr({ filter: `url(#${glowFilterId})` });
-                // Add pulsing class for CSS animation
-                if (!g.node.classList.contains('choice-glow-pulse')) {
-                  g.node.classList.add('choice-glow-pulse');
-                }
 
                 pt.x = event.clientX
                 pt.y = event.clientY
@@ -1344,9 +1298,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 }
               },
               () => {
-                // --- Remove glow filter and pulsing effect on mouseleave ---
+                // --- Remove glow filter on mouseleave ---
                 g.attr({ filter: null });
-                g.node.classList.remove('choice-glow-pulse');
 
                 border.remove()
                 interacteeText.remove()
