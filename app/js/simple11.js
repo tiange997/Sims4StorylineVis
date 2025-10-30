@@ -488,159 +488,136 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
   await dataPromise.then(function(result) {
     const data = result
 
-    // --- New: Visualize Moving_In events at the bottom with circles ---
-    // 1. Collect all Moving_In events
+    // --- Visualize Moving_In events in character rows at the bottom (reverted style) ---
     let movingInEvents = data.filter(ev => ev.eventType === 'Moving_In')
-    // 2. Group by timestamp
-    let movingInByTimestamp = {}
-    for (let ev of movingInEvents) {
-      let ts = ev.timestamp
-      if (!movingInByTimestamp[ts]) movingInByTimestamp[ts] = []
-      movingInByTimestamp[ts].push(ev)
-    }
-    // 3. For each group, draw circles at the bottom
-    const svgBottomY = 1180 // svg height - margin (viewBox is 1200)
-    Object.entries(movingInByTimestamp).forEach(([ts, events]) => {
-      if (events.length > 1) {
-        // Multiple moves at this timestamp: draw a circle for each, aligned vertically, with player-coloured stroke
-        // Calculate vertical alignment: centre the stack on svgBottomY
-        const circleSpacing = 42; // vertical space between circles
-        const totalHeight = (events.length - 1) * circleSpacing;
-        for (let i = 0; i < events.length; i++) {
-          let ev = events[i];
-          let playerId = 'Player' + String(ev.interactorID);
-          let x = graph.getCharacterX(playerId, ev.timestamp);
-          // Vertically align: first circle is at svgBottomY - totalHeight/2, then add i*spacing
-          let y = svgBottomY - totalHeight / 2 + i * circleSpacing;
-          let circle = svg.circle(x, y, 18)
-            .attr({
-              fill: '#fff',
-              stroke: `${playerColour[playerId]}`,
-              'stroke-width': 3,
-              class: 'event-icon-group'
-            });
-          circle.hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-              let tipX = pt.x + 20
-              let tipY = pt.y - 40
-              // Tooltip: "multiple moves"
-              let border = svg.rect(tipX, tipY, 180, 48, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.97)',
-                strokeWidth: '3px',
-              })
-              let text = svg.text(tipX + 18, tipY + 30, 'multiple moves')
-                .attr({ 'font-size': 22, 'font-family': 'inherit', fill: '#222' })
-              circle.data('tooltip-border', border)
-              circle.data('tooltip-text', text)
-            },
-            () => {
-              let border = circle.data('tooltip-border')
-              let text = circle.data('tooltip-text')
-              if (border) border.remove()
-              if (text) text.remove()
-            }
-          )
-        }
-      } else if (events.length === 1) {
-        // Single move: draw a mint circle with black stroke, with full tooltip and a coloured line below
-        let ev = events[0]
-        let playerId = 'Player' + String(ev.interactorID)
-        let x = graph.getCharacterX(playerId, ev.timestamp)
-        // Mint colour: #98ffec
-        let circle = svg.circle(x, svgBottomY, 18)
-          .attr({
-            fill: '#98ffec',
-            stroke: '#000',
-            'stroke-width': 3,
-            class: 'event-icon-group'
-          })
-        // Draw a short horizontal line at the bottom of the circle in the player's colour
-        svg.line(x - 10, svgBottomY + 23, x + 10, svgBottomY + 23)
-          .attr({
-            stroke: `${playerColour[playerId]}`,
-            'stroke-width': 4,
-            class: 'event-icon-group'
-          })
-        // Tooltip as per current Moving_In event
-        circle.hover(
-          event => {
-            pt.x = event.clientX
-            pt.y = event.clientY
-            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-            let tipX = pt.x + 20
-            let tipY = pt.y - 40
-
-            let eventDetails = ev.eventDetails
-            let interactor = ev.interactor
-            let playerIndex = ev.interactorID
-            let currentPlayer = 'Player' + String(playerIndex)
-
-            let length
-            if (calculateBorderLength(eventDetails, 50) < 250) {
-              length = 250
-            } else {
-              length = calculateBorderLength(eventDetails, 50)
-            }
-            // Limit tooltip width to 600px max
-            let tooltipWidth = Math.min(length, 600)
-            let border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
-              stroke: 'black',
-              fill: 'rgba(255,255,255, 0.9)',
-              strokeWidth: '3px',
-            })
-
-            let interactorText = svg.text(
-              35 + tipX,
-              25 + tipY,
-              'Interactor: ' + interactor
-            )
-
-            let interactorIcon = svg.image(
-              `../../src/image/Characters/${interactor}.png`,
-              38 + tipX,
-              40 + tipY,
-              40,
-              40
-            )
-
-            let interactorNameElement = svg.text(
-              35 + tipX,
-              35 + 50 + 20 + tipY,
-              eventDetails
-            );
-
-            let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-              fill: 'none',
-              stroke: `${playerColour[currentPlayer]}`,
-              'stroke-width': '3',
-              opacity: 0.7,
-            })
-
-            circle.data('tooltip-border', border)
-            circle.data('tooltip-text', interactorText)
-            circle.data('tooltip-icon', interactorIcon)
-            circle.data('tooltip-name', interactorNameElement)
-            circle.data('tooltip-border2', interactorBorder)
-          },
-          () => {
-            let border = circle.data('tooltip-border')
-            let interactorText = circle.data('tooltip-text')
-            let interactorIcon = circle.data('tooltip-icon')
-            let interactorNameElement = circle.data('tooltip-name')
-            let interactorBorder = circle.data('tooltip-border2')
-            if (border) border.remove()
-            if (interactorText) interactorText.remove()
-            if (interactorIcon) interactorIcon.remove()
-            if (interactorNameElement) interactorNameElement.remove()
-            if (interactorBorder) interactorBorder.remove()
-          }
-        )
+    let uniqueCharacters = [...new Set(movingInEvents.map(ev => ev.interactorID))];
+    const svgBottomY = 1250; // svg height - margin (viewBox is 1200)
+    const rowHeight = 60;   // vertical space between rows
+    let characterRowY = {};
+    uniqueCharacters.forEach((charId, idx) => {
+      characterRowY[charId] = svgBottomY + idx * rowHeight;
+    });
+    // Add icon at the start of each row, aligned with storyline icons
+    uniqueCharacters.forEach((charId) => {
+      // Find a sample event for this character to get the name
+      let sampleEvent = movingInEvents.find(ev => ev.interactorID === charId);
+      if (sampleEvent) {
+        let characterName = sampleEvent.interactor;
+        let iconX = xOrigin - 60; // Align with storyline start icon x
+        let iconY = characterRowY[charId] - 20; // Center icon vertically (icon size 40)
+        svg.image(
+          `../../src/image/Characters/${characterName}.png`,
+          iconX,
+          iconY,
+          40,
+          40
+        ).attr({ class: 'event-icon-group' });
       }
-    })
+    });
+    movingInEvents.forEach(ev => {
+      let playerId = 'Player' + String(ev.interactorID);
+      let x = graph.getCharacterX(playerId, ev.timestamp);
+      let y = characterRowY[ev.interactorID];
+      let circle = svg.circle(x, y, 18)
+        .attr({
+          fill: '#fff', // previous style: white fill
+          stroke: playerColour[playerId], // previous style: colored stroke
+          'stroke-width': 3,
+          class: 'event-icon-group'
+        });
+      // Add location icon inside the circle if eventDetails and position exist
+      if (ev.eventDetails && typeof ev.eventDetails === 'string' && ev.eventDetails.trim() && ev.position) {
+        // Build icon path
+        let iconPath = `../../src/image/Location/${ev.position}.svg`;
+        // console.log('Loading icon for Moving_In event:', iconPath);
+        // Use Snap.svg to load and center the icon
+        Snap.load(iconPath, function(f) {
+          // Remove all fill attributes to allow SVG to inherit color if needed
+          f.selectAll('*').forEach(function(el) {
+            el.attr({ fill: null });
+          });
+          // Set icon size and position (centered in circle)
+          let iconSize = 24;
+          let iconGroup = svg.group();
+          iconGroup.append(f);
+          iconGroup.attr({
+            transform: `translate(${x - iconSize/2},${y - iconSize/2})`,
+            class: 'event-location-icon'
+          });
+          // Set SVG size if needed
+          iconGroup.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
+          });
+        });
+      }
+      // Tooltip: show interactor, icon, event details, border (like single event)
+      circle.hover(
+        event => {
+          pt.x = event.clientX
+          pt.y = event.clientY
+          pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+          let tipX = pt.x + 20
+          let tipY = pt.y - 40
+          let eventDetails = ev.eventDetails
+          let interactor = ev.interactor
+          let playerIndex = ev.interactorID
+          let currentPlayer = 'Player' + String(playerIndex)
+          let length
+          if (calculateBorderLength(eventDetails, 50) < 250) {
+            length = 250
+          } else {
+            length = calculateBorderLength(eventDetails, 50)
+          }
+          // Limit tooltip width to 600px max
+          let tooltipWidth = Math.min(length, 600)
+          let border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
+            stroke: 'black',
+            fill: 'rgba(255,255,255, 0.9)',
+            strokeWidth: '3px',
+          })
+          let interactorText = svg.text(
+            35 + tipX,
+            25 + tipY,
+            'Interactor: ' + interactor
+          )
+          let interactorIcon = svg.image(
+            `../../src/image/Characters/${interactor}.png`,
+            38 + tipX,
+            40 + tipY,
+            40,
+            40
+          )
+          let interactorNameElement = svg.text(
+            35 + tipX,
+            35 + 50 + 20 + tipY,
+            eventDetails
+          );
+          let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
+            fill: 'none',
+            stroke: `${playerColour[currentPlayer]}`,
+            'stroke-width': '3',
+            opacity: 0.7,
+          })
+          circle.data('tooltip-border', border)
+          circle.data('tooltip-text', interactorText)
+          circle.data('tooltip-icon', interactorIcon)
+          circle.data('tooltip-name', interactorNameElement)
+          circle.data('tooltip-border2', interactorBorder)
+        },
+        () => {
+          let border = circle.data('tooltip-border')
+          let interactorText = circle.data('tooltip-text')
+          let interactorIcon = circle.data('tooltip-icon')
+          let interactorNameElement = circle.data('tooltip-name')
+          let interactorBorder = circle.data('tooltip-border2')
+          if (border) border.remove()
+          if (interactorText) interactorText.remove()
+          if (interactorIcon) interactorIcon.remove()
+          if (interactorNameElement) interactorNameElement.remove()
+          if (interactorBorder) interactorBorder.remove()
+        }
+      )
+    });
 
     /*
       --- Logic for drawing dotted lines in a 'Mock' event ---
@@ -655,13 +632,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     */
     // --- Draw dotted lines for paired Mock events ---
     // Only draw if 'Mock' is in filterTypes (or if filterTypes is null/undefined)
-    let showMockLines = !filterTypes || filterTypes.includes('Mock')
+    let showMockLines = !filterTypes || filterTypes.includes('Family Interaction')
     // --- Refactored: collect Mock event line data for later drawing ---
     let mockLineGroups = []
     if (showMockLines) {
       let mockEvents = []
       for (let i = 0; i < data.length; i++) {
-        if (data[i]['eventType'] === 'Mock') {
+        if (data[i]['eventType'] === 'Family Interaction') {
           mockEvents.push({
             idx: i,
             interactor: data[i]['interactor'],
@@ -716,245 +693,222 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       // General visualizations with icons and tooltips + video
       // deleted eventType === 'Relocation'
       if (eventType === 'System_Sim_Status') {
-        const iconSize = 30
-        const offset = iconSize / 2
+        const iconSize = 30;
+        const offset = iconSize / 2;
 
-        let playerIndex = data[i]['interactorID']
-        let currentTimestamp = data[i]['timestamp']
-        let currentPlayer = 'Player' + String(playerIndex)
+        let playerIndex = data[i]['interactorID'];
+        let currentTimestamp = data[i]['timestamp'];
+        let currentPlayer = 'Player' + String(playerIndex);
+        let eventDetails = data[i]['eventDetails'];
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp);
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp);
 
-        let eventDetails = data[i]['eventDetails']
+        // --- Add SVG filter for glow effect if not already present ---
+        let defs = svg.select('defs');
+        if (!defs) {
+          defs = svg.paper.el('defs');
+          svg.append(defs);
+        }
+        let glowFilterId = 'system-sim-status-glow-filter';
+        let existingGlow = defs.select(`#${glowFilterId}`);
+        if (!existingGlow) {
+          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+          filter.setAttribute('id', glowFilterId);
+          filter.setAttribute('x', '-40%');
+          filter.setAttribute('y', '-40%');
+          filter.setAttribute('width', '180%');
+          filter.setAttribute('height', '180%');
+          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+          feGaussian.setAttribute('in', 'SourceGraphic');
+          feGaussian.setAttribute('stdDeviation', '4');
+          feGaussian.setAttribute('result', 'blur');
+          filter.appendChild(feGaussian);
+          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode1.setAttribute('in', 'blur');
+          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
+          feMergeNode2.setAttribute('in', 'SourceGraphic');
+          feMerge.appendChild(feMergeNode1);
+          feMerge.appendChild(feMergeNode2);
+          filter.appendChild(feMerge);
+          defs.node.appendChild(filter);
+        }
 
-        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
-        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+        // Render only the PNG icon inside a Snap.svg group (no colored circle)
+        let g = eventsGroup.group();
+        let icon = g.image(
+          `../../src/image/Events_General/${eventType}.png`,
+          deathPosX - offset,
+          deathPosY - offset,
+          iconSize,
+          iconSize
+        ).attr({ class: 'event-icon-group' });
+        g.attr({
+          transform: `translate(0,0)`,
+          class: 'event-icon-group',
+        });
 
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
+        // Tooltip logic (preserved and independent)
+        let tooltipElements = {};
+        g.hover(
+          event => {
+            // --- Add glow filter on hover ---
+            g.attr({ filter: `url(#${glowFilterId})` });
+            pt.x = event.clientX;
+            pt.y = event.clientY;
+            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
+            let tipX = pt.x + 20;
+            let tipY = pt.y + 20;
+            if (tipY >= 950) tipY -= 70;
+            if (tipX >= 5700) tipX -= 220;
+            let length = calculateBorderLength(eventDetails, 50) < 250 ? 250 : calculateBorderLength(eventDetails, 50);
+            let tooltipWidth = Math.min(length, 600);
+            let tooltipHeight = 180;
+            let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
+              stroke: 'black',
+              fill: 'rgba(255,255,255, 0.9)',
+              strokeWidth: '3px',
+            });
+            let interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor);
+            let interactorIcon = svg.image(
+              `../../src/image/Characters/${interactor}.png`,
+              38 + tipX,
+              40 + tipY,
+              40,
+              40
+            );
+            // --- Use foreignObject for word-wrapping eventDetails ---
+            let detailsForeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+            detailsForeign.setAttribute('x', 35 + tipX);
+            detailsForeign.setAttribute('y', 35 + 50 + 20 + tipY);
+            detailsForeign.setAttribute('width', tooltipWidth - 40);
+            detailsForeign.setAttribute('height', tooltipHeight - 80);
+            let detailsDiv = document.createElement('div');
+            detailsDiv.style.maxWidth = (tooltipWidth - 40) + 'px';
+            detailsDiv.style.wordBreak = 'break-word';
+            detailsDiv.style.whiteSpace = 'pre-wrap';
+            detailsDiv.style.fontSize = '18px';
+            detailsDiv.style.fontFamily = 'inherit';
+            detailsDiv.style.color = '#222';
+            detailsDiv.textContent = eventDetails;
+            detailsForeign.appendChild(detailsDiv);
+            mySvg.appendChild(detailsForeign);
+            let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
+              fill: 'none',
+              stroke: `${playerColour[currentPlayer]}`,
+              'stroke-width': '3',
+              opacity: 0.7,
+            });
+            tooltipElements = { border, interactorText, interactorIcon, detailsForeign, interactorBorder };
+          },
+          () => {
+            g.attr({ filter: null });
+            Object.values(tooltipElements).forEach(el => { if (el) el.remove && typeof el.remove === 'function' ? el.remove() : (el.parentNode && el.parentNode.removeChild(el)); });
+            tooltipElements = {};
+          }
+        );
 
-        eventsGroup
-          .image(
-            `../../src/image/Events_General/${eventType}.png`,
-            deathPosX - offset,
-            deathPosY - offset,
-            iconSize,
-            iconSize
-          )
-          .attr({ class: 'event-icon-group' })
-          .hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
-
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-              // Offset tooltip so it does not appear under the cursor
-              let tipX = pt.x + 20
-              let tipY = pt.y + 20
-
-              if (tipY >= 950) {
-                tipY -= 70
-              }
-
-              if (tipX >= 5700) {
-                tipX -= 220
-              }
-
-              currentPlayer = 'Player' + String(playerIndex)
-
-              let length
-
-              if (calculateBorderLength(eventDetails, 50) <= 370) {
-                length = 380
-              } else {
-                length = calculateBorderLength(eventDetails, 50)
-              }
-
-              // --- Calculate dynamic tooltip height based on all elements ---
-              // Padding
-              const padding = 0.02
-              // Heights of elements
-              const textHeight = 28 // "Interactor" text
-              const iconHeight = 40 // icon
-              const iconMargin = 15 // margin between text and icon
-              const borderMargin = 20 // margin between icon and border
-              const detailsHeight = 60 // eventDetails (foreignObject)
-              const videoHeight = 180 // video (approx, will be scaled)
-              // Calculate total height
-              let tooltipContentHeight = textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin + videoHeight
-              let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
-              // Limit tooltip width to 600px max
-              let tooltipWidth = Math.min(length, 600)
-              border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              })
-
-              // Remove any existing wrapper before creating a new one
-              let oldWrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (oldWrapper) {
-                let oldVideo = oldWrapper.querySelector(
-                  '#relocation-tooltip-video'
-                )
-                if (oldVideo) oldVideo.pause()
-                oldWrapper.remove()
-              }
-
-              // Add video element to tooltip, positioned and scaled to match SVG border
-              let wrapper = document.createElement('div')
-              wrapper.style.position = 'fixed'
-              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
-              wrapper.style.zIndex = 1000
-              wrapper.style.pointerEvents = 'none'
-              wrapper.style.overflow = 'hidden'
-              wrapper.style.scrollbarWidth = 'none'
-              wrapper.style.msOverflowStyle = 'none'
-
-              // Get the SVG border's bounding box in SVG coordinates
-              let borderBBox = border.node.getBBox()
-              // Convert SVG coordinates to screen coordinates
-              let ctm = mySvg.getScreenCTM()
-              // Top-left corner
-              let svgX = borderBBox.x
-              let svgY = borderBBox.y
-              let svgW = borderBBox.width
-              let svgH = borderBBox.height
-              // Transform to screen coordinates
-              let topLeft = mySvg.createSVGPoint()
-              topLeft.x = svgX
-              topLeft.y = svgY
-              topLeft = topLeft.matrixTransform(ctm)
-              // Bottom-right corner
-              let bottomRight = mySvg.createSVGPoint()
-              bottomRight.x = svgX + svgW
-              bottomRight.y = svgY + svgH
-              bottomRight = bottomRight.matrixTransform(ctm)
-              // Calculate width/height in screen space
-              let screenW = bottomRight.x - topLeft.x
-              let screenH = bottomRight.y - topLeft.y
-              // Set wrapper position and size
-              wrapper.style.left = `${topLeft.x}px`
-              wrapper.style.top = `${topLeft.y}px`
-              wrapper.style.width = `${screenW}px`
-              wrapper.style.height = `${screenH}px`
-
-              // Double the video size and centre it horizontally in the tooltip
-              let videoW = 320
-              let videoH = 180
-              // Calculate horizontal centre (with respect to left/right padding)
-              let videoLeft = (screenW - videoW) / 2
-              let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
-
-              let video = document.createElement('video')
-              video.src = '../../src/video/sims4.mp4'
-              video.width = videoW
-              video.height = videoH
-              video.controls = true
-              video.autoplay = true
-              video.loop = true
-              video.muted = true
-              video.setAttribute('id', 'relocation-tooltip-video')
-              video.style.pointerEvents = 'auto'
-              video.style.background = 'black'
-              video.style.position = 'absolute'
-              video.style.left = `${videoLeft}px`
-              video.style.top = `${videoTop}px`
-              video.style.width = `${videoW}px`
-              video.style.height = `${videoH}px`
-              video.style.borderRadius = '8px'
-              video.style.objectFit = 'cover'
-
-              // Clip video to play only within the calculated range and loop
-              const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
-              video.addEventListener('loadedmetadata', function() {
-                // Clamp end to video duration if needed
-                const end = Math.min(videoRange.end, video.duration);
-                video.currentTime = videoRange.start;
-                video._clipStart = videoRange.start;
-                video._clipEnd = end;
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                  playPromise.catch(e => {
-                    console.warn('Autoplay play() failed:', e);
-                  });
-                }
-              });
-              video.addEventListener('timeupdate', function() {
-                // Loop only within the clip range
-                if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                  video.currentTime = video._clipStart;
-                  video.play();
-                }
-              });
-
-              wrapper.appendChild(video)
-              document.body.appendChild(wrapper)
-
-              // Place text, icon, and eventDetails above the video
-              interactorText = svg.text(
-                35 + tipX,
-                25 + tipY,
-                'Interactor: ' + interactor
-              )
-
-              interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`,
-                38 + tipX,
-                40 + tipY,
-                40,
-                40
-              )
-
-              // Draw eventDetails as a single line
-              // Use foreignObject for word-wrapping eventDetails
-              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
-              foreign.setAttribute('x', 35 + tipX)
-              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
-              foreign.setAttribute('width', 530) // 600 - 2*35 margin
-              foreign.setAttribute('height', 320)
-              let div = document.createElement('div')
-              div.style.maxWidth = '530px'
-              div.style.wordBreak = 'break-word'
-              div.style.whiteSpace = 'pre-wrap'
-              div.style.fontSize = '18px'
-              div.style.fontFamily = 'inherit'
-              div.style.color = '#222'
-              div.textContent = eventDetails
-              foreign.appendChild(div)
-              mySvg.appendChild(foreign)
-              interactorNameElement = {
-                remove: () => foreign.remove()
-              }
-
-              interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-                fill: 'none',
-                stroke: `${playerColour[currentPlayer]}`,
-                'stroke-width': '3',
-                opacity: 0.7,
-              })
-            },
-            () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
-              interactorBorder.remove()
-              // Remove the video wrapper if it exists
-              let wrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (wrapper) {
-                let video = wrapper.querySelector('#relocation-tooltip-video')
-                if (video) {
-                  video.pause()
-                }
-                wrapper.remove()
-              }
+        // Modal overlay logic (only on click, matches 'Choice' event)
+        g.click(function(event) {
+          let oldOverlay = document.getElementById('system-sim-status-modal-overlay');
+          if (oldOverlay) {
+            let oldVideo = oldOverlay.querySelector('#system-sim-status-modal-video');
+            if (oldVideo) oldVideo.pause();
+            oldOverlay.remove();
+          }
+          let overlay = document.createElement('div');
+          overlay.setAttribute('id', 'system-sim-status-modal-overlay');
+          overlay.style.position = 'fixed';
+          overlay.style.left = '0';
+          overlay.style.top = '0';
+          overlay.style.width = '100vw';
+          overlay.style.height = '100vh';
+          overlay.style.background = 'rgba(80,80,80,0.7)';
+          overlay.style.zIndex = 2000;
+          overlay.style.display = 'flex';
+          overlay.style.alignItems = 'center';
+          overlay.style.justifyContent = 'center';
+          let modal = document.createElement('div');
+          modal.style.position = 'relative';
+          modal.style.background = 'rgba(255,255,255,0.95)';
+          modal.style.borderRadius = '16px';
+          modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+          modal.style.padding = '0';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+          modal.style.alignItems = 'center';
+          modal.style.justifyContent = 'center';
+          modal.style.width = '90vw';
+          modal.style.height = '80vh';
+          modal.style.maxWidth = '90vw';
+          modal.style.maxHeight = '80vh';
+          modal.style.minWidth = '320px';
+          modal.style.minHeight = '180px';
+          let closeBtn = document.createElement('button');
+          closeBtn.innerText = '×';
+          closeBtn.style.position = 'absolute';
+          closeBtn.style.top = '12px';
+          closeBtn.style.right = '18px';
+          closeBtn.style.fontSize = '2.2rem';
+          closeBtn.style.background = 'transparent';
+          closeBtn.style.border = 'none';
+          closeBtn.style.cursor = 'pointer';
+          closeBtn.style.color = '#333';
+          closeBtn.style.zIndex = 10;
+          closeBtn.setAttribute('aria-label', 'Close');
+          closeBtn.addEventListener('click', function() {
+            let overlay = document.getElementById('system-sim-status-modal-overlay');
+            if (overlay) {
+              let video = overlay.querySelector('#system-sim-status-modal-video');
+              if (video) video.pause();
+              overlay.remove();
             }
-          )
+          });
+          let video = document.createElement('video');
+          video.src = '../../src/video/sims4.mp4';
+          video.controls = true;
+          video.autoplay = true;
+          video.loop = true;
+          video.muted = true;
+          video.setAttribute('id', 'system-sim-status-modal-video');
+          video.style.pointerEvents = 'auto';
+          video.style.background = 'black';
+          video.style.borderRadius = '12px';
+          video.style.width = '100%';
+          video.style.height = '100%';
+          video.style.margin = '0';
+          video.style.objectFit = 'contain';
+          const videoRange = getVideoClipRangeFromEvent(data[i], 5);
+          video.addEventListener('loadedmetadata', function() {
+            const end = Math.min(videoRange.end, video.duration);
+            video.currentTime = videoRange.start;
+            video._clipStart = videoRange.start;
+            video._clipEnd = end;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(e => {
+                console.warn('Autoplay play() failed:', e);
+              });
+            }
+          });
+          video.addEventListener('timeupdate', function() {
+            if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
+              video.currentTime = video._clipStart;
+              video.play();
+            }
+          });
+          overlay.addEventListener('mousedown', function(e) {
+            if (e.target === overlay) {
+              let video = overlay.querySelector('#system-sim-status-modal-video');
+              if (video) video.pause();
+              overlay.remove();
+            }
+          });
+          modal.appendChild(closeBtn);
+          modal.appendChild(video);
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
+        });
       }
 
       // interactive events (colour-coded) with icons and tooltips (no video)
@@ -1154,10 +1108,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
-
         // --- Add SVG filter for glow effect if not already present ---
         let defs = svg.select('defs');
         if (!defs) {
@@ -1340,9 +1290,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 div.style.fontSize = '18px'
                 div.style.fontFamily = 'inherit'
                 div.style.color = '#222'
-                div.textContent = eventDetails
-                foreign.appendChild(div)
-                mySvg.appendChild(foreign)
+                div.textContent = eventDetails;
+                foreign.appendChild(div);
+                mySvg.appendChild(foreign);
                 eventInfo = {
                   remove: () => foreign.remove()
                 }
@@ -1410,20 +1360,18 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               modal.style.maxHeight = '80vh'
               modal.style.minWidth = '320px'
               modal.style.minHeight = '180px'
-
-              // Close button
-              let closeBtn = document.createElement('button')
-              closeBtn.innerText = '×'
-              closeBtn.style.position = 'absolute'
-              closeBtn.style.top = '12px'
-              closeBtn.style.right = '18px'
-              closeBtn.style.fontSize = '2.2rem'
-              closeBtn.style.background = 'transparent'
-              closeBtn.style.border = 'none'
-              closeBtn.style.cursor = 'pointer'
-              closeBtn.style.color = '#333'
-              closeBtn.style.zIndex = 10
-              closeBtn.setAttribute('aria-label', 'Close')
+              let closeBtn = document.createElement('button');
+              closeBtn.innerText = '×';
+              closeBtn.style.position = 'absolute';
+              closeBtn.style.top = '12px';
+              closeBtn.style.right = '18px';
+              closeBtn.style.fontSize = '2.2rem';
+              closeBtn.style.background = 'transparent';
+              closeBtn.style.border = 'none';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.style.color = '#333';
+              closeBtn.style.zIndex = 10;
+              closeBtn.setAttribute('aria-label', 'Close');
               closeBtn.addEventListener('click', function() {
                 let overlay = document.getElementById('choice-modal-overlay')
                 if (overlay) {
@@ -1436,6 +1384,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               // Video element
               let video = document.createElement('video')
               video.src = '../../src/video/sims4.mp4'
+              video.width = 320
+              video.height = 180
               video.controls = true
               video.autoplay = true
               video.loop = true
@@ -1443,11 +1393,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               video.setAttribute('id', 'choice-modal-video')
               video.style.pointerEvents = 'auto'
               video.style.background = 'black'
-              video.style.borderRadius = '12px'
-              video.style.width = '100%'
-              video.style.height = '100%'
-              video.style.margin = '0'
-              video.style.objectFit = 'contain'
+              video.style.position = 'absolute'
+              video.style.left = '50%'
+              video.style.top = '50%'
+              video.style.transform = 'translate(-50%, -50%)'
+              video.style.borderRadius = '8px'
+              video.style.objectFit = 'cover'
 
               // Clip video to play only within the calculated range and loop
               const videoRange = getVideoClipRangeFromEvent(data[i], 5)
@@ -1481,7 +1432,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 }
               })
 
-              // Add content to modal
               modal.appendChild(closeBtn)
               modal.appendChild(video)
               overlay.appendChild(modal)
@@ -1491,147 +1441,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         )
       }
 
-      // draw rectangle with gradient fill for Moving_In event
-      if (eventType === 'Moving_In') {
-        // Rectangle size
-        const rectWidth = 30
-        const rectHeight = 70
-
-        let playerIndex = data[i]['interactorID']
-        let currentTimestamp = data[i]['timestamp']
-        let currentPlayer = 'Player' + String(playerIndex)
-
-        let eventDetails = data[i]['eventDetails']
-
-        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
-        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
-
-        // Gradient definition
-        // Remove any previous gradient with same id to avoid duplicates
-        let gradId = `movingin-gradient-${playerIndex}`
-        // Remove any existing gradient with this id in <defs>
-        let defs = svg.select('defs');
-        if (!defs) {
-          defs = svg.paper.el('defs');
-          svg.append(defs);
-        }
-        let oldGrad = defs.select(`#${gradId}`);
-        if (oldGrad) {
-          oldGrad.remove();
-        }
-        // Create a proper SVG linearGradient element
-        let gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-        gradient.setAttribute('id', gradId);
-        gradient.setAttribute('x1', '0%');
-        gradient.setAttribute('y1', '0%');
-        gradient.setAttribute('x2', '100%');
-        gradient.setAttribute('y2', '0%');
-        // Start colour stop
-        let stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop1.setAttribute('offset', '0%');
-        stop1.setAttribute('stop-color', playerColour[currentPlayer]);
-        stop1.setAttribute('stop-opacity', '0.7');
-        // End transparent stop
-        let stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop2.setAttribute('offset', '100%');
-        stop2.setAttribute('stop-color', playerColour[currentPlayer]);
-        stop2.setAttribute('stop-opacity', '0');
-        gradient.appendChild(stop1);
-        gradient.appendChild(stop2);
-        defs.node.appendChild(gradient);
-
-        // Draw the rectangle with gradient fill
-        let rect = eventsGroup
-          .rect(
-            deathPosX - rectWidth / 2,
-            deathPosY - rectHeight / 2,
-            rectWidth,
-            rectHeight,
-            8, // rx for rounded corners
-            8  // ry for rounded corners
-          )
-          .attr({
-            fill: `url(#${gradId})`,
-            class: 'event-icon-group'
-          })
-
-        rect.hover(
-          event => {
-            pt.x = event.clientX
-            pt.y = event.clientY
-
-            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-            // Offset tooltip so it does not appear under the cursor
-            let tipX = pt.x + 20
-            let tipY = pt.y + 20
-
-            if (tipY >= 950) {
-              tipY -= 70
-            }
-
-            if (tipX >= 5700) {
-              tipX -= 220
-            }
-
-            currentPlayer = 'Player' + String(playerIndex)
-
-            let length
-
-            if (calculateBorderLength(eventDetails, 50) < 250) {
-              length = 250
-            } else {
-              length = calculateBorderLength(eventDetails, 50)
-            }
-
-            // Limit tooltip width to 600px max
-            let tooltipWidth = Math.min(length, 600)
-            border = svg.rect(tipX, tipY, tooltipWidth, 125, 10, 10).attr({
-              stroke: 'black',
-              fill: 'rgba(255,255,255, 0.9)',
-              strokeWidth: '3px',
-            })
-
-            interactorText = svg.text(
-              35 + tipX,
-              25 + tipY,
-              'Interactor: ' + interactor
-            )
-
-            interactorIcon = svg.image(
-              `../../src/image/Characters/${interactor}.png`,
-              38 + tipX,
-              40 + tipY,
-              40,
-              40
-            )
-
-            // Draw eventDetails as a single line
-            interactorNameElement = svg.text(
-              35 + tipX,
-              35 + 50 + 20 + tipY,
-              eventDetails
-            );
-
-            interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-              fill: 'none',
-              stroke: `${playerColour[currentPlayer]}`,
-              'stroke-width': '3',
-              opacity: 0.7,
-            })
-          },
-          () => {
-            border.remove()
-            interactorText.remove()
-            interactorIcon.remove()
-            interactorNameElement.remove()
-            interactorBorder.remove()
-          }
-        )
-      }
 
       // this contains the logic for connecting events with multiple participants
-      if (eventType === 'Mock') {
+      if (eventType === 'Family Interaction') {
         // Rectangle size
         const rectWidth = 15
         const rectHeight = 20
