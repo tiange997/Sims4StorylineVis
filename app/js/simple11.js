@@ -690,6 +690,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
       let interacteeNameElement, interactorNameElement
 
+      let videoIcon
+
       // General visualizations with icons and tooltips + video
       // deleted eventType === 'Relocation'
       if (eventType === 'System_Sim_Status') {
@@ -734,180 +736,214 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           defs.node.appendChild(filter);
         }
 
-        // Render only the PNG icon inside a Snap.svg group (no colored circle)
-        let g = eventsGroup.group();
-        let icon = g.image(
-          `../../src/image/Events_General/${eventType}.png`,
-          deathPosX - offset,
-          deathPosY - offset,
-          iconSize,
-          iconSize
-        ).attr({ class: 'event-icon-group' });
-        g.attr({
-          transform: `translate(0,0)`,
-          class: 'event-icon-group',
-        });
-
-        // Tooltip logic (preserved and independent)
-        let tooltipElements = {};
-        g.hover(
-          event => {
-            // --- Add glow filter on hover ---
-            g.attr({ filter: `url(#${glowFilterId})` });
-            pt.x = event.clientX;
-            pt.y = event.clientY;
-            pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
-            let tipX = pt.x + 20;
-            let tipY = pt.y + 20;
-            if (tipY >= 950) tipY -= 70;
-            if (tipX >= 5700) tipX -= 220;
-            let length = calculateBorderLength(eventDetails, 50) < 250 ? 250 : calculateBorderLength(eventDetails, 50);
-            let tooltipWidth = Math.min(length, 600);
-            let tooltipHeight = 180;
-            let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-              stroke: 'black',
-              fill: 'rgba(255,255,255, 0.9)',
-              strokeWidth: '3px',
+        // Load the SVG so we can recolor it to the player's colour
+        // Use Snap.load to fetch the SVG, clear existing fills and apply player colour to shapes
+        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function(f) {
+          try {
+            // Remove explicit fills so we can override
+            f.selectAll('*').forEach(function(el) {
+              el.attr({ fill: null });
             });
-            let interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor);
-            let interactorIcon = svg.image(
-              `../../src/image/Characters/${interactor}.png`,
-              38 + tipX,
-              40 + tipY,
-              40,
-              40
-            );
-            // --- Use foreignObject for word-wrapping eventDetails ---
-            let detailsForeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-            detailsForeign.setAttribute('x', 35 + tipX);
-            detailsForeign.setAttribute('y', 35 + 50 + 20 + tipY);
-            detailsForeign.setAttribute('width', tooltipWidth - 40);
-            detailsForeign.setAttribute('height', tooltipHeight - 80);
-            let detailsDiv = document.createElement('div');
-            detailsDiv.style.maxWidth = (tooltipWidth - 40) + 'px';
-            detailsDiv.style.wordBreak = 'break-word';
-            detailsDiv.style.whiteSpace = 'pre-wrap';
-            detailsDiv.style.fontSize = '18px';
-            detailsDiv.style.fontFamily = 'inherit';
-            detailsDiv.style.color = '#222';
-            detailsDiv.textContent = eventDetails;
-            detailsForeign.appendChild(detailsDiv);
-            mySvg.appendChild(detailsForeign);
-            let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-              fill: 'none',
-              stroke: `${playerColour[currentPlayer]}`,
-              'stroke-width': '3',
-              opacity: 0.7,
-            });
-            tooltipElements = { border, interactorText, interactorIcon, detailsForeign, interactorBorder };
-          },
-          () => {
-            g.attr({ filter: null });
-            Object.values(tooltipElements).forEach(el => { if (el) el.remove && typeof el.remove === 'function' ? el.remove() : (el.parentNode && el.parentNode.removeChild(el)); });
-            tooltipElements = {};
+          } catch (e) {
+            // ignore if selection fails
           }
-        );
 
-        // Modal overlay logic (only on click, matches 'Choice' event)
-        g.click(function(event) {
-          let oldOverlay = document.getElementById('system-sim-status-modal-overlay');
-          if (oldOverlay) {
-            let oldVideo = oldOverlay.querySelector('#system-sim-status-modal-video');
-            if (oldVideo) oldVideo.pause();
-            oldOverlay.remove();
-          }
-          let overlay = document.createElement('div');
-          overlay.setAttribute('id', 'system-sim-status-modal-overlay');
-          overlay.style.position = 'fixed';
-          overlay.style.left = '0';
-          overlay.style.top = '0';
-          overlay.style.width = '100vw';
-          overlay.style.height = '100vh';
-          overlay.style.background = 'rgba(80,80,80,0.7)';
-          overlay.style.zIndex = 2000;
-          overlay.style.display = 'flex';
-          overlay.style.alignItems = 'center';
-          overlay.style.justifyContent = 'center';
-          let modal = document.createElement('div');
-          modal.style.position = 'relative';
-          modal.style.background = 'rgba(255,255,255,0.95)';
-          modal.style.borderRadius = '16px';
-          modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
-          modal.style.padding = '0';
-          modal.style.display = 'flex';
-          modal.style.flexDirection = 'column';
-          modal.style.alignItems = 'center';
-          modal.style.justifyContent = 'center';
-          modal.style.width = '90vw';
-          modal.style.height = '80vh';
-          modal.style.maxWidth = '90vw';
-          modal.style.maxHeight = '80vh';
-          modal.style.minWidth = '320px';
-          modal.style.minHeight = '180px';
-          let closeBtn = document.createElement('button');
-          closeBtn.innerText = '×';
-          closeBtn.style.position = 'absolute';
-          closeBtn.style.top = '12px';
-          closeBtn.style.right = '18px';
-          closeBtn.style.fontSize = '2.2rem';
-          closeBtn.style.background = 'transparent';
-          closeBtn.style.border = 'none';
-          closeBtn.style.cursor = 'pointer';
-          closeBtn.style.color = '#333';
-          closeBtn.style.zIndex = 10;
-          closeBtn.setAttribute('aria-label', 'Close');
-          closeBtn.addEventListener('click', function() {
-            let overlay = document.getElementById('system-sim-status-modal-overlay');
-            if (overlay) {
-              let video = overlay.querySelector('#system-sim-status-modal-video');
-              if (video) video.pause();
-              overlay.remove();
-            }
-          });
-          let video = document.createElement('video');
-          video.src = '../../src/video/sims4.mp4';
-          video.controls = true;
-          video.autoplay = true;
-          video.loop = true;
-          video.muted = true;
-          video.setAttribute('id', 'system-sim-status-modal-video');
-          video.style.pointerEvents = 'auto';
-          video.style.background = 'black';
-          video.style.borderRadius = '12px';
-          video.style.width = '100%';
-          video.style.height = '100%';
-          video.style.margin = '0';
-          video.style.objectFit = 'contain';
-          const videoRange = getVideoClipRangeFromEvent(data[i], 5);
-          video.addEventListener('loadedmetadata', function() {
-            const end = Math.min(videoRange.end, video.duration);
-            video.currentTime = videoRange.start;
-            video._clipStart = videoRange.start;
-            video._clipEnd = end;
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(e => {
-                console.warn('Autoplay play() failed:', e);
+          // Apply player colour to common shape elements
+          try {
+            f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
+              el.attr({
+                fill: playerColour[currentPlayer] || '#000',
+                stroke: '#000',
+                'fill-opacity': 0.9
               });
-            }
+            });
+          } catch (e) {
+            // ignore
+          }
+
+          // Create a group and insert the loaded SVG
+          let g = eventsGroup.group();
+          g.append(f);
+          g.attr({
+            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
+            class: 'event-icon-group',
           });
-          video.addEventListener('timeupdate', function() {
-            if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-              video.currentTime = video._clipStart;
-              video.play();
-            }
+
+          // Ensure size
+          g.selectAll('svg').forEach(function(svgEl) {
+            svgEl.attr({ width: iconSize, height: iconSize });
           });
-          overlay.addEventListener('mousedown', function(e) {
-            if (e.target === overlay) {
-              let video = overlay.querySelector('#system-sim-status-modal-video');
-              if (video) video.pause();
-              overlay.remove();
+
+          // Tooltip logic (preserved and independent)
+          let tooltipElements = {};
+          g.hover(
+            event => {
+              // --- Add glow filter on hover ---
+              g.attr({ filter: `url(#${glowFilterId})` });
+              g.attr({ transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})` });
+
+              pt.x = event.clientX;
+              pt.y = event.clientY;
+              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
+              let tipX = pt.x + 20;
+              let tipY = pt.y + 20;
+              if (tipY >= 950) tipY -= 70;
+              if (tipX >= 5700) tipX -= 220;
+              let length = calculateBorderLength(eventDetails, 50) < 250 ? 250 : calculateBorderLength(eventDetails, 50);
+              let tooltipWidth = Math.min(length, 600);
+              let tooltipHeight = 180;
+              let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
+                stroke: 'black',
+                fill: 'rgba(255,255,255, 0.9)',
+                strokeWidth: '3px',
+              });
+              let interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor);
+              let interactorIcon = svg.image(
+                `../../src/image/Characters/${interactor}.png`,
+                38 + tipX,
+                40 + tipY,
+                40,
+                40
+              );
+              // video icon at top-right of the border
+              let videoIcon = svg.image(`../../src/image/video.png`,
+                tipX + tooltipWidth - 38,
+                tipY + 12,
+                24,
+                24);
+              // --- Use foreignObject for word-wrapping eventDetails ---
+              let detailsForeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+              detailsForeign.setAttribute('x', 35 + tipX);
+              detailsForeign.setAttribute('y', 35 + 50 + 20 + tipY);
+              detailsForeign.setAttribute('width', tooltipWidth - 40);
+              detailsForeign.setAttribute('height', tooltipHeight - 80);
+              let detailsDiv = document.createElement('div');
+              detailsDiv.style.maxWidth = (tooltipWidth - 40) + 'px';
+              detailsDiv.style.wordBreak = 'break-word';
+              detailsDiv.style.whiteSpace = 'pre-wrap';
+              detailsDiv.style.fontSize = '18px';
+              detailsDiv.style.fontFamily = 'inherit';
+              detailsDiv.style.color = '#222';
+              detailsDiv.textContent = eventDetails;
+              detailsForeign.appendChild(detailsDiv);
+              mySvg.appendChild(detailsForeign);
+              let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
+                fill: 'none',
+                stroke: `${playerColour[currentPlayer]}`,
+                'stroke-width': '3',
+                opacity: 0.7,
+              });
+              tooltipElements = { border, interactorText, interactorIcon, detailsForeign, interactorBorder, videoIcon };
+            },
+            () => {
+              g.attr({ filter: null });
+              g.attr({ transform: `translate(${deathPosX - offset},${deathPosY - offset})` });
+              Object.values(tooltipElements).forEach(el => { if (el) el.remove && typeof el.remove === 'function' ? el.remove() : (el.parentNode && el.parentNode.removeChild(el)); });
+              tooltipElements = {};
             }
+          );
+
+          // Modal overlay logic (only on click, matches 'Choice' event)
+          g.click(function(event) {
+            let oldOverlay = document.getElementById('system-sim-status-modal-overlay');
+            if (oldOverlay) {
+              let oldVideo = oldOverlay.querySelector('#system-sim-status-modal-video');
+              if (oldVideo) oldVideo.pause();
+              oldOverlay.remove();
+            }
+            let overlay = document.createElement('div');
+            overlay.setAttribute('id', 'system-sim-status-modal-overlay');
+            overlay.style.position = 'fixed';
+            overlay.style.left = '0';
+            overlay.style.top = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(80,80,80,0.7)';
+            overlay.style.zIndex = 2000;
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            let modal = document.createElement('div');
+            modal.style.position = 'relative';
+            modal.style.background = 'rgba(255,255,255,0.95)';
+            modal.style.borderRadius = '16px';
+            modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+            modal.style.padding = '0';
+            modal.style.display = 'flex';
+            modal.style.flexDirection = 'column';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.width = '90vw';
+            modal.style.height = '80vh';
+            modal.style.maxWidth = '90vw';
+            modal.style.maxHeight = '80vh';
+            modal.style.minWidth = '320px';
+            modal.style.minHeight = '180px';
+            let closeBtn = document.createElement('button');
+            closeBtn.innerText = '×';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '12px';
+            closeBtn.style.right = '18px';
+            closeBtn.style.fontSize = '2.2rem';
+            closeBtn.style.background = 'transparent';
+            closeBtn.style.border = 'none';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.style.color = '#333';
+            closeBtn.style.zIndex = 10;
+            closeBtn.setAttribute('aria-label', 'Close');
+            closeBtn.addEventListener('click', function() {
+              let overlay = document.getElementById('system-sim-status-modal-overlay');
+              if (overlay) {
+                let video = overlay.querySelector('#system-sim-status-modal-video');
+                if (video) video.pause();
+                overlay.remove();
+              }
+            });
+            let video = document.createElement('video');
+            video.src = '../../src/video/sims4.mp4';
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('id', 'system-sim-status-modal-video');
+            video.style.pointerEvents = 'auto';
+            video.style.background = 'black';
+            video.style.borderRadius = '12px';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.margin = '0';
+            video.style.objectFit = 'contain';
+            const videoRange = getVideoClipRangeFromEvent(data[i], 5);
+            video.addEventListener('loadedmetadata', function() {
+              const end = Math.min(videoRange.end, video.duration);
+              video.currentTime = videoRange.start;
+              video._clipStart = videoRange.start;
+              video._clipEnd = end;
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                  console.warn('Autoplay play() failed:', e);
+                });
+              }
+            });
+            video.addEventListener('timeupdate', function() {
+              if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
+                video.currentTime = video._clipStart;
+                video.play();
+              }
+            });
+            overlay.addEventListener('mousedown', function(e) {
+              if (e.target === overlay) {
+                let video = overlay.querySelector('#system-sim-status-modal-video');
+                if (video) video.pause();
+                overlay.remove();
+              }
+            });
+            modal.appendChild(closeBtn);
+            modal.appendChild(video);
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
           });
-          modal.appendChild(closeBtn);
-          modal.appendChild(video);
-          overlay.appendChild(modal);
-          document.body.appendChild(overlay);
         });
       }
 
@@ -1173,6 +1209,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 // --- Add glow filter on hover ---
                 g.attr({ filter: `url(#${glowFilterId})` });
 
+                // --- Immediately scale icon to 150% (no animation) about its center ---
+                // Move origin to center, scale, then move origin back so the center remains at deathPosX,deathPosY
+                g.attr({ transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})` });
+
                 pt.x = event.clientX
                 pt.y = event.clientY
 
@@ -1205,7 +1245,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 const padding = 0.02
                 const labelHeight = 28 // "Interactor:" and "Interactee:" text
                 const iconHeight = 40 // icon
-                const iconMargin = 15 // margin between text and icon
+                const iconMargin = 15 // margin between text and border
                 const borderMargin = 20 // margin between icon and border
                 const nameHeight = 28 // interactee/interactor name text
                 const nameMargin = 10 // margin between icon and name
@@ -1277,6 +1317,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactor
                 )
 
+                videoIcon = svg.image(`../../src/image/video.png`,
+                  tipX + tooltipWidth - 38,
+                  tipY + 12,
+                  24,
+                  24);
+
                 // Use foreignObject for word-wrapping eventDetails
                 let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
                 foreign.setAttribute('x', 35 + tipX)
@@ -1284,7 +1330,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 foreign.setAttribute('width', 530)
                 foreign.setAttribute('height', 60)
                 let div = document.createElement('div')
-                div.style.maxWidth = '530px'
+                div.style.maxWidth = (tooltipWidth - 40) + 'px'
                 div.style.wordBreak = 'break-word'
                 div.style.whiteSpace = 'pre-wrap'
                 div.style.fontSize = '18px'
@@ -1301,6 +1347,9 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 // --- Remove glow filter on mouseleave ---
                 g.attr({ filter: null });
 
+                // --- Restore original icon size/transform immediately (no animation) ---
+                g.attr({ transform: `translate(${deathPosX - offset},${deathPosY - offset})` });
+                videoIcon.remove()
                 border.remove()
                 interacteeText.remove()
                 interacteeIcon.remove()
@@ -1319,7 +1368,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
             )
 
-            // Add click behaviour for modal video overlay
             g.click(function(event) {
               // Remove any existing overlay
               let oldOverlay = document.getElementById('choice-modal-overlay')
@@ -1329,37 +1377,34 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 oldOverlay.remove()
               }
 
-              // Create overlay
-              let overlay = document.createElement('div')
-              overlay.setAttribute('id', 'choice-modal-overlay')
-              overlay.style.position = 'fixed'
-              overlay.style.left = '0'
-              overlay.style.top = '0'
-              overlay.style.width = '100vw'
-              overlay.style.height = '100vh'
-              overlay.style.background = 'rgba(80,80,80,0.7)'
-              overlay.style.zIndex = 2000
-              overlay.style.display = 'flex'
-              overlay.style.alignItems = 'center'
-              overlay.style.justifyContent = 'center'
-
-              // Modal content container
-              let modal = document.createElement('div')
-              modal.style.position = 'relative'
-              modal.style.background = 'rgba(255,255,255,0.95)'
-              modal.style.borderRadius = '16px'
-              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
-              modal.style.padding = '0'
-              modal.style.display = 'flex'
-              modal.style.flexDirection = 'column'
-              modal.style.alignItems = 'center'
-              modal.style.justifyContent = 'center'
-              modal.style.width = '90vw'
-              modal.style.height = '80vh'
-              modal.style.maxWidth = '90vw'
-              modal.style.maxHeight = '80vh'
-              modal.style.minWidth = '320px'
-              modal.style.minHeight = '180px'
+              let overlay = document.createElement('div');
+              overlay.setAttribute('id', 'choice-modal-video');
+              overlay.style.position = 'fixed';
+              overlay.style.left = '0';
+              overlay.style.top = '0';
+              overlay.style.width = '100vw';
+              overlay.style.height = '100vh';
+              overlay.style.background = 'rgba(80,80,80,0.7)';
+              overlay.style.zIndex = 2000;
+              overlay.style.display = 'flex';
+              overlay.style.alignItems = 'center';
+              overlay.style.justifyContent = 'center';
+              let modal = document.createElement('div');
+              modal.style.position = 'relative';
+              modal.style.background = 'rgba(255,255,255,0.95)';
+              modal.style.borderRadius = '16px';
+              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+              modal.style.padding = '0';
+              modal.style.display = 'flex';
+              modal.style.flexDirection = 'column';
+              modal.style.alignItems = 'center';
+              modal.style.justifyContent = 'center';
+              modal.style.width = '90vw';
+              modal.style.height = '80vh';
+              modal.style.maxWidth = '90vw';
+              modal.style.maxHeight = '80vh';
+              modal.style.minWidth = '320px';
+              modal.style.minHeight = '180px';
               let closeBtn = document.createElement('button');
               closeBtn.innerText = '×';
               closeBtn.style.position = 'absolute';
@@ -1373,70 +1418,59 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               closeBtn.style.zIndex = 10;
               closeBtn.setAttribute('aria-label', 'Close');
               closeBtn.addEventListener('click', function() {
-                let overlay = document.getElementById('choice-modal-overlay')
+                let overlay = document.getElementById('choice-modal-video');
                 if (overlay) {
-                  let video = overlay.querySelector('#choice-modal-video')
-                  if (video) video.pause()
-                  overlay.remove()
+                  let video = overlay.querySelector('#choice-modal-video');
+                  if (video) video.pause();
+                  overlay.remove();
                 }
-              })
-
-              // Video element
-              let video = document.createElement('video')
-              video.src = '../../src/video/sims4.mp4'
-              video.width = 320
-              video.height = 180
-              video.controls = true
-              video.autoplay = true
-              video.loop = true
-              video.muted = true
-              video.setAttribute('id', 'choice-modal-video')
-              video.style.pointerEvents = 'auto'
-              video.style.background = 'black'
-              video.style.position = 'absolute'
-              video.style.left = '50%'
-              video.style.top = '50%'
-              video.style.transform = 'translate(-50%, -50%)'
-              video.style.borderRadius = '8px'
-              video.style.objectFit = 'cover'
-
-              // Clip video to play only within the calculated range and loop
-              const videoRange = getVideoClipRangeFromEvent(data[i], 5)
+              });
+              let video = document.createElement('video');
+              video.src = '../../src/video/sims4.mp4';
+              video.controls = true;
+              video.autoplay = true;
+              video.loop = true;
+              video.muted = true;
+              video.setAttribute('id', 'choice-modal-video');
+              video.style.pointerEvents = 'auto';
+              video.style.background = 'black';
+              video.style.borderRadius = '12px';
+              video.style.width = '100%';
+              video.style.height = '100%';
+              video.style.margin = '0';
+              video.style.objectFit = 'contain';
+              const videoRange = getVideoClipRangeFromEvent(data[i], 5);
               video.addEventListener('loadedmetadata', function() {
-                // Clamp end to video duration if needed
-                const end = Math.min(videoRange.end, video.duration)
-                video.currentTime = videoRange.start
-                video._clipStart = videoRange.start
-                video._clipEnd = end
-                const playPromise = video.play()
+                const end = Math.min(videoRange.end, video.duration);
+                video.currentTime = videoRange.start;
+                video._clipStart = videoRange.start;
+                video._clipEnd = end;
+                const playPromise = video.play();
                 if (playPromise !== undefined) {
                   playPromise.catch(e => {
-                    console.warn('Autoplay play() failed:', e)
-                  })
+                    console.warn('Autoplay play() failed:', e);
+                  });
                 }
-              })
+              });
               video.addEventListener('timeupdate', function() {
-                // Loop only within the clip range
                 if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                  video.currentTime = video._clipStart
-                  video.play()
+                  video.currentTime = video._clipStart;
+                  video.play();
                 }
-              })
-
-              // Add close on clicking outside modal
+              });
               overlay.addEventListener('mousedown', function(e) {
                 if (e.target === overlay) {
-                  let video = overlay.querySelector('#choice-modal-video')
-                  if (video) video.pause()
-                  overlay.remove()
+                  let video = overlay.querySelector('#choice-modal-video');
+                  if (video) video.pause();
+                  overlay.remove();
                 }
-              })
+              });
+              modal.appendChild(closeBtn);
+              modal.appendChild(video);
+              overlay.appendChild(modal);
+              document.body.appendChild(overlay);
+            });
 
-              modal.appendChild(closeBtn)
-              modal.appendChild(video)
-              overlay.appendChild(modal)
-              document.body.appendChild(overlay)
-            })
           }
         )
       }
