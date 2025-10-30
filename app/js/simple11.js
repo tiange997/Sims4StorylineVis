@@ -1556,113 +1556,135 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         for (let k = 0; k < allRects.length; k++) {
           let rect = allRects[k];
           rect.hover(
-            event => {
-              // --- Glow and scale effect for all rectangles in the group ---
-              rectGroup.attr({ filter: `url(#${glowFilterId})` });
-              // Scale about each rectangle's centre
-              for (let m = 0; m < allRects.length; m++) {
-                let r = allRects[m];
-                let bbox = r.getBBox();
-                let cx = bbox.x + bbox.width / 2;
-                let cy = bbox.y + bbox.height / 2;
-                r.transform(`s1.5,1.5,${cx},${cy}`);
-              }
-
-              // Tooltip logic (show all participants for all rectangles in the group)
-              pt.x = event.clientX
-              pt.y = event.clientY
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-              let tipX = pt.x
-              let tipY = pt.y
-              if (pt.y >= 950) tipY -= 50
-              if (pt.x >= 5700) tipX -= 200
-
-              // --- Tooltip layout for Family Interaction event ---
-              let length = calculateBorderLength(eventDetails, 50) <= 370 ? 380 : calculateBorderLength(eventDetails, 50)
-              // Limit tooltip width to 600px max
-              let tooltipWidth = Math.min(length, 600)
-              let tooltipHeight = 180;
-              border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              })
-
-              // Show all participants' names in a single line
-              interactorText = svg.text(
-                35 + tipX,
-                25 + tipY,
-                'Character Involved: ' + allNames.join(', ')
-              )
-
-              // Show all participant icons in a row, with colour-coded borders
-              let iconSize = 40;
-              let iconSpacing = 10;
-              let iconStartX = 38 + tipX;
-              let iconY = 40 + tipY;
-              let iconBorders = [];
+            (function() {
+              // We need to keep references to the tooltip elements and icon/border elements
+              let tooltipElements = {};
               let iconElements = [];
-              for (let p = 0; p < allNames.length; p++) {
-                let px = iconStartX + p * (iconSize + iconSpacing);
-                let playerName = allNames[p];
-                let playerId = allPlayers[p];
-                // Icon
-                let icon = svg.image(
-                  `../../src/image/Characters/${playerName}.png`,
-                  px,
-                  iconY,
-                  iconSize,
-                  iconSize
-                );
-                iconElements.push(icon);
-                // Border
-                let borderRect = svg.rect(px, iconY, iconSize, iconSize).attr({
-                  fill: 'none',
-                  stroke: playerColour[playerId] || '#222',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                });
-                iconBorders.push(borderRect);
-              }
+              let iconBorders = [];
+              return function(event) {
+                // --- Glow and scale effect for all rectangles in the group ---
+                rectGroup.attr({ filter: `url(#${glowFilterId})` });
+                // Scale about each rectangle's centre
+                for (let m = 0; m < allRects.length; m++) {
+                  let r = allRects[m];
+                  let bbox = r.getBBox();
+                  let cx = bbox.x + bbox.width / 2;
+                  let cy = bbox.y + bbox.height / 2;
+                  r.transform(`s1.5,1.5,${cx},${cy}`);
+                }
 
-              // Draw eventDetails as a single line
-              // Use foreignObject for word-wrapping eventDetails
-              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
-              foreign.setAttribute('x', 35 + tipX)
-              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
-              foreign.setAttribute('width', 530)
-              foreign.setAttribute('height', 80)
-              let div = document.createElement('div')
-              div.style.maxWidth = '530px'
-              div.style.wordBreak = 'break-word'
-              div.style.whiteSpace = 'pre-wrap'
-              div.style.fontSize = '18px'
-              div.style.fontFamily = 'inherit'
-              div.style.color = '#222'
-              div.textContent = eventDetails
-              foreign.appendChild(div)
-              mySvg.appendChild(foreign)
-              interactorNameElement = {
-                remove: () => foreign.remove()
+                // Tooltip logic (show all participants for all rectangles in the group)
+                pt.x = event.clientX
+                pt.y = event.clientY
+                pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+                let tipX = pt.x
+                let tipY = pt.y
+                if (pt.y >= 950) tipY -= 50
+                if (pt.x >= 5700) tipX -= 200
+
+                // --- Tooltip layout for Family Interaction event ---
+                let length = calculateBorderLength(eventDetails, 50) <= 370 ? 380 : calculateBorderLength(eventDetails, 50)
+                // Limit tooltip width to 600px max
+                let tooltipWidth = Math.min(length, 600)
+                let tooltipHeight = 180;
+                let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
+                  stroke: 'black',
+                  fill: 'rgba(255,255,255, 0.9)',
+                  strokeWidth: '3px',
+                })
+
+                // Show all participants' names in a single line
+                let interactorText = svg.text(
+                  35 + tipX,
+                  25 + tipY,
+                  'Character Involved: ' + allNames.join(', ')
+                )
+
+                // Show all participant icons in a row, with colour-coded borders
+                let iconSize = 40;
+                let iconSpacing = 10;
+                let iconStartX = 38 + tipX;
+                let iconY = 40 + tipY;
+                iconBorders = [];
+                iconElements = [];
+                for (let p = 0; p < allNames.length; p++) {
+                  let px = iconStartX + p * (iconSize + iconSpacing);
+                  let playerName = allNames[p];
+                  let playerId = allPlayers[p];
+                  // Icon
+                  let icon = svg.image(
+                    `../../src/image/Characters/${playerName}.png`,
+                    px,
+                    iconY,
+                    iconSize,
+                    iconSize
+                  );
+                  iconElements.push(icon);
+                  // Border
+                  let borderRect = svg.rect(px, iconY, iconSize, iconSize).attr({
+                    fill: 'none',
+                    stroke: playerColour[playerId] || '#222',
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  });
+                  iconBorders.push(borderRect);
+                }
+
+                // Draw eventDetails as a single line
+                // Use foreignObject for word-wrapping eventDetails
+                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                foreign.setAttribute('x', 35 + tipX)
+                foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+                foreign.setAttribute('width', 530)
+                foreign.setAttribute('height', 80)
+                let div = document.createElement('div')
+                div.style.maxWidth = '530px'
+                div.style.wordBreak = 'break-word'
+                div.style.whiteSpace = 'pre-wrap'
+                div.style.fontSize = '18px'
+                div.style.fontFamily = 'inherit'
+                div.style.color = '#222'
+                div.textContent = eventDetails
+                foreign.appendChild(div)
+                mySvg.appendChild(foreign)
+                let interactorNameElement = {
+                  remove: () => foreign.remove()
+                }
+
+                // Store references for cleanup
+                tooltipElements = {
+                  border,
+                  interactorText,
+                  interactorNameElement,
+                  iconElements,
+                  iconBorders
+                };
+
+                // Attach to rect for access in mouseleave
+                rect.data('family-tooltip-elements', tooltipElements);
               }
-            },
-            () => {
+            })(),
+            function() {
               // Remove the tooltip immediately on mouseleave
-              if (border) border.remove();
-              if (interactorText) interactorText.remove();
-              if (interactorNameElement) interactorNameElement.remove();
-              // Remove all icon elements and borders
-              if (typeof iconElements !== 'undefined') {
-                iconElements.forEach(el => el && el.remove());
-              }
-              if (typeof iconBorders !== 'undefined') {
-                iconBorders.forEach(el => el && el.remove());
+              let tooltipElements = rect.data('family-tooltip-elements');
+              if (tooltipElements) {
+                if (tooltipElements.border) tooltipElements.border.remove();
+                if (tooltipElements.interactorText) tooltipElements.interactorText.remove();
+                if (tooltipElements.interactorNameElement) tooltipElements.interactorNameElement.remove();
+                if (tooltipElements.iconElements && tooltipElements.iconElements.length) {
+                  tooltipElements.iconElements.forEach(el => el && el.remove());
+                }
+                if (tooltipElements.iconBorders && tooltipElements.iconBorders.length) {
+                  tooltipElements.iconBorders.forEach(el => el && el.remove());
+                }
               }
               // Remove glow and restore transform for all rectangles in the group
               rectGroup.attr({ filter: null });
               for (let m = 0; m < allRects.length; m++) {
                 allRects[m].transform('');
               }
+              // Remove the stored data
+              rect.data('family-tooltip-elements', null);
             }
           )
 
