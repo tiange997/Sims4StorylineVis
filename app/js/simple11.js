@@ -1579,127 +1579,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // --- Relocation-style tooltip layout for Mock event ---
               let length = calculateBorderLength(eventDetails, 50) <= 370 ? 380 : calculateBorderLength(eventDetails, 50)
-              // Padding
-              const padding = 0.02
-              // Heights of elements
-              const textHeight = 28 // "Character Involved" text
-              const iconHeight = 40 // icon
-              const iconMargin = 15 // margin between text and icon
-              const borderMargin = 20 // margin between icon and border
-              const detailsHeight = 60 // eventDetails (foreignObject)
-              const videoHeight = 180 // video (approx, will be scaled)
-              // Calculate total height
-              let tooltipContentHeight = textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin + videoHeight
-              let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
               // Limit tooltip width to 600px max
               let tooltipWidth = Math.min(length, 600)
+              let tooltipHeight = 180; // Remove video height from tooltip
               border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
                 stroke: 'black',
                 fill: 'rgba(255,255,255, 0.9)',
                 strokeWidth: '3px',
               })
-
-              // Remove any existing wrapper before creating a new one
-              let oldWrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (oldWrapper) {
-                let oldVideo = oldWrapper.querySelector(
-                  '#relocation-tooltip-video'
-                )
-                if (oldVideo) oldVideo.pause()
-                oldWrapper.remove()
-              }
-
-              // Add video element to tooltip, positioned and scaled to match SVG border
-              let wrapper = document.createElement('div')
-              wrapper.style.position = 'fixed'
-              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
-              wrapper.style.zIndex = 1000
-              wrapper.style.pointerEvents = 'none'
-              wrapper.style.overflow = 'hidden'
-              wrapper.style.scrollbarWidth = 'none'
-              wrapper.style.msOverflowStyle = 'none'
-
-              // Get the SVG border's bounding box in SVG coordinates
-              let borderBBox = border.node.getBBox()
-              // Convert SVG coordinates to screen coordinates
-              let ctm = mySvg.getScreenCTM()
-              // Top-left corner
-              let svgX = borderBBox.x
-              let svgY = borderBBox.y
-              let svgW = borderBBox.width
-              let svgH = borderBBox.height
-              // Transform to screen coordinates
-              let topLeft = mySvg.createSVGPoint()
-              topLeft.x = svgX
-              topLeft.y = svgY
-              topLeft = topLeft.matrixTransform(ctm)
-              // Bottom-right corner
-              let bottomRight = mySvg.createSVGPoint()
-              bottomRight.x = svgX + svgW
-              bottomRight.y = svgY + svgH
-              bottomRight = bottomRight.matrixTransform(ctm)
-              // Calculate width/height in screen space
-              let screenW = bottomRight.x - topLeft.x
-              let screenH = bottomRight.y - topLeft.y
-              // Set wrapper position and size
-              wrapper.style.left = `${topLeft.x}px`
-              wrapper.style.top = `${topLeft.y}px`
-              wrapper.style.width = `${screenW}px`
-              wrapper.style.height = `${screenH}px`
-
-              // Use a fixed small size for the video, matching a 16:9 aspect ratio (e.g. 160x90)
-              let videoW = 320
-              let videoH = 180
-              // Centre horizontally in the tooltip
-              let videoLeft = (screenW - videoW) / 2
-              let videoTop = (textHeight + iconMargin + iconHeight + borderMargin + detailsHeight + borderMargin) * (screenH / tooltipHeight) + screenH * 0.02
-
-              let video = document.createElement('video')
-              video.src = '../../src/video/sims4.mp4'
-              video.width = videoW
-              video.height = videoH
-              video.controls = true
-              video.autoplay = true
-              video.loop = true
-              video.muted = true
-              video.setAttribute('id', 'relocation-tooltip-video')
-              video.style.pointerEvents = 'auto'
-              video.style.background = 'black'
-              video.style.position = 'absolute'
-              video.style.left = `${videoLeft}px`
-              video.style.top = `${videoTop}px`
-              video.style.width = `${videoW}px`
-              video.style.height = `${videoH}px`
-              video.style.borderRadius = '8px'
-              video.style.objectFit = 'cover'
-
-              // Clip video to play only within the calculated range and loop
-              const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
-              video.addEventListener('loadedmetadata', function() {
-                // Clamp end to video duration if needed
-                const end = Math.min(videoRange.end, video.duration);
-                video.currentTime = videoRange.start;
-                video._clipStart = videoRange.start;
-                video._clipEnd = end;
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                  playPromise.catch(e => {
-                    console.warn('Autoplay play() failed:', e);
-                  });
-                }
-              });
-              video.addEventListener('timeupdate', function() {
-                // Loop only within the clip range
-                if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                  video.currentTime = video._clipStart;
-                  video.play();
-                }
-              });
-
-              wrapper.appendChild(video)
-              document.body.appendChild(wrapper)
 
               // Place text, icon, and eventDetails above the video
               interactorText = svg.text(
@@ -1716,13 +1603,19 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 40
               )
 
+              videoIcon = svg.image(`../../src/image/video.png`,
+                tipX + tooltipWidth - 38,
+                tipY + 12,
+                24,
+                24);
+
               // Draw eventDetails as a single line
               // Use foreignObject for word-wrapping eventDetails
               let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
               foreign.setAttribute('x', 35 + tipX)
               foreign.setAttribute('y', 35 + 50 + 20 + tipY)
               foreign.setAttribute('width', 530) // 600 - 2*35 margin
-              foreign.setAttribute('height', 320)
+              foreign.setAttribute('height', 80)
               let div = document.createElement('div')
               div.style.maxWidth = '530px'
               div.style.wordBreak = 'break-word'
@@ -1747,18 +1640,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               })
             },
             () => {
-              // Remove the tooltip and video wrapper immediately on mouseleave
+              // Remove the tooltip immediately on mouseleave
               if (border) border.remove();
               if (interactorText) interactorText.remove();
               if (interactorIcon) interactorIcon.remove();
               if (interactorNameElement) interactorNameElement.remove();
               if (interactorBorder) interactorBorder.remove();
-              let wrapper = document.getElementById('relocation-tooltip-wrapper');
-              if (wrapper) {
-                let video = wrapper.querySelector('#relocation-tooltip-video');
-                if (video) video.pause();
-                wrapper.remove();
-              }
+              if (videoIcon) videoIcon.remove();
               // Remove glow and restore transform for all rectangles in the group
               rectGroup.attr({ filter: null });
               for (let m = 0; m < allRects.length; m++) {
@@ -1766,6 +1654,109 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               }
             }
           )
+
+          rect.click(function(event) {
+            // Remove any existing overlay
+            let oldOverlay = document.getElementById('family-interaction-modal-overlay')
+            if (oldOverlay) {
+              let oldVideo = oldOverlay.querySelector('#family-interaction-modal-video')
+              if (oldVideo) oldVideo.pause()
+              oldOverlay.remove()
+            }
+
+            let overlay = document.createElement('div');
+            overlay.setAttribute('id', 'family-interaction-modal-video');
+            overlay.style.position = 'fixed';
+            overlay.style.left = '0';
+            overlay.style.top = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(80,80,80,0.7)';
+            overlay.style.zIndex = 2000;
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            let modal = document.createElement('div');
+            modal.style.position = 'relative';
+            modal.style.background = 'rgba(255,255,255,0.95)';
+            modal.style.borderRadius = '16px';
+            modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
+            modal.style.padding = '0';
+            modal.style.display = 'flex';
+            modal.style.flexDirection = 'column';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.width = '90vw';
+            modal.style.height = '80vh';
+            modal.style.maxWidth = '90vw';
+            modal.style.maxHeight = '80vh';
+            modal.style.minWidth = '320px';
+            modal.style.minHeight = '180px';
+            let closeBtn = document.createElement('button');
+            closeBtn.innerText = '×';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '12px';
+            closeBtn.style.right = '18px';
+            closeBtn.style.fontSize = '2.2rem';
+            closeBtn.style.background = 'transparent';
+            closeBtn.style.border = 'none';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.style.color = '#333';
+            closeBtn.style.zIndex = 10;
+            closeBtn.setAttribute('aria-label', 'Close');
+            closeBtn.addEventListener('click', function() {
+              let overlay = document.getElementById('family-interaction-modal-video');
+              if (overlay) {
+                let video = overlay.querySelector('#family-interaction-modal-video');
+                if (video) video.pause();
+                overlay.remove();
+              }
+            });
+            let video = document.createElement('video');
+            video.src = '../../src/video/sims4.mp4';
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('id', 'family-interaction-modal-video');
+            video.style.pointerEvents = 'auto';
+            video.style.background = 'black';
+            video.style.borderRadius = '12px';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.margin = '0';
+            video.style.objectFit = 'contain';
+            const videoRange = getVideoClipRangeFromEvent(data[i], 5);
+            video.addEventListener('loadedmetadata', function() {
+              const end = Math.min(videoRange.end, video.duration);
+              video.currentTime = videoRange.start;
+              video._clipStart = videoRange.start;
+              video._clipEnd = end;
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                  console.warn('Autoplay play() failed:', e);
+                });
+              }
+            });
+            video.addEventListener('timeupdate', function() {
+              if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
+                video.currentTime = video._clipStart;
+                video.play();
+              }
+            });
+            overlay.addEventListener('mousedown', function(e) {
+              if (e.target === overlay) {
+                let video = overlay.querySelector('#choice-modal-video');
+                if (video) video.pause();
+                overlay.remove();
+              }
+            });
+            modal.appendChild(closeBtn);
+            modal.appendChild(video);
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+          });
         }
         // No need to draw lines here; handled above for all participants
       }
@@ -1785,10 +1776,6 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
         // console.log(eventDetails, deathPosX, deathPosY)
-
-        // Player Icon
-        let indexHolder = currentPlayer.match(/\d/g)
-        indexHolder = indexHolder.join('')
 
         eventsGroup
           .image(
