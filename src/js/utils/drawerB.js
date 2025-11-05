@@ -23,16 +23,10 @@ let mySvg = $('#mySvg')[0]
 let pt = mySvg.createSVGPoint()
 
 let playerColour = {
-  Player1: '#000080', // changed
-  Player2: '#00B8D1',
-  Player3: '#006400', // changed
-  Player4: '#5BB58A',
-  Player5: '#9B8BD6',
-  Player6: '#ff0000',
-  Player7: '#ba000d',
-  Player8: '#ff94c2',
-  Player9: '#FF7F00', // changed
-  Player10: '#ffd149',
+  Player1: '#00B8D1',
+  Player2: '#ff0000',
+  Player3: '#9B8BD6',
+  Player4: '#ffd149',
 }
 
 export function drawSegmentPath(
@@ -166,10 +160,15 @@ export function drawStoryline(
   // console.log(participantsInfo)
 
   // Log storyline data for this character
-  // console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
+  console.log('=== STORYLINE DATA FOR CHARACTER:', character, '===')
+  console.log(participantsInfo)
   // console.log('Storyline array:', storyline)
 
   // --- BEGIN: Add profile pic at start and end of storyline ---
+  let id = parseInt(character.match(/\d/g).join(''))
+  id = id * 2 - 1
+  let Name = participantsInfo[id]
+  console.log(Name)
 
   // Find the first point of the first segment
   let firstPoint = null
@@ -177,28 +176,55 @@ export function drawStoryline(
     firstPoint = storyline[0][0]
     // Draw profile image at start
     svg.image(
-      'src/image/Characters/J.png',
-      firstPoint[0] - 25,
+      `src/image/Characters/${Name}.png`,
+      firstPoint[0] - 60,
       firstPoint[1] - 25,
-      50,
-      50
+      40,
+      40
     )
   }
 
   // Find the last point of the last segment
   let lastPoint = null
+  let endIcon = null
   if (storyline.length > 0) {
     let lastSegment = storyline[storyline.length - 1]
     if (lastSegment.length > 0) {
       lastPoint = lastSegment[lastSegment.length - 1]
       // Draw profile image at end
-      svg.image(
-        'src/image/Characters/J.png',
-        lastPoint[0] - 25,
+      endIcon = svg.image(
+        `src/image/Characters/${Name}.png`,
+        lastPoint[0] + 20,
         lastPoint[1] - 25,
-        50,
-        50
+        40,
+        40
       )
+      // Draw a cross if this is the player who died
+      if (
+        typeof window !== 'undefined' &&
+        window.playerWithDeathEvent &&
+        character === window.playerWithDeathEvent
+      ) {
+        // Draw a cross (X) over the icon
+        const x = lastPoint[0] + 20
+        const y = lastPoint[1] - 25
+        const w = 40
+        const h = 40
+        svg.line(x, y, x + w, y + h).attr({
+          stroke: playerColour[character] || '#000',
+          'stroke-width': 6,
+          'stroke-linecap': 'round',
+          opacity: 0.95,
+          'pointer-events': 'none',
+        })
+        svg.line(x + w, y, x, y + h).attr({
+          stroke: playerColour[character] || '#000',
+          'stroke-width': 6,
+          'stroke-linecap': 'round',
+          opacity: 0.95,
+          'pointer-events': 'none',
+        })
+      }
     }
   }
 
@@ -411,5 +437,35 @@ export function calculateBorderLength(text, iconSize) {
       length += 20 // offset
       return length
     }
+  }
+}
+
+// Utility function to draw a cross over a profile pic
+function defineDrawCross(
+  svg,
+  icon,
+  character,
+  playerWithShortestEnd,
+  playerColour
+) {
+  // Use window.playerWithDeathEvent if available, otherwise fallback to playerWithShortestEnd
+  const playerToCross = window.playerWithDeathEvent || playerWithShortestEnd
+  if (character === playerToCross) {
+    // Get icon position and size
+    const x = icon.attr('x') || 38
+    const y = icon.attr('y') || 40
+    const w = icon.attr('width') || 40
+    const h = icon.attr('height') || 40
+    // Draw two lines (cross)
+    svg.line(x, y, x + w, y + h).attr({
+      stroke: playerColour[playerToCross] || '#000',
+      'stroke-width': 4,
+      'pointer-events': 'none',
+    })
+    svg.line(x + w, y, x, y + h).attr({
+      stroke: playerColour[playerToCross] || '#000',
+      'stroke-width': 4,
+      'pointer-events': 'none',
+    })
   }
 }

@@ -5,7 +5,7 @@ export const ORDER_TIMES = 10
 export const ALPHA = 0.1
 
 // Compact
-export const DISTANCE_IN = 80 // this changed from 30 to 80 to make it more compact between storylines
+export const DISTANCE_IN = 30
 export const DISTANCE_OUT = 20
 
 // Render

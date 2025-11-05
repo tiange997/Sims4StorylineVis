@@ -32,8 +32,13 @@
     </style>
   </head>
 
-  <body style="height: 100vh; display: flex; flex-direction: column; min-height: 100vh; background: #f7f8fa;">
-    <div id="container" style="flex: 0 0 70vh; min-height: 0; position: relative; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-radius: 0 0 18px 18px; overflow: hidden;">
+  <body
+    style="height: 100vh; display: flex; flex-direction: column; min-height: 100vh; background: #f7f8fa;"
+  >
+    <div
+      id="container"
+      style="flex: 0 0 70vh; min-height: 0; position: relative; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-radius: 0 0 18px 18px; overflow: hidden;"
+    >
       <div id="tip" style="padding-top: 20%">
         <img
           src="src/image/Spinner.gif"
@@ -44,28 +49,101 @@
         </h2>
       </div>
       <svg id="mySvg" class="mySvg" height="100vh"></svg>
-      <button id="resetZoomBtn" style="position: absolute; top: 10px; right: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Reset Zoom</button>
-      <button id="zoomInBtn" style="position: absolute; top: 10px; right: 270px; z-index: 1001; font-size: 18px; padding: 6px 16px;">+</button>
-      <button id="zoomOutBtn" style="position: absolute; top: 10px; right: 320px; z-index: 1001; font-size: 18px; padding: 6px 16px;">-</button>
-      <button id="panModeBtn" style="position: absolute; top: 10px; right: 160px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Hand: Off</button>
-      <button id="showSynopsisBtn" style="position: absolute; top: 10px; left: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;">Story</button>
+      <button
+        id="resetZoomBtn"
+        style="position: absolute; top: 10px; right: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;"
+      >
+        Reset Zoom
+      </button>
+      <button
+        id="zoomInBtn"
+        style="position: absolute; top: 10px; right: 270px; z-index: 1001; font-size: 18px; padding: 6px 16px;"
+      >
+        +
+      </button>
+      <button
+        id="zoomOutBtn"
+        style="position: absolute; top: 10px; right: 320px; z-index: 1001; font-size: 18px; padding: 6px 16px;"
+      >
+        -
+      </button>
+      <button
+        id="panModeBtn"
+        style="position: absolute; top: 10px; right: 160px; z-index: 1001; font-size: 18px; padding: 6px 16px;"
+      >
+        Hand: Off
+      </button>
+      <button
+        id="showSynopsisBtn"
+        style="position: absolute; top: 10px; left: 30px; z-index: 1001; font-size: 18px; padding: 6px 16px;"
+      >
+        Story
+      </button>
     </div>
     <!-- Story Synopsis Modal -->
-    <div id="storySynopsisModal" style="display: flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(30,32,40,0.32); z-index: 3000; align-items: center; justify-content: center;">
-      <div style="background: #fff; border-radius: 16px; max-width: 600px; width: 30vw; min-width: 320px; min-height: 30vh; max-height: 60vh; margin: 0 auto; box-shadow: 0 8px 32px rgba(0,0,0,0.18); padding: 32px 28px 24px 28px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-y: auto;">
-        <button id="closeSynopsisBtn" style="position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 28px; color: #888; cursor: pointer; z-index: 1;">×</button>
-        <h2 style="margin-top: 0; margin-bottom: 18px; text-align: center; color: #2d3a4b;">Story Synopsis</h2>
-        <div style="font-size: 18px; color: #2d3a4b; line-height: 1.6; text-align: left;">
+    <div
+      id="storySynopsisModal"
+      style="display: flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(30,32,40,0.32); z-index: 3000; align-items: center; justify-content: center;"
+    >
+      <div
+        style="background: #fff; border-radius: 16px; max-width: 600px; width: 30vw; min-width: 320px; min-height: 30vh; max-height: 60vh; margin: 0 auto; box-shadow: 0 8px 32px rgba(0,0,0,0.18); padding: 32px 28px 24px 28px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-y: auto;"
+      >
+        <button
+          id="closeSynopsisBtn"
+          style="position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 28px; color: #888; cursor: pointer; z-index: 1;"
+        >
+          ×
+        </button>
+        <h2
+          style="margin-top: 0; margin-bottom: 18px; text-align: center; color: #2d3a4b;"
+        >
+          Story Synopsis
+        </h2>
+        <div
+          style="font-size: 18px; color: #2d3a4b; line-height: 1.6; text-align: left;"
+        >
           <p>
-            <em>This is a placeholder for the story synopsis. Here you can provide a summary of the Sims 4 challenge, its background, and any other information you want users to see before interacting with the visualisation.</em>
+            <em
+              >The story was from the family fortune—an official Sims 4
+              challenge. Three squabbling siblings' (Ava, Eddie and Lila) scheme
+              to get their hands on their grandma-Nyssa's fortune. However, the
+              family matriarch only plans to award her inheritance to those that
+              prove themselves worthy. The siblings have to work their best to
+              gain grandma's favor-for the sake of money!</em
+            >
           </p>
         </div>
       </div>
     </div>
-    <div id="filterPanel" style="position: fixed; left: 0; right: 0; bottom: 0; width: 100vw; min-width: 0; min-height: 0; height: 30vh; background: #fff; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); border-radius: 18px 18px 0 0; margin-top: 0; padding: 32px 4vw 16px 4vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; z-index: 2000;">
-      <h3 style="margin-bottom: 18px; color: #2d3a4b; font-weight: 700; letter-spacing: 0.5px;">Filter Events</h3>
-      <div id="eventTypeFilters" style="width: 100%; max-width: 1600px; display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; align-items: flex-start;">
-        <!-- Event type checkboxes and buttons will be dynamically generated here by JS -->
+    <div
+      id="filterPanel"
+      style="position: fixed; left: 0; right: 0; bottom: 0; width: 100vw; min-width: 0; min-height: 0; height: 30vh; background: #fff; box-shadow: 0 -2px 16px rgba(0,0,0,0.08); border-radius: 18px 18px 0 0; margin-top: 0; padding: 32px 4vw 16px 4vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto; z-index: 2000;"
+    >
+      <h3
+        style="margin-bottom: 18px; color: #2d3a4b; font-weight: 700; letter-spacing: 0.5px;"
+      >
+        Filter Events
+      </h3>
+      <div
+        id="eventFiltersCombined"
+        style="width: 100%; max-width: 1600px; text-align: center; margin-bottom: 8px;"
+      >
+        <span
+          style="font-size: 16px; font-weight: 600; color: #2d3a4b; background: #f0f4f8; border-radius: 8px; padding: 4px 12px; display: inline-block; margin-bottom: 15px;"
+          >Story Events with Video</span
+        >
+        <span
+          id="videoEventTypeFilters"
+          style="width: 100%; max-width: 1600px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start; margin-top: 4px; margin-bottom: 30px;"
+        ></span>
+        <span
+          style="font-size: 16px; font-weight: 600; color: #2d3a4b; background: #f0f4f8; border-radius: 8px; padding: 4px 12px; display: inline-block; margin-bottom: 15px;"
+          >Story Events</span
+        >
+        <span
+          id="eventTypeFilters"
+          style="width: 100%; max-width: 1600px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start; margin-top: 4px;"
+        ></span>
       </div>
     </div>
     <style>
@@ -77,13 +155,13 @@
         font-size: 16px;
         display: flex;
         align-items: center;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         transition: background 0.2s;
       }
       #filterPanel label:hover {
         background: #e3eaf2;
       }
-      #filterPanel input[type="checkbox"] {
+      #filterPanel input[type='checkbox'] {
         margin-right: 8px;
         accent-color: #3b82f6;
       }
@@ -96,25 +174,31 @@
         font-size: 16px;
         margin: 0 8px 8px 0;
         cursor: pointer;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
         transition: background 0.2s;
       }
       #filterPanel button:hover {
         background: #2563eb;
       }
       @media (max-width: 900px) {
-        #filterPanel { padding: 18px 2vw 8px 2vw !important; }
-        #eventTypeFilters { max-width: 100%; }
+        #filterPanel {
+          padding: 18px 2vw 8px 2vw !important;
+        }
+        #eventTypeFilters {
+          max-width: 100%;
+        }
       }
       #filterPanel {
         position: fixed !important;
-        left: 0; right: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         width: 100vw;
         min-width: 0;
         min-height: 0;
         height: 30vh;
         background: #fff;
-        box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+        box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
         border-radius: 18px 18px 0 0;
         margin-top: 0;
         padding: 32px 4vw 16px 4vw;
@@ -138,24 +222,26 @@
       //   scrollContainer.scrollLeft += evt.deltaY
       // })
       // Reset Zoom button logic
-      document.getElementById('resetZoomBtn').addEventListener('click', function() {
-        if (window.resetZoom) window.resetZoom()
-      })
+      document
+        .getElementById('resetZoomBtn')
+        .addEventListener('click', function() {
+          if (window.resetZoom) window.resetZoom()
+        })
 
       // Story Synopsis Modal logic
-      const storyModal = document.getElementById('storySynopsisModal');
-      const closeSynopsisBtn = document.getElementById('closeSynopsisBtn');
-      const showSynopsisBtn = document.getElementById('showSynopsisBtn');
+      const storyModal = document.getElementById('storySynopsisModal')
+      const closeSynopsisBtn = document.getElementById('closeSynopsisBtn')
+      const showSynopsisBtn = document.getElementById('showSynopsisBtn')
       function showStoryModal() {
-        storyModal.style.display = 'flex';
+        storyModal.style.display = 'flex'
       }
       function hideStoryModal() {
-        storyModal.style.display = 'none';
+        storyModal.style.display = 'none'
       }
-      closeSynopsisBtn.addEventListener('click', hideStoryModal);
-      showSynopsisBtn.addEventListener('click', showStoryModal);
+      closeSynopsisBtn.addEventListener('click', hideStoryModal)
+      showSynopsisBtn.addEventListener('click', showStoryModal)
       // Show on load
-      showStoryModal();
+      showStoryModal()
 
       // Pan mode toggle logic
       window._panMode = false
@@ -177,46 +263,57 @@
       updatePanCursor()
 
       // Zoom in/out button logic
-      document.getElementById('zoomInBtn').addEventListener('click', function() {
-        if (window.zoomByButton) window.zoomByButton(1.1)
-      })
-      document.getElementById('zoomOutBtn').addEventListener('click', function() {
-        if (window.zoomByButton) window.zoomByButton(1/1.1)
-      })
+      document
+        .getElementById('zoomInBtn')
+        .addEventListener('click', function() {
+          if (window.zoomByButton) window.zoomByButton(1.1)
+        })
+      document
+        .getElementById('zoomOutBtn')
+        .addEventListener('click', function() {
+          if (window.zoomByButton) window.zoomByButton(1 / 1.1)
+        })
 
       // Wait for the checkboxes to be rendered, then add the buttons if not present
       function addEventTypeButtonsIfMissing() {
-        const filterDiv = document.getElementById('eventTypeFilters');
-        if (!filterDiv) return;
+        const filterDiv = document.getElementById('eventTypeFilters')
+        if (!filterDiv) return
         // Only add if not already present
         if (!document.getElementById('selectAllEventsBtn')) {
-          const btnDiv = document.createElement('div');
-          btnDiv.style.marginTop = '16px';
-          btnDiv.style.textAlign = 'center';
+          const btnDiv = document.createElement('div')
+          btnDiv.style.marginTop = '16px'
+          btnDiv.style.textAlign = 'center'
           btnDiv.innerHTML = `
             <button id="selectAllEventsBtn" style="margin:8px 8px 0 0; padding:6px 16px; font-size:16px;">Select All Events</button>
             <button id="deselectAllEventsBtn" style="margin:8px 0 0 0; padding:6px 16px; font-size:16px;">Deselect All Events</button>
-          `;
-          filterDiv.appendChild(btnDiv);
+          `
+          filterDiv.appendChild(btnDiv)
           document.getElementById('selectAllEventsBtn').onclick = function() {
-            document.querySelectorAll('input[name="eventTypes"]').forEach(cb => {
-              cb.checked = true;
-            });
-            filterDiv.dispatchEvent(new Event('change'));
-          };
+            document
+              .querySelectorAll('input[name="eventTypes"]')
+              .forEach(cb => {
+                cb.checked = true
+              })
+            filterDiv.dispatchEvent(new Event('change'))
+          }
           document.getElementById('deselectAllEventsBtn').onclick = function() {
-            document.querySelectorAll('input[name="eventTypes"]').forEach(cb => {
-              cb.checked = false;
-            });
-            filterDiv.dispatchEvent(new Event('change'));
-          };
+            document
+              .querySelectorAll('input[name="eventTypes"]')
+              .forEach(cb => {
+                cb.checked = false
+              })
+            filterDiv.dispatchEvent(new Event('change'))
+          }
         }
       }
       // Observe changes to the filter div and always add the buttons if missing
-      const observer = new MutationObserver(addEventTypeButtonsIfMissing);
-      observer.observe(document.getElementById('eventTypeFilters'), { childList: true, subtree: true });
+      const observer = new MutationObserver(addEventTypeButtonsIfMissing)
+      observer.observe(document.getElementById('eventTypeFilters'), {
+        childList: true,
+        subtree: true,
+      })
       // Also try to add on page load
-      addEventTypeButtonsIfMissing();
+      addEventTypeButtonsIfMissing()
     </script>
   </body>
 </html>

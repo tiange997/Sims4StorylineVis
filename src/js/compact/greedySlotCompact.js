@@ -149,6 +149,10 @@ function runAlgorithms(param) {
   sessionInOrder[0].forEach(sessionId => {
     slots.push([sessionId])
   })
+
+  let locationTable = story.getTable('location')
+  console.log(locationTable)
+
   // Init slots
   // Insert session to slot
   for (let time = 1; time < width; time++) {
@@ -256,6 +260,7 @@ function runAlgorithms(param) {
           sessionTable
         )
       let baseHeight = baseHeightArray[slotsOfCharacterId]
+      console.log(baseHeight)
       let charactersInThisSlot = slotsOfCharacter[slotsOfCharacterId][time]
       if (!charactersInThisSlot) continue
       for (
@@ -299,6 +304,11 @@ function runAlgorithms(param) {
             }
             return false
           })
+
+        // Letian: change the baseHeight to a constant value
+        baseHeight = baseHeight * 1.05
+        // console.log('BH: ' + baseHeight)
+
         let Height = baseHeight + characterI * DISTANCE_IN
         if (isExpand) Height += idNum * DISTANCE_IN * (scale - 1)
         else if (isCompress) Height -= idNum * DISTANCE_IN * (1 - scale)

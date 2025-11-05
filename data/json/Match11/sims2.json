@@ -1,0 +1,22 @@
+{
+  "info": {
+    "participants": [
+      {
+        "participantId": 1,
+        "championName": "Ava"
+      },
+      {
+        "participantId": 2,
+        "championName": "Eddie"
+      },
+      {
+        "participantId": 3,
+        "championName": "Lila"
+      },
+      {
+        "participantId": 4,
+        "championName": "Nyssa"
+      }
+    ]
+  }
+}

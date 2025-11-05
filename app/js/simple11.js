@@ -12,21 +12,35 @@ import $ from 'jquery'
 let allEventData = [] // Store all event data globally for filtering
 
 // Dynamically generate event type filter checkboxes based on event data
+const videoEventTypes = [
+  'Choice',
+  'Death',
+  'Family Interaction',
+  'System_Sim_Status',
+]
+const videoEventTypeFilterDiv = document.getElementById('videoEventTypeFilters')
 const eventTypeFilterDiv = document.getElementById('eventTypeFilters')
 const eventTypeJsonPath = '../../data/json/Match11/Story_Events_DataFull.json'
 
 d3Fetch.json(eventTypeJsonPath).then(data => {
   allEventData = data // Store for filtering
-  // Get unique event types
-  const eventTypes = Array.from(new Set(data.map(ev => ev.eventType))).sort()
-  // Generate checkboxes with legend icons using a CSS grid layout
+  // Get unique event types, but exclude 'Moving_In'
+  const eventTypes = Array.from(new Set(data.map(ev => ev.eventType)))
+    .filter(type => type !== 'Moving_In')
+    .sort()
+  // Separate event types into video and non-video
+  const videoTypes = eventTypes.filter(type => videoEventTypes.includes(type))
+  const otherTypes = eventTypes.filter(type => !videoEventTypes.includes(type))
+
+  videoEventTypeFilterDiv.innerHTML = ''
   eventTypeFilterDiv.innerHTML = ''
-  // Add a style block for the grid if not already present
+
+  // Add style block for grid if not already present
   if (!document.getElementById('eventTypeFilterGridStyle')) {
     const style = document.createElement('style')
     style.id = 'eventTypeFilterGridStyle'
     style.innerHTML = `
-      #eventTypeFilters {
+      #videoEventTypeFilters, #eventTypeFilters {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 8px 16px;
@@ -47,16 +61,77 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
     `
     document.head.appendChild(style)
   }
-  eventTypes.forEach((type, idx) => {
+
+  // Render video event type checkboxes
+  videoTypes.forEach((type, idx) => {
+    const id = `videoEventType_${idx}`
+    let iconHTML = ''
+    if (type === 'Family Interaction') {
+      // Inline SVG for Family Interaction: rounded rectangle with glow
+      iconHTML = `
+        <svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;object-fit:contain;">
+          <defs>
+            <filter id="family-glow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <rect x="2" y="2" width="12" height="16" rx="4" ry="4" fill="#000" stroke="#000" stroke-width="1"/>
+        </svg>
+      `
+    } else {
+      // Otherwise, use Interaction_Events SVG
+      let iconPath = ''
+      // List of event types that use Events_General (png/svg)
+      const generalTypes = [
+        'Relocation',
+        'System_Sim_Status',
+        'Sleep',
+        'Death',
+        'Letter',
+        'Moving_In',
+        'Choice',
+      ]
+      // List of event types that use Events_General PNG
+      const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In', 'Sell']
+      if (generalTypes.includes(type)) {
+        if (pngTypes.includes(type)) {
+          iconPath = `../../src/image/Events_General/${type}.png`
+        } else {
+          iconPath = `../../src/image/Events_General/${type}.svg`
+        }
+      } else {
+        iconPath = `../../src/image/Interaction_Events/${type}.svg`
+      }
+      iconHTML = `<img src="${iconPath}" alt="${type}" style="width:20px;height:20px;vertical-align:middle;object-fit:contain;">`
+    }
+    videoEventTypeFilterDiv.innerHTML += `
+      <label class="event-type-filter-item" for="${id}">
+        <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
+        ${iconHTML}
+        <span>${type}</span>
+      </label>
+    `
+  })
+
+  // Render other event type checkboxes
+  otherTypes.forEach((type, idx) => {
     const id = `eventType_${idx}`
-    // Determine icon path
+    let iconHTML = ''
     let iconPath = ''
-    // List of event types that use Events_General (png/svg)
     const generalTypes = [
-      'Relocation', 'System_Sim_Status', 'Sleep', 'Death', 'Letter', 'Moving_In', 'Choice'
+      'Relocation',
+      'System_Sim_Status',
+      'Sleep',
+      'Death',
+      'Letter',
+      'Moving_In',
+      'Choice',
     ]
-    // List of event types that use Events_General PNG
-    const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In', 'Sell', 'Mock']
+    const pngTypes = ['Relocation', 'System_Sim_Status', 'Moving_In', 'Sell']
     if (generalTypes.includes(type)) {
       if (pngTypes.includes(type)) {
         iconPath = `../../src/image/Events_General/${type}.png`
@@ -64,31 +139,32 @@ d3Fetch.json(eventTypeJsonPath).then(data => {
         iconPath = `../../src/image/Events_General/${type}.svg`
       }
     } else {
-      // Otherwise, use Interaction_Events SVG
       iconPath = `../../src/image/Interaction_Events/${type}.svg`
     }
+    iconHTML = `<img src="${iconPath}" alt="${type}" style="width:20px;height:20px;vertical-align:middle;object-fit:contain;">`
     eventTypeFilterDiv.innerHTML += `
       <label class="event-type-filter-item" for="${id}">
         <input type="checkbox" id="${id}" name="eventTypes" value="${type}" checked>
-        <img src="${iconPath}" alt="${type}" style="width:20px;height:20px;vertical-align:middle;object-fit:contain;">
+        ${iconHTML}
         <span>${type}</span>
       </label>
     `
   })
-  // Add event listener for real-time filtering
-  eventTypeFilterDiv.addEventListener('change', () => {
-    // Get checked event types
+
+  // Add event listeners for both sections
+  function handleFilterChange() {
     const checkedTypes = Array.from(
       document.querySelectorAll('input[name="eventTypes"]:checked')
     ).map(cb => cb.value)
     console.log('Filter changed, checked types:', checkedTypes)
-    // Redraw events with only checked types
     if (window._drawEventsFilter) {
       window._drawEventsFilter(checkedTypes)
     } else {
       console.warn('window._drawEventsFilter is not defined')
     }
-  })
+  }
+  videoEventTypeFilterDiv.addEventListener('change', handleFilterChange)
+  eventTypeFilterDiv.addEventListener('change', handleFilterChange)
 })
 
 main('Match11/simsTestFull.json')
@@ -179,14 +255,18 @@ function resetZoom() {
 }
 
 // Mouse wheel and touchpad pinch zoom
-mySvg.addEventListener('wheel', function(e) {
-  // Only zoom if ctrlKey (touchpad pinch) or if not horizontal scroll
-  if (e.ctrlKey || Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-    e.preventDefault()
-    let scale = e.deltaY < 0 ? zoomStep : 1 / zoomStep
-    zoomAt(e.clientX, e.clientY, scale)
-  }
-}, { passive: false })
+mySvg.addEventListener(
+  'wheel',
+  function(e) {
+    // Only zoom if ctrlKey (touchpad pinch) or if not horizontal scroll
+    if (e.ctrlKey || Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault()
+      let scale = e.deltaY < 0 ? zoomStep : 1 / zoomStep
+      zoomAt(e.clientX, e.clientY, scale)
+    }
+  },
+  { passive: false }
+)
 
 // Touch pinch zoom
 mySvg.addEventListener('touchstart', function(e) {
@@ -204,36 +284,40 @@ mySvg.addEventListener('touchstart', function(e) {
   }
 })
 
-mySvg.addEventListener('touchmove', function(e) {
-  if (e.touches.length === 2) {
-    e.preventDefault()
-    let newDist = Math.hypot(
-      e.touches[0].clientX - e.touches[1].clientX,
-      e.touches[0].clientY - e.touches[1].clientY
-    )
-    if (lastTouchDist) {
-      let scale = newDist / lastTouchDist
-      zoomAt(
-        (e.touches[0].clientX + e.touches[1].clientX) / 2,
-        (e.touches[0].clientY + e.touches[1].clientY) / 2,
-        scale
+mySvg.addEventListener(
+  'touchmove',
+  function(e) {
+    if (e.touches.length === 2) {
+      e.preventDefault()
+      let newDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      )
+      if (lastTouchDist) {
+        let scale = newDist / lastTouchDist
+        zoomAt(
+          (e.touches[0].clientX + e.touches[1].clientX) / 2,
+          (e.touches[0].clientY + e.touches[1].clientY) / 2,
+          scale
+        )
+      }
+      lastTouchDist = newDist
+    } else if (e.touches.length === 1 && isPanning) {
+      e.preventDefault()
+      let dx = e.touches[0].clientX - panStart.x
+      let dy = e.touches[0].clientY - panStart.y
+      let scaleX = viewBox.w / mySvg.clientWidth
+      let scaleY = viewBox.h / mySvg.clientHeight
+      setViewBox(
+        panViewBoxStart.x - dx * scaleX,
+        panViewBoxStart.y - dy * scaleY,
+        viewBox.w,
+        viewBox.h
       )
     }
-    lastTouchDist = newDist
-  } else if (e.touches.length === 1 && isPanning) {
-    e.preventDefault()
-    let dx = e.touches[0].clientX - panStart.x
-    let dy = e.touches[0].clientY - panStart.y
-    let scaleX = viewBox.w / mySvg.clientWidth
-    let scaleY = viewBox.h / mySvg.clientHeight
-    setViewBox(
-      panViewBoxStart.x - dx * scaleX,
-      panViewBoxStart.y - dy * scaleY,
-      viewBox.w,
-      viewBox.h
-    )
-  }
-}, { passive: false })
+  },
+  { passive: false }
+)
 
 mySvg.addEventListener('touchend', function(e) {
   if (e.touches.length < 2) {
@@ -296,21 +380,22 @@ window.zoomByButton = function(scale) {
   zoomAt(cx, cy, scale)
 }
 
-
 // --- Utility: Find player to cross based on Death event in Story_Events_DataFull.json ---
-let playerWithDeathEvent = null;
-let interactorNameWithDeath = null;
+let playerWithDeathEvent = null
+let interactorNameWithDeath = null
 try {
-  const eventsData = require('../../data/json/Match11/Story_Events_DataFull.json');
+  const eventsData = require('../../data/json/Match11/Story_Events_DataFull.json')
   // Find the first Death event
-  const deathEvent = Array.isArray(eventsData) ? eventsData.find(ev => ev.eventType === 'Death') : null;
+  const deathEvent = Array.isArray(eventsData)
+    ? eventsData.find(ev => ev.eventType === 'Death')
+    : null
   if (deathEvent && deathEvent.interactor) {
-    interactorNameWithDeath = deathEvent.interactor;
+    interactorNameWithDeath = deathEvent.interactor
     // Map interactor name to PlayerX
     // We'll build a name->PlayerX map from participantsInfo after it's loaded
   }
 } catch (e) {
-  interactorNameWithDeath = null;
+  interactorNameWithDeath = null
 }
 
 async function main(fileName) {
@@ -333,21 +418,21 @@ async function main(fileName) {
   }
 
   // Build name->PlayerX map
-  let nameToPlayer = {};
+  let nameToPlayer = {}
   for (let i = 0; i < participantsInfo.length; i += 2) {
-    const pid = participantsInfo[i];
-    const name = participantsInfo[i+1];
-    nameToPlayer[name] = 'Player' + pid;
+    const pid = participantsInfo[i]
+    const name = participantsInfo[i + 1]
+    nameToPlayer[name] = 'Player' + pid
   }
   // Set playerWithDeathEvent for use in drawStoryline
-  window.playerWithDeathEvent = nameToPlayer[interactorNameWithDeath] || null;
+  window.playerWithDeathEvent = nameToPlayer[interactorNameWithDeath] || null
 
   // Scale to window size
   const containerDom = document.getElementById('mySvg')
   const windowW = containerDom.clientWidth - 20
   const windowH = containerDom.clientHeight - 20
   // graph = iStorylineInstance.scale(80, 10, windowW / 1.2 , windowH / 1.5)
-  graph = iStorylineInstance.scale(xOrigin, yOrigin, width*2, height)
+  graph = iStorylineInstance.scale(xOrigin, yOrigin, width * 2, height)
 
   // logStoryInfo(iStorylineInstance._story)
 
@@ -403,25 +488,47 @@ async function main(fileName) {
   // --- Draw a cross at the last icon of the character who died ---
   // Find the Death event interactor name (already extracted above as interactorNameWithDeath)
   if (interactorNameWithDeath && nameToPlayer[interactorNameWithDeath]) {
-    const playerId = nameToPlayer[interactorNameWithDeath];
+    const playerId = nameToPlayer[interactorNameWithDeath]
     // Find the storyline index for this player
-    const idx = graph.characters.findIndex(c => c === playerId);
+    const idx = graph.characters.findIndex(c => c === playerId)
     if (idx !== -1) {
-      const storyline = graph.storylines[idx];
+      const storyline = graph.storylines[idx]
       // Only draw if storyline has more than 1 point (not at the first icon)
       if (storyline.length > 1) {
         // Get the last point (end of storyline)
-        const lastPoint = storyline[storyline.length - 1];
+        const lastPoint = storyline[storyline.length - 1]
         // Get the position
-        const x = lastPoint.x;
-        const y = lastPoint.y;
+        const x = lastPoint.x
+        const y = lastPoint.y
         // Draw a cross (X) at this position, sized to icon
-        const crossSize = 44; // slightly larger than icon
-        const crossStroke = 6;
-        svg.line(x - crossSize/2, y - crossSize/2, x + crossSize/2, y + crossSize/2)
-          .attr({ stroke: playerColour[playerId] || '#000', 'stroke-width': crossStroke, 'stroke-linecap': 'round', opacity: 0.95 });
-        svg.line(x - crossSize/2, y + crossSize/2, x + crossSize/2, y - crossSize/2)
-          .attr({ stroke: playerColour[playerId] || '#000', 'stroke-width': crossStroke, 'stroke-linecap': 'round', opacity: 0.95 });
+        const crossSize = 44 // slightly larger than icon
+        const crossStroke = 6
+        svg
+          .line(
+            x - crossSize / 2,
+            y - crossSize / 2,
+            x + crossSize / 2,
+            y + crossSize / 2
+          )
+          .attr({
+            stroke: playerColour[playerId] || '#000',
+            'stroke-width': crossStroke,
+            'stroke-linecap': 'round',
+            opacity: 0.95,
+          })
+        svg
+          .line(
+            x - crossSize / 2,
+            y + crossSize / 2,
+            x + crossSize / 2,
+            y - crossSize / 2
+          )
+          .attr({
+            stroke: playerColour[playerId] || '#000',
+            'stroke-width': crossStroke,
+            'stroke-linecap': 'round',
+            opacity: 0.95,
+          })
       }
     }
   }
@@ -433,7 +540,6 @@ async function main(fileName) {
   return iStorylineInstance
 }
 
-
 function timeStamp(perTimestamp) {
   let perMin = Math.floor((perTimestamp / 1000 / 60) << 0)
   return perMin + ' Min'
@@ -441,24 +547,24 @@ function timeStamp(perTimestamp) {
 
 // Utility function to parse hh:mm:ss.SSS to seconds
 function parseTimeToSeconds(timeStr) {
-  if (!timeStr) return 0;
-  const parts = timeStr.split(':');
-  if (parts.length !== 3) return 0;
-  const [hh, mm, ss] = parts;
+  if (!timeStr) return 0
+  const parts = timeStr.split(':')
+  if (parts.length !== 3) return 0
+  const [hh, mm, ss] = parts
   return (
     parseInt(hh, 10) * 3600 +
     parseInt(mm, 10) * 60 +
     parseFloat(ss.replace(',', '.'))
-  );
+  )
 }
 
 // Get video clip range from event object and optional range (default 5s)
 function getVideoClipRangeFromEvent(eventObj, rangeSec = 5) {
-  const center = parseTimeToSeconds(eventObj.originalTime);
+  const center = parseTimeToSeconds(eventObj.originalTime)
   return {
     start: Math.max(center - rangeSec, 0),
-    end: center + rangeSec
-  };
+    end: center + rangeSec,
+  }
 }
 
 async function drawEvents(graph, participantsInfo, filterTypes = null) {
@@ -477,8 +583,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
   }
 
   // Remove any old event-icon-group and mock-event-dotted-line elements outside the group (legacy)
-  svg.selectAll('.event-icon-group').forEach(function(g) { g.remove() })
-  svg.selectAll('.mock-event-dotted-line').forEach(function(g) { g.remove() })
+  svg.selectAll('.event-icon-group').forEach(function(g) {
+    g.remove()
+  })
+  svg.selectAll('.mock-event-dotted-line').forEach(function(g) {
+    g.remove()
+  })
 
   // Use allEventData if available, otherwise fallback to jsonReadTwo
   let dataPromise = allEventData.length
@@ -490,65 +600,73 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
     // --- Visualize Moving_In events in character rows at the bottom (reverted style) ---
     let movingInEvents = data.filter(ev => ev.eventType === 'Moving_In')
-    let uniqueCharacters = [...new Set(movingInEvents.map(ev => ev.interactorID))];
-    const svgBottomY = 1250; // svg height - margin (viewBox is 1200)
-    const rowHeight = 60;   // vertical space between rows
-    let characterRowY = {};
+    let uniqueCharacters = [
+      ...new Set(movingInEvents.map(ev => ev.interactorID)),
+    ]
+    const svgBottomY = 1250 // svg height - margin (viewBox is 1200)
+    const rowHeight = 60 // vertical space between rows
+    let characterRowY = {}
     uniqueCharacters.forEach((charId, idx) => {
-      characterRowY[charId] = svgBottomY + idx * rowHeight;
-    });
+      characterRowY[charId] = svgBottomY + idx * rowHeight
+    })
     // Add icon at the start of each row, aligned with storyline icons
-    uniqueCharacters.forEach((charId) => {
+    uniqueCharacters.forEach(charId => {
       // Find a sample event for this character to get the name
-      let sampleEvent = movingInEvents.find(ev => ev.interactorID === charId);
+      let sampleEvent = movingInEvents.find(ev => ev.interactorID === charId)
       if (sampleEvent) {
-        let characterName = sampleEvent.interactor;
-        let iconX = xOrigin - 60; // Align with storyline start icon x
-        let iconY = characterRowY[charId] - 20; // Center icon vertically (icon size 40)
-        svg.image(
-          `../../src/image/Characters/${characterName}.png`,
-          iconX,
-          iconY,
-          40,
-          40
-        ).attr({ class: 'event-icon-group' });
+        let characterName = sampleEvent.interactor
+        let iconX = xOrigin - 60 // Align with storyline start icon x
+        let iconY = characterRowY[charId] - 20 // Center icon vertically (icon size 40)
+        svg
+          .image(
+            `../../src/image/Characters/${characterName}.png`,
+            iconX,
+            iconY,
+            40,
+            40
+          )
+          .attr({ class: 'event-icon-group' })
       }
-    });
+    })
     movingInEvents.forEach(ev => {
-      let playerId = 'Player' + String(ev.interactorID);
-      let x = graph.getCharacterX(playerId, ev.timestamp);
-      let y = characterRowY[ev.interactorID];
-      let circle = svg.circle(x, y, 18)
-        .attr({
-          fill: '#fff', // previous style: white fill
-          stroke: playerColour[playerId], // previous style: colored stroke
-          'stroke-width': 3,
-          class: 'event-icon-group'
-        });
+      let playerId = 'Player' + String(ev.interactorID)
+      let x = graph.getCharacterX(playerId, ev.timestamp)
+      let y = characterRowY[ev.interactorID]
+      let circle = svg.circle(x, y, 18).attr({
+        fill: '#fff', // previous style: white fill
+        stroke: playerColour[playerId], // previous style: colored stroke
+        'stroke-width': 3,
+        class: 'event-icon-group',
+      })
       // Add location icon inside the circle if eventDetails and position exist
-      if (ev.eventDetails && typeof ev.eventDetails === 'string' && ev.eventDetails.trim() && ev.position) {
+      if (
+        ev.eventDetails &&
+        typeof ev.eventDetails === 'string' &&
+        ev.eventDetails.trim() &&
+        ev.position
+      ) {
         // Build icon path
-        let iconPath = `../../src/image/Location/${ev.position}.svg`;
+        let iconPath = `../../src/image/Location/${ev.position}.svg`
         // console.log('Loading icon for Moving_In event:', iconPath);
         // Use Snap.svg to load and center the icon
         Snap.load(iconPath, function(f) {
           // Remove all fill attributes to allow SVG to inherit color if needed
           f.selectAll('*').forEach(function(el) {
-            el.attr({ fill: null });
-          });
+            el.attr({ fill: null })
+          })
           // Set icon size and position (centered in circle)
-          let iconSize = 24;
-          let iconGroup = svg.group();
-          iconGroup.append(f);
+          let iconSize = 24
+          let iconGroup = svg.group()
+          iconGroup.append(f)
           iconGroup.attr({
-            transform: `translate(${x - iconSize/2},${y - iconSize/2})`,
-            class: 'event-location-icon'
-          });
+            transform: `translate(${x - iconSize / 2},${y - iconSize / 2})`,
+            class: 'event-location-icon',
+          })
           // Set SVG size if needed
           iconGroup.selectAll('svg').forEach(function(svgEl) {
-            svgEl.attr({ width: iconSize, height: iconSize });
-          });
-        });
+            svgEl.attr({ width: iconSize, height: iconSize })
+          })
+        })
       }
       // Tooltip: show interactor, icon, event details, border (like single event)
       circle.hover(
@@ -591,7 +709,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             35 + tipX,
             35 + 50 + 20 + tipY,
             eventDetails
-          );
+          )
           let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
             fill: 'none',
             stroke: `${playerColour[currentPlayer]}`,
@@ -617,7 +735,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
           if (interactorBorder) interactorBorder.remove()
         }
       )
-    });
+    })
 
     /*
       --- Logic for drawing dotted lines in a 'Mock' event ---
@@ -632,7 +750,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     */
     // --- Draw dotted lines for paired Mock events ---
     // Only draw if 'Mock' is in filterTypes (or if filterTypes is null/undefined)
-    let showMockLines = !filterTypes || filterTypes.includes('Family Interaction')
+    let showMockLines =
+      !filterTypes || filterTypes.includes('Family Interaction')
     // --- Refactored: collect Mock event line data for later drawing ---
     let mockLineGroups = []
     if (showMockLines) {
@@ -654,12 +773,14 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         const ev = mockEvents[i]
         const timestamp = ev.timestamp
         // Always treat interactee/interacteeID as arrays
-        let interacteeArr = Array.isArray(ev.interacteeID) ? ev.interacteeID : [ev.interacteeID]
+        let interacteeArr = Array.isArray(ev.interacteeID)
+          ? ev.interacteeID
+          : [ev.interacteeID]
         let allIDs = [ev.interactorID, ...interacteeArr]
         let allPlayers = allIDs.map(id => 'Player' + String(id))
         let points = allPlayers.map(pid => [
           graph.getCharacterX(pid, timestamp),
-          graph.getCharacterY(pid, timestamp)
+          graph.getCharacterY(pid, timestamp),
         ])
         // Sort by y (vertical) position
         points.sort((a, b) => a[1] - b[1])
@@ -695,266 +816,341 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       // General visualizations with icons and tooltips + video
       // deleted eventType === 'Relocation'
       if (eventType === 'System_Sim_Status') {
-        const iconSize = 30;
-        const offset = iconSize / 2;
+        const iconSize = 30
+        const offset = iconSize / 2
 
-        let playerIndex = data[i]['interactorID'];
-        let currentTimestamp = data[i]['timestamp'];
-        let currentPlayer = 'Player' + String(playerIndex);
-        let eventDetails = data[i]['eventDetails'];
-        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp);
-        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp);
+        let playerIndex = data[i]['interactorID']
+        let currentTimestamp = data[i]['timestamp']
+        let currentPlayer = 'Player' + String(playerIndex)
+        let eventDetails = data[i]['eventDetails']
+        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
         // --- Add SVG filter for glow effect if not already present ---
-        let defs = svg.select('defs');
+        let defs = svg.select('defs')
         if (!defs) {
-          defs = svg.paper.el('defs');
-          svg.append(defs);
+          defs = svg.paper.el('defs')
+          svg.append(defs)
         }
-        let glowFilterId = 'system-sim-status-glow-filter';
-        let existingGlow = defs.select(`#${glowFilterId}`);
+        let glowFilterId = 'system-sim-status-glow-filter'
+        let existingGlow = defs.select(`#${glowFilterId}`)
         if (!existingGlow) {
-          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-          filter.setAttribute('id', glowFilterId);
-          filter.setAttribute('x', '-40%');
-          filter.setAttribute('y', '-40%');
-          filter.setAttribute('width', '180%');
-          filter.setAttribute('height', '180%');
-          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
-          feGaussian.setAttribute('in', 'SourceGraphic');
-          feGaussian.setAttribute('stdDeviation', '4');
-          feGaussian.setAttribute('result', 'blur');
-          filter.appendChild(feGaussian);
-          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
-          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode1.setAttribute('in', 'blur');
-          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode2.setAttribute('in', 'SourceGraphic');
-          feMerge.appendChild(feMergeNode1);
-          feMerge.appendChild(feMergeNode2);
-          filter.appendChild(feMerge);
-          defs.node.appendChild(filter);
+          let filter = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'filter'
+          )
+          filter.setAttribute('id', glowFilterId)
+          filter.setAttribute('x', '-40%')
+          filter.setAttribute('y', '-40%')
+          filter.setAttribute('width', '180%')
+          filter.setAttribute('height', '180%')
+          let feGaussian = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feGaussianBlur'
+          )
+          feGaussian.setAttribute('in', 'SourceGraphic')
+          feGaussian.setAttribute('stdDeviation', '4')
+          feGaussian.setAttribute('result', 'blur')
+          filter.appendChild(feGaussian)
+          let feMerge = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMerge'
+          )
+          let feMergeNode1 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode1.setAttribute('in', 'blur')
+          let feMergeNode2 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode2.setAttribute('in', 'SourceGraphic')
+          feMerge.appendChild(feMergeNode1)
+          feMerge.appendChild(feMergeNode2)
+          filter.appendChild(feMerge)
+          defs.node.appendChild(filter)
         }
 
         // Load the SVG so we can recolor it to the player's colour
         // Use Snap.load to fetch the SVG, clear existing fills and apply player colour to shapes
-        Snap.load(`../../src/image/Interaction_Events/${eventType}.svg`, function(f) {
-          try {
-            // Remove explicit fills so we can override
-            f.selectAll('*').forEach(function(el) {
-              el.attr({ fill: null });
-            });
-          } catch (e) {
-            // ignore if selection fails
-          }
-
-          // Apply player colour to common shape elements
-          try {
-            f.selectAll('path, rect, circle, ellipse, polygon, polyline').forEach(function(el) {
-              el.attr({
-                fill: playerColour[currentPlayer] || '#000',
-                stroke: '#000',
-                'fill-opacity': 0.9
-              });
-            });
-          } catch (e) {
-            // ignore
-          }
-
-          // Create a group and insert the loaded SVG
-          let g = eventsGroup.group();
-          g.append(f);
-          g.attr({
-            transform: `translate(${deathPosX - offset},${deathPosY - offset})`,
-            class: 'event-icon-group',
-          });
-
-          // Ensure size
-          g.selectAll('svg').forEach(function(svgEl) {
-            svgEl.attr({ width: iconSize, height: iconSize });
-          });
-
-          // Tooltip logic (preserved and independent)
-          let tooltipElements = {};
-          g.hover(
-            event => {
-              // --- Add glow filter on hover ---
-              g.attr({ filter: `url(#${glowFilterId})` });
-              g.attr({ transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})` });
-
-              pt.x = event.clientX;
-              pt.y = event.clientY;
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse());
-              let tipX = pt.x + 20;
-              let tipY = pt.y + 20;
-              if (tipY >= 950) tipY -= 70;
-              if (tipX >= 5700) tipX -= 220;
-              let length = calculateBorderLength(eventDetails, 50) < 250 ? 250 : calculateBorderLength(eventDetails, 50);
-              let tooltipWidth = Math.min(length, 600);
-              let tooltipHeight = 180;
-              let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              });
-              let interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ' + interactor);
-              let interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`,
-                38 + tipX,
-                40 + tipY,
-                40,
-                40
-              );
-              // video icon at top-right of the border
-              let videoIcon = svg.image(`../../src/image/video.png`,
-                tipX + tooltipWidth - 38,
-                tipY + 12,
-                24,
-                24);
-              // --- Use foreignObject for word-wrapping eventDetails ---
-              let detailsForeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-              detailsForeign.setAttribute('x', 35 + tipX);
-              detailsForeign.setAttribute('y', 35 + 50 + 20 + tipY);
-              detailsForeign.setAttribute('width', tooltipWidth - 40);
-              detailsForeign.setAttribute('height', tooltipHeight - 80);
-              let detailsDiv = document.createElement('div');
-              detailsDiv.style.maxWidth = (tooltipWidth - 40) + 'px';
-              detailsDiv.style.wordBreak = 'break-word';
-              detailsDiv.style.whiteSpace = 'pre-wrap';
-              detailsDiv.style.fontSize = '18px';
-              detailsDiv.style.fontFamily = 'inherit';
-              detailsDiv.style.color = '#222';
-              detailsDiv.textContent = eventDetails;
-              detailsForeign.appendChild(detailsDiv);
-              mySvg.appendChild(detailsForeign);
-              let interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-                fill: 'none',
-                stroke: `${playerColour[currentPlayer]}`,
-                'stroke-width': '3',
-                opacity: 0.7,
-              });
-              tooltipElements = { border, interactorText, interactorIcon, detailsForeign, interactorBorder, videoIcon };
-            },
-            () => {
-              g.attr({ filter: null });
-              g.attr({ transform: `translate(${deathPosX - offset},${deathPosY - offset})` });
-              Object.values(tooltipElements).forEach(el => { if (el) el.remove && typeof el.remove === 'function' ? el.remove() : (el.parentNode && el.parentNode.removeChild(el)); });
-              tooltipElements = {};
+        Snap.load(
+          `../../src/image/Interaction_Events/${eventType}.svg`,
+          function(f) {
+            try {
+              // Remove explicit fills so we can override
+              f.selectAll('*').forEach(function(el) {
+                el.attr({ fill: null })
+              })
+            } catch (e) {
+              // ignore if selection fails
             }
-          );
 
-          // Modal overlay logic (only on click, matches 'Choice' event)
-          g.click(function(event) {
-            let oldOverlay = document.getElementById('system-sim-status-modal-overlay');
-            if (oldOverlay) {
-              let oldVideo = oldOverlay.querySelector('#system-sim-status-modal-video');
-              if (oldVideo) oldVideo.pause();
-              oldOverlay.remove();
+            // Apply player colour to common shape elements
+            try {
+              f.selectAll(
+                'path, rect, circle, ellipse, polygon, polyline'
+              ).forEach(function(el) {
+                el.attr({
+                  fill: playerColour[currentPlayer] || '#000',
+                  stroke: '#000',
+                  'fill-opacity': 0.9,
+                })
+              })
+            } catch (e) {
+              // ignore
             }
-            let overlay = document.createElement('div');
-            overlay.setAttribute('id', 'system-sim-status-modal-overlay');
-            overlay.style.position = 'fixed';
-            overlay.style.left = '0';
-            overlay.style.top = '0';
-            overlay.style.width = '100vw';
-            overlay.style.height = '100vh';
-            overlay.style.background = 'rgba(80,80,80,0.7)';
-            overlay.style.zIndex = 2000;
-            overlay.style.display = 'flex';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-            let modal = document.createElement('div');
-            modal.style.position = 'relative';
-            modal.style.background = 'rgba(255,255,255,0.95)';
-            modal.style.borderRadius = '16px';
-            modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
-            modal.style.padding = '0';
-            modal.style.display = 'flex';
-            modal.style.flexDirection = 'column';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            modal.style.width = '90vw';
-            modal.style.height = '80vh';
-            modal.style.maxWidth = '90vw';
-            modal.style.maxHeight = '80vh';
-            modal.style.minWidth = '320px';
-            modal.style.minHeight = '180px';
-            let closeBtn = document.createElement('button');
-            closeBtn.innerText = '×';
-            closeBtn.style.position = 'absolute';
-            closeBtn.style.top = '12px';
-            closeBtn.style.right = '18px';
-            closeBtn.style.fontSize = '2.2rem';
-            closeBtn.style.background = 'transparent';
-            closeBtn.style.border = 'none';
-            closeBtn.style.cursor = 'pointer';
-            closeBtn.style.color = '#333';
-            closeBtn.style.zIndex = 10;
-            closeBtn.setAttribute('aria-label', 'Close');
-            closeBtn.addEventListener('click', function() {
-              let overlay = document.getElementById('system-sim-status-modal-overlay');
-              if (overlay) {
-                let video = overlay.querySelector('#system-sim-status-modal-video');
-                if (video) video.pause();
-                overlay.remove();
+
+            // Create a group and insert the loaded SVG
+            let g = eventsGroup.group()
+            g.append(f)
+            g.attr({
+              transform: `translate(${deathPosX - offset},${deathPosY -
+                offset})`,
+              class: 'event-icon-group',
+            })
+
+            // Ensure size
+            g.selectAll('svg').forEach(function(svgEl) {
+              svgEl.attr({ width: iconSize, height: iconSize })
+            })
+
+            // Tooltip logic (preserved and independent)
+            let tooltipElements = {}
+            g.hover(
+              event => {
+                // --- Add glow filter on hover ---
+                g.attr({ filter: `url(#${glowFilterId})` })
+                g.attr({
+                  transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})`,
+                })
+
+                pt.x = event.clientX
+                pt.y = event.clientY
+                pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+                let tipX = pt.x + 20
+                let tipY = pt.y + 20
+                if (tipY >= 950) tipY -= 70
+                if (tipX >= 5700) tipX -= 220
+                let length =
+                  calculateBorderLength(eventDetails, 50) < 250
+                    ? 250
+                    : calculateBorderLength(eventDetails, 50)
+                let tooltipWidth = Math.min(length, 600)
+                let tooltipHeight = 180
+                let border = svg
+                  .rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10)
+                  .attr({
+                    stroke: 'black',
+                    fill: 'rgba(255,255,255, 0.9)',
+                    strokeWidth: '3px',
+                  })
+                let interactorText = svg.text(
+                  35 + tipX,
+                  25 + tipY,
+                  'Interactor: ' + interactor
+                )
+                let interactorIcon = svg.image(
+                  `../../src/image/Characters/${interactor}.png`,
+                  38 + tipX,
+                  40 + tipY,
+                  40,
+                  40
+                )
+                // video icon at top-right of the border
+                let videoIcon = svg.image(
+                  `../../src/image/video.png`,
+                  tipX + tooltipWidth - 38,
+                  tipY + 12,
+                  24,
+                  24
+                )
+                // --- Use foreignObject for word-wrapping eventDetails ---
+                let detailsForeign = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'foreignObject'
+                )
+                detailsForeign.setAttribute('x', 35 + tipX)
+                detailsForeign.setAttribute('y', 35 + 50 + 20 + tipY)
+                detailsForeign.setAttribute('width', tooltipWidth - 40)
+                detailsForeign.setAttribute('height', tooltipHeight - 80)
+                let detailsDiv = document.createElement('div')
+                detailsDiv.style.maxWidth = tooltipWidth - 40 + 'px'
+                detailsDiv.style.wordBreak = 'break-word'
+                detailsDiv.style.whiteSpace = 'pre-wrap'
+                detailsDiv.style.fontSize = '18px'
+                detailsDiv.style.fontFamily = 'inherit'
+                detailsDiv.style.color = '#222'
+                detailsDiv.textContent = eventDetails
+                detailsForeign.appendChild(detailsDiv)
+                mySvg.appendChild(detailsForeign)
+                let interactorBorder = svg
+                  .rect(35 + tipX, 37 + tipY, 46, 46)
+                  .attr({
+                    fill: 'none',
+                    stroke: `${playerColour[currentPlayer]}`,
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  })
+                tooltipElements = {
+                  border,
+                  interactorText,
+                  interactorIcon,
+                  detailsForeign,
+                  interactorBorder,
+                  videoIcon,
+                }
+              },
+              () => {
+                g.attr({ filter: null })
+                g.attr({
+                  transform: `translate(${deathPosX - offset},${deathPosY -
+                    offset})`,
+                })
+                Object.values(tooltipElements).forEach(el => {
+                  if (el)
+                    el.remove && typeof el.remove === 'function'
+                      ? el.remove()
+                      : el.parentNode && el.parentNode.removeChild(el)
+                })
+                tooltipElements = {}
               }
-            });
-            let video = document.createElement('video');
-            video.src = '../../src/video/sims4.mp4';
-            video.controls = true;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.setAttribute('id', 'system-sim-status-modal-video');
-            video.style.pointerEvents = 'auto';
-            video.style.background = 'black';
-            video.style.borderRadius = '12px';
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.margin = '0';
-            video.style.objectFit = 'contain';
-            const videoRange = getVideoClipRangeFromEvent(data[i], 5);
-            video.addEventListener('loadedmetadata', function() {
-              const end = Math.min(videoRange.end, video.duration);
-              video.currentTime = videoRange.start;
-              video._clipStart = videoRange.start;
-              video._clipEnd = end;
-              const playPromise = video.play();
-              if (playPromise !== undefined) {
-                playPromise.catch(e => {
-                  console.warn('Autoplay play() failed:', e);
-                });
+            )
+
+            // Modal overlay logic (only on click, matches 'Choice' event)
+            g.click(function(event) {
+              let oldOverlay = document.getElementById(
+                'system-sim-status-modal-overlay'
+              )
+              if (oldOverlay) {
+                let oldVideo = oldOverlay.querySelector(
+                  '#system-sim-status-modal-video'
+                )
+                if (oldVideo) oldVideo.pause()
+                oldOverlay.remove()
               }
-            });
-            video.addEventListener('timeupdate', function() {
-              if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                video.currentTime = video._clipStart;
-                video.play();
-              }
-            });
-            overlay.addEventListener('mousedown', function(e) {
-              if (e.target === overlay) {
-                let video = overlay.querySelector('#system-sim-status-modal-video');
-                if (video) video.pause();
-                overlay.remove();
-              }
-            });
-            modal.appendChild(closeBtn);
-            modal.appendChild(video);
-            overlay.appendChild(modal);
-            document.body.appendChild(overlay);
-          });
-        });
+              let overlay = document.createElement('div')
+              overlay.setAttribute('id', 'system-sim-status-modal-overlay')
+              overlay.style.position = 'fixed'
+              overlay.style.left = '0'
+              overlay.style.top = '0'
+              overlay.style.width = '100vw'
+              overlay.style.height = '100vh'
+              overlay.style.background = 'rgba(80,80,80,0.7)'
+              overlay.style.zIndex = 2000
+              overlay.style.display = 'flex'
+              overlay.style.alignItems = 'center'
+              overlay.style.justifyContent = 'center'
+              let modal = document.createElement('div')
+              modal.style.position = 'relative'
+              modal.style.background = 'rgba(255,255,255,0.95)'
+              modal.style.borderRadius = '16px'
+              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
+              modal.style.padding = '0'
+              modal.style.display = 'flex'
+              modal.style.flexDirection = 'column'
+              modal.style.alignItems = 'center'
+              modal.style.justifyContent = 'center'
+              modal.style.width = '90vw'
+              modal.style.height = '80vh'
+              modal.style.maxWidth = '90vw'
+              modal.style.maxHeight = '80vh'
+              modal.style.minWidth = '320px'
+              modal.style.minHeight = '180px'
+              let closeBtn = document.createElement('button')
+              closeBtn.innerText = '×'
+              closeBtn.style.position = 'absolute'
+              closeBtn.style.top = '12px'
+              closeBtn.style.right = '18px'
+              closeBtn.style.fontSize = '2.2rem'
+              closeBtn.style.background = 'transparent'
+              closeBtn.style.border = 'none'
+              closeBtn.style.cursor = 'pointer'
+              closeBtn.style.color = '#333'
+              closeBtn.style.zIndex = 10
+              closeBtn.setAttribute('aria-label', 'Close')
+              closeBtn.addEventListener('click', function() {
+                let overlay = document.getElementById(
+                  'system-sim-status-modal-overlay'
+                )
+                if (overlay) {
+                  let video = overlay.querySelector(
+                    '#system-sim-status-modal-video'
+                  )
+                  if (video) video.pause()
+                  overlay.remove()
+                }
+              })
+              let video = document.createElement('video')
+              video.src = '../../src/video/sims4.mp4'
+              video.controls = true
+              video.autoplay = true
+              video.loop = true
+              video.muted = true
+              video.setAttribute('id', 'system-sim-status-modal-video')
+              video.style.pointerEvents = 'auto'
+              video.style.background = 'black'
+              video.style.borderRadius = '12px'
+              video.style.width = '100%'
+              video.style.height = '100%'
+              video.style.margin = '0'
+              video.style.objectFit = 'contain'
+              const videoRange = getVideoClipRangeFromEvent(data[i], 5)
+              video.addEventListener('loadedmetadata', function() {
+                const end = Math.min(videoRange.end, video.duration)
+                video.currentTime = videoRange.start
+                video._clipStart = videoRange.start
+                video._clipEnd = end
+                const playPromise = video.play()
+                if (playPromise !== undefined) {
+                  playPromise.catch(e => {
+                    console.warn('Autoplay play() failed:', e)
+                  })
+                }
+              })
+              video.addEventListener('timeupdate', function() {
+                if (
+                  video.currentTime < video._clipStart ||
+                  video.currentTime >= video._clipEnd
+                ) {
+                  video.currentTime = video._clipStart
+                  video.play()
+                }
+              })
+              overlay.addEventListener('mousedown', function(e) {
+                if (e.target === overlay) {
+                  let video = overlay.querySelector(
+                    '#system-sim-status-modal-video'
+                  )
+                  if (video) video.pause()
+                  overlay.remove()
+                }
+              })
+              modal.appendChild(closeBtn)
+              modal.appendChild(video)
+              overlay.appendChild(modal)
+              document.body.appendChild(overlay)
+            })
+          }
+        )
       }
 
       // interactive events (colour-coded) with icons and tooltips (no video)
-      if (eventType === 'Chat' || eventType === 'Cloudgazing' ||
-        eventType === 'Photo_Taking' || eventType === 'Playing_Chess' ||
-        eventType === 'Cooking' || eventType === 'Eating'||
-        eventType === 'Social_Invite' || eventType === 'Listening_Music' ||
-        eventType === 'Dancing' || eventType === 'Sleep' || eventType === 'Sell'||
-        eventType === 'Letter' || eventType === 'Contact')
-      {
+      if (
+        eventType === 'Chat' ||
+        eventType === 'Cloudgazing' ||
+        eventType === 'Photo_Taking' ||
+        eventType === 'Playing_Chess' ||
+        eventType === 'Cooking' ||
+        eventType === 'Eating' ||
+        eventType === 'Social_Invite' ||
+        eventType === 'Listening_Music' ||
+        eventType === 'Dancing' ||
+        eventType === 'Sleep' ||
+        eventType === 'Sell' ||
+        eventType === 'Letter' ||
+        eventType === 'Contact'
+      ) {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -983,8 +1179,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             f.selectAll(
               'path, rect, circle, ellipse, polygon, polyline'
             ).forEach(function(el) {
-              el.attr({ fill: playerColour[currentPlayer] || '#000' ,
-                "fill-opacity": 0.7, stoke: '#000', "stroke-opacity": 1.0
+              el.attr({
+                fill: playerColour[currentPlayer] || '#000',
+                'fill-opacity': 0.7,
+                stoke: '#000',
+                'stroke-opacity': 1.0,
               })
             })
             // Create a group for the icon
@@ -994,7 +1193,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.transform('')
             g.attr({
               transform: `translate(${deathPosX - offset},${deathPosY -
-              offset})`,
+                offset})`,
               class: 'event-icon-group',
             })
             // Set the bounding box to the correct size
@@ -1059,21 +1258,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 )
 
                 // Add coloured borders for interactor and interactee (like Relocation)
-                let interactorBorder = svg.rect(38 + tipX, 40 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[currentPlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
+                let interactorBorder = svg
+                  .rect(38 + tipX, 40 + tipY, 40, 40)
+                  .attr({
+                    fill: 'none',
+                    stroke: playerColour[currentPlayer] || '#000',
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  })
                 // Try to get interactee player colour
                 let interacteePlayerIndex = data[i]['interacteeID']
                 let interacteePlayer = 'Player' + String(interacteePlayerIndex)
-                let interacteeBorder = svg.rect(133 + tipX, 41 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[interacteePlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
+                let interacteeBorder = svg
+                  .rect(133 + tipX, 41 + tipY, 40, 40)
+                  .attr({
+                    fill: 'none',
+                    stroke: playerColour[interacteePlayer] || '#000',
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  })
 
                 interacteeNameElement = svg.text(
                   130 + tipX,
@@ -1088,7 +1291,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 )
 
                 // Use foreignObject for word-wrapping eventDetails
-                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                let foreign = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'foreignObject'
+                )
                 foreign.setAttribute('x', 35 + tipX)
                 foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
                 foreign.setAttribute('width', 530)
@@ -1104,7 +1310,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 foreign.appendChild(div)
                 mySvg.appendChild(foreign)
                 eventInfo = {
-                  remove: () => foreign.remove()
+                  remove: () => foreign.remove(),
                 }
               },
               () => {
@@ -1130,8 +1336,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
       }
 
       // interactive events (colour-coded) with icons and tooltips (special case for Choice)
-      if (eventType === 'Choice')
-      {
+      if (eventType === 'Choice' || eventType === 'Death') {
         const iconSize = 30
         const offset = iconSize / 2
 
@@ -1145,34 +1350,49 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
         // --- Add SVG filter for glow effect if not already present ---
-        let defs = svg.select('defs');
+        let defs = svg.select('defs')
         if (!defs) {
-          defs = svg.paper.el('defs');
-          svg.append(defs);
+          defs = svg.paper.el('defs')
+          svg.append(defs)
         }
-        let glowFilterId = 'choice-glow-filter';
-        let existingGlow = defs.select(`#${glowFilterId}`);
+        let glowFilterId = 'choice-glow-filter'
+        let existingGlow = defs.select(`#${glowFilterId}`)
         if (!existingGlow) {
-          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-          filter.setAttribute('id', glowFilterId);
-          filter.setAttribute('x', '-40%');
-          filter.setAttribute('y', '-40%');
-          filter.setAttribute('width', '180%');
-          filter.setAttribute('height', '180%');
-          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
-          feGaussian.setAttribute('in', 'SourceGraphic');
-          feGaussian.setAttribute('stdDeviation', '4');
-          feGaussian.setAttribute('result', 'blur');
-          filter.appendChild(feGaussian);
-          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
-          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode1.setAttribute('in', 'blur');
-          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode2.setAttribute('in', 'SourceGraphic');
-          feMerge.appendChild(feMergeNode1);
-          feMerge.appendChild(feMergeNode2);
-          filter.appendChild(feMerge);
-          defs.node.appendChild(filter);
+          let filter = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'filter'
+          )
+          filter.setAttribute('id', glowFilterId)
+          filter.setAttribute('x', '-40%')
+          filter.setAttribute('y', '-40%')
+          filter.setAttribute('width', '180%')
+          filter.setAttribute('height', '180%')
+          let feGaussian = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feGaussianBlur'
+          )
+          feGaussian.setAttribute('in', 'SourceGraphic')
+          feGaussian.setAttribute('stdDeviation', '4')
+          feGaussian.setAttribute('result', 'blur')
+          filter.appendChild(feGaussian)
+          let feMerge = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMerge'
+          )
+          let feMergeNode1 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode1.setAttribute('in', 'blur')
+          let feMergeNode2 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode2.setAttribute('in', 'SourceGraphic')
+          feMerge.appendChild(feMergeNode1)
+          feMerge.appendChild(feMergeNode2)
+          filter.appendChild(feMerge)
+          defs.node.appendChild(filter)
         }
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
@@ -1188,6 +1408,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               'path, rect, circle, ellipse, polygon, polyline'
             ).forEach(function(el) {
               el.attr({ fill: playerColour[currentPlayer] || '#000' })
+              el.attr({ stroke: '#000' })
             })
             // Create a group for the icon
             let g = eventsGroup.group()
@@ -1196,7 +1417,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.transform('')
             g.attr({
               transform: `translate(${deathPosX - offset},${deathPosY -
-              offset})`,
+                offset})`,
               class: 'event-icon-group',
             })
             // Set the bounding box to the correct size
@@ -1207,11 +1428,13 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.hover(
               event => {
                 // --- Add glow filter on hover ---
-                g.attr({ filter: `url(#${glowFilterId})` });
+                g.attr({ filter: `url(#${glowFilterId})` })
 
                 // --- Immediately scale icon to 150% (no animation) about its center ---
                 // Move origin to center, scale, then move origin back so the center remains at deathPosX,deathPosY
-                g.attr({ transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})` });
+                g.attr({
+                  transform: `translate(${deathPosX},${deathPosY}) scale(1.5) translate(${-offset},${-offset})`,
+                })
 
                 pt.x = event.clientX
                 pt.y = event.clientY
@@ -1255,19 +1478,24 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   // Top labels
                   labelHeight +
                   // Icon row
-                  iconMargin + iconHeight +
+                  iconMargin +
+                  iconHeight +
                   // Name row
-                  nameMargin + nameHeight +
+                  nameMargin +
+                  nameHeight +
                   // Details row
-                  borderMargin + detailsHeight +
+                  borderMargin +
+                  detailsHeight +
                   // Bottom margin
-                  borderMargin;
+                  borderMargin
                 let tooltipHeight = tooltipContentHeight * (1 + 2 * padding)
-                border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-                  stroke: 'black',
-                  fill: 'rgba(255,255,255, 0.9)',
-                  strokeWidth: '3px',
-                })
+                border = svg
+                  .rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10)
+                  .attr({
+                    stroke: 'black',
+                    fill: 'rgba(255,255,255, 0.9)',
+                    strokeWidth: '3px',
+                  })
 
                 interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
                 interactorText = svg.text(35 + tipX, 25 + tipY, 'Interactor: ')
@@ -1289,21 +1517,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 )
 
                 // Add coloured borders for interactor and interactee (like Relocation)
-                let interactorBorder = svg.rect(38 + tipX, 40 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[currentPlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
+                let interactorBorder = svg
+                  .rect(38 + tipX, 40 + tipY, 40, 40)
+                  .attr({
+                    fill: 'none',
+                    stroke: playerColour[currentPlayer] || '#000',
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  })
                 // Try to get interactee player colour
                 let interacteePlayerIndex = data[i]['interacteeID']
                 let interacteePlayer = 'Player' + String(interacteePlayerIndex)
-                let interacteeBorder = svg.rect(133 + tipX, 41 + tipY, 40, 40).attr({
-                  fill: 'none',
-                  stroke: playerColour[interacteePlayer] || '#000',
-                  'stroke-width': '3',
-                  opacity: 0.7,
-                })
+                let interacteeBorder = svg
+                  .rect(133 + tipX, 41 + tipY, 40, 40)
+                  .attr({
+                    fill: 'none',
+                    stroke: playerColour[interacteePlayer] || '#000',
+                    'stroke-width': '3',
+                    opacity: 0.7,
+                  })
 
                 interacteeNameElement = svg.text(
                   130 + tipX,
@@ -1317,38 +1549,46 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactor
                 )
 
-                videoIcon = svg.image(`../../src/image/video.png`,
+                videoIcon = svg.image(
+                  `../../src/image/video.png`,
                   tipX + tooltipWidth - 38,
                   tipY + 12,
                   24,
-                  24);
+                  24
+                )
 
                 // Use foreignObject for word-wrapping eventDetails
-                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                let foreign = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'foreignObject'
+                )
                 foreign.setAttribute('x', 35 + tipX)
                 foreign.setAttribute('y', 35 + 50 + 20 + tipY + 45)
                 foreign.setAttribute('width', 530)
                 foreign.setAttribute('height', 60)
                 let div = document.createElement('div')
-                div.style.maxWidth = (tooltipWidth - 40) + 'px'
+                div.style.maxWidth = tooltipWidth - 40 + 'px'
                 div.style.wordBreak = 'break-word'
                 div.style.whiteSpace = 'pre-wrap'
                 div.style.fontSize = '18px'
                 div.style.fontFamily = 'inherit'
                 div.style.color = '#222'
-                div.textContent = eventDetails;
-                foreign.appendChild(div);
-                mySvg.appendChild(foreign);
+                div.textContent = eventDetails
+                foreign.appendChild(div)
+                mySvg.appendChild(foreign)
                 eventInfo = {
-                  remove: () => foreign.remove()
+                  remove: () => foreign.remove(),
                 }
               },
               () => {
                 // --- Remove glow filter on mouseleave ---
-                g.attr({ filter: null });
+                g.attr({ filter: null })
 
                 // --- Restore original icon size/transform immediately (no animation) ---
-                g.attr({ transform: `translate(${deathPosX - offset},${deathPosY - offset})` });
+                g.attr({
+                  transform: `translate(${deathPosX - offset},${deathPosY -
+                    offset})`,
+                })
                 videoIcon.remove()
                 border.remove()
                 interacteeText.remove()
@@ -1377,104 +1617,105 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 oldOverlay.remove()
               }
 
-              let overlay = document.createElement('div');
-              overlay.setAttribute('id', 'choice-modal-video');
-              overlay.style.position = 'fixed';
-              overlay.style.left = '0';
-              overlay.style.top = '0';
-              overlay.style.width = '100vw';
-              overlay.style.height = '100vh';
-              overlay.style.background = 'rgba(80,80,80,0.7)';
-              overlay.style.zIndex = 2000;
-              overlay.style.display = 'flex';
-              overlay.style.alignItems = 'center';
-              overlay.style.justifyContent = 'center';
-              let modal = document.createElement('div');
-              modal.style.position = 'relative';
-              modal.style.background = 'rgba(255,255,255,0.95)';
-              modal.style.borderRadius = '16px';
-              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
-              modal.style.padding = '0';
-              modal.style.display = 'flex';
-              modal.style.flexDirection = 'column';
-              modal.style.alignItems = 'center';
-              modal.style.justifyContent = 'center';
-              modal.style.width = '90vw';
-              modal.style.height = '80vh';
-              modal.style.maxWidth = '90vw';
-              modal.style.maxHeight = '80vh';
-              modal.style.minWidth = '320px';
-              modal.style.minHeight = '180px';
-              let closeBtn = document.createElement('button');
-              closeBtn.innerText = '×';
-              closeBtn.style.position = 'absolute';
-              closeBtn.style.top = '12px';
-              closeBtn.style.right = '18px';
-              closeBtn.style.fontSize = '2.2rem';
-              closeBtn.style.background = 'transparent';
-              closeBtn.style.border = 'none';
-              closeBtn.style.cursor = 'pointer';
-              closeBtn.style.color = '#333';
-              closeBtn.style.zIndex = 10;
-              closeBtn.setAttribute('aria-label', 'Close');
+              let overlay = document.createElement('div')
+              overlay.setAttribute('id', 'choice-modal-video')
+              overlay.style.position = 'fixed'
+              overlay.style.left = '0'
+              overlay.style.top = '0'
+              overlay.style.width = '100vw'
+              overlay.style.height = '100vh'
+              overlay.style.background = 'rgba(80,80,80,0.7)'
+              overlay.style.zIndex = 2000
+              overlay.style.display = 'flex'
+              overlay.style.alignItems = 'center'
+              overlay.style.justifyContent = 'center'
+              let modal = document.createElement('div')
+              modal.style.position = 'relative'
+              modal.style.background = 'rgba(255,255,255,0.95)'
+              modal.style.borderRadius = '16px'
+              modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
+              modal.style.padding = '0'
+              modal.style.display = 'flex'
+              modal.style.flexDirection = 'column'
+              modal.style.alignItems = 'center'
+              modal.style.justifyContent = 'center'
+              modal.style.width = '90vw'
+              modal.style.height = '80vh'
+              modal.style.maxWidth = '90vw'
+              modal.style.maxHeight = '80vh'
+              modal.style.minWidth = '320px'
+              modal.style.minHeight = '180px'
+              let closeBtn = document.createElement('button')
+              closeBtn.innerText = '×'
+              closeBtn.style.position = 'absolute'
+              closeBtn.style.top = '12px'
+              closeBtn.style.right = '18px'
+              closeBtn.style.fontSize = '2.2rem'
+              closeBtn.style.background = 'transparent'
+              closeBtn.style.border = 'none'
+              closeBtn.style.cursor = 'pointer'
+              closeBtn.style.color = '#333'
+              closeBtn.style.zIndex = 10
+              closeBtn.setAttribute('aria-label', 'Close')
               closeBtn.addEventListener('click', function() {
-                let overlay = document.getElementById('choice-modal-video');
+                let overlay = document.getElementById('choice-modal-video')
                 if (overlay) {
-                  let video = overlay.querySelector('#choice-modal-video');
-                  if (video) video.pause();
-                  overlay.remove();
+                  let video = overlay.querySelector('#choice-modal-video')
+                  if (video) video.pause()
+                  overlay.remove()
                 }
-              });
-              let video = document.createElement('video');
-              video.src = '../../src/video/sims4.mp4';
-              video.controls = true;
-              video.autoplay = true;
-              video.loop = true;
-              video.muted = true;
-              video.setAttribute('id', 'choice-modal-video');
-              video.style.pointerEvents = 'auto';
-              video.style.background = 'black';
-              video.style.borderRadius = '12px';
-              video.style.width = '100%';
-              video.style.height = '100%';
-              video.style.margin = '0';
-              video.style.objectFit = 'contain';
-              const videoRange = getVideoClipRangeFromEvent(data[i], 5);
+              })
+              let video = document.createElement('video')
+              video.src = '../../src/video/sims4.mp4'
+              video.controls = true
+              video.autoplay = true
+              video.loop = true
+              video.muted = true
+              video.setAttribute('id', 'choice-modal-video')
+              video.style.pointerEvents = 'auto'
+              video.style.background = 'black'
+              video.style.borderRadius = '12px'
+              video.style.width = '100%'
+              video.style.height = '100%'
+              video.style.margin = '0'
+              video.style.objectFit = 'contain'
+              const videoRange = getVideoClipRangeFromEvent(data[i], 5)
               video.addEventListener('loadedmetadata', function() {
-                const end = Math.min(videoRange.end, video.duration);
-                video.currentTime = videoRange.start;
-                video._clipStart = videoRange.start;
-                video._clipEnd = end;
-                const playPromise = video.play();
+                const end = Math.min(videoRange.end, video.duration)
+                video.currentTime = videoRange.start
+                video._clipStart = videoRange.start
+                video._clipEnd = end
+                const playPromise = video.play()
                 if (playPromise !== undefined) {
                   playPromise.catch(e => {
-                    console.warn('Autoplay play() failed:', e);
-                  });
+                    console.warn('Autoplay play() failed:', e)
+                  })
                 }
-              });
+              })
               video.addEventListener('timeupdate', function() {
-                if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                  video.currentTime = video._clipStart;
-                  video.play();
+                if (
+                  video.currentTime < video._clipStart ||
+                  video.currentTime >= video._clipEnd
+                ) {
+                  video.currentTime = video._clipStart
+                  video.play()
                 }
-              });
+              })
               overlay.addEventListener('mousedown', function(e) {
                 if (e.target === overlay) {
-                  let video = overlay.querySelector('#choice-modal-video');
-                  if (video) video.pause();
-                  overlay.remove();
+                  let video = overlay.querySelector('#choice-modal-video')
+                  if (video) video.pause()
+                  overlay.remove()
                 }
-              });
-              modal.appendChild(closeBtn);
-              modal.appendChild(video);
-              overlay.appendChild(modal);
-              document.body.appendChild(overlay);
-            });
-
+              })
+              modal.appendChild(closeBtn)
+              modal.appendChild(video)
+              overlay.appendChild(modal)
+              document.body.appendChild(overlay)
+            })
           }
         )
       }
-
 
       // this contains the logic for connecting events with multiple participants
       if (eventType === 'Family Interaction') {
@@ -1488,8 +1729,12 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let eventDetails = data[i]['eventDetails']
 
         // Always treat interactee/interacteeID as arrays
-        let interacteeArr = Array.isArray(data[i]['interacteeID']) ? data[i]['interacteeID'] : [data[i]['interacteeID']]
-        let interacteeNameArr = Array.isArray(data[i]['interactee']) ? data[i]['interactee'] : [data[i]['interactee']]
+        let interacteeArr = Array.isArray(data[i]['interacteeID'])
+          ? data[i]['interacteeID']
+          : [data[i]['interacteeID']]
+        let interacteeNameArr = Array.isArray(data[i]['interactee'])
+          ? data[i]['interactee']
+          : [data[i]['interactee']]
         // Collect all participants: interactor + interactees
         let allIDs = [data[i]['interactorID'], ...interacteeArr]
         let allNames = [data[i]['interactor'], ...interacteeNameArr]
@@ -1497,39 +1742,54 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let allRects = []
 
         // --- Add SVG filter for glow effect if not already present ---
-        let defs = svg.select('defs');
+        let defs = svg.select('defs')
         if (!defs) {
-          defs = svg.paper.el('defs');
-          svg.append(defs);
+          defs = svg.paper.el('defs')
+          svg.append(defs)
         }
-        let glowFilterId = 'family-interaction-glow-filter';
-        let existingGlow = defs.select(`#${glowFilterId}`);
+        let glowFilterId = 'family-interaction-glow-filter'
+        let existingGlow = defs.select(`#${glowFilterId}`)
         if (!existingGlow) {
-          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-          filter.setAttribute('id', glowFilterId);
-          filter.setAttribute('x', '-40%');
-          filter.setAttribute('y', '-40%');
-          filter.setAttribute('width', '180%');
-          filter.setAttribute('height', '180%');
-          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
-          feGaussian.setAttribute('in', 'SourceGraphic');
-          feGaussian.setAttribute('stdDeviation', '4');
-          feGaussian.setAttribute('result', 'blur');
-          filter.appendChild(feGaussian);
-          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
-          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode1.setAttribute('in', 'blur');
-          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode2.setAttribute('in', 'SourceGraphic');
-          feMerge.appendChild(feMergeNode1);
-          feMerge.appendChild(feMergeNode2);
-          filter.appendChild(feMerge);
-          defs.node.appendChild(filter);
+          let filter = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'filter'
+          )
+          filter.setAttribute('id', glowFilterId)
+          filter.setAttribute('x', '-40%')
+          filter.setAttribute('y', '-40%')
+          filter.setAttribute('width', '180%')
+          filter.setAttribute('height', '180%')
+          let feGaussian = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feGaussianBlur'
+          )
+          feGaussian.setAttribute('in', 'SourceGraphic')
+          feGaussian.setAttribute('stdDeviation', '4')
+          feGaussian.setAttribute('result', 'blur')
+          filter.appendChild(feGaussian)
+          let feMerge = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMerge'
+          )
+          let feMergeNode1 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode1.setAttribute('in', 'blur')
+          let feMergeNode2 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode2.setAttribute('in', 'SourceGraphic')
+          feMerge.appendChild(feMergeNode1)
+          feMerge.appendChild(feMergeNode2)
+          filter.appendChild(feMerge)
+          defs.node.appendChild(filter)
         }
 
         // Create a Snap group for all rectangles in this event
-        let rectGroup = eventsGroup.group();
-        rectGroup.attr({ class: 'family-interaction-rect-group' });
+        let rectGroup = eventsGroup.group()
+        rectGroup.attr({ class: 'family-interaction-rect-group' })
 
         for (let k = 0; k < allPlayers.length; k++) {
           let posX = graph.getCharacterX(allPlayers[k], currentTimestamp)
@@ -1542,11 +1802,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               rectWidth,
               rectHeight,
               8, // rx for rounded corners
-              8  // ry for rounded corners
+              8 // ry for rounded corners
             )
             .attr({
               fill: playerColour[allPlayers[k]] || '#222',
-              class: 'event-icon-group'
+              class: 'event-icon-group',
             })
           allRects.push(rect)
         }
@@ -1554,23 +1814,23 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         // Add hover for each rectangle, but effect applies to the whole group
         // We'll use the first rectangle as the "main" for tooltip logic
         for (let k = 0; k < allRects.length; k++) {
-          let rect = allRects[k];
+          let rect = allRects[k]
           rect.hover(
             (function() {
               // We need to keep references to the tooltip elements and icon/border elements
-              let tooltipElements = {};
-              let iconElements = [];
-              let iconBorders = [];
+              let tooltipElements = {}
+              let iconElements = []
+              let iconBorders = []
               return function(event) {
                 // --- Glow and scale effect for all rectangles in the group ---
-                rectGroup.attr({ filter: `url(#${glowFilterId})` });
+                rectGroup.attr({ filter: `url(#${glowFilterId})` })
                 // Scale about each rectangle's centre
                 for (let m = 0; m < allRects.length; m++) {
-                  let r = allRects[m];
-                  let bbox = r.getBBox();
-                  let cx = bbox.x + bbox.width / 2;
-                  let cy = bbox.y + bbox.height / 2;
-                  r.transform(`s1.5,1.5,${cx},${cy}`);
+                  let r = allRects[m]
+                  let bbox = r.getBBox()
+                  let cx = bbox.x + bbox.width / 2
+                  let cy = bbox.y + bbox.height / 2
+                  r.transform(`s1.5,1.5,${cx},${cy}`)
                 }
 
                 // Tooltip logic (show all participants for all rectangles in the group)
@@ -1583,15 +1843,20 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 if (pt.x >= 5700) tipX -= 200
 
                 // --- Tooltip layout for Family Interaction event ---
-                let length = calculateBorderLength(eventDetails, 50) <= 370 ? 380 : calculateBorderLength(eventDetails, 50)
+                let length =
+                  calculateBorderLength(eventDetails, 50) <= 370
+                    ? 380
+                    : calculateBorderLength(eventDetails, 50)
                 // Limit tooltip width to 600px max
                 let tooltipWidth = Math.min(length, 600)
-                let tooltipHeight = 180;
-                let border = svg.rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10).attr({
-                  stroke: 'black',
-                  fill: 'rgba(255,255,255, 0.9)',
-                  strokeWidth: '3px',
-                })
+                let tooltipHeight = 180
+                let border = svg
+                  .rect(tipX, tipY, tooltipWidth, tooltipHeight, 10, 10)
+                  .attr({
+                    stroke: 'black',
+                    fill: 'rgba(255,255,255, 0.9)',
+                    strokeWidth: '3px',
+                  })
 
                 // Show all participants' names in a single line
                 let interactorText = svg.text(
@@ -1600,17 +1865,25 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   'Character Involved: ' + allNames.join(', ')
                 )
 
+                videoIcon = svg.image(
+                  `../../src/image/video.png`,
+                  tipX + tooltipWidth - 38,
+                  tipY + 12,
+                  24,
+                  24
+                )
+
                 // Show all participant icons in a row, with colour-coded borders
-                let iconSize = 40;
-                let iconSpacing = 10;
-                let iconStartX = 38 + tipX;
-                let iconY = 40 + tipY;
-                iconBorders = [];
-                iconElements = [];
+                let iconSize = 40
+                let iconSpacing = 10
+                let iconStartX = 38 + tipX
+                let iconY = 40 + tipY
+                iconBorders = []
+                iconElements = []
                 for (let p = 0; p < allNames.length; p++) {
-                  let px = iconStartX + p * (iconSize + iconSpacing);
-                  let playerName = allNames[p];
-                  let playerId = allPlayers[p];
+                  let px = iconStartX + p * (iconSize + iconSpacing)
+                  let playerName = allNames[p]
+                  let playerId = allPlayers[p]
                   // Icon
                   let icon = svg.image(
                     `../../src/image/Characters/${playerName}.png`,
@@ -1618,21 +1891,26 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                     iconY,
                     iconSize,
                     iconSize
-                  );
-                  iconElements.push(icon);
+                  )
+                  iconElements.push(icon)
                   // Border
-                  let borderRect = svg.rect(px, iconY, iconSize, iconSize).attr({
-                    fill: 'none',
-                    stroke: playerColour[playerId] || '#222',
-                    'stroke-width': '3',
-                    opacity: 0.7,
-                  });
-                  iconBorders.push(borderRect);
+                  let borderRect = svg
+                    .rect(px, iconY, iconSize, iconSize)
+                    .attr({
+                      fill: 'none',
+                      stroke: playerColour[playerId] || '#222',
+                      'stroke-width': '3',
+                      opacity: 0.7,
+                    })
+                  iconBorders.push(borderRect)
                 }
 
                 // Draw eventDetails as a single line
                 // Use foreignObject for word-wrapping eventDetails
-                let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+                let foreign = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'foreignObject'
+                )
                 foreign.setAttribute('x', 35 + tipX)
                 foreign.setAttribute('y', 35 + 50 + 20 + tipY)
                 foreign.setAttribute('width', 530)
@@ -1648,7 +1926,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                 foreign.appendChild(div)
                 mySvg.appendChild(foreign)
                 let interactorNameElement = {
-                  remove: () => foreign.remove()
+                  remove: () => foreign.remove(),
                 }
 
                 // Store references for cleanup
@@ -1657,372 +1935,392 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
                   interactorText,
                   interactorNameElement,
                   iconElements,
-                  iconBorders
-                };
+                  iconBorders,
+                }
 
                 // Attach to rect for access in mouseleave
-                rect.data('family-tooltip-elements', tooltipElements);
+                rect.data('family-tooltip-elements', tooltipElements)
               }
             })(),
             function() {
               // Remove the tooltip immediately on mouseleave
-              let tooltipElements = rect.data('family-tooltip-elements');
+              let tooltipElements = rect.data('family-tooltip-elements')
               if (tooltipElements) {
-                if (tooltipElements.border) tooltipElements.border.remove();
-                if (tooltipElements.interactorText) tooltipElements.interactorText.remove();
-                if (tooltipElements.interactorNameElement) tooltipElements.interactorNameElement.remove();
-                if (tooltipElements.iconElements && tooltipElements.iconElements.length) {
-                  tooltipElements.iconElements.forEach(el => el && el.remove());
+                if (tooltipElements.border) tooltipElements.border.remove()
+                if (tooltipElements.interactorText)
+                  tooltipElements.interactorText.remove()
+                if (tooltipElements.interactorNameElement)
+                  tooltipElements.interactorNameElement.remove()
+                if (
+                  tooltipElements.iconElements &&
+                  tooltipElements.iconElements.length
+                ) {
+                  tooltipElements.iconElements.forEach(el => el && el.remove())
                 }
-                if (tooltipElements.iconBorders && tooltipElements.iconBorders.length) {
-                  tooltipElements.iconBorders.forEach(el => el && el.remove());
+                if (
+                  tooltipElements.iconBorders &&
+                  tooltipElements.iconBorders.length
+                ) {
+                  tooltipElements.iconBorders.forEach(el => el && el.remove())
                 }
               }
               // Remove glow and restore transform for all rectangles in the group
-              rectGroup.attr({ filter: null });
+              rectGroup.attr({ filter: null })
               for (let m = 0; m < allRects.length; m++) {
-                allRects[m].transform('');
+                allRects[m].transform('')
               }
               // Remove the stored data
-              rect.data('family-tooltip-elements', null);
+              rect.data('family-tooltip-elements', null)
+
+              videoIcon.remove()
             }
           )
 
           rect.click(function(event) {
             // Remove any existing overlay
-            let oldOverlay = document.getElementById('family-interaction-modal-overlay')
+            let oldOverlay = document.getElementById(
+              'family-interaction-modal-overlay'
+            )
             if (oldOverlay) {
-              let oldVideo = oldOverlay.querySelector('#family-interaction-modal-video')
+              let oldVideo = oldOverlay.querySelector(
+                '#family-interaction-modal-video'
+              )
               if (oldVideo) oldVideo.pause()
               oldOverlay.remove()
             }
 
-            let overlay = document.createElement('div');
-            overlay.setAttribute('id', 'family-interaction-modal-video');
-            overlay.style.position = 'fixed';
-            overlay.style.left = '0';
-            overlay.style.top = '0';
-            overlay.style.width = '100vw';
-            overlay.style.height = '100vh';
-            overlay.style.background = 'rgba(80,80,80,0.7)';
-            overlay.style.zIndex = 2000;
-            overlay.style.display = 'flex';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-            let modal = document.createElement('div');
-            modal.style.position = 'relative';
-            modal.style.background = 'rgba(255,255,255,0.95)';
-            modal.style.borderRadius = '16px';
-            modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)';
-            modal.style.padding = '0';
-            modal.style.display = 'flex';
-            modal.style.flexDirection = 'column';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            modal.style.width = '90vw';
-            modal.style.height = '80vh';
-            modal.style.maxWidth = '90vw';
-            modal.style.maxHeight = '80vh';
-            modal.style.minWidth = '320px';
-            modal.style.minHeight = '180px';
-            let closeBtn = document.createElement('button');
-            closeBtn.innerText = '×';
-            closeBtn.style.position = 'absolute';
-            closeBtn.style.top = '12px';
-            closeBtn.style.right = '18px';
-            closeBtn.style.fontSize = '2.2rem';
-            closeBtn.style.background = 'transparent';
-            closeBtn.style.border = 'none';
-            closeBtn.style.cursor = 'pointer';
-            closeBtn.style.color = '#333';
-            closeBtn.style.zIndex = 10;
-            closeBtn.setAttribute('aria-label', 'Close');
+            let overlay = document.createElement('div')
+            overlay.setAttribute('id', 'family-interaction-modal-video')
+            overlay.style.position = 'fixed'
+            overlay.style.left = '0'
+            overlay.style.top = '0'
+            overlay.style.width = '100vw'
+            overlay.style.height = '100vh'
+            overlay.style.background = 'rgba(80,80,80,0.7)'
+            overlay.style.zIndex = 2000
+            overlay.style.display = 'flex'
+            overlay.style.alignItems = 'center'
+            overlay.style.justifyContent = 'center'
+            let modal = document.createElement('div')
+            modal.style.position = 'relative'
+            modal.style.background = 'rgba(255,255,255,0.95)'
+            modal.style.borderRadius = '16px'
+            modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.2)'
+            modal.style.padding = '0'
+            modal.style.display = 'flex'
+            modal.style.flexDirection = 'column'
+            modal.style.alignItems = 'center'
+            modal.style.justifyContent = 'center'
+            modal.style.width = '90vw'
+            modal.style.height = '80vh'
+            modal.style.maxWidth = '90vw'
+            modal.style.maxHeight = '80vh'
+            modal.style.minWidth = '320px'
+            modal.style.minHeight = '180px'
+            let closeBtn = document.createElement('button')
+            closeBtn.innerText = '×'
+            closeBtn.style.position = 'absolute'
+            closeBtn.style.top = '12px'
+            closeBtn.style.right = '18px'
+            closeBtn.style.fontSize = '2.2rem'
+            closeBtn.style.background = 'transparent'
+            closeBtn.style.border = 'none'
+            closeBtn.style.cursor = 'pointer'
+            closeBtn.style.color = '#333'
+            closeBtn.style.zIndex = 10
+            closeBtn.setAttribute('aria-label', 'Close')
             closeBtn.addEventListener('click', function() {
-              let overlay = document.getElementById('family-interaction-modal-video');
+              let overlay = document.getElementById(
+                'family-interaction-modal-video'
+              )
               if (overlay) {
-                let video = overlay.querySelector('#family-interaction-modal-video');
-                if (video) video.pause();
-                overlay.remove();
+                let video = overlay.querySelector(
+                  '#family-interaction-modal-video'
+                )
+                if (video) video.pause()
+                overlay.remove()
               }
-            });
-            let video = document.createElement('video');
-            video.src = '../../src/video/sims4.mp4';
-            video.controls = true;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.setAttribute('id', 'family-interaction-modal-video');
-            video.style.pointerEvents = 'auto';
-            video.style.background = 'black';
-            video.style.borderRadius = '12px';
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.margin = '0';
-            video.style.objectFit = 'contain';
-            const videoRange = getVideoClipRangeFromEvent(data[i], 5);
+            })
+            let video = document.createElement('video')
+            video.src = '../../src/video/sims4.mp4'
+            video.controls = true
+            video.autoplay = true
+            video.loop = true
+            video.muted = true
+            video.setAttribute('id', 'family-interaction-modal-video')
+            video.style.pointerEvents = 'auto'
+            video.style.background = 'black'
+            video.style.borderRadius = '12px'
+            video.style.width = '100%'
+            video.style.height = '100%'
+            video.style.margin = '0'
+            video.style.objectFit = 'contain'
+            const videoRange = getVideoClipRangeFromEvent(data[i], 5)
             video.addEventListener('loadedmetadata', function() {
-              const end = Math.min(videoRange.end, video.duration);
-              video.currentTime = videoRange.start;
-              video._clipStart = videoRange.start;
-              video._clipEnd = end;
-              const playPromise = video.play();
+              const end = Math.min(videoRange.end, video.duration)
+              video.currentTime = videoRange.start
+              video._clipStart = videoRange.start
+              video._clipEnd = end
+              const playPromise = video.play()
               if (playPromise !== undefined) {
                 playPromise.catch(e => {
-                  console.warn('Autoplay play() failed:', e);
-                });
+                  console.warn('Autoplay play() failed:', e)
+                })
               }
-            });
+            })
             video.addEventListener('timeupdate', function() {
-              if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                video.currentTime = video._clipStart;
-                video.play();
+              if (
+                video.currentTime < video._clipStart ||
+                video.currentTime >= video._clipEnd
+              ) {
+                video.currentTime = video._clipStart
+                video.play()
               }
-            });
+            })
             overlay.addEventListener('mousedown', function(e) {
               if (e.target === overlay) {
-                let video = overlay.querySelector('#choice-modal-video');
-                if (video) video.pause();
-                overlay.remove();
+                let video = overlay.querySelector('#choice-modal-video')
+                if (video) video.pause()
+                overlay.remove()
               }
-            });
-            modal.appendChild(closeBtn);
-            modal.appendChild(video);
-            overlay.appendChild(modal);
-            document.body.appendChild(overlay);
-          });
+            })
+            modal.appendChild(closeBtn)
+            modal.appendChild(video)
+            overlay.appendChild(modal)
+            document.body.appendChild(overlay)
+          })
         }
         // No need to draw lines here; handled above for all participants
       }
 
       // different size for death icon + video in tooltip
-      if (eventType === 'Death') {
-        const iconSize = 50
-        const offset = iconSize / 2
-
-        let playerIndex = data[i]['interactorID']
-        let currentTimestamp = data[i]['timestamp']
-        let currentPlayer = 'Player' + String(playerIndex)
-
-        let eventDetails = data[i]['eventDetails']
-
-        let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
-        let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
-
-        // console.log(eventDetails, deathPosX, deathPosY)
-
-        eventsGroup
-          .image(
-            `../../src/image/Events_General/${eventType}.svg`,
-            deathPosX - offset,
-            deathPosY - offset,
-            iconSize,
-            iconSize
-          )
-          .attr({ class: 'event-icon-group' })
-          .hover(
-            event => {
-              pt.x = event.clientX
-              pt.y = event.clientY
-
-              pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
-
-              // Offset tooltip so it does not appear under the cursor
-              let tipX = pt.x + 20
-              let tipY = pt.y + 20
-
-              if (tipY >= 950) {
-                tipY -= 70
-              }
-
-              if (tipX >= 5700) {
-                tipX -= 220
-              }
-
-              currentPlayer = 'Player' + String(playerIndex)
-
-              let length
-
-              if (calculateBorderLength(eventDetails, 50) < 250) {
-                length = 250
-              } else {
-                length = calculateBorderLength(eventDetails, 50)
-              }
-
-              // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
-              // Limit tooltip width to 600px max
-              let tooltipWidth = Math.min(length, 600)
-              border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
-                stroke: 'black',
-                fill: 'rgba(255,255,255, 0.9)',
-                strokeWidth: '3px',
-              })
-
-              // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
-              interactorText = svg.text(
-                35 + tipX,
-                25 + tipY,
-                'Interactor: ' + interactor
-              )
-
-              interactorIcon = svg.image(
-                `../../src/image/Characters/${interactor}.png`,
-                38 + tipX,
-                40 + tipY,
-                40,
-                40
-              )
-
-              interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
-                fill: 'none',
-                stroke: `${playerColour[currentPlayer]}`,
-                'stroke-width': '3',
-                opacity: 0.7,
-              })
-
-              // Remove any existing wrapper before creating a new one
-              let oldWrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (oldWrapper) {
-                let oldVideo = oldWrapper.querySelector(
-                  '#relocation-tooltip-video'
-                )
-                if (oldVideo) oldVideo.pause()
-                oldWrapper.remove()
-              }
-
-              // Add video element to tooltip, positioned and scaled to match SVG border
-              // Remove any existing wrapper before creating a new one
-              let wrapper = document.createElement('div')
-              wrapper.style.position = 'fixed'
-              wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
-              wrapper.style.zIndex = 1000
-              wrapper.style.pointerEvents = 'none'
-              wrapper.style.overflow = 'hidden'
-              wrapper.style.scrollbarWidth = 'none'
-              wrapper.style.msOverflowStyle = 'none'
-
-              // Get the SVG border's bounding box in SVG coordinates
-              let borderBBox = border.node.getBBox()
-              // Convert SVG coordinates to screen coordinates
-              let ctm = mySvg.getScreenCTM()
-              // Top-left corner
-              let svgX = borderBBox.x
-              let svgY = borderBBox.y
-              let svgW = borderBBox.width
-              let svgH = borderBBox.height
-              // Transform to screen coordinates
-              let topLeft = mySvg.createSVGPoint()
-              topLeft.x = svgX
-              topLeft.y = svgY
-              topLeft = topLeft.matrixTransform(ctm)
-              // Bottom-right corner
-              let bottomRight = mySvg.createSVGPoint()
-              bottomRight.x = svgX + svgW
-              bottomRight.y = svgY + svgH
-              bottomRight = bottomRight.matrixTransform(ctm)
-              // Calculate width/height in screen space
-              let screenW = bottomRight.x - topLeft.x
-              let screenH = bottomRight.y - topLeft.y
-              // Set wrapper position and size
-              wrapper.style.left = `${topLeft.x}px`
-              wrapper.style.top = `${topLeft.y}px`
-              wrapper.style.width = `${screenW}px`
-              wrapper.style.height = `${screenH}px`
-
-              // Calculate video size and position (2% padding on each side)
-              let videoW = screenW * 0.96
-              let videoH = screenH * 0.96
-              let videoLeft = screenW * 0.2
-              let videoTop = screenH * 0.35
-
-              let video = document.createElement('video')
-              video.src = '../../src/video/sims4.mp4'
-              video.controls = true
-              video.autoplay = true
-              video.loop = true
-              video.muted = true
-              video.setAttribute('id', 'relocation-tooltip-video')
-              video.style.pointerEvents = 'auto'
-              video.style.background = 'black'
-              video.style.position = 'absolute'
-              video.style.left = `${videoLeft}px`
-              video.style.top = `${videoTop}px`
-              video.style.width = `${videoW*0.6}px`
-              video.style.height = `${videoH*0.6}px`
-              video.style.borderRadius = '8px'
-
-              // Clip video to play only within the calculated range and loop
-              const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
-              video.addEventListener('loadedmetadata', function() {
-                // Clamp end to video duration if needed
-                const end = Math.min(videoRange.end, video.duration);
-                video.currentTime = videoRange.start;
-                video._clipStart = videoRange.start;
-                video._clipEnd = end;
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                  playPromise.catch(e => {
-                    console.warn('Autoplay play() failed:', e);
-                  });
-                }
-              });
-              video.addEventListener('timeupdate', function() {
-                // Loop only within the clip range
-                if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
-                  video.currentTime = video._clipStart;
-                  video.play();
-                }
-              });
-
-              wrapper.appendChild(video)
-              document.body.appendChild(wrapper)
-
-              // Draw eventDetails as a single line
-              // Use foreignObject for word-wrapping eventDetails
-              let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
-              foreign.setAttribute('x', 35 + tipX)
-              foreign.setAttribute('y', 35 + 50 + 20 + tipY)
-              foreign.setAttribute('width', 530)
-              foreign.setAttribute('height', 320)
-              let div = document.createElement('div')
-              div.style.maxWidth = '530px'
-              div.style.wordBreak = 'break-word'
-              div.style.whiteSpace = 'pre-wrap'
-              div.style.fontSize = '18px'
-              div.style.fontFamily = 'inherit'
-              div.style.color = '#222'
-              div.textContent = eventDetails
-              foreign.appendChild(div)
-              mySvg.appendChild(foreign)
-              interactorNameElement = {
-                remove: () => foreign.remove()
-              }
-            },
-            () => {
-              border.remove()
-              interactorText.remove()
-              interactorIcon.remove()
-              interactorNameElement.remove()
-              interactorBorder.remove()
-              // Remove the video wrapper if it exists
-              let wrapper = document.getElementById(
-                'relocation-tooltip-wrapper'
-              )
-              if (wrapper) {
-                let video = wrapper.querySelector('#relocation-tooltip-video')
-                if (video) {
-                  video.pause()
-                }
-                wrapper.remove()
-              }
-            }
-          )
-      }
+      // if (eventType === 'Death') {
+      //   const iconSize = 50
+      //   const offset = iconSize / 2
+      //
+      //   let playerIndex = data[i]['interactorID']
+      //   let currentTimestamp = data[i]['timestamp']
+      //   let currentPlayer = 'Player' + String(playerIndex)
+      //
+      //   let eventDetails = data[i]['eventDetails']
+      //
+      //   let deathPosX = graph.getCharacterX(currentPlayer, currentTimestamp)
+      //   let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
+      //
+      //   // console.log(eventDetails, deathPosX, deathPosY)
+      //
+      //   eventsGroup
+      //     .image(
+      //       `../../src/image/Events_General/${eventType}.svg`,
+      //       deathPosX - offset,
+      //       deathPosY - offset,
+      //       iconSize,
+      //       iconSize
+      //     )
+      //     .attr({ class: 'event-icon-group' })
+      //     .hover(
+      //       event => {
+      //         pt.x = event.clientX
+      //         pt.y = event.clientY
+      //
+      //         pt = pt.matrixTransform(mySvg.getScreenCTM().inverse())
+      //
+      //         // Offset tooltip so it does not appear under the cursor
+      //         let tipX = pt.x + 20
+      //         let tipY = pt.y + 20
+      //
+      //         if (tipY >= 950) {
+      //           tipY -= 70
+      //         }
+      //
+      //         if (tipX >= 5700) {
+      //           tipX -= 220
+      //         }
+      //
+      //         currentPlayer = 'Player' + String(playerIndex)
+      //
+      //         let length
+      //
+      //         if (calculateBorderLength(eventDetails, 50) < 250) {
+      //           length = 250
+      //         } else {
+      //           length = calculateBorderLength(eventDetails, 50)
+      //         }
+      //
+      //         // backup arg with minimap - tipX, tipY, 250, 325, 10, 10
+      //         // Limit tooltip width to 600px max
+      //         let tooltipWidth = Math.min(length, 600)
+      //         border = svg.rect(tipX, tipY, tooltipWidth, 400, 10, 10).attr({
+      //           stroke: 'black',
+      //           fill: 'rgba(255,255,255, 0.9)',
+      //           strokeWidth: '3px',
+      //         })
+      //
+      //         // interacteeText = svg.text(130 + tipX, 25 + tipY, 'Interactee: ')
+      //         interactorText = svg.text(
+      //           35 + tipX,
+      //           25 + tipY,
+      //           'Interactor: ' + interactor
+      //         )
+      //
+      //         interactorIcon = svg.image(
+      //           `../../src/image/Characters/${interactor}.png`,
+      //           38 + tipX,
+      //           40 + tipY,
+      //           40,
+      //           40
+      //         )
+      //
+      //         interactorBorder = svg.rect(35 + tipX, 37 + tipY, 46, 46).attr({
+      //           fill: 'none',
+      //           stroke: `${playerColour[currentPlayer]}`,
+      //           'stroke-width': '3',
+      //           opacity: 0.7,
+      //         })
+      //
+      //         // Remove any existing wrapper before creating a new one
+      //         let oldWrapper = document.getElementById(
+      //           'relocation-tooltip-wrapper'
+      //         )
+      //         if (oldWrapper) {
+      //           let oldVideo = oldWrapper.querySelector(
+      //             '#relocation-tooltip-video'
+      //           )
+      //           if (oldVideo) oldVideo.pause()
+      //           oldWrapper.remove()
+      //         }
+      //
+      //         // Add video element to tooltip, positioned and scaled to match SVG border
+      //         // Remove any existing wrapper before creating a new one
+      //         let wrapper = document.createElement('div')
+      //         wrapper.style.position = 'fixed'
+      //         wrapper.setAttribute('id', 'relocation-tooltip-wrapper')
+      //         wrapper.style.zIndex = 1000
+      //         wrapper.style.pointerEvents = 'none'
+      //         wrapper.style.overflow = 'hidden'
+      //         wrapper.style.scrollbarWidth = 'none'
+      //         wrapper.style.msOverflowStyle = 'none'
+      //
+      //         // Get the SVG border's bounding box in SVG coordinates
+      //         let borderBBox = border.node.getBBox()
+      //         // Convert SVG coordinates to screen coordinates
+      //         let ctm = mySvg.getScreenCTM()
+      //         // Top-left corner
+      //         let svgX = borderBBox.x
+      //         let svgY = borderBBox.y
+      //         let svgW = borderBBox.width
+      //         let svgH = borderBBox.height
+      //         // Transform to screen coordinates
+      //         let topLeft = mySvg.createSVGPoint()
+      //         topLeft.x = svgX
+      //         topLeft.y = svgY
+      //         topLeft = topLeft.matrixTransform(ctm)
+      //         // Bottom-right corner
+      //         let bottomRight = mySvg.createSVGPoint()
+      //         bottomRight.x = svgX + svgW
+      //         bottomRight.y = svgY + svgH
+      //         bottomRight = bottomRight.matrixTransform(ctm)
+      //         // Calculate width/height in screen space
+      //         let screenW = bottomRight.x - topLeft.x
+      //         let screenH = bottomRight.y - topLeft.y
+      //         // Set wrapper position and size
+      //         wrapper.style.left = `${topLeft.x}px`
+      //         wrapper.style.top = `${topLeft.y}px`
+      //         wrapper.style.width = `${screenW}px`
+      //         wrapper.style.height = `${screenH}px`
+      //
+      //         // Calculate video size and position (2% padding on each side)
+      //         let videoW = screenW * 0.96
+      //         let videoH = screenH * 0.96
+      //         let videoLeft = screenW * 0.2
+      //         let videoTop = screenH * 0.35
+      //
+      //         let video = document.createElement('video')
+      //         video.src = '../../src/video/sims4.mp4'
+      //         video.controls = true
+      //         video.autoplay = true
+      //         video.loop = true
+      //         video.muted = true
+      //         video.setAttribute('id', 'relocation-tooltip-video')
+      //         video.style.pointerEvents = 'auto'
+      //         video.style.background = 'black'
+      //         video.style.position = 'absolute'
+      //         video.style.left = `${videoLeft}px`
+      //         video.style.top = `${videoTop}px`
+      //         video.style.width = `${videoW*0.6}px`
+      //         video.style.height = `${videoH*0.6}px`
+      //         video.style.borderRadius = '8px'
+      //
+      //         // Clip video to play only within the calculated range and loop
+      //         const videoRange = getVideoClipRangeFromEvent(data[i], 5); // use the current event object
+      //         video.addEventListener('loadedmetadata', function() {
+      //           // Clamp end to video duration if needed
+      //           const end = Math.min(videoRange.end, video.duration);
+      //           video.currentTime = videoRange.start;
+      //           video._clipStart = videoRange.start;
+      //           video._clipEnd = end;
+      //           const playPromise = video.play();
+      //           if (playPromise !== undefined) {
+      //             playPromise.catch(e => {
+      //               console.warn('Autoplay play() failed:', e);
+      //             });
+      //           }
+      //         });
+      //         video.addEventListener('timeupdate', function() {
+      //           // Loop only within the clip range
+      //           if (video.currentTime < video._clipStart || video.currentTime >= video._clipEnd) {
+      //             video.currentTime = video._clipStart;
+      //             video.play();
+      //           }
+      //         });
+      //
+      //         wrapper.appendChild(video)
+      //         document.body.appendChild(wrapper)
+      //
+      //         // Draw eventDetails as a single line
+      //         // Use foreignObject for word-wrapping eventDetails
+      //         let foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject')
+      //         foreign.setAttribute('x', 35 + tipX)
+      //         foreign.setAttribute('y', 35 + 50 + 20 + tipY)
+      //         foreign.setAttribute('width', 530)
+      //         foreign.setAttribute('height', 320)
+      //         let div = document.createElement('div')
+      //         div.style.maxWidth = '530px'
+      //         div.style.wordBreak = 'break-word'
+      //         div.style.whiteSpace = 'pre-wrap'
+      //         div.style.fontSize = '18px'
+      //         div.style.fontFamily = 'inherit'
+      //         div.style.color = '#222'
+      //         div.textContent = eventDetails
+      //         foreign.appendChild(div)
+      //         mySvg.appendChild(foreign)
+      //         interactorNameElement = {
+      //           remove: () => foreign.remove()
+      //         }
+      //       },
+      //       () => {
+      //         border.remove()
+      //         interactorText.remove()
+      //         interactorIcon.remove()
+      //         interactorNameElement.remove()
+      //         interactorBorder.remove()
+      //         // Remove the video wrapper if it exists
+      //         let wrapper = document.getElementById(
+      //           'relocation-tooltip-wrapper'
+      //         )
+      //         if (wrapper) {
+      //           let video = wrapper.querySelector('#relocation-tooltip-video')
+      //           if (video) {
+      //             video.pause()
+      //           }
+      //           wrapper.remove()
+      //         }
+      //       }
+      //     )
+      // }
 
       // different style for letter icon: glow on hover, modal "letter" on click
-      if (eventType === 'Letter')
-      {
+      if (eventType === 'Letter') {
         const iconSize = 40
         const offset = iconSize / 2
 
@@ -2036,34 +2334,49 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
         let deathPosY = graph.getCharacterY(currentPlayer, currentTimestamp)
 
         // --- Add SVG filter for glow effect if not already present ---
-        let defs = svg.select('defs');
+        let defs = svg.select('defs')
         if (!defs) {
-          defs = svg.paper.el('defs');
-          svg.append(defs);
+          defs = svg.paper.el('defs')
+          svg.append(defs)
         }
-        let glowFilterId = 'letter-glow-filter';
-        let existingGlow = defs.select(`#${glowFilterId}`);
+        let glowFilterId = 'letter-glow-filter'
+        let existingGlow = defs.select(`#${glowFilterId}`)
         if (!existingGlow) {
-          let filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
-          filter.setAttribute('id', glowFilterId);
-          filter.setAttribute('x', '-40%');
-          filter.setAttribute('y', '-40%');
-          filter.setAttribute('width', '180%');
-          filter.setAttribute('height', '180%');
-          let feGaussian = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
-          feGaussian.setAttribute('in', 'SourceGraphic');
-          feGaussian.setAttribute('stdDeviation', '4');
-          feGaussian.setAttribute('result', 'blur');
-          filter.appendChild(feGaussian);
-          let feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
-          let feMergeNode1 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode1.setAttribute('in', 'blur');
-          let feMergeNode2 = document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode');
-          feMergeNode2.setAttribute('in', 'SourceGraphic');
-          feMerge.appendChild(feMergeNode1);
-          feMerge.appendChild(feMergeNode2);
-          filter.appendChild(feMerge);
-          defs.node.appendChild(filter);
+          let filter = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'filter'
+          )
+          filter.setAttribute('id', glowFilterId)
+          filter.setAttribute('x', '-40%')
+          filter.setAttribute('y', '-40%')
+          filter.setAttribute('width', '180%')
+          filter.setAttribute('height', '180%')
+          let feGaussian = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feGaussianBlur'
+          )
+          feGaussian.setAttribute('in', 'SourceGraphic')
+          feGaussian.setAttribute('stdDeviation', '4')
+          feGaussian.setAttribute('result', 'blur')
+          filter.appendChild(feGaussian)
+          let feMerge = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMerge'
+          )
+          let feMergeNode1 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode1.setAttribute('in', 'blur')
+          let feMergeNode2 = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'feMergeNode'
+          )
+          feMergeNode2.setAttribute('in', 'SourceGraphic')
+          feMerge.appendChild(feMergeNode1)
+          feMerge.appendChild(feMergeNode2)
+          filter.appendChild(feMerge)
+          defs.node.appendChild(filter)
         }
 
         // Use Snap.svg to load the SVG, set fill, then place at correct position
@@ -2078,8 +2391,11 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             f.selectAll(
               'path, rect, circle, ellipse, polygon, polyline'
             ).forEach(function(el) {
-              el.attr({ fill: playerColour[currentPlayer] || '#000' ,
-                "fill-opacity": 0.7, stoke: '#000', "stroke-opacity": 1.0
+              el.attr({
+                fill: playerColour[currentPlayer] || '#000',
+                'fill-opacity': 0.7,
+                stoke: '#000',
+                'stroke-opacity': 1.0,
               })
             })
             // Create a group for the icon
@@ -2089,7 +2405,7 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             g.transform('')
             g.attr({
               transform: `translate(${deathPosX - offset},${deathPosY -
-              offset})`,
+                offset})`,
               class: 'event-icon-group',
             })
             // Set the bounding box to the correct size
@@ -2099,10 +2415,10 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
             // Add glow on hover, remove on mouseleave
             g.hover(
               () => {
-                g.attr({ filter: `url(#${glowFilterId})` });
+                g.attr({ filter: `url(#${glowFilterId})` })
               },
               () => {
-                g.attr({ filter: null });
+                g.attr({ filter: null })
               }
             )
             // On click, show modal "letter" layout
@@ -2130,7 +2446,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               // Modal content container styled as a letter
               let modal = document.createElement('div')
               modal.style.position = 'relative'
-              modal.style.background = 'linear-gradient(135deg, #fffbe6 90%, #f7ecd0 100%)'
+              modal.style.background =
+                'linear-gradient(135deg, #fffbe6 90%, #f7ecd0 100%)'
               modal.style.borderRadius = '18px'
               modal.style.boxShadow = '0 4px 32px rgba(0,0,0,0.18)'
               modal.style.padding = '48px 36px 36px 36px'
@@ -2154,7 +2471,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
               fold.style.left = '0'
               fold.style.width = '100%'
               fold.style.height = '32px'
-              fold.style.background = 'linear-gradient(180deg, #f7ecd0 60%, #fffbe6 100%)'
+              fold.style.background =
+                'linear-gradient(180deg, #f7ecd0 60%, #fffbe6 100%)'
               fold.style.borderTopLeftRadius = '18px'
               fold.style.borderTopRightRadius = '18px'
               fold.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)'
@@ -2163,7 +2481,8 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
 
               // "Last Will Letter" heading
               let heading = document.createElement('div')
-              heading.innerText = 'THE LAST WILL AND TESTAMENT OF THE FAMILY'+"'"+'S ESTATE'
+              heading.innerText =
+                'THE LAST WILL AND TESTAMENT OF THE FAMILY' + "'" + 'S ESTATE'
               heading.style.fontWeight = 'bold'
               heading.style.fontSize = '2.1rem'
               heading.style.letterSpacing = '0.08em'
@@ -2238,16 +2557,16 @@ async function drawEvents(graph, participantsInfo, filterTypes = null) {
     if (showMockLines && mockLineGroups.length > 0) {
       for (let group of mockLineGroups) {
         for (let j = 0; j < group.length - 1; j++) {
-          eventsGroup.line(group[j][0], group[j][1], group[j+1][0], group[j+1][1])
+          eventsGroup
+            .line(group[j][0], group[j][1], group[j + 1][0], group[j + 1][1])
             .attr({
               stroke: '#222',
               'stroke-width': 2,
               'stroke-dasharray': '6,6',
-              class: 'mock-event-dotted-line'
+              class: 'mock-event-dotted-line',
             })
         }
       }
     }
   })
 }
-

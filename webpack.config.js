@@ -16,7 +16,6 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     simple11: ['./app/js/simple11.js'],
-    complex11: ['./app/js/complex11.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -40,14 +39,5 @@ module.exports = {
     maxAssetSize: 512000,
   },
   stats: { children: false },
-  plugins: [
-    HtmlWebpackPluginConfig,
-    new HtmlWebpackPlugin({
-      template: './app/static/complex11.html',
-      filename: 'complex11.html',
-      inject: 'body',
-      chunks: ['complex11'],
-    }),
-    new WebpackBar(),
-  ],
+  plugins: [HtmlWebpackPluginConfig, new WebpackBar()],
 }
