@@ -2,48 +2,26 @@
 
 ## Introduction
 
-To be updated.
-
 As for now, this web app supports visualizing the following information:
 
-- Basic story character information (Sims created and Sim's important Contacts)
-- Players' positions over time
-- Players' events over time
+- Characters icons/names
+- Characters' events over time, with hovering tooltips showing event details
+- Events filtered by types
+- Characters' positions over time
 
-(more details to be updated)
+## Pre-requisite for Installation
 
-## Installation
+This visualization is based on Node.js and npm. Please make sure you have them installed on your machine.
 
-Use the package manager [npm](https://docs.npmjs.com/cli/install) or [yarn](https://yarnpkg.com/lang/en/docs/cli/add/) to install iStoryline.
+## Installation Process
 
-```Shell
-npm install i-storyline-js
-```
+1. Install Node.js (>= 10.0)
 
-or
+2. Install dependencies `npm i`
 
-```Shell
-yarn add i-storyline-js
-```
+3. Start the editor `npm run start`
 
-## Basic Usage of iStoryline framework
-
-```JavaScript
-import iStoryline from "i-storyline-js"
-let iStoryliner = new iStoryline();
-
-// generate storyline visualizations from the story script
-let storyScriptUrl = './data/xml/Redcap.xml';
-
-// graph can be drawed using any canvas or svg libraries
-let graph = iStoryliner.load(storyScriptUrl);
-
-// obtain the characters names
-console.log(graph.characters);  // ['Red cap', 'Mother', 'Wolf', 'GrandMa']
-
-// obtain the paths of the characters
-console.log(graph.storylines);  // [[[x1, y1], [x2, y2], ...], ...]
-```
+4. Please visit [localhost:8080](http://localhost:8080)
 
 -------- Below also need to be updated --------
 
@@ -80,19 +58,9 @@ Please then check and modify the webpack config file for new entry.
 
 - Drawing APIs are based on [canvas](https://www.w3schools.com/html/html5_canvas.asp) or [svg](https://www.w3schools.com/html/html5_svg.asp).
 
-## Storyline Board
-
-iStoryline.js provides a build-in editor for producing storyline visualizations.
-
-1. Install Node.js (>= 10.0)
-
-2. Install dependencies `npm i` or `yarn`
-
-3. Start the editor `npm run start`
-
-4. Please visit [localhost:8080](http://localhost:8080)
-
 ## Framework Documentation
+
+This project used the iStoryline.js framework for storyline visualization. Please check the following documentation for more details:
 
 - [Story Script](https://github.com/tangtan/iStoryline.js/wiki/Story-Script)
 
