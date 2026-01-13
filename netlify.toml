@@ -1,0 +1,44 @@
+# Netlify configuration file
+# This file helps automate deployment to Netlify
+# See DEPLOYMENT_GUIDE.md for complete instructions
+
+[build]
+  # Build command
+  command = "npx webpack --mode production"
+  
+  # Directory to publish
+  publish = "dist"
+  
+  # Install command with legacy peer deps flag
+  environment = { NPM_FLAGS = "--legacy-peer-deps" }
+
+# Optional: Redirect rules (uncomment if needed)
+# [[redirects]]
+#   from = "/*"
+#   to = "/simple11.html"
+#   status = 200
+
+# Optional: Custom headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Caching for static assets
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    # Don't cache HTML files
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    # Cache JSON data files for 1 hour
+    Cache-Control = "public, max-age=3600, must-revalidate"

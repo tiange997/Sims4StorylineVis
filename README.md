@@ -17,11 +17,21 @@ This visualization is based on Node.js and npm. Please make sure you have them i
 
 1. Install Node.js (>= 10.0)
 
-2. Install dependencies `npm i`
+2. Install dependencies `npm i --legacy-peer-deps`
 
 3. Start the editor `npm run start`
 
 4. Please visit [localhost:8080](http://localhost:8080)
+
+## 🚀 Deployment
+
+Want to deploy this project online with your custom domain?
+
+👉 **See the [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for complete step-by-step instructions**
+
+📋 Quick reference: [QUICK_DEPLOY.md](QUICK_DEPLOY.md)
+
+**Quick summary:** This project can be deployed to various platforms (Netlify, Vercel, GitHub Pages, traditional hosting, AWS). Build the project with `npx webpack --mode production` and deploy the `dist/` folder.
 
 -------- Below also need to be updated --------
 
