@@ -66,7 +66,7 @@ You should see the built files listed above.
 
 Choose one of the following deployment methods based on your preference and technical expertise:
 
-### Option 1: GitHub Pages (Recommended for Beginners)
+### Option 1: GitHub Pages (Free and Integrated)
 
 **Advantages:** Free, easy setup, automatic HTTPS, works great with custom domains
 
@@ -80,7 +80,7 @@ Choose one of the following deployment methods based on your preference and tech
 
 2. **Set up automatic deployment:**
    
-   Create a file `.github/workflows/deploy.yml`:
+   Create a file `.github/workflows/deploy-gh-pages.yml` (note: this file has already been created in this repository):
    
    ```yaml
    name: Deploy to GitHub Pages
