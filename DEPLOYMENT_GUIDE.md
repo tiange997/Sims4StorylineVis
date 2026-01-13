@@ -243,14 +243,23 @@ Choose one of the following deployment methods based on your preference and tech
 Depending on your deployment method, configure your DNS records:
 
 #### For GitHub Pages:
-Add these records to your DNS:
+Add these DNS records (create separate entries for each A record):
 
 ```
 Type: A
 Name: @ (or leave blank for root domain)
 Value: 185.199.108.153
+
+Type: A
+Name: @
 Value: 185.199.109.153
+
+Type: A
+Name: @
 Value: 185.199.110.153
+
+Type: A
+Name: @
 Value: 185.199.111.153
 
 Type: CNAME

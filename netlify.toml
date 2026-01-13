@@ -8,9 +8,10 @@
   
   # Directory to publish
   publish = "dist"
-  
+
+[build.environment]
   # Install command with legacy peer deps flag
-  environment = { NPM_FLAGS = "--legacy-peer-deps" }
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # Optional: Redirect rules (uncomment if needed)
 # [[redirects]]

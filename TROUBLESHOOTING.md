@@ -87,9 +87,9 @@ Use this checklist to diagnose and fix common deployment issues.
 - ✅ Check CORS settings if data is on different domain
 - ✅ Inspect file paths in `app/js/simple11.js`:
   ```javascript
-  // Example: loading data files
-  const jsonRead = d3Fetch.json('../../data/json/Match11/Story_Events_DataFull.json')
-  const jsonReadTwo = d3Fetch.json('../../data/json/Match11/simsTestFull.json')
+  // Example: loading data files (from actual codebase)
+  const eventTypeJsonPath = '../../data/json/Match11/Story_Events_DataFull.json'
+  d3Fetch.json(eventTypeJsonPath).then(data => { /* ... */ })
   ```
 - ✅ Ensure data files are not being blocked by `.gitignore`
 - ✅ Verify JSON files are valid (use JSONLint.com)

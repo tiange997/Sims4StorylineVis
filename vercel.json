@@ -1,7 +1,6 @@
 {
   "buildCommand": "npx webpack --mode production",
   "outputDirectory": "dist",
-  "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
   "headers": [
     {
