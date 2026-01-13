@@ -30,6 +30,9 @@
     "test": "mocha -r esm --recursive",
     "preinstall": "npx npm-force-resolutions"
   },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
