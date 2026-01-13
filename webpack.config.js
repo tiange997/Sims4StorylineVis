@@ -23,7 +23,12 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: '[id].[chunkhash].js',
   },
-  devServer: {},
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    allowedHosts: ['localhost', '.azurecontainer.io', '.azurewebsites.net'],
+    disableHostCheck: true,
+  },
   mode: 'production',
   module: {
     rules: [
